@@ -10,20 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_124126) do
+ActiveRecord::Schema.define(version: 2020_09_07_140351) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "issue_id"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["issue_id"], name: "index_comments_on_issue_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
   end
 
   create_table "issues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "type"
+    t.integer "issue_type"
     t.integer "priority"
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false

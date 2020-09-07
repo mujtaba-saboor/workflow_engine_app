@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Issue < ApplicationRecord
-  has_many :comments
+  has_many :comments, as: :commentable
 
   enum type: %i[bug issue]
   enum priority: %i[low high]
