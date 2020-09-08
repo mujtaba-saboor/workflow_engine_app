@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_092111) do
+ActiveRecord::Schema.define(version: 2020_09_08_062637) do
 
   create_table "project_teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "project_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_092111) do
     t.bigint "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.index ["project_id"], name: "index_project_users_on_project_id"
   end
 
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_092111) do
     t.bigint "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.index ["team_id"], name: "index_team_users_on_team_id"
   end
 
