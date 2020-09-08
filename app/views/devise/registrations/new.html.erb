@@ -1,7 +1,7 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render I18n.t"devise/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :name %><br />
@@ -37,7 +37,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit I18n.t"Sign up" %>
   </div>
 <% end %>
 
