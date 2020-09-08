@@ -1,16 +1,16 @@
 <h2>Forgot your password?</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render I18n.t"companies/shared/error_messages", resource: resource %>
+  <%= render t(:shared_path_of_error_messages), resource: resource %>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: t :email %>
   </div>
 
   <div class="actions">
-    <%= f.submit I18n.t"Send me reset password instructions" %>
+    <%= f.submit t :send_reset_password_instuctions %>
   </div>
 <% end %>
 
-<%= render I18n.t"companies/shared/links" %>
+<%= render t :shared_path_of_links %>

@@ -1,25 +1,25 @@
 <h2>Change your password</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render I18n.t"companies/shared/error_messages", resource: resource %>
+  <%= render t(:shared_path_of_error_messages), resource: resource %>
   <%= f.hidden_field :reset_password_token %>
 
   <div class="field">
-    <%= f.label :password, "New password" %><br />
+    <%= f.label :password, t(:new_password) %><br />
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em><br />
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+    <%= f.password_field :password, autofocus: true, autocomplete: t :new_password %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :password_confirmation, t :confirm_new_password %><br />
+    <%= f.password_field :password_confirmation, autocomplete: t :new_password %>
   </div>
 
   <div class="actions">
-    <%= f.submit I18n.t"Change my password" %>
+    <%= f.submit t :change_my_password %>
   </div>
 <% end %>
 
-<%= render I18n.t"companies/shared/links" %>
+<%= render t :shared_path_of_links %>

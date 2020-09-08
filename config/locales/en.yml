@@ -31,3 +31,17 @@
 
 en:
   hello: "Hello world"
+  shared_path_of_error_messages: "companies/shared/error_messages"
+  shared_path_of_links: "companies/shared/links"
+  new_password: "New password"
+  current_password: "Current-password"
+  change_my_password: "Change my password"
+  confirm_new_password: "Confirm new password"
+  new_password: "new-password"
+  forget_password: "Forgot your password?"
+  email: "email"
+  send_reset_password_instuctions: "Send me reset password instructions"
+  update: "Update"
+  sign_up: "Sign up"
+  login: "Log in"
+  resend_confirmation_instructions: "Resend confirmation instructions"
