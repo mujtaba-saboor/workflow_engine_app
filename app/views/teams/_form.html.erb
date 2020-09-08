@@ -1,0 +1,10 @@
+<%= form_with model: @team do |team| %>
+ <%= team.label :name %>
+ <%= team.text_field :name %><br><br>
+ <% if params[:action] == 'edit' %>
+ 	<%= team.submit 'Update Team' %>	
+ <%else%>
+ 	<%= team.submit 'Create Team' %>	
+ <% end %>
+
+<%end%>
