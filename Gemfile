@@ -23,8 +23,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Gems for aasm support
-gem 'aasm'
-gem 'after_commit_everywhere', '~> 0.1', '>= 0.1.5'
+gem 'aasm', '= 5.1.1'
+gem 'after_commit_everywhere', '= 0.1.5'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

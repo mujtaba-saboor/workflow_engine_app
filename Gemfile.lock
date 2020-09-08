@@ -202,8 +202,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm
-  after_commit_everywhere (~> 0.1, >= 0.1.5)
+  aasm (= 5.1.1)
+  after_commit_everywhere (= 0.1.5)
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
