@@ -13,10 +13,9 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: 7vals
+  username: rails_mysql
+  password: <%= ENV.fetch("RAILS_MYSQL_PASSWD") %>
   socket: /var/run/mysqld/mysqld.sock
-
 development:
   <<: *default
   database: workflow_engine_app_development
