@@ -1,0 +1,12 @@
+<%= form_with model: @project do |project| %>
+ <%= project.label :name %>
+ <%= project.text_field :name %><br><br>
+  <%= project.label :project_category %>
+ <%= project.select(:project_category,['TEAM','INDIVIDUAL']) %> <br><br>
+ <% if params[:action] == 'edit' %>
+ 	<%= project.submit 'Update Project' %>	
+ <%else%>
+ 	<%= project.submit 'Create Project' %>	
+ <% end %>
+
+<%end%>
