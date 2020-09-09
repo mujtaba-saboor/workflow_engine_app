@@ -27,13 +27,10 @@
   </div>
 
   <div class="field">
-    <%= f.label :role %><br />
-    <%= f.text_field :role%>
-  </div>
-
-  <div class="field">
-    <%= f.label :is_confirmed %><br />
-    <%= f.text_field :is_confirmed%>
+    <%= f.fields_for :company do |o| %>
+      <%= f.label :company_name %><br />
+      <%= f.text_field :name%>
+    <% end %>
   </div>
 
   <div class="actions">
