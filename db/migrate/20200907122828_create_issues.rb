@@ -4,7 +4,7 @@ class CreateIssues < ActiveRecord::Migration[6.0]
       t.string :title
       t.text :description
 
-      t.integer :type # enum: bug or issue
+      t.integer :issue_type # enum: bug or issue
       t.integer :priority # enum: low or high
       t.integer :status # enum: open, in_progress, resolved or closed
 
