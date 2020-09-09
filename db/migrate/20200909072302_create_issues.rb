@@ -11,7 +11,7 @@ class CreateIssues < ActiveRecord::Migration[6.0]
       t.references :project, null: false, index: true
       t.references :creator, null: false, index: true
       t.references :assignee, null: true, index: true
-      t.references :companies, null:false, index: true
+      t.references :company, null: false, index: true
 
       t.timestamps
     end
