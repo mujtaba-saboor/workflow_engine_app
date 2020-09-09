@@ -4,6 +4,11 @@ class Issue < ApplicationRecord
 
   has_many :comments, as: :commentable
 
+  belongs_to :creator, class_name: 'User', foreign_key: 'creator_id'
+  belongs_to :assignee, class_name: 'User', foreign_key: 'assignee_id'
+
+  belongs_to :company
+
   enum issue_type: %i[bug issue], _prefix: true
   enum priority: %i[low high], _prefix: true
   enum status: %i[open in_progress resolved closed], _scopes: false, _prefix: true
