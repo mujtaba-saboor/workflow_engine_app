@@ -1,7 +1,40 @@
+
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4"><%= @project.name%></h1>
     <p class="lead"><%= @project.project_category%></p>
-    <%= link_to 'Back', projects_path,class: 'btn btn-success'%>
   </div>
+</div>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+  	<%= link_to 'Issues','#',class: 'nav-link active',id: 'my-id-issue-link'%>    
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Members',project_users_path(@project),class: 'nav-link',remote: true,id: 'my-id-member-link'%>
+  </li>
+</ul>
+<div class = "my-custom-project-data-area">
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Description</th>
+	      <th scope="col">Assiginee</th>
+	      <th scope="col">Type</th>
+	      <th scope="col">Category</th>
+	      <th scope="col">Status</th>
+	      <th scope="col"><%= link_to 'Add Issue','',class: 'btn btn-primary' %></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <th scope="row">1</th>
+	      <td>Mark</td>
+	      <td>Otto</td>
+	      <td>@mdo</td>
+	      <td>Mark</td>
+	      <td>Otto</td>
+	    </tr>	    
+	  </tbody>
+	</table>
 </div>

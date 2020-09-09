@@ -8,12 +8,18 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    project = Project.create(project_params)
-    if(project)
-      redirect_to projects_path
+    compnay = Company.first
+    @project = Project.new
+    @project.name = params[:project][:name]
+    @project.project_category = params[:project][:project_category]
+    @project.company = compnay
+    #project = Project.create(project_params)    
+    if(@project.save)
+      flash[:notif] = 'Project Created Successfully'      
     else
-      redirect_to projects_path
+      flash[:notif] = 'An Error Occured'    
     end
+    redirect_to projects_path
   end
 
   def edit
@@ -34,6 +40,17 @@ class ProjectsController < ApplicationController
     project = Project.find(params[:id])
     project.destroy
     redirect_to projects_path
+  end
+
+  def project_users
+    @project = Project.find(params[:id])
+  end
+
+  def add_user
+  end
+
+  def add_team
+    @project = Project.find(params[:id])
   end
 
   private

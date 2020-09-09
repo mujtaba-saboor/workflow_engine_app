@@ -1,0 +1,9 @@
+<h3 align = center> All <%= @project.project_category%> </h3>
+<% if @project.project_category == 'TEAM'%>
+	<%= link_to 'Add Team',project_add_team_path(@project),class: 'btn btn-primary',remote: true%>	
+<% elsif%>
+	<%= link_to 'Add Member',project_add_user_path(@project),class: 'btn btn-primary',remote: true%>
+<% end %>
+
+<div class = 'my_class_add_user_to_project_area'>
+</div>

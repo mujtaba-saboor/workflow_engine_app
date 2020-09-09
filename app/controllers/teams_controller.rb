@@ -8,12 +8,17 @@ class TeamsController < ApplicationController
   end
 
   def create
-    team = Team.create(team_params)
-    if(team)
-      redirect_to teams_path
+    compnay = Company.first
+    @team = Team.new
+    @team.name = params[:team][:name]    
+    @team.company = compnay
+    #project = Project.create(project_params)    
+    if(@team.save)
+      flash.now[:notif] = 'Project Created Successfully'      
     else
-      redirect_to teams_path
+      flash.now[:notif] = 'An Error Occured'    
     end
+    redirect_to teams_path
   end
 
   def edit

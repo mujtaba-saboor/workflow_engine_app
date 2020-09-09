@@ -1,10 +1,13 @@
 <%= form_with model: @team do |team| %>
- <%= team.label :name %>
- <%= team.text_field :name %><br><br>
+ <div class="form-row">
+	 <div class="form-group col-sm-6">
+	 	<%= team.label :name %>
+	 	<%= team.text_field :name ,class: 'form-control',placeholder: 'Enter Name here'%>
+	 </div> 
+</div>
  <% if params[:action] == 'edit' %>
- 	<%= team.submit 'Update Team' %>	
+ 	<%= team.submit 'Update Team', class: 'btn btn-primary' %>	
  <%else%>
- 	<%= team.submit 'Create Team' %>	
+ 	<%= team.submit 'Create Team', class: 'btn btn-primary' %>	
  <% end %>
-
 <%end%>
