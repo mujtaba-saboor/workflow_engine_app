@@ -21,22 +21,22 @@ ActiveRecord::Schema.define(version: 2020_09_09_070718) do
   end
 
   create_table "project_teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "project_id"
-    t.bigint "team_id"
+    t.bigint "project_id", null: false
+    t.bigint "team_id", null: false
+    t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "company_id", null: false
     t.index ["company_id"], name: "index_project_teams_on_company_id"
     t.index ["project_id"], name: "index_project_teams_on_project_id"
     t.index ["team_id"], name: "index_project_teams_on_team_id"
   end
 
   create_table "project_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "project_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "project_id", null: false
     t.bigint "user_id", null: false
     t.bigint "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_project_users_on_company_id"
     t.index ["project_id"], name: "index_project_users_on_project_id"
     t.index ["user_id"], name: "index_project_users_on_user_id"
@@ -45,18 +45,18 @@ ActiveRecord::Schema.define(version: 2020_09_09_070718) do
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "project_category"
+    t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "company_id", null: false
     t.index ["company_id"], name: "index_projects_on_company_id"
   end
 
   create_table "team_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "team_id"
+    t.bigint "team_id", null: false
+    t.bigint "company_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.bigint "company_id", null: false
     t.index ["company_id"], name: "index_team_users_on_company_id"
     t.index ["team_id"], name: "index_team_users_on_team_id"
     t.index ["user_id"], name: "index_team_users_on_user_id"
@@ -64,9 +64,9 @@ ActiveRecord::Schema.define(version: 2020_09_09_070718) do
 
   create_table "teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
+    t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "company_id", null: false
     t.index ["company_id"], name: "index_teams_on_company_id"
   end
 
@@ -86,11 +86,4 @@ ActiveRecord::Schema.define(version: 2020_09_09_070718) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "project_teams", "companies"
-  add_foreign_key "project_users", "companies"
-  add_foreign_key "project_users", "users"
-  add_foreign_key "projects", "companies"
-  add_foreign_key "team_users", "companies"
-  add_foreign_key "team_users", "users"
-  add_foreign_key "teams", "companies"
 end
