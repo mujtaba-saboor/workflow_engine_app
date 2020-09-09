@@ -16,7 +16,6 @@ default: &default
   username: rails_mysql
   password: <%= ENV.fetch("RAILS_MYSQL_PASSWD") %>
   socket: /var/run/mysqld/mysqld.sock
-
 development:
   <<: *default
   database: workflow_engine_app_development
