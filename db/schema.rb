@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_055721) do
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", default: "", null: false
-    t.string "domain", default: "", null: false
+    t.string "domain", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 2020_09_08_055721) do
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "role", default: "Employee", null: false
-    t.string "is_confirmed", default: "No", null: false
+    t.string "role", default: "Employee"
+    t.string "is_confirmed", default: "No"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

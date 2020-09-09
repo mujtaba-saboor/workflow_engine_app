@@ -15,5 +15,15 @@ module WorkflowEngineApp
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    ActionMailer::Base.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :domain               => "mail.google.com",
+      :user_name            => "hammad.ikhlaq@7vals.com",
+      :password             => 'Fastian@4281',
+      :authentication       => "login",
+      :enable_starttls_auto => true
+}
   end
 end
