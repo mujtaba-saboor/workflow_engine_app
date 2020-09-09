@@ -8,10 +8,12 @@ class CreateIssues < ActiveRecord::Migration[6.0]
       t.integer :priority, null: false # enum: low or high
       t.integer :status, null: false # enum: open, in_progress, resolved or closed
 
-      t.references :creator, index: true
+      t.references :project, null: false, index: true
+
+      t.references :creator, null: false, index: true
       t.references :assignee, null: true, index: true
 
-      t.references :companies, index: true
+      t.references :companies, null:false, index: true
 
       t.timestamps
     end
