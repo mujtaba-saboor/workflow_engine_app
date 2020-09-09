@@ -10,14 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_09_08_062637) do
+ActiveRecord::Schema.define(version: 2020_09_09_070718) do
+
+  create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "domain", default: "", null: false
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "project_teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "project_id"
     t.bigint "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "company_id", null: false
+    t.index ["company_id"], name: "index_project_teams_on_company_id"
     t.index ["project_id"], name: "index_project_teams_on_project_id"
     t.index ["team_id"], name: "index_project_teams_on_team_id"
   end
@@ -26,8 +35,11 @@ ActiveRecord::Schema.define(version: 2020_09_08_062637) do
     t.bigint "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id", null: false
+    t.bigint "company_id", null: false
+    t.index ["company_id"], name: "index_project_users_on_company_id"
     t.index ["project_id"], name: "index_project_users_on_project_id"
+    t.index ["user_id"], name: "index_project_users_on_user_id"
   end
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -35,32 +47,30 @@ ActiveRecord::Schema.define(version: 2020_09_08_062637) do
     t.string "project_category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "company_id", null: false
+    t.index ["company_id"], name: "index_projects_on_company_id"
   end
 
   create_table "team_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id", null: false
+    t.bigint "company_id", null: false
+    t.index ["company_id"], name: "index_team_users_on_company_id"
     t.index ["team_id"], name: "index_team_users_on_team_id"
+    t.index ["user_id"], name: "index_team_users_on_user_id"
   end
 
   create_table "teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-=======
-ActiveRecord::Schema.define(version: 2020_09_08_055721) do
-
-  create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.string "domain", default: "", null: false
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "company_id", null: false
+    t.index ["company_id"], name: "index_teams_on_company_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -74,7 +84,13 @@ ActiveRecord::Schema.define(version: 2020_09_08_055721) do
     t.integer "company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
->>>>>>> 8efa6a8777ff6218100ebf95aaeb655b7cb7ec66
   end
 
+  add_foreign_key "project_teams", "companies"
+  add_foreign_key "project_users", "companies"
+  add_foreign_key "project_users", "users"
+  add_foreign_key "projects", "companies"
+  add_foreign_key "team_users", "companies"
+  add_foreign_key "team_users", "users"
+  add_foreign_key "teams", "companies"
 end
