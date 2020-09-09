@@ -8,7 +8,7 @@ class Issue < ApplicationRecord
   enum priority: %i[low high], _prefix: true
   enum status: %i[open in_progress resolved closed], _scopes: false, _prefix: true
 
-  validates :title, :type, :priority, :status, presence: true
+  validates :title, :issue_type, :priority, :status, presence: true
 
   aasm column: :status, enum: true do
     state :open, initial: true
