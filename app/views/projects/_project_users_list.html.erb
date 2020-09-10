@@ -1,10 +1,12 @@
 <h3 align = center> All Users </h3>
-<%= link_to 'Add Member',project_add_user_path(@project),class: 'btn btn-primary',remote: true%>
+<%= link_to 'Add Member',new_user_project_path(@project),class: 'btn btn-primary'%>
 <br><br>
 
 <ul class="list-group">
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    Cras justo odio
-    <a href="#" class="badge badge-danger">Delete</a>
-  </li>
+  <% @project.users.each do |user| %>
+	  <li class="list-group-item d-flex justify-content-between align-items-center">
+	    <%= user.name%>
+	    <%= link_to 'Remove User',remove_user_project_path(@project,user: user),method: :delete,class: 'badge badge-danger'%>
+	  </li>
+  <% end %>
 </ul>

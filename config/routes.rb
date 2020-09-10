@@ -10,6 +10,10 @@ Rails.application.routes.draw do
       get 'new_team'
       patch 'create_team'
       delete 'remove_team'
+      get 'new_user'
+      patch 'create_user'
+      delete 'remove_user'
+
     end
   end
   resources :teams

@@ -76,6 +76,33 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def new_user
+    @project = Project.find(params[:id])
+  end
+
+  def create_user
+    company = Company.first
+    project = Project.find(params[:id])
+    user = User.find(params[:project][:user])
+    result  = ProjectUser.create(project: project,user: user, company: company)
+    if(result)
+      flash[:notif] = 'User Added Successfully'
+      redirect_to project_path(project)
+    else
+    end
+  end
+
+  def remove_user
+    project = Project.find(params[:id])
+    user = User.find(params[:user])
+    result  = project.users.delete(user)
+    if(result)
+      flash[:notif] = 'User Removed Successfully'
+      redirect_to project_path(project)
+    else
+    end
+  end
+
   private
   def project_params
     params.require(:project).permit(:name, :project_category)

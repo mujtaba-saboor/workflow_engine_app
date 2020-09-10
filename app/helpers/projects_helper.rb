@@ -16,5 +16,14 @@ module ProjectsHelper
     end
     display_name
   end
+
+  def isUserAvailable?(project)
+    User.where.not(id: project.users.select(:id)).to_a.empty?
+  end
+
+  def project_users(project)
+    User.where.not(id: project.users.select(:id)) 
+  end
+
 end
 
