@@ -2,7 +2,8 @@
 class Issue < ApplicationRecord
   include AASM
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :watchers, dependent: :destroy
 
   belongs_to :creator, class_name: 'User', foreign_key: 'creator_id'
   belongs_to :assignee, class_name: 'User', foreign_key: 'assignee_id'

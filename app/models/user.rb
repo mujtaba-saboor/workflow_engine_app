@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :projects, through: :project_users
   has_many :team_users
   has_many :teams, through: :team_users
-  has_many :comments
-  has_many :watchers
-  has_many :created_issues, class_name: 'Issue', foreign_key: 'creator_id', inverse_of: 'creator'
-  has_many :assigned_issues, class_name: 'Issue', foreign_key: 'assignee_id', inverse_of: 'assignee'
+  has_many :comments, dependent: :destroy
+  has_many :watchers, dependent: :destroy
+  has_many :created_issues, class_name: 'Issue', foreign_key: 'creator_id', inverse_of: 'creator', dependent: :destroy
+  has_many :assigned_issues, class_name: 'Issue', foreign_key: 'assignee_id', inverse_of: 'assignee', dependent: :nullify
 end
