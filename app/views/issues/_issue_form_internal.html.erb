@@ -1,0 +1,25 @@
+<%= render 'layouts/errors', resource: issue %>
+<div class='form-group'>
+	<%= form.label :title %>*
+	<%= form.text_field :title, class: 'form-control' %>
+</div>
+<div class='form-group'>
+	<%= form.label :description %>
+	<%= form.text_area :description, class: 'form-control' %>
+</div>
+<div class='form-group'>
+	<%= form.label :assignee_id, 'Assignee' %>
+	<%= form.select(:assignee_id, options_for_select(valid_assignees.collect { |key, _| [key.email, key.id] }, selected: form.object.assignee_id), {}, {class: 'form-control'}) %>
+</div>
+<div class='form-group'>
+	<%= form.label :status %>
+	<%= form.select(:status, options_for_select(Issue.statuses.collect { |key, _| [key.humanize, key] }, selected: form.object.status), {}, {class: 'form-control'}) %>
+</div>
+<div class='form-group'>
+	<%= form.label :priority %>
+	<%= form.select(:priority, options_for_select(Issue.priorities.collect { |key, _| [key.humanize, key] }, selected: form.object.priority), {}, {class: 'form-control'}) %>
+</div>
+<div class='form-group'>
+	<%= form.label :issue_type %>
+	<%= form.select(:issue_type, options_for_select(Issue.issue_types.collect { |key, _| [key.humanize, key] }, selected: form.object.issue_type), {}, {class: 'form-control'}) %>
+</div>

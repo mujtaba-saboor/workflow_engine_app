@@ -1,0 +1,7 @@
+<h1>Create a new Issue</h1>
+<h5>Issue for project '<%= @project.name %>'</h5>
+
+<%= form_for [@project, @issue], url: { action: "create" } do |f| %>
+	<%= render partial: 'issue_form_internal', locals: { issue: @issue, valid_assignees: @valid_assignees,form: f } %>
+	<%= submit_tag "Create", class: 'btn btn-primary' %>
+<% end %>
