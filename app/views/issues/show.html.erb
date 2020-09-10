@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-body">
+
+    <h5 class="card-title"><%= @issue.title %><span class="float-right"><%= render 'show_badges', issue: @issue %></span></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Issue Creator: <%= @issue.creator.email %></h6>
+    <p class="card-text"><%= @issue.description %></p>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+<hr>
+<div id="page_comments" class="my-4">
+  <%= render 'comments/comments', resource: @issue, comment: @comment, comments: @comments %>
+</div>

@@ -1,0 +1,12 @@
+<% case status %>
+<% when 'open' %>
+<% badge_color = 'primary' %>
+<% when 'in_progress' %>
+<% badge_color = 'success' %>
+<% when 'resolved' %>
+<% badge_color = 'secondary' %>
+<% when 'closed' %>
+<% badge_color = 'danger' %>
+<% end %>
+
+<span class="badge badge-<%= badge_color %>"><%= status.humanize %></span>

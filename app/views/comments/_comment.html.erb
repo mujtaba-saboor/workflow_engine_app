@@ -1,0 +1,5 @@
+<div id="comment_<%= comment.id %>" class="card card-body mb-2" style="border-left: 4px solid red;">
+	<h6 class="card-subtitle mb-2 text-muted"><%= comment.user.email %><span class="float-right"><%= time_ago_in_words comment.created_at %> ago</span></h6>
+	<p class="card-text"><%= comment.body %></p>
+	<a href="#" class="card-link">Card link</a>
+</div>
