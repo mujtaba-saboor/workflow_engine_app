@@ -1,0 +1,19 @@
+<h1>Add Team</h1>
+
+<% unless isTeamAvailable?(@project) %>
+	<%= form_with model: @project, url: create_team_project_path do |f| %>
+	 <div class="form-row">
+	    <div class="form-group col-md-4">   
+	      <%= f.label 'Available Teams'%>      
+		  <%= f.collection_select :team, project_teams(@project), :id, :name, {},{:class => 'form-control'} %>
+		</div>
+	 </div>
+		<% if params[:action] == 'edit' %>
+		 	<%= f.submit 'Update Team', class: 'btn btn-primary' %>	
+		<%else%>	
+		 	<%= f.submit 'Add Team', class: 'btn btn-primary' %>	
+		<% end %>
+	<%end%>
+<%else%>
+	<p>No Team available to add.</p>
+<%end%>

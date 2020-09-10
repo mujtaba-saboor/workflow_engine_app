@@ -1,3 +1,7 @@
-$('.my-custom-project-data-area').html("<%= j render 'project_users_list' %>");
+<% if @project.project_category == 'TEAM' %>
+	$('.my-custom-project-data-area').html("<%= j render 'project_teams_list' %>");
+<% else %>
+	$('.my-custom-project-data-area').html("<%= j render 'project_users_list' %>");
+<%end%>
 $('#my-id-issue-link').removeClass("active");
 $('#my-id-member-link').addClass("active");

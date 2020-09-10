@@ -10,7 +10,7 @@
   	<%= link_to 'Issues','#',class: 'nav-link active',id: 'my-id-issue-link'%>    
   </li>
   <li class="nav-item">
-    <%= link_to 'Members',project_users_path(@project),class: 'nav-link',remote: true,id: 'my-id-member-link'%>
+    <%= link_to project_display_name(@project),project_users_path(@project),class: 'nav-link',remote: true,id: 'my-id-member-link'%>
   </li>
 </ul>
 <div class = "my-custom-project-data-area">

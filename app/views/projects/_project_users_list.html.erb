@@ -1,9 +1,10 @@
-<h3 align = center> All <%= @project.project_category%> </h3>
-<% if @project.project_category == 'TEAM'%>
-	<%= link_to 'Add Team',project_add_team_path(@project),class: 'btn btn-primary',remote: true%>	
-<% elsif%>
-	<%= link_to 'Add Member',project_add_user_path(@project),class: 'btn btn-primary',remote: true%>
-<% end %>
+<h3 align = center> All Users </h3>
+<%= link_to 'Add Member',project_add_user_path(@project),class: 'btn btn-primary',remote: true%>
+<br><br>
 
-<div class = 'my_class_add_user_to_project_area'>
-</div>
+<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Cras justo odio
+    <a href="#" class="badge badge-danger">Delete</a>
+  </li>
+</ul>

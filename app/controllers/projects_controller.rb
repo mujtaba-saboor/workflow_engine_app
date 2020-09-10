@@ -49,8 +49,31 @@ class ProjectsController < ApplicationController
   def add_user
   end
 
-  def add_team
+  def new_team
     @project = Project.find(params[:id])
+  end
+
+  def create_team
+    company = Company.first
+    project = Project.find(params[:id])
+    team = Team.find(params[:project][:team])
+    result  = ProjectTeam.create(project: project,team: team, company: company)
+    if(result)
+      flash[:notif] = 'Team Added Successfully'
+      redirect_to project_path(project)
+    else
+    end
+  end
+
+  def remove_team
+    project = Project.find(params[:id])
+    team = Team.find(params[:team])
+    result  = project.teams.delete(team)
+    if(result)
+      flash[:notif] = 'Team Removed Successfully'
+      redirect_to project_path(project)
+    else
+    end
   end
 
   private
