@@ -27,9 +27,9 @@
   </div>
 
   <div class="field">
-    <%= f.fields_for :company do |o| %>
-      <%= f.label :company_name %><br />
-      <%= f.text_field :name%>
+    <%= f.fields_for :company, Company.new do |o| %>
+      <%= o.label :company_name %><br />
+      <%= o.text_field :name%>
     <% end %>
   </div>
 
