@@ -1,11 +1,15 @@
 class CommentsController < ApplicationController
-  authorize_resource
+  load_and_authorize_resource except: %i[create]
 
   def create
     @resource = Issue.find(params[:issue_id])
+    authorize! :read, @resource
+
     @comments = @resource.comments
 
     @comment = Comment.new(comment_params)
+    authorize! :create, @comment
+
     @comment.commentable = @resource
     @comment.user = current_user
     @comment.company = current_user.company
@@ -13,12 +17,9 @@ class CommentsController < ApplicationController
     @comment = Comment.new if @comment.save
   end
 
-  def edit
-    @comment = Comment.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       render 'show'
     else
@@ -27,7 +28,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     @comment.destroy
     redirect_back fallback_location: root_url
   end

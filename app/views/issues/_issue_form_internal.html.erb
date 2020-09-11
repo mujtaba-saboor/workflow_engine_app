@@ -7,10 +7,12 @@
 	<%= form.label :description %>
 	<%= form.text_area :description, class: 'form-control' %>
 </div>
+<% if form.object.assignee_id != nil && form.object.assignee_id != current_user.id %>
 <div class='form-group'>
 	<%= form.label :assignee_id, 'Assignee' %>
 	<%= form.select(:assignee_id, options_for_select(valid_assignees.collect { |key, _| [key.email, key.id] }, selected: form.object.assignee_id), {}, {class: 'form-control'}) %>
 </div>
+<% end %>
 <div class='form-group'>
 	<%= form.label :status %>
 	<%= form.select(:status, options_for_select(Issue.statuses.collect { |key, _| [key.humanize, key] }, selected: form.object.status), {}, {class: 'form-control'}) %>

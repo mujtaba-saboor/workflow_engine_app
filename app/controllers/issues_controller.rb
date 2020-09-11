@@ -1,20 +1,17 @@
 class IssuesController < ApplicationController
-  authorize_resource
+  load_and_authorize_resource :project
+  load_and_authorize_resource through: :project
 
   def show
-    @issue = Issue.find_by!(id: params[:id], project_id: params[:project_id])
     @comment = Comment.new
     @comments = Comment.where(commentable: @issue)
   end
 
   def new
-    @project = Project.find(params[:project_id])
-    @issue = Issue.new
     @valid_assignees = @project.company.users
   end
 
   def create
-    @project = Project.find(params[:project_id])
     @issue = Issue.new(issue_params)
 
     @issue.creator = current_user
@@ -30,16 +27,10 @@ class IssuesController < ApplicationController
   end
 
   def edit
-    @issue = Issue.find_by!(id: params[:id], project_id: params[:project_id])
-    @project = @issue.project
-    @issue = Issue.find(params[:id])
     @valid_assignees = @project.company.users
   end
 
   def update
-    @issue = Issue.find_by!(id: params[:id], project_id: params[:project_id])
-    @project = @issue.project
-
     if @issue.update(issue_params)
       redirect_to project_issue_path(@project, @issue)
     else
@@ -49,7 +40,6 @@ class IssuesController < ApplicationController
   end
 
   def destroy
-    @issue = Issue.find_by!(id: params[:id], project_id: params[:project_id])
     @issue.destroy
     redirect_to project_path(params[:project_id])
   end
