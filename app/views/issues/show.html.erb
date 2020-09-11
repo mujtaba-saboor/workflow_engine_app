@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" style="border-left: 4px solid green">
   <div class="card-body">
 
     <h5 class="card-title"><%= @issue.title %><span class="float-right"><%= render 'show_badges', issue: @issue %></span></h5>
@@ -9,11 +9,19 @@
     <% else %>
     <h6 class="card-subtitle mb-2 text-muted">Assignee: Not assigned to anyone</h6>
     <% end %>
+    <hr>
+    <% if @issue.description %>
     <p class="card-text"><%= @issue.description %></p>
+    <hr>
+    <% end %>
     <p class="card-text">Project: <%= link_to @issue.project.name, project_path(@issue.project) %></p>
 
+    <% if can? :update, @issue %>
     <%= link_to 'Edit', edit_project_issue_path(@issue.project, @issue), class: 'btn btn-warning' %>
+    <% end %>
+    <% if can? :destroy, @issue %>
     <%= link_to 'Delete', project_issue_path(@issue.project, @issue), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+    <% end %>
   </div>
 </div>
 <hr>

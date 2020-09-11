@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'comments/create'
   root 'home#index'
   resources :companies do
     resources :users
@@ -11,7 +10,8 @@ Rails.application.routes.draw do
   end
 
   resources :issues, only: [] do
-    resources :comments, only: [:create, :update, :delete]
+    resources :comments, only: [:create]
   end
+  resources :comments, only: %i[destroy edit update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

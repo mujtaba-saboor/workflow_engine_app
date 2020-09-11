@@ -1,7 +1,9 @@
 <h3>Comments</h3>
+<% if can? :create, comment %>
 <div id="comment_form" class="mb-4">
-	<%= render partial: 'comments/comment_form', locals: { resource: resource, comment: comment } %>
+  <%= render partial: 'comments/comment_form', locals: { resource: resource, comment: comment } %>
 </div>
+<% end %>
 <p><%= pluralize(comments.length, 'Comment') %></p>
 <% comments.each do |icomment| %>
 <%= render partial: 'comments/comment', locals: { comment: icomment } %>

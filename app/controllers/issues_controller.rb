@@ -1,4 +1,6 @@
 class IssuesController < ApplicationController
+  authorize_resource
+
   def show
     @issue = Issue.find_by!(id: params[:id], project_id: params[:project_id])
     @comment = Comment.new

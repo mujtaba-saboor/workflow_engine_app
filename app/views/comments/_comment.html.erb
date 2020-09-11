@@ -1,5 +1,22 @@
-<div id="comment_<%= comment.id %>" class="card card-body mb-2" style="border-left: 4px solid red;">
-	<h6 class="card-subtitle mb-2 text-muted"><%= comment.user.email %><span class="float-right"><%= time_ago_in_words comment.created_at %> ago</span></h6>
-	<p class="card-text"><%= comment.body %></p>
-	<a href="#" class="card-link">Card link</a>
+<div id="comment_<%= comment.id %>" class="card mb-2">
+  <div id="comment_inner_<%= comment.id %>" class="card-body" style="border-left: 4px solid red;">
+    <h6 class="card-subtitle mb-2 text-muted">
+      <%= comment.user.email %>
+      <span class="float-right">
+        <%= time_ago_in_words comment.created_at %> ago
+        <% if comment.created_at != comment.updated_at %>
+        (Updated <%= time_ago_in_words comment.updated_at %>)
+        <% end %>
+      </span>
+      
+    </h6>
+    <p class="card-text"><%= comment.body %></p>
+    <% if can? :update, comment %>
+    <%= link_to 'Edit', edit_comment_path(comment), remote: true, class: 'btn btn-warning card-button' %>
+    <% end %>
+    <% if can? :destroy, comment %>
+    <%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger card-button' %>
+    <% end %>
+    <!-- <a href="#" class="card-link">Card link</a> -->
+  </div>
 </div>
