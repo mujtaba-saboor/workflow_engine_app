@@ -5,8 +5,6 @@ class CommentsController < ApplicationController
     @resource = Issue.find(params[:issue_id])
     authorize! :read, @resource
 
-    @comments = @resource.comments
-
     @comment = Comment.new(comment_params)
     authorize! :create, @comment
 
@@ -15,6 +13,7 @@ class CommentsController < ApplicationController
     @comment.company = current_user.company
 
     @comment = Comment.new if @comment.save
+    @comments = @resource.comments
   end
 
   def edit; end

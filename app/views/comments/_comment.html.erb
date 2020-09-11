@@ -7,8 +7,7 @@
         <% if comment.created_at != comment.updated_at %>
         (Updated <%= time_ago_in_words comment.updated_at %>)
         <% end %>
-      </span>
-      
+      </span>   
     </h6>
     <p class="card-text"><%= comment.body %></p>
     <% if can? :update, comment %>
@@ -17,6 +16,5 @@
     <% if can? :destroy, comment %>
     <%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger card-button' %>
     <% end %>
-    <!-- <a href="#" class="card-link">Card link</a> -->
   </div>
 </div>
