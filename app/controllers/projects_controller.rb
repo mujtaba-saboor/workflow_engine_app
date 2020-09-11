@@ -12,8 +12,7 @@ class ProjectsController < ApplicationController
     @project = Project.new
     @project.name = params[:project][:name]
     @project.project_category = params[:project][:project_category]
-    @project.company = compnay
-    #project = Project.create(project_params)    
+    @project.company = compnay 
     if(@project.save)
       flash[:notif] = 'Project Created Successfully'      
     else
@@ -29,6 +28,7 @@ class ProjectsController < ApplicationController
   def update
     project = Project.find(params[:id])
     project.update(project_params)
+    flash[:notif] = 'Project Updated Successfully'
     redirect_to projects_path
   end
 
@@ -39,14 +39,12 @@ class ProjectsController < ApplicationController
   def destroy
     project = Project.find(params[:id])
     project.destroy
+    flash[:notif] = 'Project Destroyed Successfully'
     redirect_to projects_path
   end
 
   def project_users
     @project = Project.find(params[:id])
-  end
-
-  def add_user
   end
 
   def new_team

@@ -1,5 +1,5 @@
 <h3 align = center> All Teams </h3>
-	<%= link_to 'Add Team',new_team_project_path(@project),class: 'btn btn-primary'%>	
+	<%= link_to 'Add Team',new_team_project_path(@project),{class: 'btn btn-success',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_add_team_to_project_modal'}%>	
 <br><br>
 
 <ul class="list-group">
@@ -10,3 +10,9 @@
 	  </li>
   <% end %>
 </ul>
+<div id = "my_id_add_team_to_project_modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+	</div>
+  </div>
+</div>

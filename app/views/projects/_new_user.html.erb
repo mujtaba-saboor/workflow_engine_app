@@ -1,5 +1,11 @@
-<h1>Add User</h1>
-<% unless isUserAvailable?(@project) %>
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLongTitle">Add User</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+ <% unless isUserAvailable?(@project) %>
   <%= form_with model: @project, url: create_user_project_path do |f| %>
    <div class="form-row">
       <div class="form-group col-md-4">   
@@ -13,6 +19,7 @@
       <%= f.submit 'Add User', class: 'btn btn-primary' %>  
     <% end %>
   <%end%>
-<%else%>
+ <%else%>
   <p>No User available to add.</p>
-<%end%>
+ <%end%>
+</div>

@@ -1,6 +1,11 @@
-<h1>Add Team</h1>
-
-<% unless isTeamAvailable?(@project) %>
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLongTitle">Add Team</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+ <% unless isTeamAvailable?(@project) %>
 	<%= form_with model: @project, url: create_team_project_path do |f| %>
 	 <div class="form-row">
 	    <div class="form-group col-md-4">   
@@ -17,3 +22,5 @@
 <%else%>
 	<p>No Team available to add.</p>
 <%end%>
+
+</div>

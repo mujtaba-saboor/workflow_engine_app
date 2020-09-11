@@ -14,9 +14,9 @@ class TeamsController < ApplicationController
     @team.company = compnay
     #project = Project.create(project_params)    
     if(@team.save)
-      flash.now[:notif] = 'Project Created Successfully'      
+      flash[:notif] = 'Team Created Successfully'      
     else
-      flash.now[:notif] = 'An Error Occured'    
+      flash[:notif] = 'An Error Occured'    
     end
     redirect_to teams_path
   end
@@ -28,6 +28,7 @@ class TeamsController < ApplicationController
   def update
     team = Team.find(params[:id])
     team.update(team_params)
+    flash[:notif] = 'Team Updated Successfully' 
     redirect_to teams_path
   end
 
@@ -38,6 +39,7 @@ class TeamsController < ApplicationController
   def destroy
     team = Team.find(params[:id])
     team.destroy
+    flash[:notif] = 'Team Destroyed Successfully' 
     redirect_to teams_path
   end
 
@@ -54,11 +56,11 @@ class TeamsController < ApplicationController
       flash[:notif] = 'User Added Successfully'
       redirect_to team_path(team)
     else
-    end  end
+    end  
+  end
 
   def remove_member
-    puts "+++++#{params}"
-     team = Team.find(params[:id])
+    team = Team.find(params[:id])
     user = User.find(params[:user])
     result  = team.users.delete(user)
     if(result)
@@ -66,7 +68,20 @@ class TeamsController < ApplicationController
       redirect_to team_path(team)
     else
     end
-    
+  end
+
+  def remove
+    team = Team.find(params[:id])
+    team_project = ProjectTeam.where(team: team)
+    if team_project.empty?
+      team.destroy
+      flash[:notif] = 'Team Destroyed Successfully'
+      redirect_to teams_path
+    else
+
+      flash[:notif] = "Team can not be deleted because its a part of #{team_project[0].project.name}"
+      redirect_to teams_path
+    end
   end
 
   private
