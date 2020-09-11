@@ -16,7 +16,14 @@ Rails.application.routes.draw do
 
     end
   end
-  resources :teams
+  resources :teams do
+    member do
+      get 'new_member'
+      patch 'create_member'
+      delete 'remove_member'
+    end
+  end
+
   devise_for :user
 
   get '/projects/:id/users', to: 'projects#project_users', as: :project_users

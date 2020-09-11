@@ -1,5 +1,4 @@
 <h1>Add User</h1>
-<h2>
 <% unless isUserAvailable?(@project) %>
   <%= form_with model: @project, url: create_user_project_path do |f| %>
    <div class="form-row">
