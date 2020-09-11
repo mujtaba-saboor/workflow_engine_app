@@ -20,8 +20,8 @@ module WorkflowEngineApp
       :address              => "smtp.gmail.com",
       :port                 => 587,
       :domain               => "mail.google.com",
-      :user_name            => "hammad.ikhlaq@7vals.com",
-      :password             => 'Fastian@4281',
+      :user_name            => "hammadikhlaq96@gmail.com",
+      :password             => 'maulanatariqjameel',
       :authentication       => "login",
       :enable_starttls_auto => true
 }
