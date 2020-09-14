@@ -18,8 +18,6 @@ class CommentsController < ApplicationController
     @pagy.instance_variable_set(:@custom_link, project_issue_path(@resource.project, @resource))
   end
 
-  def edit; end
-
   def update
     if @comment.update(comment_params)
       render 'show'

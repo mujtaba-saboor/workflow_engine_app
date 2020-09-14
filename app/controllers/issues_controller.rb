@@ -5,7 +5,6 @@ class IssuesController < ApplicationController
   def show
     @comment = Comment.new
     @pagy, @comments = pagy(Comment.where(commentable: @issue))
-    p @pagy
   end
 
   def new
