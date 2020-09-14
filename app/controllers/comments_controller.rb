@@ -13,7 +13,9 @@ class CommentsController < ApplicationController
     @comment.company = current_user.company
 
     @comment = Comment.new if @comment.save
-    @comments = @resource.comments
+    @pagy, @comments = pagy(@resource.comments)
+    # TODO: Add a proper decorator class for this type of thing
+    @pagy.instance_variable_set(:@custom_link, project_issue_path(@resource.project, @resource))
   end
 
   def edit; end

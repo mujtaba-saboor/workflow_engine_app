@@ -33,6 +33,9 @@ gem 'after_commit_everywhere', '= 0.1.5'
 gem 'pry', '=0.13.1'
 gem 'pry-rails', '=0.3.9'
 
+# pagy
+gem 'pagy', '=3.8.3'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
