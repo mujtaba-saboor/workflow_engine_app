@@ -16,13 +16,13 @@
 <% end %>
 <div class='form-group'>
 	<%= form.label :status %>
-	<%= form.select(:status, options_for_select(Issue.statuses.collect { |key, _| [key.humanize, key] }, selected: form.object.status), {}, {class: 'form-control'}) %>
+	<%= form.select(:status, options_for_select(select_options_for_statuses, selected: form.object.status), {}, {class: 'form-control'}) %>
 </div>
 <div class='form-group'>
 	<%= form.label :priority %>
-	<%= form.select(:priority, options_for_select(Issue.priorities.collect { |key, _| [key.humanize, key] }, selected: form.object.priority), {}, {class: 'form-control'}) %>
+	<%= form.select(:priority, options_for_select(select_options_for_priorities, selected: form.object.priority), {}, {class: 'form-control'}) %>
 </div>
 <div class='form-group'>
 	<%= form.label :issue_type %>
-	<%= form.select(:issue_type, options_for_select(Issue.issue_types.collect { |key, _| [key.humanize, key] }, selected: form.object.issue_type), {}, {class: 'form-control'}) %>
+	<%= form.select(:issue_type, options_for_select(select_options_for_issue_types, selected: form.object.issue_type), {}, {class: 'form-control'}) %>
 </div>
