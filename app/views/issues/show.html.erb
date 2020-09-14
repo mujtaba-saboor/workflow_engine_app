@@ -1,6 +1,6 @@
 <div class="card" style="border-left: 4px solid green">
   <div class="card-body">
-    <h5 class="card-title"><%= @issue.title %><span class="float-right"><%= render 'show_badges', issue: @issue %></span></h5>
+    <h5 class="card-title"><%= @issue.title %><span class="float-right"><%= render 'show_badges', status: @issue.status, priority: @issue.priority, issue_type: @issue.issue_type %></span></h5>
     <hr>
     <h6 class="card-subtitle mb-2 text-muted">Creator: <%= @issue.creator.email %></h6>
     <% if @issue.assignee %>
