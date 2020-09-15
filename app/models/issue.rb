@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class Issue < ApplicationRecord
+  default_scope { where(company_id: Company.current_id) }
   include AASM
 
   has_many :comments, as: :commentable
