@@ -88,3 +88,11 @@ en:
     users: 'Users'
     add_team: 'Add Team'
     all_teams: 'All Teams'
+  flash_messages:
+    create: '%{name} Created Successfully'
+    update: '%{name} Updated Successfully'
+    destroy: '%{name} Destroyed Successfully'
+    addition: '%{name} Added Successfully'
+    deletion: '%{name} Removed Successfully'
+    warning: '%{warning_msg}'
+    error: 'Error Occured: %{error_msg}'

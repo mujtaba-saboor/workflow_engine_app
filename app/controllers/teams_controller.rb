@@ -16,9 +16,9 @@ class TeamsController < ApplicationController
     company = Company.first
     @team.company = company
     if @team.save
-      flash[:success] = 'Team Created Successfully'
+      flash[:success] = t('flash_messages.create', name: 'Team')
     else
-      flash[:danger] = 'An Error Occured'
+      flash[:danger] = t('flash_messages.error', error_msg: @team.errors.full_messages.first)
     end
 
     respond_to do |format|
@@ -34,9 +34,9 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-      flash[:success] = 'Team Updated Successfully'
+      flash[:success] = t('flash_messages.update', name: 'Team')
     else
-      flash[:danger] = 'An error occured'
+      flash[:danger] = t('flash_messages.error', error_msg: @team.errors.full_messages.first)
     end
     respond_to do |format|
       format.js { redirect_to teams_path }
@@ -54,9 +54,9 @@ class TeamsController < ApplicationController
 
     if team_project.empty?
       @team.destroy
-      flash[:success] = 'Team Destroyed Successfully'
+      flash[:success] = t('flash_messages.destroy', name: 'Team')
     else
-      flash[:warning] = "Team can not be deleted because its a part of #{team_project[0].project.name}"
+      flash[:warning] = t('flash_messages.warning', warning_msg: "Team can not be deleted because its a part of #{team_project[0].project.name}")
     end
     respond_to do |format|
       format.html { redirect_to teams_path }
@@ -74,9 +74,9 @@ class TeamsController < ApplicationController
     user = User.find(params[:team][:user])
 
     if TeamUser.create(team: @team, user: user, company: company)
-      flash[:success] = 'User Added Successfully'
+      flash[:success] = t('flash_messages.addition', name: 'User')
     else
-      flash[:danger] = 'An Error Occured'
+      flash[:danger] = t('flash_messages.error')
     end
     respond_to do |format|
       format.js { redirect_to team_path(@team) }
@@ -87,9 +87,9 @@ class TeamsController < ApplicationController
     user = User.find(params[:user])
 
     if @team.users.delete(user)
-      flash[:success] = 'User Removed Successfully'
+      flash[:success] = t('flash_messages.deletion', name: 'User')
     else
-      flash[:danger] = 'An Error Occured'
+      flash[:danger] = t('flash_messages.error')
     end
     respond_to do |format|
       format.html { redirect_to team_path(@team) }

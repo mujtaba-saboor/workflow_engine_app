@@ -17,9 +17,9 @@ class ProjectsController < ApplicationController
     @project.company = company
 
     if @project.save
-      flash[:success] = 'Project Created Successfully'
+      flash[:success] = t('flash_messages.create', name: 'Project')
     else
-      flash[:danger] = 'An Error Occured'
+      flash[:danger] = t('flash_messages.error', error_msg: @project.errors.full_messages.first)
     end
 
     respond_to do |format|
@@ -35,9 +35,9 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)  
-      flash[:success] = 'Project Updated Successfully'
+      flash[:success] = t('flash_messages.update', name: 'Project')
     else
-      flash[:danger] = 'An Error Occured'
+      flash[:danger] = t('flash_messages.error', error_msg: @project.errors.full_messages.first)
     end
     respond_to do |format|
       format.js { redirect_to projects_path }
@@ -52,9 +52,9 @@ class ProjectsController < ApplicationController
 
   def destroy
     if @project.destroy
-      flash[:success] = 'Project Destroyed Successfully'
+      flash[:success] = t('flash_messages.destroy', name: 'Project')
     else
-      flash[:warning] = "Project can't be Destroyed"
+      flash[:warning] = t('flash_messages.warning', warning_msg: "Project can't be Destroyed")
     end
     respond_to do |format|
       format.html { redirect_to projects_path }
@@ -78,9 +78,9 @@ class ProjectsController < ApplicationController
 
     team = Team.find(params.require(:project).permit(:team).require(:team))
     if ProjectTeam.create(project: @project, team: team, company: company)
-      flash[:success] = 'Team Added Successfully'
+      flash[:success] = t('flash_messages.addition', name: 'Team')
     else
-      flash[:danger] = 'An Error Occured'
+      flash[:danger] = t('flash_messages.error')
     end
     respond_to do |format|
       format.js { redirect_to project_path(@project) }
@@ -90,9 +90,9 @@ class ProjectsController < ApplicationController
   def remove_team_from_project
     team = Team.find(params.permit(:team).require(:team))
     if @project.teams.delete(team)
-      flash[:success] = 'Team Removed Successfully'
+      flash[:success] = t('flash_messages.deletion', name: 'Team')
     else
-      flash[:danger] = 'An Error Occured'
+      flash[:danger] = t('flash_messages.error')
     end
     respond_to do |format|
       format.html { redirect_to project_path(@project) }
@@ -110,9 +110,9 @@ class ProjectsController < ApplicationController
     user = User.find(params[:project][:user])
 
     if ProjectUser.create(project: @project, user: user, company: company)
-      flash[:success] = 'User Added Successfully'
+      flash[:success] = t('flash_messages.addition', name: 'User')
     else
-      flash[:danger] = 'An Error Occured'
+      flash[:danger] = t('flash_messages.error')
     end
     respond_to do |format|
       format.js { redirect_to project_path(@project) }
@@ -123,9 +123,9 @@ class ProjectsController < ApplicationController
     user = User.find(params[:user])
 
     if @project.users.delete(user)
-      flash[:success] = 'User Removed Successfully'
+      flash[:success] = t('flash_messages.deletion', name: 'User')
     else
-      flash[:danger] = 'An Error Occured'
+      flash[:danger] = t('flash_messages.error')
     end
     respond_to do |format|
       format.html { redirect_to project_path(@project) }
