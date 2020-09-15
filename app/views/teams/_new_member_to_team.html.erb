@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLongTitle">Add Member</h5>
+    <h5 class="modal-title" id="exampleModalLongTitle"><%= t('teams.add_user') %></h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -9,18 +9,14 @@
   <%= form_with model: @team, url: add_user_to_team_team_path do |f| %>
    <div class="form-row">
       <div class="form-group col-md-4">   
-        <%= f.label 'Available Users'%>      
+        <%= f.label t('teams.available_users') %>      
       <%= f.collection_select :user, team_users(@team), :id, :name, {},{:class => 'form-control'} %>
     </div>
-   </div>
-    <% if params[:action] == 'edit' %>
-      <%= f.submit 'Update Team', class: 'btn btn-primary' %> 
-    <%else%>  
-      <%= f.submit 'Add User', class: 'btn btn-primary' %>  
-    <% end %>
+   </div>  
+      <%= f.submit t('teams.add_user'), class: 'btn btn-primary' %>
   <%end%>
 <%else%>
-  <p>No User available to add.</p>
+  <p><%= t('teams.no_available_user') %></p>
 <%end%>
 
 </div>

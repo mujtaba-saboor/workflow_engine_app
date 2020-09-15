@@ -33,6 +33,9 @@ en:
   shared:
     email: "email"
     update: "Update"
+    edit: 'Edit'
+    delete: 'Delete'
+    show: 'Show'
   users:
     sign_up: "Sign up"
     login: "Log in"
@@ -51,3 +54,37 @@ en:
     back: "Back"
     didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
     didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
+  home:
+    welcome: 'Welcome to Workflow Engine'
+  projects:
+    new_project: 'Add New Project'
+    edit_project: 'Edit Project'
+    form_name_placeholder: 'Enter name here'
+    update_project: 'Update Project'
+    create_project: 'Create Project'
+    add_team: 'Add Team'
+    remove_team: 'Remove Team'
+    available_teams: 'Available Teams'
+    no_available_team: 'No team available to add.'
+    add_user: 'Add User'
+    remove_user: 'Remove User'
+    all_users: 'All Users'
+    available_users: 'Available Users'
+    no_available_user: 'No user available to add.'
+    all_teams: 'All Teams'
+    issues: 'Issues'
+    add_issue: 'Add Issue'
+    all_projects: 'All Projects'
+  teams:
+    edit_team: 'Edit Team'
+    create_team: 'Create Team'
+    update_team: 'Update Team'
+    form_name_placeholder: 'Enter name here'
+    add_user: 'Add User'
+    remove_user: 'Remove User'
+    all_users: 'All Users'
+    available_users: 'Available Users'
+    no_available_user: 'No user available to add.'
+    users: 'Users'
+    add_team: 'Add Team'
+    all_teams: 'All Teams'

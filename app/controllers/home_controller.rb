@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    flash.now[:notif] = 'Welcome to Workflow Engine'
+    flash.now[:notif] = t('home.welcome')
   end
 end

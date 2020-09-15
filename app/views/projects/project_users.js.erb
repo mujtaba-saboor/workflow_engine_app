@@ -1,4 +1,4 @@
-<% if @project.project_category == 'TEAM' %>
+<% if @project.project_category == Project.project_categories[0] %>
 	$('.my-custom-project-data-area').html("<%= j render 'project_teams_list' %>");
 <% else %>
 	$('.my-custom-project-data-area').html("<%= j render 'project_users_list' %>");

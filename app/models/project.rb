@@ -1,6 +1,11 @@
 class Project < ApplicationRecord
+  
+  def self.project_categories
+    %w[TEAM INDIVIDUAL]
+  end
+
   validates :name, presence: true, uniqueness: true
-  validates :project_category, presence: true, inclusion: { in: %w(TEAM INDIVIDUAL)}
+  validates :project_category, presence: true, inclusion: { in: project_categories }
 
   belongs_to :company
 

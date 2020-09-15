@@ -8,7 +8,8 @@ module ProjectsHelper
   end
 
   def project_display_name(project)
-    project.project_category == 'TEAM' ? 'TEAMS' : 'MEMBERS'
+    project_categories = Project.project_categories
+    project.project_category == project_categories[0] ? project_categories[0] : project_categories[1]
   end
 
   def is_user_available?(project)

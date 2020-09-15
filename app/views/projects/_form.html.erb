@@ -2,18 +2,18 @@
  <div class="form-row">
 	 <div class="form-group col-sm-6">
 	 	<%= project.label :name %>
-	 	<%= project.text_field :name ,class: 'form-control',placeholder: 'Enter Name here'%>
+	 	<%= project.text_field :name ,class: 'form-control',placeholder: t('projects.form_name_placeholder')%>
 	 </div> 
 </div> 
  <% if params[:action] == 'edit' %>
- 	<%= project.submit 'Update Project', class: 'btn btn-primary' %>	
+ 	<%= project.submit t('projects.update_project'), class: 'btn btn-primary' %>	
  <% else %>
  <div class="form-row">
     <div class="form-group col-md-4">   
       <%= project.label :project_category %>
-      <%= project.select(:project_category, ['TEAM','INDIVIDUAL'], {},{:class => 'form-control'}) %>
+      <%= project.select(:project_category, Project.project_categories, {},{:class => 'form-control'}) %>
     </div>
   </div>
- 	<%= project.submit 'Create Project', class: 'btn btn-primary' %>	
+ 	<%= project.submit t('projects.create_project'), class: 'btn btn-primary' %>	
  <% end %>
 <% end %>

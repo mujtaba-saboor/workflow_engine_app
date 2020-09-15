@@ -2,12 +2,12 @@
  <div class="form-row">
 	 <div class="form-group col-sm-6">
 	 	<%= team.label :name %>
-	 	<%= team.text_field :name ,class: 'form-control',placeholder: 'Enter Name here'%>
+	 	<%= team.text_field :name ,class: 'form-control',placeholder: t('teams.form_name_placeholder') %>
 	 </div> 
 </div>
  <% if params[:action] == 'edit' %>
- 	<%= team.submit 'Update Team', class: 'btn btn-primary' %>	
+ 	<%= team.submit t('teams.update_team'), class: 'btn btn-primary' %>	
  <%else%>
- 	<%= team.submit 'Create Team', class: 'btn btn-primary' %>	
+ 	<%= team.submit t('teams.create_team'), class: 'btn btn-primary' %>	
  <% end %>
 <%end%>

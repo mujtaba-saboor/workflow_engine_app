@@ -7,7 +7,7 @@
 </div>
 <ul class="nav nav-tabs">
   <li class="nav-item">
-  	<%= link_to 'Issues','#',class: 'nav-link active',id: 'my-id-issue-link'%>    
+  	<%= link_to t('projects.issues'),'#',class: 'nav-link active',id: 'my-id-issue-link'%>    
   </li>
   <li class="nav-item">
     <%= link_to project_display_name(@project),project_users_project_path(@project),class: 'nav-link',remote: true,id: 'my-id-member-link'%>
@@ -23,7 +23,7 @@
 	      <th scope="col">Type</th>
 	      <th scope="col">Category</th>
 	      <th scope="col">Status</th>
-	      <th scope="col"><%= link_to 'Add Issue','',class: 'btn btn-primary' %></th>
+	      <th scope="col"><%= link_to t('projects.add_issue'),'',class: 'btn btn-primary' %></th>
 	    </tr>
 	  </thead>
 	  <tbody>

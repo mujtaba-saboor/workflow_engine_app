@@ -1,18 +1,18 @@
 <div class ='container'>
-	<h1 align= 'center'>All Projects</h1>
+	<h1 align= 'center'><%= t('projects.all_projects') %></h1>
 	<% @projects.each do |project|%>
 	<div class="card">
 	  <h5 class="card-header"><%=project.name%></h5>
 	  <div class="card-body">
 	    <h5 class="card-title">Type : <%= project.project_category%></h5>
-	    <%= link_to 'Delete', project_path(project),method: :delete ,class: 'btn btn-danger'%> | 
-	     <%= link_to 'Edit', edit_project_path(project), {class: 'btn btn-success',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_create_project_modal'}%> |
-	     <%= link_to 'Show', project_path(project), class: 'btn btn-success'%>
+	    <%= link_to t('shared.delete'), project_path(project),method: :delete ,class: 'btn btn-danger'%> | 
+	     <%= link_to t('shared.edit'), edit_project_path(project), {class: 'btn btn-success',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_create_project_modal'}%> |
+	     <%= link_to t('shared.show'), project_path(project), class: 'btn btn-success'%>
 	  </div>
 	</div>
 	<br>
 	<%end%>
-	<%= link_to 'Add New Project',new_project_path,{class: 'btn btn-success',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_create_project_modal'}%>
+	<%= link_to t('projects.new_project'),new_project_path,{class: 'btn btn-success',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_create_project_modal'}%>
 </div>
 <div id = "my_id_create_project_modal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
