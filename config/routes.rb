@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :issues
   end
 
+  # resources :issues, only: [] do
+  #   resources :comments, only: %i[create destroy edit update]
+  # end
   resources :issues, only: [] do
     resources :comments, only: [:create]
   end

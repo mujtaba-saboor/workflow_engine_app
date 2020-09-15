@@ -1,34 +1,43 @@
 class CommentsController < ApplicationController
-  load_and_authorize_resource except: %i[create]
+  load_and_authorize_resource
 
+  # issue_comments POST /issues/:issue_id/comments(.:format) comments#create
   def create
     @resource = Issue.find(params[:issue_id])
-    # authorize! :read, @resource
-
-    @comment = Comment.new(comment_params)
-    # authorize! :create, @comment
+    authorize! :read, @resource
 
     @comment.commentable = @resource
-    @comment.user = current_user
-    @comment.company = current_user.company
-
     @comment = Comment.new if @comment.save
     @pagy, @comments = pagy(@resource.comments)
     # TODO: Add a proper decorator class for this type of thing
     @pagy.instance_variable_set(:@custom_link, project_issue_path(@resource.project, @resource))
+    respond_to :js
   end
 
+  # edit_comment GET /comments/:id/edit(.:format) comments#edit
+  def edit
+    respond_to :js
+  end
+
+  # comment PATCH  /comments/:id(.:format) comments#update
+  # comment PUT    /comments/:id(.:format) comments#update
   def update
-    if @comment.update(comment_params)
-      render 'show'
-    else
-      render 'edit'
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.js { render 'show' }
+      else
+        format.js { render 'edit' }
+      end
     end
   end
 
+  # comment DELETE /comments/:id(.:format) comments#destroy
   def destroy
-    @comment.destroy
-    redirect_back fallback_location: root_url
+    respond_to do |format|
+      flash[:notif] = @comment.destroy ? 'Comment deleted successfully' : 'Comment could not be deleted'
+
+      format.html { redirect_back fallback_location: root_url }
+    end
   end
 
   private
