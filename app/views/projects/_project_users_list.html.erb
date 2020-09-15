@@ -6,7 +6,7 @@
   <% @project.users.each do |user| %>
 	  <li class="list-group-item d-flex justify-content-between align-items-center">
 	    <%= user.name%>
-	    <%= link_to 'Remove User',remove_user_project_path(@project,user: user),method: :delete,class: 'badge badge-danger'%>
+	    <%= link_to 'Remove User',remove_user_from_project_project_path(@project,user: user),method: :delete,class: 'badge badge-danger'%>
 	  </li>
   <% end %>
 </ul>

@@ -6,7 +6,7 @@
   <% @project.teams.each do |team| %>
 	  <li class="list-group-item d-flex justify-content-between align-items-center">
 	    <%= team.name%>
-	    <%= link_to 'Remove Team',remove_team_project_path(@project,team: team),method: :delete,class: 'badge badge-danger'%>
+	    <%= link_to 'Remove Team',remove_team_from_project_project_path(@project,team: team),method: :delete,class: 'badge badge-danger'%>
 	  </li>
   <% end %>
 </ul>

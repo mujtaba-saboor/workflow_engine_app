@@ -5,8 +5,8 @@
     </button>
 </div>
 <div class="modal-body">
- <% unless isUserAvailable?(@project) %>
-  <%= form_with model: @project, url: create_user_project_path do |f| %>
+ <% unless is_user_available?(@project) %>
+  <%= form_with model: @project, url: add_user_to_project_project_path do |f| %>
    <div class="form-row">
       <div class="form-group col-md-4">   
         <%= f.label 'Available Teams'%>      

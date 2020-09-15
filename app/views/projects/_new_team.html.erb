@@ -5,8 +5,8 @@
     </button>
 </div>
 <div class="modal-body">
- <% unless isTeamAvailable?(@project) %>
-	<%= form_with model: @project, url: create_team_project_path do |f| %>
+ <% unless is_team_available?(@project) %>
+	<%= form_with model: @project, url: add_team_to_project_project_path do |f| %>
 	 <div class="form-row">
 	    <div class="form-group col-md-4">   
 	      <%= f.label 'Available Teams'%>      

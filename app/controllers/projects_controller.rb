@@ -14,10 +14,8 @@ class ProjectsController < ApplicationController
 
   def create
     company = Company.first
-    @project.name = params[:project][:name]
-    @project.project_category = params[:project][:project_category]
     @project.company = company
-    
+
     if @project.save
       flash[:success] = 'Project Created Successfully'
     else
@@ -29,15 +27,18 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def edit  
+  def edit
     respond_to do |format|
       format.js
     end
   end
 
   def update
-    @project.update(project_params)    
-    flash[:success] = 'Project Updated Successfully'
+    if @project.update(project_params)  
+      flash[:success] = 'Project Updated Successfully'
+    else
+      flash[:danger] = 'An Error Occured'
+    end
     respond_to do |format|
       format.js { redirect_to projects_path }
     end
@@ -50,8 +51,11 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.destroy
-    flash[:danger] = 'Project Destroyed Successfully'
+    if @project.destroy
+      flash[:success] = 'Project Destroyed Successfully'
+    else
+      flash[:warning] = "Project can't be Destroyed"
+    end
     respond_to do |format|
       format.html { redirect_to projects_path }
     end
@@ -69,25 +73,24 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def create_team
+  def add_team_to_project
     company = Company.first
-    team = Team.find(params[:project][:team])
-    result = ProjectTeam.create(project: @project, team: team, company: company)
-    if result
+
+    team = Team.find(params.require(:project).permit(:team).require(:team))
+    if ProjectTeam.create(project: @project, team: team, company: company)
       flash[:success] = 'Team Added Successfully'
     else
       flash[:danger] = 'An Error Occured'
     end
-    respond_to do |format|      
+    respond_to do |format|
       format.js { redirect_to project_path(@project) }
-    end   
+    end
   end
 
-  def remove_team
-    team = Team.find(params[:team])
-    result = @project.teams.delete(team)
-    if result
-      flash[:danger] = 'Team Removed Successfully'
+  def remove_team_from_project
+    team = Team.find(params.permit(:team).require(:team))
+    if @project.teams.delete(team)
+      flash[:success] = 'Team Removed Successfully'
     else
       flash[:danger] = 'An Error Occured'
     end
@@ -102,27 +105,25 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def create_user
-    company = Company.first    
+  def add_user_to_project
+    company = Company.first
     user = User.find(params[:project][:user])
-    result = ProjectUser.create(project: @project, user: user, company: company)
-   
-    if result
+
+    if ProjectUser.create(project: @project, user: user, company: company)
       flash[:success] = 'User Added Successfully'
     else
       flash[:danger] = 'An Error Occured'
     end
     respond_to do |format|
-      format.js {  redirect_to project_path(@project) }
+      format.js { redirect_to project_path(@project) }
     end
   end
 
-  def remove_user
+  def remove_user_from_project
     user = User.find(params[:user])
-    result = @project.users.delete(user)
-    
-    if result
-      flash[:danger] = 'User Removed Successfully'
+
+    if @project.users.delete(user)
+      flash[:success] = 'User Removed Successfully'
     else
       flash[:danger] = 'An Error Occured'
     end

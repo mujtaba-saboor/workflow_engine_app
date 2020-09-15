@@ -7,7 +7,7 @@
 </div> 
  <% if params[:action] == 'edit' %>
  	<%= project.submit 'Update Project', class: 'btn btn-primary' %>	
- <%else%>
+ <% else %>
  <div class="form-row">
     <div class="form-group col-md-4">   
       <%= project.label :project_category %>
@@ -16,4 +16,4 @@
   </div>
  	<%= project.submit 'Create Project', class: 'btn btn-primary' %>	
  <% end %>
-<%end%>
+<% end %>
