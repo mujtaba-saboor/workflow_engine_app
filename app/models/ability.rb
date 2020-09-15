@@ -15,5 +15,8 @@ class Ability
     can :update, Issue do |issue|
       (issue.assignee_id == user.id || issue.creator_id == user.id) && issue.company_id == user.company_id
     end
+    can :change_assignee, Issue do |issue|
+      issue.creator_id == user.id || issue.assignee_id != user.id
+    end
   end
 end
