@@ -3,10 +3,10 @@ class CommentsController < ApplicationController
 
   def create
     @resource = Issue.find(params[:issue_id])
-    authorize! :read, @resource
+    # authorize! :read, @resource
 
     @comment = Comment.new(comment_params)
-    authorize! :create, @comment
+    # authorize! :create, @comment
 
     @comment.commentable = @resource
     @comment.user = current_user
