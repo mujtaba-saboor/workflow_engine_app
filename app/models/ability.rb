@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     # :create abilities here are linked to the controllers. Heed precation editing them.
-    # The fields set by abilities here are used by the respective actions in forms
+    # The fields set by abilities (:create) here are used by the respective actions in controllers
     # :manage includes :create so precaution should be taken editing these abilites
     return if user.blank?
 
