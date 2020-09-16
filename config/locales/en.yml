@@ -51,3 +51,11 @@ en:
     back: "Back"
     didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
     didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
+  flash_messages:
+    create: '%{name} Created Successfully'
+    update: '%{name} Updated Successfully'
+    destroy: '%{name} Destroyed Successfully'
+    addition: '%{name} Added Successfully'
+    deletion: '%{name} Removed Successfully'
+    warning: '%{warning_msg}'
+    error: 'Error Occured: %{error_msg}'
