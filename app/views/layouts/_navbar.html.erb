@@ -26,9 +26,6 @@
           <%= current_user.email %>
         </a>
         <div class="dropdown-menu" aria-labelledby="user_profile_dropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
           <%= link_to t('users.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
         </div>
       </li>
