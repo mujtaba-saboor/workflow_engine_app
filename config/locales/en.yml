@@ -74,7 +74,7 @@ en:
     all_teams: 'All Teams'
     issues: 'Issues'
     add_issue: 'Add Issue'
-    all_projects: 'All Projects'
+    all_projects: 'Projects'
   teams:
     edit_team: 'Edit Team'
     create_team: 'Create Team'
@@ -87,7 +87,7 @@ en:
     no_available_user: 'No user available to add.'
     users: 'Users'
     add_team: 'Add Team'
-    all_teams: 'All Teams'
+    all_teams: 'Teams'
   flash_messages:
     create: '%{name} Created Successfully'
     update: '%{name} Updated Successfully'

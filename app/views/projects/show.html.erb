@@ -1,40 +1,52 @@
-
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4"><%= @project.name%></h1>
-    <p class="lead"><%= @project.project_category%></p>
-  </div>
+<div class="row">
+    <div class="col-sm-10 offset-sm-1">
+		<div class="jumbotron jumbotron-fluid">
+		  <div class="container">
+		    <h1 class="display-4"><%= @project.name%></h1>
+		    <p class="lead"><%= @project.project_category%></p>
+		    <h6>Created : <%= time_ago_in_words(@project.created_at) %> ago</h6>
+		  </div>
+		</div>
+	</div>
 </div>
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-  	<%= link_to t('projects.issues'),'#',class: 'nav-link active',id: 'my-id-issue-link'%>    
-  </li>
-  <li class="nav-item">
-    <%= link_to project_display_name(@project),project_users_project_path(@project),class: 'nav-link',remote: true,id: 'my-id-member-link'%>
-  </li>
-</ul>
-<div class = "my-custom-project-data-area">
-	<table class="table table-hover">
-	  <thead>
-	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">Description</th>
-	      <th scope="col">Assiginee</th>
-	      <th scope="col">Type</th>
-	      <th scope="col">Category</th>
-	      <th scope="col">Status</th>
-	      <th scope="col"><%= link_to t('projects.add_issue'),'',class: 'btn btn-primary' %></th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <th scope="row">1</th>
-	      <td>Mark</td>
-	      <td>Otto</td>
-	      <td>@mdo</td>
-	      <td>Mark</td>
-	      <td>Otto</td>
-	    </tr>	    
-	  </tbody>
-	</table>
+<div class="row">
+    <div class="col-sm-10 offset-sm-1">
+		<ul class="nav nav-tabs">
+		  <li class="nav-item">
+		  	<%= link_to t('projects.issues'),'#',class: 'nav-link active',id: 'my-id-issue-link'%>    
+		  </li>
+		  <li class="nav-item">
+		    <%= link_to project_display_name(@project),project_users_project_path(@project),class: 'nav-link',remote: true,id: 'my-id-member-link'%>
+		  </li>
+		</ul>
+	</div>
+</div>
+<div class="row">
+    <div class="col-lg-10 offset-lg-1">
+		<div class = "my-custom-project-data-area">
+			<table class="table table-hover">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Description</th>
+			      <th scope="col">Assiginee</th>
+			      <th scope="col">Type</th>
+			      <th scope="col">Category</th>
+			      <th scope="col">Status</th>
+			      <th scope="col"><%= link_to t('projects.add_issue'),'',class: 'btn btn-primary' %></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th scope="row">1</th>
+			      <td>Mark</td>
+			      <td>Otto</td>
+			      <td>@mdo</td>
+			      <td>Mark</td>
+			      <td>Otto</td>
+			    </tr>	    
+			  </tbody>
+			</table>
+		</div>
+	</div>
 </div>
