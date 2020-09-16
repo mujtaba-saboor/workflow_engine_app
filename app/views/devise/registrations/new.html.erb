@@ -30,7 +30,7 @@
     <%= f.fields_for :company, Company.new do |o| %>
       <%= o.label :company_name %><br />
 
-      <span onchange ="make_domain()"><%= o.text_field :name, id: "company_name_id", class: "form-control" %></span><%= o.hidden_field :domain, id: "domain_id" , required: true %>
+      <span onchange ="make_subdomain()"><%= o.text_field :name, id: "company_name_id", class: "form-control" %></span><%= o.hidden_field :subdomain, id: "subdomain_id" , required: true %>
 
     <% end %>
   </div>
