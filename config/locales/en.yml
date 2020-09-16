@@ -31,24 +31,26 @@
 
 en:
   shared:
-    email: "email"
-    update: "Update"
+    email: 'email'
+    update: 'Update'
   users:
-    sign_up: "Sign up"
-    login: "Log in"
-    resend_confirmation_instructions: "Resend confirmation instructions"
-    send_reset_password_instuctions: "Send me reset password instructions"
-    new_password: "New password"
-    current_password: "Current-password"
-    change_my_password: "Change my password"
-    confirm_new_password: "Confirm new password"
-    forget_password: "Forgot your password?"
-    cancel_account: "Cancel my account"
-    are_you_sure: "Are you sure?"
-    resend_lock_instructions: "Resend unlock instructions"
+    sign_in: 'Sign in'
+    sign_out: 'Sign out'
+    sign_up: 'Sign up'
+    login: 'Log in'
+    resend_confirmation_instructions: 'Resend confirmation instructions'
+    send_reset_password_instuctions: 'Send me reset password instructions'
+    new_password: 'New password'
+    current_password: 'Current-password'
+    change_my_password: 'Change my password'
+    confirm_new_password: 'Confirm new password'
+    forget_password: 'Forgot your password?'
+    cancel_account: 'Cancel my account'
+    are_you_sure: 'Are you sure?'
+    resend_lock_instructions: 'Resend unlock instructions'
     confirm_my_account: 'Confirm my account'
     unlock_account: 'Unlock my account'
-    back: "Back"
+    back: 'Back'
     didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
     didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
   flash_messages:
