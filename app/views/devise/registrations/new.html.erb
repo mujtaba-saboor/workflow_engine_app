@@ -5,12 +5,12 @@
 
   <div class="form-group">
     <%= f.label :name %><br />
-    <%= f.text_field :name, class: "form-control",placeholder: "Enter Name Here", required: true %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Enter Name Here", required: true %>
   </div>
 
   <div class="form-group">
     <%= f.label :email %><br />
-    <%= f.email_field :email, class: "form-control",placeholder: "name@example.com", required: true %>
+    <%= f.email_field :email, class: "form-control", placeholder: "name@example.com", required: true %>
   </div>
 
   <div class="form-group">
@@ -27,10 +27,10 @@
   </div>
 
   <div class="form-group" >
-    <%= f.fields_for :company, Company.new do |o| %>
-      <%= o.label :company_name %><br />
+    <%= f.fields_for :company, Company.new do |nested_company| %>
+      <%= nested_company.label :company_name %><br />
 
-      <span onchange ="make_subdomain()"><%= o.text_field :name, id: "company_name_id", class: "form-control" %></span><%= o.hidden_field :subdomain, id: "subdomain_id" , required: true %>
+      <span onchange ="make_subdomain()"><%= nested_company.text_field :name, id: "company_name_id", class: "form-control" %></span><%= nested_company.hidden_field :subdomain, id: "subdomain_id" , required: true %>
 
     <% end %>
   </div>
