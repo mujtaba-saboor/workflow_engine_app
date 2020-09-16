@@ -2,7 +2,7 @@
 <%= form_with model: [resource, comment] do |form| %>
 <div class="form-group">
 	<%= form.label t('comments.comment_form_label'), for: :body %>
-	<%= form.text_area :body, placeholder: t('comments.comment_form_placeholder'), class: 'form-control', style: 'border-left: 4px solid blue;' %>
+	<%= form.text_area :body, placeholder: t('comments.comment_form_placeholder'), class: 'form-control' %>
 </div>
 <%= form.submit(t('shared.create_model', model: Comment.model_name.human), class: 'btn btn-primary') %>
 <% end %>
