@@ -1,3 +1,3 @@
-<span class="badge badge-<%= bootstrap_color_string_for_status(status) %>"><%= status.humanize %></span>
-<span class="badge badge-<%= bootstrap_color_string_for_priority(priority) %>"><%= priority.humanize %></span>
-<span class="badge badge-<%= bootstrap_color_string_for_issue_type(issue_type) %>"><%= issue_type.humanize %></span>
+<span class="badge badge-<%= bootstrap_color_string_for_status(status) %>"><%= Issue.human_enum_name(:status, status) %></span>
+<span class="badge badge-<%= bootstrap_color_string_for_priority(priority) %>"><%= Issue.human_enum_name(:priority, priority) %></span>
+<span class="badge badge-<%= bootstrap_color_string_for_issue_type(issue_type) %>"><%= Issue.human_enum_name(:issue_type, issue_type) %></span>

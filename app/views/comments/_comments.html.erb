@@ -1,8 +1,8 @@
-<h3>Comments</h3>
+<h3><%= Comment.model_name.human(count: 0) %></h3>
 <div id="comment_form" class="mb-4">
   <%= render partial: 'comments/comment_form', locals: { resource: resource, comment: comment } %>
 </div>
-<p><%= pluralize(comments.length, 'Comment') %></p>
+<p><%= "#{comments.length} #{Comment.model_name.human(count: comments.length)}" %></p>
 <% comments.each do |icomment| %>
 <div id="comment_<%= icomment.id %>" class="card mb-2">
 <%= render partial: 'comments/comment', locals: { comment: icomment } %>

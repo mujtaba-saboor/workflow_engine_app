@@ -30,9 +30,68 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    models:
+      user: &user_label
+        one: "User"
+        other: "Users"
+      company: &company_label
+        one: "Company"
+        other: "Companies"
+      project: &project_label
+        one: "Project"
+        other: "Projects"
+      issue: &issue_label
+        one: "Issue"
+        other: "Issues"
+      comment: &comment_label
+        one: "Comment"
+        other: "Comments"
+    attributes:
+      issue:
+        title: "Title"
+        description: "Description"
+        assignee: "Assignee"
+        creator: "Creator"
+        company: *company_label
+        status: "Status"
+        statuses:
+          open: "Open"
+          in_progress: "In progress"
+          resolved: "Resolved"
+          closed: "Closed"
+        priority: "Priority"
+        priorities:
+          low: "Low"
+          high: "High"
+        issue_type: "Type"
+        issue_types:
+          bug: "Bug"
+          issue: "Issue"
+      comment:
+        user: *user_label
+        body: "Body"
+
+  comments:
+    comment_form_label: "Add a comment"
+    comment_form_placeholder: "Enter comment here ..."
+    comment_edit_form_label: "Edit your comment"
+    successful_deletion_message: 'Comment deleted successfully !'
+    unsuccessful_deletion_message: 'Comment could not be deleted'
   shared:
     email: "email"
     update: "Update"
+    deletion_confirmation_message: "Are you sure you want to delete this?"
+    new: "New"
+    create: &create_label "Create"
+    edit: "Edit"
+    update: "Update"
+    delete: "Delete"
+    create_model: "Create %{model}"
+    update_model: "Update %{model}"
+    time_ago: "%{time_ago} ago"
+    updated_time_ago: "updated %{time_ago} ago"
+    created_time_ago: "created %{time_ago} ago"
   users:
     sign_up: "Sign up"
     login: "Log in"
@@ -51,3 +110,17 @@ en:
     back: "Back"
     didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
     didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
+  issues:
+    no_assignee_assigned: "Assignee is not assigned for this issue"
+    edit_form:
+      title: "Editing Issue: %{issue_name}"
+    new_form:
+      title: "Create Issue"
+  flash_messages:
+    create: '%{name} Created Successfully'
+    update: '%{name} Updated Successfully'
+    destroy: '%{name} Destroyed Successfully'
+    addition: '%{name} Added Successfully'
+    deletion: '%{name} Removed Successfully'
+    warning: '%{warning_msg}'
+    error: 'Error Occured: %{error_msg}'

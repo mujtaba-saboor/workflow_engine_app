@@ -34,7 +34,11 @@ class CommentsController < ApplicationController
   # comment DELETE /comments/:id(.:format) comments#destroy
   def destroy
     respond_to do |format|
-      flash[:notif] = @comment.destroy ? 'Comment deleted successfully' : 'Comment could not be deleted'
+      if @comment.destroy
+        flash[:comment_deletion_success] = t('comments.successful_deletion_message')
+      else
+        flash[:comment_deletion_warning] = t('comments.unsuccessful_deletion_message')
+      end
 
       format.html { redirect_back fallback_location: root_url }
     end

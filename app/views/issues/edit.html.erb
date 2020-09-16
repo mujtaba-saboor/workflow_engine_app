@@ -1,7 +1,7 @@
-<h1>Editing Issue '<%= @issue.title %>'</h1>
-<h5>Issue for project '<%= @project.name %>'</h5>
+<h1 class="mb-4"><%= t 'issues.edit_form.title', issue_name: @issue.title %></h1>
+<h5><%= "#{Project.model_name.human}: #{@project.name}"%></h5>
 
 <%= form_for [@project, @issue], url: { action: "update" } do |f| %>
-	<%= render partial: 'issue_form_internal', locals: { issue: @issue, valid_assignees: @valid_assignees,form: f } %>
-	<%= submit_tag "Update", class: 'btn btn-primary' %>
+	<%= render partial: 'issue_form_internal', locals: { issue: @issue, valid_assignees: @valid_assignees, form: f } %>
+	<%= submit_tag t('shared.update'), class: 'btn btn-primary' %>
 <% end %>

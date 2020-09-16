@@ -1,6 +1,6 @@
 <%= render 'layouts/errors', resource: issue %>
 <div class='form-group'>
-	<%= form.label :title %>*
+	<%= form.label :title %>
 	<%= form.text_field :title, class: 'form-control' %>
 </div>
 <div class='form-group'>
@@ -10,7 +10,7 @@
 <%# Here it is ensured that the assignee field can be accessed by the creator and anyone who has access to the form and is not the assignee %>
 <% if can? :change_assignee, form.object %>
 <div class='form-group'>
-	<%= form.label :assignee_id, 'Assignee' %>
+	<%= form.label :assignee %>
 	<%= form.select(:assignee_id, options_for_select(valid_assignees.collect { |key, _| [key.email, key.id] }, selected: form.object.assignee_id), {}, {class: 'form-control'}) %>
 </div>
 <% end %>

@@ -2,17 +2,17 @@
   <h6 class="card-subtitle mb-2 text-muted">
     <%= comment.user.email %>
     <span class="float-right">
-      <%= time_ago_in_words comment.created_at %> ago
+      <%= t('shared.time_ago', time_ago: time_ago_in_words(comment.created_at)) %>
       <% if comment.created_at != comment.updated_at %>
-      (Updated <%= time_ago_in_words comment.updated_at %>)
+      (<%= t('shared.updated_time_ago', time_ago: time_ago_in_words(comment.updated_at)) %>)
       <% end %>
     </span>   
   </h6>
   <p class="card-text"><%= comment.body %></p>
   <% if can? :update, comment %>
-  <%= link_to 'Edit', edit_comment_path(comment), remote: true, class: 'btn btn-warning card-button' %>
+  <%= link_to t('shared.edit'), edit_comment_path(comment), remote: true, class: 'btn btn-warning card-button' %>
   <% end %>
   <% if can? :destroy, comment %>
-  <%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger card-button' %>
+  <%= link_to t('shared.delete'), comment_path(comment), method: :delete, data: { confirm: t('shared.deletion_confirmation_message') }, class: 'btn btn-danger card-button' %>
   <% end %>
 </div>

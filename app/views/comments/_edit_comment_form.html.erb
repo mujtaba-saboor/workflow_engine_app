@@ -1,8 +1,8 @@
 <%= render 'layouts/errors', resource: comment %>
 <%= form_with model: comment, url: { action: "update" } do |form| %>
 <div class="form-group">
-  <%= form.label 'Edit your comment', for: :body %>
+  <%= form.label t('comments.comment_edit_form_label'), for: :body %>
   <%= form.text_area :body, class: 'form-control' %>
 </div>
-<%= form.submit 'Update Comment', class: 'btn btn-primary' %>
+<%= form.submit t('shared.update_model', model: Comment.model_name.human), class: 'btn btn-primary' %>
 <% end %>
