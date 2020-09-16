@@ -53,6 +53,3 @@ en:
     back: "Back"
     didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
     didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
-  projects:
-    navbar_create_a_project: 'Create a project'
-    navbar_show_projects: 'All projects'
