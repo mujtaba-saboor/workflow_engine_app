@@ -33,8 +33,11 @@ en:
   shared:
     email: 'email'
     update: 'Update'
+  companies:
+    company_projects: 'Company Projects'
+    company_project_issues: 'Company Project Issues'
   users:
-    sign_in: 'Sign in'
+    sign_in: &sign_in 'Sign in'
     sign_out: 'Sign out'
     sign_up: 'Sign up'
     login: 'Log in'
@@ -53,3 +56,10 @@ en:
     back: 'Back'
     didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
     didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
+  home:
+    sign_in: 
+      title: *sign_in
+      search: 'Search'
+      email_address_placeholder: 'Enter your email address here'
+    your_companies: 'Your Companies'
+    no_associated_companies_message: 'Sorry no associated company was found for the provided email.'

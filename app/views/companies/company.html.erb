@@ -1,9 +1,9 @@
 <h1><%= @company.name %></h1>
-<h3>Company Projects</h3>
+<h3><%= t('companies.company_projects') %></h3>
 <% @projects.each do |project| %>
   <p><%= project.name %></p>
 <% end %>
-<h3>Company Project Issues</h3>
+<h3><%= t('companies.company_project_issues') %></h3>
 <% @issues.each do |issue| %>
   <p><%= issue.title %></p>
 <% end %>
