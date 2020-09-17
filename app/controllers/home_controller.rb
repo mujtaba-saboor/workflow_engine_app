@@ -1,7 +1,19 @@
 class HomeController < ApplicationController
   skip_before_action :authenticate_user!
-  skip_around_action :scope_current_company
   def index
-    flash.now[:notif] = "Welcome to Workflow Engine"
+    flash.now[:notice] = t('home.welcome_message')
+    respond_to :html
+  end
+
+  # get '/users/sign_in', to: 'home#sign_in', constraints: { subdomain: '' }
+  def sign_in
+    respond_to :html
+  end
+
+  # get '/user/companies', to: 'home#user_companies', as: user_companies
+  def user_companies
+    email = params[:email]
+    @companies = Company.joins("INNER JOIN users ON users.email = '#{User.sanitize_sql(email)}' AND users.company_id = companies.id")
+    respond_to :js
   end
 end
