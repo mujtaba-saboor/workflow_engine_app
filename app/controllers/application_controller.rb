@@ -4,8 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   around_action :scope_current_company
 
-  protected
-
   UNWANTED_BASE_PATHS = [
     # '/users/sign_in',
     '/users/sign_out'
@@ -14,6 +12,8 @@ class ApplicationController < ActionController::Base
   UNWANTED_SUBDOMAIN_PATHS = [
     '/users/sign_up'
   ].freeze
+
+  protected
 
   # Check if the given path is in the manually blocked lists, in subdomains or without subdomains
   def path_blocked?(path, request_type = :base)
