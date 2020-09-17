@@ -30,27 +30,27 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  shared:
-    email: "email"
-    update: "Update"
   users:
-    sign_up: "Sign up"
-    login: "Log in"
-    resend_confirmation_instructions: "Resend confirmation instructions"
-    send_reset_password_instuctions: "Send me reset password instructions"
-    new_password: "New password"
-    current_password: "Current-password"
-    change_my_password: "Change password"
-    confirm_new_password: "Confirm new password"
-    forget_password: "Forgot your password?"
-    cancel_account: "Cancel my account"
-    are_you_sure: "Are you sure?"
-    resend_lock_instructions: "Resend unlock instructions"
+    email: 'email'
+    update: 'Update'
+    sign_up: 'Sign up'
+    login: 'Log in'
+    resend_confirmation_instructions: 'Resend confirmation instructions'
+    send_reset_password_instuctions: 'Send me reset password instructions'
+    password: 'password'
+    new_password: 'New password'
+    current_password: 'Current password'
+    change_my_password: 'Change password'
+    confirm_new_password: 'Confirm new password'
+    forget_password: 'Forgot your password?'
+    cancel_account: 'Cancel my account'
+    are_you_sure: 'Are you sure?'
+    resend_lock_instructions: 'Resend unlock instructions'
     confirm_my_account: 'Confirm my account'
     unlock_account: 'Unlock my account'
-    back: "Back"
-    didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
-    didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
+    back: 'Back'
+    didnt_receive_confirmation_instructions: 'Didn't receive confirmation instructions?'
+    didnt_receive_unlock_instructions: 'Didn't receive unlock instructions?'
     edit: 'edit'
     confirm_account: 'You can confirm your account email through the link below'
     welcome: 'Welcome'
@@ -62,5 +62,6 @@ en:
     password_procedure: 'Your password won't change until you access the link above and create a new one.'
     account_locked: 'Your account has been locked due to an excessive number of unsuccessful sign in attempts.'
     unlock_procedure: 'Click the link below to unlock your account:'
+    character_minimum: ' characters minimum'
   companies:
     domain_validation: 'only allows letters and numbers'

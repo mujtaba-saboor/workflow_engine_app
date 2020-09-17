@@ -5,7 +5,7 @@
 
   <div class='form-group'>
     <%= f.label :name %><br />
-    <%= f.text_field :name, class: 'form-control', placeholder: 'Enter Name Here', required: true %>
+    <%= f.text_field :name, class: 'form-control', required: true %>
   </div>
 
   <div class='form-group'>
@@ -18,12 +18,12 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: t(:new_password), class: 'form-control', required: true %>
+    <%= f.password_field :password, autocomplete: t('users.new_password'), class: 'form-control', required: true %>
   </div>
 
   <div class='form-group'>
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: 'Password', class: 'form-control' , required: true %>
+    <%= f.password_field :password_confirmation, autocomplete: t('users.password'), class: 'form-control' , required: true %>
   </div>
 
   <div class='form-group' >
