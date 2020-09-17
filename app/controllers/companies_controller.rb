@@ -3,6 +3,7 @@ class CompaniesController < ApplicationController
     @company = current_company
     @projects = Project.all
     @issues = Issue.all
+    @users = User.all
     flash.now[:notif] = "Welcome to Workflow Engine (#{@company.name})"
   end
 
