@@ -1,18 +1,7 @@
 module IssuesHelper
-  def select_options_for_statuses
-    select_options_for_enum(:status, Issue.statuses)
-  end
-
-  def select_options_for_priorities
-    select_options_for_enum(:priority, Issue.priorities)
-  end
-
-  def select_options_for_issue_types
-    select_options_for_enum(:issue_type, Issue.issue_types)
-  end
-
-  def select_options_for_enum(enum_name, enum_hash)
-    enum_hash.collect { |key, _| [Issue.human_enum_name(enum_name, key), key] }
+  # Creates the options for select type inputs for enums
+  def create_select_options_for_enum(enum_name, enum_hash_keys)
+    enum_hash_keys.collect { |key| [Issue.human_enum_name(enum_name, key), key] }
   end
 
   def bootstrap_color_string_for_status(status)

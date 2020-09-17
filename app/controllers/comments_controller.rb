@@ -1,26 +1,32 @@
 class CommentsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :issue
+  load_and_authorize_resource :project
+  load_and_authorize_resource through: %i[issue project]
 
-  # issue_comments POST /issues/:issue_id/comments(.:format) comments#create
+  # POST /resources/:resource_id/comments
   def create
-    @resource = Issue.find(params[:issue_id])
-    authorize! :read, @resource
+    set_up_pagy_and_resource
+    if @comment.save
+      flash.now[:notice] = t('comments.successful_creation_message')
+      @comment = Comment.new
+    else
+      flash.now[:error] = t('comments.unsuccessful_creation_message')
+    end
 
-    @comment.commentable = @resource
-    @comment = Comment.new if @comment.save
-    @pagy, @comments = pagy(@resource.comments)
-    # TODO: Add a proper decorator class for this type of thing
-    @pagy.instance_variable_set(:@custom_link, project_issue_path(@resource.project, @resource))
-    respond_to :js
+    respond_to do |format|
+      format.js
+    end
   end
 
-  # edit_comment GET /comments/:id/edit(.:format) comments#edit
+  # GET /comments/:id/edit
   def edit
-    respond_to :js
+    respond_to do |format|
+      format.js
+    end
   end
 
-  # comment PATCH  /comments/:id(.:format) comments#update
-  # comment PUT    /comments/:id(.:format) comments#update
+  # PUT    /comments/:id
+  # PATCH  /comments/:id
   def update
     respond_to do |format|
       if @comment.update(comment_params)
@@ -31,20 +37,30 @@ class CommentsController < ApplicationController
     end
   end
 
-  # comment DELETE /comments/:id(.:format) comments#destroy
+  # DELETE /comments/:id
   def destroy
-    respond_to do |format|
-      if @comment.destroy
-        flash[:comment_deletion_success] = t('comments.successful_deletion_message')
-      else
-        flash[:comment_deletion_warning] = t('comments.unsuccessful_deletion_message')
-      end
+    set_up_pagy_and_resource
+    if @comment.destroy
+      flash.now[:notice] = t('comments.successful_deletion_message')
+      @comment = Comment.new
+    else
+      flash.now[:error] = t('comments.unsuccessful_deletion_message')
+    end
 
+    respond_to do |format|
       format.html { redirect_back fallback_location: root_url }
+      format.js
     end
   end
 
   private
+
+  def set_up_pagy_and_resource
+    @resource = @comment.commentable
+    @pagy, @comments = pagy(@resource.comments)
+    # TODO: Add a proper decorator class for this type of thing
+    @pagy.instance_variable_set(:@custom_link, helpers.resource_comments_display_path(@resource))
+  end
 
   def comment_params
     params.require(:comment).permit(:body)

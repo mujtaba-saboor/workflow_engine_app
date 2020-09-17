@@ -29,7 +29,11 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
+
+# The '&name' serve as hooks (can be called variables) and can be used later as '*name'
+
 en:
+  # For active record model translations visit: https://guides.rubyonrails.org/i18n.html#translations-for-active-record-models 
   activerecord:
     models:
       user: &user_label
@@ -76,6 +80,8 @@ en:
     comment_form_label: "Add a comment"
     comment_form_placeholder: "Enter comment here ..."
     comment_edit_form_label: "Edit your comment"
+    successful_creation_message: 'Comment creation successfully !'
+    unsuccessful_creation_message: 'Comment could not be created'
     successful_deletion_message: 'Comment deleted successfully !'
     unsuccessful_deletion_message: 'Comment could not be deleted'
   shared:

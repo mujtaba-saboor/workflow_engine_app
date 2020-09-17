@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   end
 
   resources :issues, only: [] do
-    resources :comments, only: [:create]
+    resources :comments, only: %i[create edit update destroy]
   end
-  resources :comments, only: %i[destroy edit update]
+  # resources :comments, only: %i[destroy edit update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
