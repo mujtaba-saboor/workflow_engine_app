@@ -4,5 +4,5 @@ class Company < ApplicationRecord
   has_many :teams
 
   validates :subdomain, format: { with: /\A[a-zA-Z0-9]+\z/,
-    message: "only allows letters and numbers" }
+    message: t('companies.domain_validation') }
 end

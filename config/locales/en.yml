@@ -40,7 +40,7 @@ en:
     send_reset_password_instuctions: "Send me reset password instructions"
     new_password: "New password"
     current_password: "Current-password"
-    change_my_password: "Change my password"
+    change_my_password: "Change password"
     confirm_new_password: "Confirm new password"
     forget_password: "Forgot your password?"
     cancel_account: "Cancel my account"
@@ -51,3 +51,16 @@ en:
     back: "Back"
     didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
     didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
+    edit: 'edit'
+    confirm_account: 'You can confirm your account email through the link below'
+    welcome: 'Welcome'
+    hello: 'Hello'
+    email_change_message: 'We're contacting you to notify you that your email is being changed to'
+    password_change_message: 'We're contacting you to notify you that your password has been changed.'
+    notify_password_change: 'Someone has requested a link to change your password. You can do this through the link below.'
+    ignore_email: 'If you didn't request this, please ignore this email.'
+    password_procedure: 'Your password won't change until you access the link above and create a new one.'
+    account_locked: 'Your account has been locked due to an excessive number of unsuccessful sign in attempts.'
+    unlock_procedure: 'Click the link below to unlock your account:'
+  companies:
+    domain_validation: 'only allows letters and numbers'
