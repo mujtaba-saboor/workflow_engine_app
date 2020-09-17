@@ -1,6 +1,6 @@
 @import "bootstrap/scss/bootstrap";
 
-.error_explanation {
+.error-explanation {
   @extend .alert;
   @extend .alert-danger;
   width: 50%;
