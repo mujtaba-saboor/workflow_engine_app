@@ -11,16 +11,16 @@ class ApplicationController < ActionController::Base
     '/users/sign_out'
   ].freeze
 
-  UNWNATED_SUBDOMAIN_PATHS = [
+  UNWANTED_SUBDOMAIN_PATHS = [
     '/users/sign_up'
   ].freeze
 
-  # Check if the given path is in the manually blocked lists in subdomains or without subdomains
+  # Check if the given path is in the manually blocked lists, in subdomains or without subdomains
   def path_blocked?(path, request_type = :base)
     if request_type == :base
       UNWANTED_BASE_PATHS.include? path
     elsif request_type == :subdomain
-      UNWNATED_SUBDOMAIN_PATHS.include? path
+      UNWANTED_SUBDOMAIN_PATHS.include? path
     end
   end
   helper_method :path_blocked?
