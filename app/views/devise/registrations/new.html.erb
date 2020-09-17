@@ -30,7 +30,7 @@
     <%= f.fields_for :company, Company.new do |nested_company| %>
       <%= nested_company.label :company_name %><br />
 
-        <%= nested_company.text_field :name, id: "company_name_id", class: "form-control", required: true, onchange: 'make_subdomain()' %>
+        <%= nested_company.text_field :name, id: "company_name_id", class: "form-control", required: true %>
         <%= nested_company.hidden_field :subdomain, id: "subdomain_id" %>
 
     <% end %>
