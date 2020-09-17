@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get '', to: 'companies#company', constraints: { subdomain: /.+/ }
-
   root 'home#index'
   resources :companies do
     resources :users

@@ -65,7 +65,7 @@ en:
     deletion: '%{name} Removed Successfully'
     warning: '%{warning_msg}'
     error: 'Error Occured: %{error_msg}'
-] home:
+  home:
     sign_in: 
       title: *sign_in
       search: 'Search'
