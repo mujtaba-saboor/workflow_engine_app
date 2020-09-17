@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   around_action :scope_current_company
 
   UNWANTED_BASE_PATHS = [
-    # '/users/sign_in',
     '/users/sign_out'
   ].freeze
 
