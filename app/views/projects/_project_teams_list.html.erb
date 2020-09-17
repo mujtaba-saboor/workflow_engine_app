@@ -1,13 +1,13 @@
 <h3 align = center><%= t('projects.all_teams') %></h3>
-	<%= link_to t('projects.add_team'), new_team_project_path(@project), {class: 'btn btn-success', remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_add_team_to_project_modal'}%>	
+  <%= link_to t('projects.add_team'), new_team_for_project_project_path(@project), {class: 'btn btn-success', remote: true, data: { toggle: "modal", target: '#my_id_add_team_to_project_modal'}}%>	
 <br><br>
 
 <ul class="list-group">
   <% @project.teams.each do |team| %>
-	  <li class="list-group-item d-flex justify-content-between align-items-center">
-	    <%= team.name%>
-	    <%= link_to t('projects.remove_team'), remove_team_from_project_project_path(@project,team: team), method: :delete, class: 'badge badge-danger'%>
-	  </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+	  <%= team.name%>
+	  <%= link_to t('projects.remove_team'), remove_team_from_project_project_path(@project, team: team), method: :delete, class: 'badge badge-danger'%>
+	</li>
   <% end %>
 </ul>
 <div id = "my_id_add_team_to_project_modal" class="modal fade" tabindex="-1" role="dialog">

@@ -1,13 +1,13 @@
 <%= form_with model: @team do |team| %>
- <div class="form-row">
-	 <div class="form-group col-sm-6">
-	 	<%= team.label :name %>
-	 	<%= team.text_field :name ,class: 'form-control',placeholder: t('teams.form_name_placeholder') %>
-	 </div> 
-</div>
- <% if params[:action] == 'edit' %>
- 	<%= team.submit t('teams.update_team'), class: 'btn btn-primary' %>	
- <%else%>
- 	<%= team.submit t('teams.create_team'), class: 'btn btn-primary' %>	
- <% end %>
-<%end%>
+  <div class="form-row">
+   <div class="form-group col-sm-6">
+   	 <%= team.label :name %>
+	 <%= team.text_field :name , class: 'form-control', placeholder: t('teams.form_name_placeholder') %>
+   </div> 
+  </div>
+  <% if params[:action] == 'edit' %>
+    <%= team.submit t('shared.update_resource', resource_name: t('teams.team')), class: 'btn btn-primary' %>	
+  <% else %>
+ 	<%= team.submit t('shared.create_resource', resource_name: t('teams.team')), class: 'btn btn-primary' %>
+  <% end %>
+<% end %>

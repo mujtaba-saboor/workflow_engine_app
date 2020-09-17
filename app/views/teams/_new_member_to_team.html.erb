@@ -1,22 +1,22 @@
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLongTitle"><%= t('teams.add_user') %></h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <h5 class="modal-title"><%= t('teams.add_user') %></h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <div class="modal-body">
-<% unless is_member_available?(@team) %>
-  <%= form_with model: @team, url: add_user_to_team_team_path do |f| %>
-   <div class="form-row">
-      <div class="form-group col-md-4">   
-        <%= f.label t('teams.available_users') %>      
-      <%= f.collection_select :user, team_users(@team), :id, :name, {},{:class => 'form-control'} %>
-    </div>
-   </div>  
+  <% team_users = @team.available_users %>
+  <% unless team_users.empty? %>
+    <%= form_with model: @team, url: add_user_to_team_team_path do |f| %>
+      <div class="form-row">
+        <div class="form-group col-md-4">   
+          <%= f.label t('teams.available_users') %>      
+          <%= f.collection_select :user, team_users, :id, :name, {}, class: 'form-control' %>
+        </div>
+      </div>  
       <%= f.submit t('teams.add_user'), class: 'btn btn-primary' %>
-  <%end%>
-<%else%>
-  <p><%= t('teams.no_available_user') %></p>
-<%end%>
-
+    <% end %>
+  <% else %>
+    <p><%= t('teams.no_available_user') %></p>
+  <% end %>
 </div>
