@@ -75,7 +75,7 @@ class TeamsController < ApplicationController
     company = Company.first
     user = User.find(params[:team][:user])
 
-    unless user.nil?
+    if user.present?
       if TeamUser.create(team: @team, user: user, company: company)
         flash[:success] = t('flash_messages.addition', name: t('teams.user'))
       else
@@ -93,7 +93,7 @@ class TeamsController < ApplicationController
   def remove_user_from_team
     user = User.find(params[:user])
 
-    unless user.nil?
+    if user.present?
       if @team.users.delete(user)
         flash[:success] = t('flash_messages.deletion', name: t('teams.user'))
       else

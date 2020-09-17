@@ -76,7 +76,7 @@ class ProjectsController < ApplicationController
   def add_team_to_project
     company = Company.first
     team = Team.find_by_id params[:project][:team]
-    unless team.nil?
+    if team.present?
       if ProjectTeam.create(project: @project, team: team, company: company)
         flash[:success] = t('flash_messages.addition', name: t('projects.team'))
       else
@@ -94,7 +94,7 @@ class ProjectsController < ApplicationController
   def remove_team_from_project
     team = Team.find_by_id params[:team]
     
-    unless team.nil?
+    if team.present?
       if @project.teams.delete(team)
         flash[:success] = t('flash_messages.deletion', name: t('projects.team'))
       else
@@ -119,7 +119,7 @@ class ProjectsController < ApplicationController
     company = Company.first
     user = User.find(params[:project][:user])
     
-    unless user.nil?
+    if user.present?
       if ProjectUser.create(project: @project, user: user, company: company)
         flash[:success] = t('flash_messages.addition', name: t('projects.user'))
       else
@@ -137,7 +137,7 @@ class ProjectsController < ApplicationController
   def remove_user_from_project
     user = User.find(params[:user])
     
-    unless user.nil?
+    if user.present?
       if @project.users.delete(user)
         flash[:success] = t('flash_messages.deletion', name: t('projects.user'))
       else
