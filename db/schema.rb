@@ -26,10 +26,28 @@ ActiveRecord::Schema.define(version: 2020_09_09_083144) do
   end
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.string "domain", default: ""
+    t.string "name", null: false
+    t.string "subdomain", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "issues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.integer "issue_type", null: false
+    t.integer "priority", null: false
+    t.integer "status", null: false
+    t.bigint "project_id", null: false
+    t.bigint "creator_id", null: false
+    t.bigint "assignee_id"
+    t.bigint "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["assignee_id"], name: "index_issues_on_assignee_id"
+    t.index ["company_id"], name: "index_issues_on_company_id"
+    t.index ["creator_id"], name: "index_issues_on_creator_id"
+    t.index ["project_id"], name: "index_issues_on_project_id"
   end
 
   create_table "issues", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -101,9 +119,9 @@ ActiveRecord::Schema.define(version: 2020_09_09_083144) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
     t.string "role", default: "OWNER"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -122,7 +140,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_083144) do
     t.datetime "locked_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "company_id"
+    t.integer "company_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
