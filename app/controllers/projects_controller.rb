@@ -76,7 +76,7 @@ class ProjectsController < ApplicationController
   def add_team_to_project
     company = Company.first
 
-    team = Team.find(params.require(:project).permit(:team).require(:team))
+    team = Team.find_by params[:project][:team]
     if ProjectTeam.create(project: @project, team: team, company: company)
       flash[:success] = t('flash_messages.addition', name: 'Team')
     else
