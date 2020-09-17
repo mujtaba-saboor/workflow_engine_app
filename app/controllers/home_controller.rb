@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   skip_before_action :authenticate_user!
   def index
-    flash.now[:notice] = "Welcome to Workflow Engine"
+    flash.now[:notice] = t('home.welcome_message')
     respond_to :html
   end
 

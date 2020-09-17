@@ -36,6 +36,7 @@ en:
   companies:
     company_projects: 'Company Projects'
     company_project_issues: 'Company Project Issues'
+    welcome_message: 'Welcome to Workflow Engine (%{company_name})'
   users:
     sign_in: &sign_in 'Sign in'
     sign_out: 'Sign out'
@@ -61,5 +62,6 @@ en:
       title: *sign_in
       search: 'Search'
       email_address_placeholder: 'Enter your email address here'
+    welcome_message: 'Welcome to Workflow Engine'
     your_companies: 'Your Companies'
     no_associated_companies_message: 'Sorry no associated company was found for the provided email.'
