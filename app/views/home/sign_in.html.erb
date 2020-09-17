@@ -1,0 +1,8 @@
+<h1>Sign in</h1>
+<%= form_with url: user_companies_path do |form| %>
+  <div class="form-group">
+    <%= form.email_field :email, placeholder: 'Enter your email address', class: 'form-control' %>
+  </div>
+  <%= form.submit 'Search', class: 'btn btn-primary' %>
+<% end %>
+<div id="user_companies"></div>

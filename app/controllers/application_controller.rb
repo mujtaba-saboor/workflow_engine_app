@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protected
 
   UNWANTED_BASE_PATHS = [
-    '/users/sign_in',
+    # '/users/sign_in',
     '/users/sign_out'
   ].freeze
 
@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
     '/users/sign_up'
   ].freeze
 
+  # Check if the given path is in the manually blocked lists in subdomains or without subdomains
   def path_blocked?(path, request_type = :base)
     if request_type == :base
       UNWANTED_BASE_PATHS.include? path
@@ -23,6 +24,13 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :path_blocked?
+
+  # Check if the given path is manually blocked from the current request location
+  def path_blocked_from_location?(path, request)
+    request_type = request.subdomain.present? ? :subdomain : :base
+    path_blocked?(path, request_type)
+  end
+  helper_method :path_blocked_from_location?
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name email password role is_confirmed company_id])

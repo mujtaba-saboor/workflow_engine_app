@@ -1,0 +1,10 @@
+<div class="my-4">
+  <% if companies.length != 0 %>
+    <h4>Your Companies</h4>
+    <% companies.each do |company| %>
+      <%= render 'company_link', company: company %>
+    <% end %>
+  <% else %>
+    <h5>Sorry no associated company was found for the provided email.</h5>
+  <% end %>
+</div>

@@ -1,12 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">WorkflowEngine</a>
+  <% if current_company %>
+    <%= link_to current_company.name, root_url, class: 'navbar-brand' %>
+  <% else %>
+    <a class="navbar-brand" href="/">WorkflowEngine</a>
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_nav" aria-controls="navbar_nav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbar_nav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <%= link_to 'Home', root_url(subdomain: ''), class: 'nav-link' %>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Features</a>
@@ -30,8 +34,12 @@
           </div>
         </li>
       <% else %>
-        <%= link_to t('users.sign_in'), new_user_session_path, class: 'btn btn-outline-secondary my-1 mr-md-2' %>
-        <%= link_to t('users.sign_up'), new_user_registration_path, class: 'btn btn-outline-info my-1' %>
+        <% unless path_blocked_from_location?(new_user_session_path, request) %>
+          <%= link_to t('users.sign_in'), new_user_session_path, class: 'btn btn-outline-secondary my-1 mx-md-1' %>
+        <% end %>
+        <% unless path_blocked_from_location?(new_user_registration_path, request) %>
+          <%= link_to t('users.sign_up'), new_user_registration_path, class: 'btn btn-outline-info my-1 mx-md-1' %>
+        <% end %>
       <% end %>
     </ul>
   </div>
