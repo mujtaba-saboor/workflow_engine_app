@@ -63,5 +63,8 @@ en:
     account_locked: 'Your account has been locked due to an excessive number of unsuccessful sign in attempts.'
     unlock_procedure: 'Click the link below to unlock your account:'
     character_minimum: ' characters minimum'
+    confirmation_waiting: 'Currently waiting confirmation for:'
+    leave_blank_line: 'leave blank if you don't want to change it'
+    need_for_current_password: 'we need your current password to confirm your changes'
   companies:
     domain_validation: 'only allows letters and numbers'
