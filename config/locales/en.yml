@@ -33,6 +33,8 @@ en:
   users:
     email: 'email'
     update: 'Update'
+    sign_in: 'Sign in'
+    sign_out: 'Sign out'
     sign_up: 'Sign up'
     login: 'Log in'
     resend_confirmation_instructions: 'Resend confirmation instructions'

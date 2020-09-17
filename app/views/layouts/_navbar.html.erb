@@ -18,5 +18,21 @@
         <a class='nav-link disabled' href='#'>Disabled</a>
       </li>
     </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="user_profile_dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= current_user.email %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="user_profile_dropdown">
+            <%= link_to t('users.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+          </div>
+        </li>
+      <% else %>
+        <%= link_to t('users.sign_in'), new_user_session_path, class: 'btn btn-outline-secondary my-1 mr-md-2' %>
+        <%= link_to t('users.sign_up'), new_user_registration_path, class: 'btn btn-outline-info my-1' %>
+      <% end %>
+    </ul>
   </div>
 </nav>
