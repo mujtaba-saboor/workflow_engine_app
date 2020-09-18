@@ -1,35 +1,19 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
+  shared:
+    edit: 'Edit'
+    delete: 'Delete'
+    show: 'Show'
+    user: 'User'
+    users: 'Users'
+    team: 'Team'
+    teams: 'Teams'
+    project: 'Project'
+    projects: 'Projects'
+    new_resource: 'Add New %{resource_name}'
+    edit_resource: 'Edit %{resource_name}'
+    form_name_placeholder: 'Enter name here'
+    update_resource: 'Update %{resource_name}'
+    create_resource: 'Create %{resource_name}'
   users:
     email: "email"
     update: "Update"
@@ -68,5 +52,41 @@ en:
     confirmation_waiting: "Currently waiting confirmation for:"
     leave_blank_line: "leave blank if you don't want to change it"
     need_for_current_password: "we need your current password to confirm your changes"
+  home:
+    welcome: 'Welcome to Workflow Engine'
+  projects:
+    form_name_placeholder: 'Enter name here'
+    add_team: 'Add Team'
+    remove_team: 'Remove Team'
+    available_teams: 'Available Teams'
+    no_available_team: 'No team available to add.'
+    add_user: 'Add User'
+    remove_user: 'Remove User'
+    all_users: 'All Users'
+    available_users: 'Available Users'
+    no_available_user: 'No user available to add.'
+    all_teams: 'All Teams'
+    issues: 'Issues'
+    add_issue: 'Add Issue'
+    all_projects: 'All Projects'
+    no_destroy: "Project can't be Destroyed"
+  teams:
+    form_name_placeholder: 'Enter name here'
+    add_user: 'Add User'
+    remove_user: 'Remove User'
+    all_users: 'All Users'
+    available_users: 'Available Users'
+    no_available_user: 'No user available to add.'
+    add_team: 'Add Team'
+    all_teams: 'All Teams'
+    no_deletion_warning: "Team can not be deleted because its a part of some Projects"
+  flash_messages:
+    create: '%{name} Created Successfully'
+    update: '%{name} Updated Successfully'
+    destroy: '%{name} Destroyed Successfully'
+    addition: '%{name} Added Successfully'
+    deletion: '%{name} Removed Successfully'
+    warning: '%{warning_msg}'
+    error: 'Error Occured: %{error_msg}'
   companies:
     domain_validation: "only allows letters and numbers"

@@ -20,6 +20,9 @@ gem 'jbuilder', '~> 2.7'
 
 #for authorization
 gem 'cancancan', '= 3.1.0'
+
+gem 'pry', '=0.13.1'
+gem 'pry-rails', '=0.3.9'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -36,6 +39,8 @@ gem 'after_commit_everywhere', '= 0.1.5'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise', '= 4.7.2'
+
+gem 'pagy', '= 3.5' 
 
 gem 'pry', '=0.13.1'
 gem 'pry-rails', '=0.3.9'
