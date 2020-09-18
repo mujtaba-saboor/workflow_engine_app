@@ -1,7 +1,7 @@
-<p>t('users.hello') <%= @email %>!</p>
+<p><%= t('users.hello') %><%= @email %>!</p>
 
 <% if @resource.try(:unconfirmed_email?) %>
-  <p>t('users.email_change_message') <%= @resource.unconfirmed_email %>.</p>
+  <p><%= t('users.email_change_message') %><%= @resource.unconfirmed_email %>.</p>
 <% else %>
-  <p>t('users.email_change_message') <%= @resource.email %>.</p>
+  <p><%= t('users.email_change_message') %><%= @resource.email %>.</p>
 <% end %>
