@@ -57,7 +57,7 @@ class TeamsController < ApplicationController
       @team.destroy
       flash[:success] = t('flash_messages.destroy', name: t('shared.team'))
     else
-      flash[:warning] = t('flash_messages.warning', warning_msg: t('teams.no_deletion_warning',warning_msg: team_project[0].project.name))
+      flash[:warning] = t('flash_messages.warning', warning_msg: t('teams.no_deletion_warning'))
     end
 
     respond_to do |format|
