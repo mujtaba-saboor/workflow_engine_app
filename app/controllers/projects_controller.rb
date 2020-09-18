@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
     @project.company = company
 
     if @project.save
-      flash[:success] = t('flash_messages.create', name: t('projects.project'))
+      flash[:success] = t('flash_messages.create', name: t('shared.project'))
     else
       flash[:danger] = t('flash_messages.error', error_msg: @project.errors.full_messages.first)
     end
@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)  
-      flash[:success] = t('flash_messages.update', name: t('projects.project'))
+      flash[:success] = t('flash_messages.update', name: t('shared.project'))
     else
       flash[:danger] = t('flash_messages.error', error_msg: @project.errors.full_messages.first)
     end
@@ -52,7 +52,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     if @project.destroy
-      flash[:success] = t('flash_messages.destroy', name: t('projects.project'))
+      flash[:success] = t('flash_messages.destroy', name: t('shared.project'))
     else
       flash[:warning] = t('flash_messages.warning', warning_msg: t('projects.no_destroy'))
     end
@@ -78,7 +78,7 @@ class ProjectsController < ApplicationController
     team = Team.find_by_id params[:project][:team]
     if team.present?
       if ProjectTeam.create(project: @project, team: team, company: company)
-        flash[:success] = t('flash_messages.addition', name: t('projects.team'))
+        flash[:success] = t('flash_messages.addition', name: t('shared.team'))
       else
         flash[:danger] = t('flash_messages.error')
       end
@@ -96,7 +96,7 @@ class ProjectsController < ApplicationController
     
     if team.present?
       if @project.teams.delete(team)
-        flash[:success] = t('flash_messages.deletion', name: t('projects.team'))
+        flash[:success] = t('flash_messages.deletion', name: t('shared.team'))
       else
         flash[:danger] = t('flash_messages.error')
       end
@@ -121,7 +121,7 @@ class ProjectsController < ApplicationController
     
     if user.present?
       if ProjectUser.create(project: @project, user: user, company: company)
-        flash[:success] = t('flash_messages.addition', name: t('projects.user'))
+        flash[:success] = t('flash_messages.addition', name: t('shared.user'))
       else
         flash[:danger] = t('flash_messages.error')
       end
@@ -139,7 +139,7 @@ class ProjectsController < ApplicationController
     
     if user.present?
       if @project.users.delete(user)
-        flash[:success] = t('flash_messages.deletion', name: t('projects.user'))
+        flash[:success] = t('flash_messages.deletion', name: t('shared.user'))
       else
         flash[:danger] = t('flash_messages.error')
       end

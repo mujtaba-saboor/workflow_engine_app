@@ -5,6 +5,12 @@ en:
     edit: 'Edit'
     delete: 'Delete'
     show: 'Show'
+    user: 'User'
+    users: 'Users'
+    team: 'Team'
+    teams: 'Teams'
+    project: 'Project'
+    projects: 'Projects'
     new_resource: 'Add New %{resource_name}'
     edit_resource: 'Edit %{resource_name}'
     form_name_placeholder: 'Enter name here'
@@ -31,9 +37,6 @@ en:
   home:
     welcome: 'Welcome to Workflow Engine'
   projects:
-    project: 'Project'
-    user: 'User'
-    team: 'Team'
     form_name_placeholder: 'Enter name here'
     add_team: 'Add Team'
     remove_team: 'Remove Team'
@@ -50,15 +53,12 @@ en:
     all_projects: 'All Projects'
     no_destroy: "Project can't be Destroyed"
   teams:
-    user: 'User'
-    team: 'Team'
     form_name_placeholder: 'Enter name here'
     add_user: 'Add User'
     remove_user: 'Remove User'
     all_users: 'All Users'
     available_users: 'Available Users'
     no_available_user: 'No user available to add.'
-    users: 'Users'
     add_team: 'Add Team'
     all_teams: 'All Teams'
     no_deletion_warning: "Team can not be deleted because its a part of %{warning_msg}"

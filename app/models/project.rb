@@ -17,9 +17,9 @@ class Project < ApplicationRecord
     project_category == PROJECT_CATEGORIES[0]
   end
   def available_users
-    User.where.not(id: self.users.select(:id))
+    User.where.not(id: self.users.pluck(:id))
   end
   def available_teams
-    Team.where.not(id: self.teams.select(:id))
+    Team.where.not(id: self.teams.pluck(:id))
   end
 end
