@@ -1,19 +1,19 @@
 <%= form_with model: @project do |project| %>
- <div class="form-row">
-	 <div class="form-group col-sm-6">
-	 	<%= project.label :name %>
-	 	<%= project.text_field :name ,class: 'form-control',placeholder: t('projects.form_name_placeholder')%>
-	 </div> 
-</div> 
- <% if params[:action] == 'edit' %>
- 	<%= project.submit t('projects.update_project'), class: 'btn btn-primary' %>	
- <% else %>
- <div class="form-row">
-    <div class="form-group col-md-4">   
-      <%= project.label :project_category %>
-      <%= project.select(:project_category, Project.project_categories, {},{:class => 'form-control'}) %>
+  <div class="form-row">
+    <div class="form-group col-sm-6">
+      <%= project.label :name %>
+      <%= project.text_field :name, class: 'form-control', placeholder: t('projects.form_name_placeholder') %>
+	  </div> 
+  </div> 
+  <% if params[:action] == 'edit' %>
+    <%= project.submit t('shared.update_resource', resource_name: t('projects.project')), class: 'btn btn-primary' %>	
+  <% else %>
+    <div class="form-row">
+      <div class="form-group col-md-4">   
+        <%= project.label :project_category %>
+        <%= project.select(:project_category, Project::PROJECT_CATEGORIES, {}, class: 'form-control') %>
+      </div>
     </div>
-  </div>
- 	<%= project.submit t('projects.create_project'), class: 'btn btn-primary' %>	
- <% end %>
+    <%= project.submit t('shared.create_resource', resource_name: t('projects.project')), class: 'btn btn-primary' %>	
+  <% end %>
 <% end %>
