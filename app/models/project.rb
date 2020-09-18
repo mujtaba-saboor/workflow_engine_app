@@ -13,6 +13,8 @@ class Project < ApplicationRecord
   has_many :project_users, dependent: :destroy
   has_many :users, through: :project_users
 
+  has_many :issues
+
   def team_project?
     project_category == PROJECT_CATEGORIES[0]
   end
@@ -21,5 +23,5 @@ class Project < ApplicationRecord
   end
   def available_teams
     Team.where.not(id: self.teams.pluck(:id))
-  end
+  end  
 end
