@@ -17,7 +17,7 @@ class IssuesController < ApplicationController
     respond_to :html
   end
 
-  # POST /projects/:project_id
+  # POST /projects/:project_id/issues
   def create
     # Here the company is being set via the cancancan ability written as,
     # can :create, Issue, company_id: user.company_id
@@ -68,7 +68,7 @@ class IssuesController < ApplicationController
   private
 
   def load_valid_assignees
-    @valid_assignees = @project.company.users
+    @valid_assignees = @project.valid_assignees
   end
 
   def issue_params
