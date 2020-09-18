@@ -18,15 +18,15 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/:id/edit
+  # GET /resources/:resource_id/comments/:id/edit
   def edit
     respond_to do |format|
       format.js
     end
   end
 
-  # PUT    /comments/:id
-  # PATCH  /comments/:id
+  # PUT    resources/:resource_id/comments/:id
+  # PATCH  resources/:resource_id/comments/:id
   def update
     respond_to do |format|
       if @comment.update(comment_params)
@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/:id
+  # DELETE resources/:resource_id/comments/:id
   def destroy
     set_up_pagy_and_resource
     if @comment.destroy

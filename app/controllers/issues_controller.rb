@@ -5,19 +5,19 @@ class IssuesController < ApplicationController
   load_and_authorize_resource through: :project
   before_action :load_valid_assignees, only: %i[new edit update create]
 
-  # project_issue GET /projects/:project_id/issues/:id(.:format)
+  # GET /projects/:project_id/issues/:id
   def show
     @comment = Comment.new
     @pagy, @comments = pagy(Comment.where(commentable: @issue))
     respond_to :html
   end
 
-  # new_project_issue GET /projects/:project_id/issues/new(.:format)
+  # GET /projects/:project_id/issues/new
   def new
     respond_to :html
   end
 
-  # project_issues POST /projects/:project_id/(.:format)
+  # POST /projects/:project_id
   def create
     # Here the company is being set via the cancancan ability written as,
     # can :create, Issue, company_id: user.company_id
@@ -37,13 +37,13 @@ class IssuesController < ApplicationController
     end
   end
 
-  # edit_project_issue GET /projects/:project_id/issues/:id/edit(.:format)
+  # GET /projects/:project_id/issues/:id/edit
   def edit
     respond_to :html
   end
 
-  # project_issues PATCH /projects/:project_id/issues/:id(.:format)
-  # project_issues PUT /projects/:project_id/issues/:id(.:format)
+  # PATCH /projects/:project_id/issues/:id(.:format)
+  # PUT /projects/:project_id/issues/:id(.:format)
   def update
     respond_to do |format|
       if @issue.update(issue_params)
@@ -54,7 +54,7 @@ class IssuesController < ApplicationController
     end
   end
 
-  # project_issues DELETE /projects/:project_id/issues/:id(.:format)
+  # DELETE /projects/:project_id/issues/:id
   def destroy
     respond_to do |format|
       if @issue.destroy
