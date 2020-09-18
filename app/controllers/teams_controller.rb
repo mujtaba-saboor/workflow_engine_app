@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
     @team.company = company
 
     if @team.save
-      flash[:success] = t('flash_messages.create', name: t('teams.team'))
+      flash[:success] = t('flash_messages.create', name: t('shared.team'))
     else
       flash[:danger] = t('flash_messages.error', error_msg: @team.errors.full_messages.first)
     end
@@ -35,7 +35,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-      flash[:success] = t('flash_messages.update', name: t('teams.team'))
+      flash[:success] = t('flash_messages.update', name: t('shared.team'))
     else
       flash[:danger] = t('flash_messages.error', error_msg: @team.errors.full_messages.first)
     end
@@ -55,9 +55,9 @@ class TeamsController < ApplicationController
 
     if team_project.empty?
       @team.destroy
-      flash[:success] = t('flash_messages.destroy', name: t('teams.team'))
+      flash[:success] = t('flash_messages.destroy', name: t('shared.team'))
     else
-      flash[:warning] = t('flash_messages.warning', warning_msg: t('teams.no_deletion_warning',warning_msg: team_project[0].project.name))
+      flash[:warning] = t('flash_messages.warning', warning_msg: t('teams.no_deletion_warning'))
     end
 
     respond_to do |format|
@@ -75,9 +75,9 @@ class TeamsController < ApplicationController
     company = Company.first
     user = User.find(params[:team][:user])
 
-    unless user.nil?
+    if user.present?
       if TeamUser.create(team: @team, user: user, company: company)
-        flash[:success] = t('flash_messages.addition', name: t('teams.user'))
+        flash[:success] = t('flash_messages.addition', name: t('shared.user'))
       else
         flash[:danger] = t('flash_messages.error')
       end
@@ -93,9 +93,9 @@ class TeamsController < ApplicationController
   def remove_user_from_team
     user = User.find(params[:user])
 
-    unless user.nil?
+    if user.present?
       if @team.users.delete(user)
-        flash[:success] = t('flash_messages.deletion', name: t('teams.user'))
+        flash[:success] = t('flash_messages.deletion', name: t('shared.user'))
       else
         flash[:danger] = t('flash_messages.error')
       end

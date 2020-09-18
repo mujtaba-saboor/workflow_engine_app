@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
   <% project_users = @project.available_users %>
-  <% unless project_users.to_a.empty? %>
+  <% if project_users.present? %>
     <%= form_with model: @project, url: add_user_to_project_project_path do |f| %>
     <div class="form-row">
       <div class="form-group col-md-4">   

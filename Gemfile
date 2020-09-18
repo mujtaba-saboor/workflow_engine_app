@@ -28,13 +28,20 @@ gem 'pry-rails', '=0.3.9'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Gems for aasm support
+gem 'aasm', '= 5.1.1'
+gem 'after_commit_everywhere', '= 0.1.5'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-gem 'devise', '~> 4.7.2'
+gem 'devise', '= 4.7.2'
+
+gem 'pry', '=0.13.1'
+gem 'pry-rails', '=0.3.9'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

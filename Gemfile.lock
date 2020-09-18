@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.1.1)
+      concurrent-ruby (~> 1.0)
     actioncable (6.0.3.2)
       actionpack (= 6.0.3.2)
       nio4r (~> 2.0)
@@ -58,6 +60,8 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    after_commit_everywhere (0.1.5)
+      activerecord (>= 4.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.4.8)
@@ -218,11 +222,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm (= 5.1.1)
+  after_commit_everywhere (= 0.1.5)
   bootsnap (>= 1.4.2)
   byebug
   cancancan (= 3.1.0)
   capybara (>= 2.15)
-  devise (~> 4.7.2)
+  devise (= 4.7.2)
   jbuilder (~> 2.7)
   listen (~> 3.2)
   mysql2 (>= 0.4.4)

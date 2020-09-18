@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
   <% team_users = @team.available_users %>
-  <% unless team_users.empty? %>
+  <% if team_users.present? %>
     <%= form_with model: @team, url: add_user_to_team_team_path do |f| %>
       <div class="form-row">
         <div class="form-group col-md-4">   

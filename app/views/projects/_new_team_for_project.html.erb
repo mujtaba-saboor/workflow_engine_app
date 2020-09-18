@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
   <% project_teams  = @project.available_teams %>
-  <% unless project_teams.empty? %>
+  <% if project_teams.present? %>
     <%= form_with model: @project, url: add_team_to_project_project_path do |f| %>
 	<div class="form-row">
 	  <div class="form-group col-md-4">   

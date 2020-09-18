@@ -1,31 +1,19 @@
-<<<<<<< HEAD
 <div id="content-wrapper" class="d-flex flex-column">
-<!-- Main Content -->
   <div id="content">
-    
-    <!-- Begin Page Content -->
     <div class="container-fluid">
-
-      <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <h1 class="h3 mb-0 text-gray-800"><%= t('home.dashboard') %></h1>
       </div>
 
-      <!-- Content Row -->
       <div class="row">
-
-        <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-4 col-md-6 mb-4">
           <%= link_to projects_path do %>
           <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >Projects (Total)</div>
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" ><%= t('home.total_projects') %></div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800"><%= Project.all.count %></div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
@@ -33,18 +21,14 @@
           <% end %>
         </div>
 
-        <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-4 col-md-6 mb-4">
           <%= link_to teams_path do %>
           <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Teams (Total)</div>
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><%= t('home.total_teams') %></div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800"><%= Team.all.count %></div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
@@ -52,17 +36,13 @@
           <% end %>
         </div>
 
-        <!-- Pending Requests Card Example -->
         <div class="col-xl-4 col-md-6 mb-4">
           <div class="card border-left-info shadow h-100 py-2">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Watching Issues</div>
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><%= t('home.watching_issues') %></div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">00</div>
-                </div>
-                <div class="col-auto">
-                  <i class="fas fa-comments fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
@@ -70,22 +50,22 @@
         </div>
       </div>
 
-      <!-- Content Row -->
       <div class="row">
-        <!-- Content Column -->
         <div class="col-lg-4 mb-4"> 
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Project Categories</h6>
+              <h6 class="m-0 font-weight-bold text-primary"><%= t('home.project_categories') %></h6>
             </div>
             <div class="card-body">
-              <h4 class="small font-weight-bold">Team <span class="float-right"><%= get_team_percentage %>%</span></h4>
+              <% team_strength = get_team_percentage %>
+              <% individual_strength = get_individual_percentage %>
+              <h4 class="small font-weight-bold"><%= t('home.project_categories_team') %> <span class="float-right"><%= team_strength %>%</span></h4>
               <div class="progress mb-4">
-                <div class="progress-bar bg-info" role="progressbar" style="width: <%= get_team_percentage %>%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-info" role="progressbar" style="width: <%= team_strength %>%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-              <h4 class="small font-weight-bold">Individual <span class="float-right"><%= get_individual_percentage %>%</span></h4>
+              <h4 class="small font-weight-bold"><%= t('home.project_categories_individual') %>  <span class="float-right"><%= individual_strength %>%</span></h4>
               <div class="progress mb-4">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= get_individual_percentage %>%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= individual_strength %>%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               <br><br><br><br>
             </div>
@@ -94,22 +74,22 @@
         <div class="col-lg-8 mb-4">          
          <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Issues</h6>
+              <h6 class="m-0 font-weight-bold text-primary"><%= t('home.issues') %> </h6>
             </div>
             <div class="card-body">
-              <h4 class="small font-weight-bold">Open <span class="float-right">40%</span></h4>
+              <h4 class="small font-weight-bold"><%= t('home.issues_open') %>  <span class="float-right">40%</span></h4>
               <div class="progress mb-4">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-              <h4 class="small font-weight-bold">In Progresss <span class="float-right">60%</span></h4>
+              <h4 class="small font-weight-bold"><%= t('home.issues_inprogress') %>  <span class="float-right">60%</span></h4>
               <div class="progress mb-4">
                 <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-              <h4 class="small font-weight-bold">Resolved <span class="float-right">80%</span></h4>
+              <h4 class="small font-weight-bold"><%= t('home.issues_resolved') %>  <span class="float-right">80%</span></h4>
               <div class="progress mb-4">
                 <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-              <h4 class="small font-weight-bold">Closed <span class="float-right">Complete!</span></h4>
+              <h4 class="small font-weight-bold"><%= t('home.issues_closed') %>  <span class="float-right">Complete!</span></h4>
               <div class="progress">
                 <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
@@ -121,14 +101,14 @@
         <div class="col-lg-4 mb-4">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Issues Priorities</h6>
+              <h6 class="m-0 font-weight-bold text-primary"><%= t('home.issue_priority') %></h6>
             </div>
             <div class="card-body">
-              <h4 class="small font-weight-bold">High <span class="float-right">40%</span></h4>
+              <h4 class="small font-weight-bold"><%= t('home.issue_priority_high') %> <span class="float-right">40%</span></h4>
               <div class="progress mb-4">
                 <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-              <h4 class="small font-weight-bold">Low <span class="float-right">80%</span></h4>
+              <h4 class="small font-weight-bold"><%= t('home.issue_priority_low') %> <span class="float-right">80%</span></h4>
               <div class="progress mb-4">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
@@ -138,7 +118,4 @@
       </div>
     </div>
   </div>
- </div>
 </div>
-=======
->>>>>>> fb0cc72512890d2c0e1bd5b1834611ceae2da18d
