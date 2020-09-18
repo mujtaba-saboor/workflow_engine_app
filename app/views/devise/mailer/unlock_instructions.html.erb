@@ -1,7 +1,7 @@
-<p>t('users.hello') <%= @resource.email %>!</p>
+<p><%= t('users.hello') %><%= @resource.email %>!</p>
 
-<p>t('users.account_locked')</p>
+<p><%= t('users.account_locked')%></p>
 
-<p>t('users.unlock_procedure')</p>
+<p><%= t('users.unlock_procedure')%></p>
 
 <p><%= link_to t('users.unlock_account'), unlock_url(@resource, unlock_token: @token) %></p>
