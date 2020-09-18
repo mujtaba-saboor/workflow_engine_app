@@ -10,6 +10,9 @@ class Issue < ApplicationRecord
   belongs_to :project
   belongs_to :company
 
+  has_many_attached :documents
+
+
   enum issue_type: %i[bug issue], _prefix: true
   enum priority: %i[low high], _prefix: true
   enum status: %i[open in_progress resolved closed], _scopes: false, _prefix: true
