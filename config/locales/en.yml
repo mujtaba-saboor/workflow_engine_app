@@ -1,55 +1,92 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
   shared:
-    email: 'email'
-    update: 'Update'
+    edit: 'Edit'
+    delete: 'Delete'
+    show: 'Show'
+    user: 'User'
+    users: 'Users'
+    team: 'Team'
+    teams: 'Teams'
+    project: 'Project'
+    projects: 'Projects'
+    new_resource: 'Add New %{resource_name}'
+    edit_resource: 'Edit %{resource_name}'
+    form_name_placeholder: 'Enter name here'
+    update_resource: 'Update %{resource_name}'
+    create_resource: 'Create %{resource_name}'
   users:
-    sign_in: 'Sign in'
-    sign_out: 'Sign out'
-    sign_up: 'Sign up'
-    login: 'Log in'
-    resend_confirmation_instructions: 'Resend confirmation instructions'
-    send_reset_password_instuctions: 'Send me reset password instructions'
-    new_password: 'New password'
-    current_password: 'Current-password'
-    change_my_password: 'Change my password'
-    confirm_new_password: 'Confirm new password'
-    forget_password: 'Forgot your password?'
-    cancel_account: 'Cancel my account'
-    are_you_sure: 'Are you sure?'
-    resend_lock_instructions: 'Resend unlock instructions'
-    confirm_my_account: 'Confirm my account'
-    unlock_account: 'Unlock my account'
-    back: 'Back'
+    email: "email"
+    update: "Update"
+    sign_in: "Sign in"
+    sign_out: "Sign out"
+    sign_up: "Sign up"
+    login: "Log in"
+    resend_confirmation_instructions: "Resend confirmation instructions"
+    send_reset_password_instuctions: "Send me reset password instructions"
+    password: "password"
+    new_password: "New password"
+    current_password: "Current password"
+    change_my_password: "Change password"
+    confirm_new_password: "Confirm new password"
+    forget_password: "Forgot your password?"
+    cancel_account: "Cancel my account"
+    are_you_sure: "Are you sure?"
+    resend_lock_instructions: "Resend unlock instructions"
+    confirm_my_account: "Confirm my account"
+    unlock_account: "Unlock my account"
+    back: "Back"
     didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
     didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
+    edit: "edit"
+    confirm_account: "You can confirm your account email through the link below"
+    welcome: "Welcome"
+    hello: "Hello"
+    email_change_message: "We're contacting you to notify you that your email is being changed to"
+    password_change_message: "We're contacting you to notify you that your password has been changed."
+    notify_password_change: "Someone has requested a link to change your password. You can do this through the link below."
+    ignore_email: "If you didn't request this, please ignore this email."
+    password_procedure: "Your password won't change until you access the link above and create a new one."
+    account_locked: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
+    unlock_procedure: "Click the link below to unlock your account:"
+    character_minimum: " characters minimum"
+    confirmation_waiting: "Currently waiting confirmation for:"
+    leave_blank_line: "leave blank if you don't want to change it"
+    need_for_current_password: "we need your current password to confirm your changes"
+  home:
+    welcome: 'Welcome to Workflow Engine'
+  projects:
+    form_name_placeholder: 'Enter name here'
+    add_team: 'Add Team'
+    remove_team: 'Remove Team'
+    available_teams: 'Available Teams'
+    no_available_team: 'No team available to add.'
+    add_user: 'Add User'
+    remove_user: 'Remove User'
+    all_users: 'All Users'
+    available_users: 'Available Users'
+    no_available_user: 'No user available to add.'
+    all_teams: 'All Teams'
+    issues: 'Issues'
+    add_issue: 'Add Issue'
+    all_projects: 'All Projects'
+    no_destroy: "Project can't be Destroyed"
+  teams:
+    form_name_placeholder: 'Enter name here'
+    add_user: 'Add User'
+    remove_user: 'Remove User'
+    all_users: 'All Users'
+    available_users: 'Available Users'
+    no_available_user: 'No user available to add.'
+    add_team: 'Add Team'
+    all_teams: 'All Teams'
+    no_deletion_warning: "Team can not be deleted because its a part of some Projects"
+  flash_messages:
+    create: '%{name} Created Successfully'
+    update: '%{name} Updated Successfully'
+    destroy: '%{name} Destroyed Successfully'
+    addition: '%{name} Added Successfully'
+    deletion: '%{name} Removed Successfully'
+    warning: '%{warning_msg}'
+    error: 'Error Occured: %{error_msg}'
+  companies:
+    domain_validation: "only allows letters and numbers"
