@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  default_scope { unscoped }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   include Devise::Models::Validatable

@@ -29,6 +29,10 @@ gem 'cancancan', '= 3.1.0'
 gem 'aasm', '= 5.1.1'
 gem 'after_commit_everywhere', '= 0.1.5'
 
+# pry
+gem 'pry', '=0.13.1'
+gem 'pry-rails', '=0.3.9'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
