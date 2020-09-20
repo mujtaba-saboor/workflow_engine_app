@@ -19,9 +19,9 @@ en:
   users:
     email: "email"
     update: "Update"
-    sign_in: "Sign in"
+    sign_in: "SignIn"
     sign_out: "Sign out"
-    sign_up: "Sign up"
+    sign_up: "SignUp"
     login: "Log in"
     resend_confirmation_instructions: "Resend confirmation instructions"
     send_reset_password_instuctions: "Send me reset password instructions"
