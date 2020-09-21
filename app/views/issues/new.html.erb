@@ -1,19 +1,5 @@
 <%= form_for @issue do |form| %>
 
-<% if @issue.errors.any? %>
-  <div class='error-explanation'>
-    <h2>
-      <%= t('errors.messages.not_saved', count: @issue.errors.count, resource: @issue.class.model_name.human.downcase)
-       %>
-    </h2>
-    <ul>
-      <% @issue.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <div class='form-group'>
   <%= form.label :title %>
   <%= form.text_field :title, class: 'form-control' %>
