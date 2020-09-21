@@ -14,7 +14,7 @@
         <%= f.collection_select :user, project_users, :id, :name, {}, class: 'form-control' %>
       </div>
     </div>  
-    <%= f.submit t('projects.add_user'), class: 'btn btn-primary' %>
+    <%= f.submit t('projects.add_user'), class: 'btn btn-info' %>
     <% end %>
  <%else%>
   <p><%= t('projects.no_available_user') %></p>

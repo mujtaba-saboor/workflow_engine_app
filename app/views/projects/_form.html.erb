@@ -6,7 +6,7 @@
 	  </div> 
   </div> 
   <% if params[:action] == 'edit' %>
-    <%= project.submit t('shared.update_resource', resource_name: t('shared.project')), class: 'btn btn-primary' %>	
+    <%= project.submit t('shared.update_resource', resource_name: t('shared.project')), class: 'btn btn-info' %>	
   <% else %>
     <div class="form-row">
       <div class="form-group col-md-4">   
@@ -14,6 +14,6 @@
         <%= project.select(:project_category, Project::PROJECT_CATEGORIES, {}, class: 'form-control') %>
       </div>
     </div>
-    <%= project.submit t('shared.create_resource', resource_name: t('shared.project')), class: 'btn btn-primary' %>	
+    <%= project.submit t('shared.create_resource', resource_name: t('shared.project')), class: 'btn btn-info' %>	
   <% end %>
 <% end %>

@@ -14,7 +14,7 @@
           <%= f.collection_select :user, team_users, :id, :name, {}, class: 'form-control' %>
         </div>
       </div>  
-      <%= f.submit t('teams.add_user'), class: 'btn btn-primary' %>
+      <%= f.submit t('teams.add_user'), class: 'btn btn-info' %>
     <% end %>
   <% else %>
     <p><%= t('teams.no_available_user') %></p>

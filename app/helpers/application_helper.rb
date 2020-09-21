@@ -1,6 +1,6 @@
 module ApplicationHelper
   def get_top_nav_links
-    {t('shared.home')=> root_path, t('shared.projects') => projects_path, t('shared.teams') => teams_path}
+    {t('shared.home')=> '#', 'About' => '#', 'Contact Us' => '#'}
   end
 
   def get_sidebar_links

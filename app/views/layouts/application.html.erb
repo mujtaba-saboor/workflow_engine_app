@@ -17,9 +17,9 @@
       <% if user_signed_in? %>
         <% links = get_sidebar_links %>
         <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
-          <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-            <div class="sidebar-brand-text"><%= t('shared.app_name') %></div>
-          </a>
+          <%= link_to root_path,class:'sidebar-brand d-flex align-items-center justify-content-center' do %>
+              <div class="sidebar-brand-text"><%= t('shared.app_name') %></div>
+          <% end %>
           <hr class="sidebar-divider my-0">
           <hr class="sidebar-divider">
           <div class="sidebar-heading">
