@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_company
-    Company.find_by_domain! request.subdomain if request.subdomain.present?
+    Company.find_by_subdomain! request.subdomain if request.subdomain.present?
   end
   helper_method :current_company
 
