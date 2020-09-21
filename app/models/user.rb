@@ -12,4 +12,7 @@ class User < ApplicationRecord
   has_many :teams, through: :team_users
   has_many :comments
   has_many :watchers
+
+  validates :role, inclusion: { in: %w(OWNER STAFF ADMIN),
+  message: "%{value} is not a valid role" }
 end
