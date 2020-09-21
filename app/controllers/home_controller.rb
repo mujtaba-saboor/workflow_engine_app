@@ -13,7 +13,7 @@ class HomeController < ApplicationController
   # get '/user/companies', to: 'home#user_companies', as: user_companies
   def user_companies
     email = params[:email]
-    @companies = Company.joins("INNER JOIN users ON users.email = '#{User.sanitize_sql(email)}' AND users.company_id = companies.id")
+    @companies = Company.joins(:users).where('users.email = ?', email)
     respond_to :js
   end
 end
