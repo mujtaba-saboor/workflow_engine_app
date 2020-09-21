@@ -3,9 +3,9 @@ module ApplicationHelper
 
   def bootstrap_color_for_alert(alert_type)
     case alert_type
-    when :error
+    when 'error'
       'danger'
-    when :notice
+    when 'notice'
       'success'
     else
       'info'
