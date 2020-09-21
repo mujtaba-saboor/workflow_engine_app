@@ -64,4 +64,4 @@ en:
       email_address_placeholder: 'Enter your email address here'
     welcome_message: 'Welcome to Workflow Engine'
     your_companies: 'Your Companies'
-    no_associated_companies_message: 'Sorry no associated company was found for the provided email.'
+    no_associated_companies_message: 'Sorry no associated company was found for the provided email (%{email}).'
