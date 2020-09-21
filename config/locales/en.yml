@@ -87,7 +87,7 @@ en:
   shared:
     email: "email"
     update: "Update"
-    deletion_confirmation_message: "Are you sure you want to delete this?"
+    deletion_confirmation_message: "Are you sure you want to delete this %{resource}?"
     new: "New"
     create: &create_label "Create"
     edit: "Edit"

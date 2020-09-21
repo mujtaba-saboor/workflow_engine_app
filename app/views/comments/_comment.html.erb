@@ -13,6 +13,6 @@
   <%= link_to t('shared.edit'), edit_resource_comment_path(resource, comment), remote: true, class: 'btn btn-warning card-button' %>
   <% end %>
   <% if can? :destroy, comment %>
-  <%= link_to t('shared.delete'), resource_comment_path(resource, comment), remote: true, method: :delete, data: { confirm: t('shared.deletion_confirmation_message') }, class: 'btn btn-danger card-button' %>
+  <%= link_to t('shared.delete'), resource_comment_path(resource, comment), remote: true, method: :delete, data: { confirm: t('shared.deletion_confirmation_message', resource: Comment.model_name.human.downcase) }, class: 'btn btn-danger card-button' %>
   <% end %>
 </div>
