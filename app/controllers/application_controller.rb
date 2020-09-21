@@ -12,6 +12,13 @@ class ApplicationController < ActionController::Base
     '/users/sign_up'
   ].freeze
 
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.html { redirect_to main_app.root_url, notice: exception.message }
+      format.js   { head :forbidden, content_type: 'text/html' }
+    end
+  end
+
   protected
 
   # Check if the given path is in the manually blocked lists, in subdomains or without subdomains
@@ -32,7 +39,7 @@ class ApplicationController < ActionController::Base
   helper_method :path_blocked_from_location?
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name email password role is_confirmed company_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, company_attributes: [:name, :subdomain]])
   end
 
   def filter_unwanted_urls

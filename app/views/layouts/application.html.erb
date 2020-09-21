@@ -7,19 +7,17 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
   </head>
-
   <body>
     <header>
       <%= render 'layouts/navbar' %>
-    </header>
-    
+    </header>    
     <main>
-      <div class="container my-2">
-        <div id="page_alerts">
+      <div class='container my-2'>
+        <div id='page_alerts'>
           <%= render 'layouts/alerts' %>
         </div>
-
         <%= yield %>
       </div>
     </main>

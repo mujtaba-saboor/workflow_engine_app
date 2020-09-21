@@ -1,42 +1,42 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h1 class='h4 text-gray-900 mb-4'><%= t('users.edit') resource_name.to_s.humanize %></h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render 'devise/shared/error_messages', resource: resource %>
 
-  <div class="field">
+  <div class='form-group'>
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "Email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: t('users.email'), class: 'form-control', required: true  %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <div>t('users.confirmation_waiting') <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "New Password" %>
+  <div class='form-group'>
+    <%= f.label :password %> <i>(t('users.leave_blank_line'))</i><br />
+    <%= f.password_field :password, autocomplete: t('users.new_password'), class: 'form-control', required: true  %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em><%= @minimum_password_length %> <%= t('users.character_minimum') %></em>
     <% end %>
   </div>
 
-  <div class="field">
+  <div class='form-group'>
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "New Password" %>
+    <%= f.password_field :password_confirmation, autocomplete: t('users.new_password'), class: 'form-control', required: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "Current Password" %>
+  <div class='form-group'>
+    <%= f.label :current_password %> <i>(<%= t('users.need_for_current_password') %>)</i><br />
+    <%= f.password_field :current_password, autocomplete: t('users.current_password'), class: 'form-control', required: true %>
   </div>
 
-  <div class="actions">
-    <%= f.submit t('shared.update') %>
+  <div class='actions'>
+    <%= f.submit t('users.update'), class: 'btn btn-primary' %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h1 class='h4 text-gray-900 mb-4'>t('users.cancel_account')</h1>
 
 <p>Unhappy? <%= button_to t('users.cancel_account'), registration_path(resource_name), data: { confirm: t('users.are_you_sure') }, method: :delete %></p>
 

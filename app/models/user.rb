@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   include Devise::Models::Validatable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable, :lockable,
          :recoverable, :rememberable # , :validatable
 
   # https://github.com/heartcombo/devise/blob/master/lib/devise/models/validatable.rb
@@ -12,7 +12,9 @@ class User < ApplicationRecord
   validates_presence_of     :password, if: :password_required?
   validates_confirmation_of :password, if: :password_required?
   validates_length_of       :password, within: password_length, allow_blank: true
+
   belongs_to :company
+  accepts_nested_attributes_for :company
 
   has_many :project_users
   has_many :projects, through: :project_users

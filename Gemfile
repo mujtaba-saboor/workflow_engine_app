@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 2.7'
 
 #for authorization
 gem 'cancancan', '= 3.1.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -39,7 +40,9 @@ gem 'pry-rails', '=0.3.9'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-gem 'devise', '~> 4.7.2'
+gem 'devise', '= 4.7.2'
+
+gem 'pagy', '= 3.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
