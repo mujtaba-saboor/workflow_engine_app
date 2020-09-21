@@ -1,11 +1,15 @@
 <h3 align = center> <%= t('project.all_users') %></h3>
-<%= link_to t('project.add_user') ,new_user_for_project_project_path(@project), {class: 'btn btn-success',remote: true, data: { toggle: "modal", target: '#my_id_add_user_to_project_modal'}} %>
+<% if can? :new_user_for_project, @project %>
+  <%= link_to t('project.add_user') ,new_user_for_project_project_path(@project), {class: 'btn btn-success',remote: true, data: { toggle: "modal", target: '#my_id_add_user_to_project_modal'}} %>
+<% end %>
 <br><br>
 <ul class="list-group">
   <% @project.users.each do |user| %>
     <li class="list-group-item d-flex justify-content-between align-items-center">
 	  <%= user.name %>
-	  <%= link_to t('projects.remove_user'), remove_user_from_project_project_path(@project, user: user),method: :delete,class: 'badge badge-danger' %>
+    <% if can? :remove_user_from_project, @project %>
+	     <%= link_to t('projects.remove_user'), remove_user_from_project_project_path(@project, user: user),method: :delete,class: 'badge badge-danger' %>
+    <% end %>
 	</li>
   <% end %>
 </ul>

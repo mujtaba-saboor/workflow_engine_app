@@ -13,7 +13,7 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" ><%= t('home.total_projects') %></div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800"><%= Project.all.count %></div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><%= current_user.get_project_count %></div>
                 </div>
                 <div class="col-auto">
                   <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-file-earmark-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +35,7 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><%= t('home.total_teams') %></div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800"><%= Team.all.count %></div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><%= current_user.get_team_count %></div>
                 </div>
                 <div class="col-auto">
                   <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-layers-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -76,8 +76,8 @@
               <h6 class="m-0 font-weight-bold text-primary"><%= t('home.project_categories') %></h6>
             </div>
             <div class="card-body">
-              <% team_strength = get_team_percentage %>
-              <% individual_strength = get_individual_percentage %>
+              <% team_strength = get_team_percentage(current_user) %>
+              <% individual_strength = 100 - team_strength %>
               <h4 class="small font-weight-bold"><%= t('home.project_categories_team') %> <span class="float-right"><%= team_strength %>%</span></h4>
               <div class="progress mb-4">
                 <div class="progress-bar bg-info" role="progressbar" style="width: <%= team_strength %>%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>

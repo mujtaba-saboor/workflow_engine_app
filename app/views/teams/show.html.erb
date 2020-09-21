@@ -6,7 +6,9 @@
         <h6>Created : <%= time_ago_in_words(@team.created_at) %> ago</h6>
       </div>
     </div>
-    <%= link_to t('teams.add_user'), new_user_for_team_team_path,{class: 'btn btn-success',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_model_window'}  %>
+    <% if can? :new_user_for_team, @team %>
+      <%= link_to t('teams.add_user'), new_user_for_team_team_path,{class: 'btn btn-success',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_model_window'}  %>
+    <% end %>
   </div>
 </div>
 
@@ -24,7 +26,9 @@
       <% @team.users.each do |user| %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <%= user.name %>
-          <%= link_to t('teams.remove_user'), remove_user_from_team_team_path(@team,user: user),method: :delete,class: 'badge badge-danger'%>
+          <% if can? :remove_user_from_team, @team %>
+            <%= link_to t('teams.remove_user'), remove_user_from_team_team_path(@team,user: user),method: :delete,class: 'badge badge-danger'%>
+          <% end %>
         </li>
       <% end %>
     </ul>

@@ -1,6 +1,9 @@
 class ProjectsController < ApplicationController
   load_and_authorize_resource
   def index
+    if current_user.role.eql? 'STAFF'
+      @projects = @projects.where(id: current_user.projects.pluck(:id))
+    end
     respond_to do |format|
       format.html
     end

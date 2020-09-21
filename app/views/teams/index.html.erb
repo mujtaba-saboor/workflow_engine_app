@@ -3,7 +3,9 @@
     <div class="container-fluid">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h2 class="h3 mb-0 text-gray-800"><%= t('teams.all_teams')%></h2>
-        <%= link_to t('teams.add_team'), new_team_path,{class: 'btn btn-success',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_model_window'}  %>
+        <% if can? :create, Team %>
+          <%= link_to t('teams.add_team'), new_team_path,{class: 'btn btn-success',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_model_window'}  %>
+        <% end %>
       </div>
       <% if @teams.empty? %>
         <p> No Team to show...</p>
@@ -13,9 +15,11 @@
             <div class="col-xl-4 col-md-6 mb-4">
               <div class="card">
                 <h5 class="card-header"><%=team.name%></h5>
-                <div class="card-body">  
-                  <%= link_to t('shared.delete'), team_path(team),method: :delete ,class: 'btn btn-danger'%> | 
-                  <%= link_to t('shared.edit'), edit_team_path(team),{class: 'btn btn-success',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_model_window'}%> |
+                <div class="card-body">
+                  <% if can? [:edit, :destroy], team %>
+                    <%= link_to t('shared.delete'), team_path(team),method: :delete ,class: 'btn btn-danger'%> | 
+                    <%= link_to t('shared.edit'), edit_team_path(team),{class: 'btn btn-success',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_model_window'}%> |
+                  <% end %>
                   <%= link_to t('shared.show'), team_path(team), class: 'btn btn-success'%>
                       
                 </div>
