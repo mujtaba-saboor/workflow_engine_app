@@ -31,16 +31,12 @@ class Issue < ApplicationRecord
       transitions from: %i[open in_progress], to: :resolved
     end
 
-    event :open do
-      transitions from: :resolved, to: :open
-    end
-
     event :close do
       transitions from: %i[open in_progress resolved], to: :closed
     end
 
     event :reopen do
-      transitions from: :closed, to: :open
+      transitions from: %i[resolved closed], to: :open
     end
   end
 

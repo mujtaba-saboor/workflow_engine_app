@@ -71,7 +71,9 @@ class IssuesController < ApplicationController
     update_event = @issue.aasm.events(permitted: true).find { |event| event.name.to_s.humanize == status_str }
     if update_event.present?
       @issue.public_send(update_event.name.to_s + '!')
-      flash.now[:notice] = t('issues.update_status.success')
+      # TODO: Change the internationalization method for aasm states from enum type internationalization mechanism to
+      # aasm I18n internationalization
+      flash.now[:notice] = t('issues.update_status.success', new_status: Issue.human_enum_name(:status, @issue.status))
     else
       flash.now[:error] = t('issues.update_status.failure')
     end
