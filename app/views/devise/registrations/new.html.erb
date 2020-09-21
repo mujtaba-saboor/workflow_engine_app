@@ -1,45 +1,48 @@
-<h1 class='h4 text-gray-900 mb-4'><%= t('users.sign_up') %></h1>
+<div class='row'>
+  <div class='col-sm-6 offset-sm-3  '>
+    <h1 class='h4 text-gray-900 mb-4'><%= t('users.sign_up') %></h1>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render 'devise/shared/error_messages', resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render 'devise/shared/error_messages', resource: resource %>
+      <div class='form-group'>
+        <%= f.label :name %><br />
+        <%= f.text_field :name, class: 'form-control', required: true %>
+      </div>
 
-  <div class='form-group'>
-    <%= f.label :name %><br />
-    <%= f.text_field :name, class: 'form-control', required: true %>
-  </div>
+      <div class='form-group'>
+        <%= f.label :email %><br />
+        <%= f.email_field :email, class: 'form-control', placeholder: 'name@example.com', required: true %>
+      </div>
 
-  <div class='form-group'>
-    <%= f.label :email %><br />
-    <%= f.email_field :email, class: 'form-control', placeholder: 'name@example.com', required: true %>
-  </div>
+      <div class='form-group'>
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %><%= t('users.character_minimum') %>)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: t('users.new_password'), class: 'form-control', required: true %>
+      </div>
 
-  <div class='form-group'>
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %><%= t('users.character_minimum') %>)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: t('users.new_password'), class: 'form-control', required: true %>
-  </div>
+      <div class='form-group'>
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: t('users.password'), class: 'form-control', required: true %>
+      </div>
 
-  <div class='form-group'>
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: t('users.password'), class: 'form-control', required: true %>
-  </div>
+      <div class='form-group' >
+        <%= f.fields_for :company, Company.new do |nested_company| %>
+          <%= nested_company.label :company_name %><br />
+          <%= nested_company.text_field :name, id: 'company_name_id', class: 'form-control', required: true %>
+          <%= nested_company.hidden_field :subdomain, id: 'subdomain_id' %>
+        <% end %>
+      </div>
 
-  <div class='form-group' >
-    <%= f.fields_for :company, Company.new do |nested_company| %>
-      <%= nested_company.label :company_name %><br />
-      <%= nested_company.text_field :name, id: 'company_name_id', class: 'form-control', required: true %>
-      <%= nested_company.hidden_field :subdomain, id: 'subdomain_id' %>
+    <br />
+    <p id='domain_place'></p>
+
+      <div>
+        <%= f.submit t('users.sign_up'), class: 'btn btn-primary' %>
+      </div>
     <% end %>
+
+    <%= render 'devise/shared/links' %>
   </div>
-
-<br />
-<p id='domain_place'></p>
-
-  <div>
-    <%= f.submit t('users.sign_up'), class: 'btn btn-primary' %>
-  </div>
-<% end %>
-
-<%= render 'devise/shared/links' %>
+</div>
