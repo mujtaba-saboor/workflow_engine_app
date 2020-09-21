@@ -9,12 +9,16 @@ class IssuesController < ApplicationController
   def show
     @comment = Comment.new
     @pagy, @comments = pagy(Comment.where(commentable: @issue))
-    respond_to :html
+    respond_to do |format|
+      format.html
+    end
   end
 
   # GET /projects/:project_id/issues/new
   def new
-    respond_to :html
+    respond_to do |format|
+      format.html
+    end
   end
 
   # POST /projects/:project_id/issues
@@ -39,7 +43,9 @@ class IssuesController < ApplicationController
 
   # GET /projects/:project_id/issues/:id/edit
   def edit
-    respond_to :html
+    respond_to do |format|
+      format.html
+    end
   end
 
   # PATCH /projects/:project_id/issues/:id(.:format)
