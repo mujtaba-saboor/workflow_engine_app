@@ -122,6 +122,9 @@ en:
       title: "Editing Issue: %{issue_name}"
     new_form:
       title: "Create Issue"
+    update_status:
+      success: 'Status updated successfully'
+      failure: 'Status could not be updated'
   flash_messages:
     create: '%{name} Created Successfully'
     update: '%{name} Updated Successfully'

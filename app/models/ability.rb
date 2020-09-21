@@ -14,6 +14,8 @@ class Ability
 
     can :read, Issue, company_id: user.company_id
 
+    can :update_status, Issue, company_id: user.company_id
+
     can :create, Issue, company_id: user.company_id, creator_id: user.id
 
     can :destroy, Issue, creator_id: user.id, company_id: user.company_id

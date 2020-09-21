@@ -1,0 +1,9 @@
+<%= form_with url: update_status_project_issue_path(project, issue), method: :patch do |form| %>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <% issue.aasm.events(permitted: true).each do |event| %>
+    <%= form.submit event.name.to_s.humanize, name: 'status', class: 'btn btn-secondary' %>
+    <% end %>
+  </div>
+</div>
+<% end %>

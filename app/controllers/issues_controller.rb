@@ -65,6 +65,22 @@ class IssuesController < ApplicationController
     end
   end
 
+  # PATCH /projects/:project_id/issues/:id/update_status
+  def update_status
+    status_str = params[:status]
+    update_event = @issue.aasm.events(permitted: true).find { |event| event.name.to_s.humanize == status_str }
+    if update_event.present?
+      @issue.public_send(update_event.name.to_s + '!')
+      flash.now[:notice] = t('issues.update_status.success')
+    else
+      flash.now[:error] = t('issues.update_status.failure')
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def load_valid_assignees

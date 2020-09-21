@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :projects do
-    resources :issues
+    resources :issues do
+      member do
+        patch :update_status
+      end
+    end
   end
 
   resources :issues, only: [] do
