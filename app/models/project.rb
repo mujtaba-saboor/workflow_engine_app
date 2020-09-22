@@ -14,7 +14,7 @@ class Project < ApplicationRecord
       User.joins(%(INNER JOIN `team_users`
       ON `team_users`.`user_id` = `users`.`id` and `team_users`.`company_id` = #{company_id}
       INNER JOIN `project_teams`
-      ON `project_teams`.`team_id` = `team_users`.`team_id` and `project_teams`.`project_id` = #{id}))
+      ON `project_teams`.`team_id` = `team_users`.`team_id` and `project_teams`.`project_id` = #{id})).distinct
     else
       company.users
     end
