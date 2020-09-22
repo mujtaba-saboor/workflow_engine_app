@@ -14,12 +14,16 @@ en:
     form_name_placeholder: 'Enter name here'
     update_resource: 'Update %{resource_name}'
     create_resource: 'Create %{resource_name}'
+    app_name: 'Workflow Engine'
+    home: 'Home'
+    about: 'About'
+    contact_us: 'Contact Us'
   users:
     email: "email"
     update: "Update"
-    sign_in: "Sign in"
+    sign_in: "SignIn"
     sign_out: "Sign out"
-    sign_up: "Sign up"
+    sign_up: "SignUp"
     login: "Log in"
     resend_confirmation_instructions: "Resend confirmation instructions"
     send_reset_password_instuctions: "Send me reset password instructions"
@@ -54,6 +58,21 @@ en:
     need_for_current_password: "we need your current password to confirm your changes"
   home:
     welcome: 'Welcome to Workflow Engine'
+    dashboard: 'Dashboard'
+    total_projects: 'Projects (Total)'
+    total_teams: 'Teams (Total)'
+    watching_issues: 'Watching Issues'
+    project_categories: 'Project Categories'
+    project_categories_team: 'Team'
+    project_categories_individual: 'Individual'
+    issues: 'Issues'
+    issues_open: 'Open'
+    issues_inprogress: 'In Progress'
+    issues_resolved: 'Resolved'
+    issues_closed: 'Closed'
+    issue_priority: 'Issues Priorities'
+    issue_priority_high: 'High'
+    issue_priority_low: 'Low'
   projects:
     form_name_placeholder: 'Enter name here'
     add_team: 'Add Team'
@@ -80,6 +99,7 @@ en:
     add_team: 'Add Team'
     all_teams: 'All Teams'
     no_deletion_warning: "Team can not be deleted because its a part of some Projects"
+    no_team_to_show: 'No Team to show...'
   flash_messages:
     create: '%{name} Created Successfully'
     update: '%{name} Updated Successfully'

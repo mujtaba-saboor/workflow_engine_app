@@ -5,24 +5,50 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', 'sb-admin-2.min', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <%= javascript_include_tag 'application' %>
   </head>
   <body>
-    <header>
-      <%= render 'layouts/navbar' %>
-    </header>    
-    <main>
-      <div class='container my-2'>
-        <div id='page_alerts'>
-          <%= render 'layouts/alerts' %>
+    <div id="wrapper">
+      <% if user_signed_in? %>
+        <% links = get_sidebar_links %>
+        <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
+          <%= link_to root_path,class:'sidebar-brand d-flex align-items-center justify-content-center' do %>
+          <div class="sidebar-brand-icon ">
+            <i class="fab fa-stack-overflow"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3"><%= t('shared.app_name') %></div>
+        <% end %>
+          
+          <hr class="sidebar-divider my-0">
+          <hr class="sidebar-divider">
+          <div class="sidebar-heading">
+            Links
+          </div>
+          <% links.each do |key,value| %>
+            <li class="nav-item <%= get_active_nav(key.downcase) %>">
+              <%= link_to key, value, class:'nav-link' %>
+            </li>
+            <hr class="sidebar-divider">
+          <% end %>
+        </ul>
+      <% end %>
+    <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Conent -->
+        <div id="content">
+          <%= render 'layouts/navbar' %>  
+          <div id="page_alerts" align="center">
+            <%= render 'layouts/alerts' %>
+          </div>
+          <%= yield %>
         </div>
-        <%= yield %>
       </div>
-    </main>
+    </div>  
   </body>
 </html>
