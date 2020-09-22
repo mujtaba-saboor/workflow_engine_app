@@ -1,16 +1,24 @@
 class Project < ApplicationRecord
+<<<<<<< HEAD
+=======
+
+  PROJECT_CATEGORIES = %w[TEAM INDIVIDUAL].freeze
+
+  validates :name, presence: true, uniqueness: true
+  validates :project_category, presence: true, inclusion: { in: PROJECT_CATEGORIES }
+
   belongs_to :company
 
-  has_many :project_teams
+  has_many :project_teams, dependent: :destroy
   has_many :teams, through: :project_teams
 
-  has_many :project_users
+  has_many :project_users, dependent: :destroy
   has_many :users, through: :project_users
 
   has_many :issues
 
   def valid_assignees
-    if project_category == 'TEAM'
+    if team_project?
       # User.joins(%(INNER JOIN `team_users`
       # ON `team_users`.`user_id` = `users`.`id` and `team_users`.`company_id` = #{company_id}
       # INNER JOIN `project_teams`
@@ -23,5 +31,17 @@ class Project < ApplicationRecord
     else
       company.users
     end
+  end
+
+  def team_project?
+    project_category == PROJECT_CATEGORIES[0]
+  end
+
+  def available_users
+    User.where.not(id: self.users.pluck(:id))
+  end
+
+  def available_teams
+    Team.where.not(id: self.teams.pluck(:id))
   end
 end
