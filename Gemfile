@@ -40,10 +40,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise', '= 4.7.2'
 
-gem 'pagy', '= 3.5' 
-
-gem 'pry', '=0.13.1'
-gem 'pry-rails', '=0.3.9'
+gem 'pagy', '= 3.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

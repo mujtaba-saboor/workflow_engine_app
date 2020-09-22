@@ -10,6 +10,6 @@ class Team < ApplicationRecord
   has_many :users, through: :team_users
 
   def available_users
-    User.where.not(id: self.users.pluck(:id))
+    User.where.not(id: users.pluck(:id))
   end
 end
