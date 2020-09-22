@@ -7,7 +7,7 @@
     <ul class='navbar-nav ml-auto'>
       <% links = get_top_nav_links %>
       <% links.each do |key,value| %>
-        <li class='nav-item <%= is_active(key.downcase) %>'>
+        <li class='nav-item <%= get_active_nav(key.downcase) %>'>
           <%= link_to key, value,class: 'nav-link' %>
         </li>
       <% end %>       

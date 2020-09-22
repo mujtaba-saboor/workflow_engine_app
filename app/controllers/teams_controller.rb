@@ -1,9 +1,6 @@
 class TeamsController < ApplicationController
   load_and_authorize_resource
   def index
-    if current_user.role.eql? 'STAFF'
-      @teams = @teams.where(id: current_user.teams.pluck(:id))
-    end
     respond_to do |format|
       format.html
     end

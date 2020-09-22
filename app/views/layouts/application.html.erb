@@ -26,7 +26,7 @@
             Links
           </div>
           <% links.each do |key,value| %>
-            <li class="nav-item <%= is_active(key.downcase) %>">
+            <li class="nav-item <%= get_active_nav(key.downcase) %>">
               <%= link_to key, value, class:'nav-link' %>
             </li>
             <hr class="sidebar-divider">

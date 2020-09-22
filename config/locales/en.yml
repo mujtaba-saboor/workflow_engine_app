@@ -16,6 +16,8 @@ en:
     create_resource: 'Create %{resource_name}'
     app_name: 'Workflow Engine'
     home: 'Home'
+    about: 'About'
+    contact_us: 'Contact Us'
   users:
     email: "email"
     update: "Update"
@@ -97,6 +99,7 @@ en:
     add_team: 'Add Team'
     all_teams: 'All Teams'
     no_deletion_warning: "Team can not be deleted because its a part of some Projects"
+    no_team_to_show: 'No Team to show...'
   flash_messages:
     create: '%{name} Created Successfully'
     update: '%{name} Updated Successfully'

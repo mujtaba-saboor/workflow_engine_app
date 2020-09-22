@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  ROLES = %w[STAFF ADMIN OWNER].freeze
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :lockable
   belongs_to :company
@@ -13,16 +16,28 @@ class User < ApplicationRecord
   has_many :comments
   has_many :watchers
 
+  def all_projects
+    company = Company.first
+    result = projects.ids
+    result2 = company.projects.joins(:teams).where(teams: { id: self.teams.pluck(:id) }).pluck(:id)
+    company.projects.where(id: result | result2)
+  end
+
   def get_project_count
-    if(self.role.eql? 'STAFF')
-      self.projects.count
+    if(self.role.eql? ROLES[0])
+      all_projects.count
     else
       Project.all.count
     end
   end
 
+  # Specifically made for STAFF user
+  def get_team_project_count
+    Project.where(project_category: Project::PROJECT_CATEGORIES[0]).where(id: self.teams.pluck(:id)).count
+  end
+
   def get_team_count
-    if(self.role.eql? 'STAFF')
+    if(self.role.eql? ROLES[0])
       self.teams.count
     else
       Team.all.count

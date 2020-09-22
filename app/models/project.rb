@@ -15,6 +15,10 @@ class Project < ApplicationRecord
 
   has_many :issues
 
+  def self.get_total_team_projects
+    where(project_category: Project::PROJECT_CATEGORIES[0]).count
+  end
+
   def team_project?
     project_category == PROJECT_CATEGORIES[0]
   end
