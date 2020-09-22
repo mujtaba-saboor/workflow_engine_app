@@ -129,7 +129,7 @@ en:
     new_form:
       title: 'Create Issue'
     update_status:
-      success: 'Status updated to '%{new_status}''
+      success: "Status updated to '%{new_status}'"
       failure: 'Status could not be updated'
   home:
     welcome: 'Welcome to Workflow Engine'
@@ -148,7 +148,7 @@ en:
     issues: 'Issues'
     add_issue: 'Add Issue'
     all_projects: 'All Projects'
-    no_destroy: 'Project can't be Destroyed'
+    no_destroy: "Project can't be Destroyed"
   teams:
     form_name_placeholder: 'Enter name here'
     add_user: 'Add User'

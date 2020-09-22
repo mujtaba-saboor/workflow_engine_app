@@ -1,7 +1,4 @@
 class Project < ApplicationRecord
-<<<<<<< HEAD
-=======
-
   PROJECT_CATEGORIES = %w[TEAM INDIVIDUAL].freeze
 
   validates :name, presence: true, uniqueness: true
