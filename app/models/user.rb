@@ -18,9 +18,9 @@ class User < ApplicationRecord
 
   def all_projects
     company = Company.first
-    result = projects.ids
-    result2 = company.projects.joins(:teams).where(teams: { id: self.teams.pluck(:id) }).pluck(:id)
-    company.projects.where(id: result | result2)
+    all_individual_projects = projects.ids
+    all_team_projects = company.projects.joins(:teams).where(teams: { id: self.teams.pluck(:id) }).pluck(:id)
+    company.projects.where(id: all_individual_projects | all_team_projects)
   end
 
   def get_project_count

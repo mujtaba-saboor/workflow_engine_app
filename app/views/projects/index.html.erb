@@ -3,7 +3,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h2 class="h3 mb-0 text-gray-800"><%= t('projects.all_projects')%></h2>
       <% if can? :create, Project %>
-      <%= link_to t('projects.new_project'),new_project_path,{class: 'btn btn-info',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_create_project_modal'}%>
+      <%= link_to t('projects.new_project'),new_project_path,{class: 'btn btn-primary',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_create_project_modal'}%>
       <% end %>
     </div>
     <% if @projects.empty? %>
