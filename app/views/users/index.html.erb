@@ -2,7 +2,12 @@
 
   <% @users.each do |user| %>
     <%= user.name %>
-    <%= user.email %>
+    <b>(<%= user.role %>)</b>
     <br>
   <% end %>
+<br><br>
+  <div>
+    <%= button_to t('shared.new_resource', resource_name: User), new_company_user_path, class: 'btn btn-info', method: :get %>
+  </div>
+<br>
 <%= pagy_nav(@pagy).html_safe %>

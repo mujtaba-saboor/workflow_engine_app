@@ -1,0 +1,12 @@
+<h1 class='h4 text-gray-900 mb-4'><%= t('shared.new_resource', resource_name: User) %></h1>
+
+<%= form_tag %>
+
+  <div class='form-group'>
+    <%= label_tag t('users.email') %><br />
+    <%= input_field_tag 'email_id', autofocus: true, class: 'form-control'%>
+  </div>
+
+  <div class='actions'>
+    <%= button_tag t('users.send_invite'), class: 'btn btn-primary' %>
+  </div>

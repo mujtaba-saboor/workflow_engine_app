@@ -52,6 +52,7 @@ en:
     confirmation_waiting: "Currently waiting confirmation for:"
     leave_blank_line: "leave blank if you don't want to change it"
     need_for_current_password: "we need your current password to confirm your changes"
+    send_invite: "Send Invitation"
   home:
     welcome: 'Welcome to Workflow Engine'
   projects:
