@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 2.7'
 
 #for authorization
 gem 'cancancan', '= 3.1.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -29,13 +30,19 @@ gem 'cancancan', '= 3.1.0'
 gem 'aasm', '= 5.1.1'
 gem 'after_commit_everywhere', '= 0.1.5'
 
+# pry
+gem 'pry', '=0.13.1'
+gem 'pry-rails', '=0.3.9'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-gem 'devise', '~> 4.7.2'
+gem 'devise', '= 4.7.2'
+
+gem 'pagy', '= 3.5'
 
 gem 'sequenceid', '= 0.0.6'
 
