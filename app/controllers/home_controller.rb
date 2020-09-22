@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   skip_before_action :authenticate_user!
+  # GET '', subdomain: ''
   def index
     flash.now[:notice] = t('home.welcome_message')
     respond_to do |format|
@@ -7,14 +8,14 @@ class HomeController < ApplicationController
     end
   end
 
-  # get '/users/sign_in', to: 'home#sign_in', constraints: { subdomain: '' }
+  # GET '/users/sign_in', subdomain: ''
   def sign_in
     respond_to do |format|
       format.html
     end
   end
 
-  # get '/user/companies', to: 'home#user_companies', as: user_companies
+  # get '/user/companies', subdomain: ''
   def user_companies
     email = params[:email]
     @companies = User.unscoped.joins(:company).where('users.email = ?', email).select('companies.*')
