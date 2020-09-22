@@ -6,8 +6,8 @@
    </div> 
   </div>
   <% if params[:action] == 'edit' %>
-    <%= team.submit t('shared.update_resource', resource_name: t('shared.team')), class: 'btn btn-info' %>	
+    <%= team.submit t('shared.update_resource', resource_name: t('shared.team')), class: 'btn my-primary-btn' %>	
   <% else %>
- 	<%= team.submit t('shared.create_resource', resource_name: t('shared.team')), class: 'btn btn-info' %>
+ 	<%= team.submit t('shared.create_resource', resource_name: t('shared.team')), class: 'btn my-primary-btn' %>
   <% end %>
 <% end %>

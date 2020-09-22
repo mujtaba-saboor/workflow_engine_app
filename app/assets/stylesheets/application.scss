@@ -1,4 +1,6 @@
 @import "bootstrap/scss/bootstrap";
+$primary-color: #5bc0de;
+$hover-primary-color: #289cd1;
 
 .error-explanation {
   @extend .alert;
@@ -11,4 +13,12 @@
   ul {
     margin-top: 2em;
   }
+}
+.my-primary-btn, .my-primary-btn:active, .my-primary-btn:visited {
+    background-color: $primary-color !important;
+    color: white !important;
+}
+
+.my-primary-btn:hover {
+   background-color: $hover-primary-color !important;
 }
