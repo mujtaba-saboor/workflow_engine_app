@@ -40,10 +40,8 @@
           </div>
         </li>
       <% else %>
-        <% unless path_blocked_from_location?(new_user_session_path, request) %>
-          <%= link_to t('users.sign_in'), new_user_session_path, class: 'btn btn-outline-secondary my-1 mx-md-1' %>
-        <% end %>
-        <% unless path_blocked_from_location?(new_user_registration_path, request) %>
+        <%= link_to t('users.sign_in'), new_user_session_path, class: 'btn btn-outline-secondary my-1 mx-md-1' %>
+        <% unless current_company %>
           <%= link_to t('users.sign_up'), new_user_registration_path, class: 'btn btn-outline-info my-1 mx-md-1' %>
         <% end %>
       <% end %>

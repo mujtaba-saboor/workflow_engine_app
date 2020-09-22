@@ -17,7 +17,8 @@ class HomeController < ApplicationController
   # get '/user/companies', to: 'home#user_companies', as: user_companies
   def user_companies
     email = params[:email]
-    @companies = Company.joins(:users).where('users.email = ?', email)
+    @companies = User.unscoped.joins(:company).where('users.email = ?', email).select('companies.*')
+    p @companies
     flash.now[:error] = t('home.no_associated_companies_message', email: email) if @companies.empty?
     respond_to do |format|
       format.js
