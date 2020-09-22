@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :filter_unwanted_urls
-  before_action :authenticate_user!
   around_action :scope_current_company
+  before_action :authenticate_user!
 
   UNWANTED_BASE_PATHS = [
     '/users/sign_out'
@@ -42,11 +41,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, company_attributes: [:name, :subdomain]])
   end
 
-  def filter_unwanted_urls
-    request_type = request.subdomain.present? ? :subdomain : :base
-    not_found if path_blocked?(request.path, request_type)
-  end
-
   def current_company
     Company.find_by_subdomain! request.subdomain if request.subdomain.present?
   end
@@ -54,6 +48,7 @@ class ApplicationController < ActionController::Base
 
   def scope_current_company
     company = current_company
+    p company
     Company.current_id = company ? current_company.id : nil
     yield
   ensure
