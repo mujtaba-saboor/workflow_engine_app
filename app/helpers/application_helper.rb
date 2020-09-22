@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+  
   def get_top_nav_links
     { t('shared.home')=> '#', t('shared.about') => '#', t('shared.contact_us') => '#' }
   end
