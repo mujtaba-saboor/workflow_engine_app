@@ -24,7 +24,7 @@ class User < ApplicationRecord
   end
 
   def get_project_count
-    if role.eql? ROLES[0]
+    if staff?
       all_projects.count
     else
       Project.all.count
@@ -37,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def get_team_count
-    if role.eql? ROLES[0]
+    if staff?
       teams.count
     else
       Team.all.count
@@ -45,14 +45,14 @@ class User < ApplicationRecord
   end
 
   def staff?
-    role.eql? User::ROLES[0]
+    role.eql? ROLES[0]
   end
 
   def admin?
-    role.eql? User::ROLES[1]
+    role.eql? ROLES[1]
   end
 
   def owner?
-    role.eql? User::ROLES[2]
+    role.eql? ROLES[2]
   end
 end
