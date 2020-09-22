@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
-  # get '', to: 'companies#company', constraints: { subdomain: /.+/ }
-  def company
+  # get '', to: 'companies#index', constraints: { subdomain: /.+/ }
+  def index
     @company = current_company
     @projects = Project.all
     @issues = Issue.all

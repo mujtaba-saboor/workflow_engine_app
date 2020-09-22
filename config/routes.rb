@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '', to: 'companies#company', constraints: { subdomain: /.+/ }
+  get '', to: 'companies#index', constraints: { subdomain: /.+/ }
   root 'home#index'
 
   resources :projects do
@@ -24,4 +24,6 @@ Rails.application.routes.draw do
   get '/users/sign_in', to: 'home#sign_in', constraints: { subdomain: '' }
   post '/user/companies', to: 'home#user_companies', as: 'user_companies'
   devise_for :users
+
+  # TODO: Make blocks for routes with subdomain and routes without subdomains
 end
