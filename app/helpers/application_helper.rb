@@ -1,6 +1,5 @@
 module ApplicationHelper
   include Pagy::Frontend
-<<<<<<< HEAD
 
   # This helper method overrides the helper method with same name for pagy gem
   # This override gives facility to provide a base path for the pagy links via the 'custom_link' instance variable
@@ -11,6 +10,4 @@ module ApplicationHelper
     p_vars = pagy.vars; params = request.GET.merge(p_vars[:params]); params[p_vars[:page_param].to_s] = page
     "#{request.base_url if url}#{path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
   end
-=======
->>>>>>> f418258eaac6ffe679a96103035adf9c18ebe25e
 end
