@@ -4,7 +4,4 @@ class UsersController < ApplicationController
     @pagy, @users = pagy(User.where(params[:company_id]),  items: 5)
   end
 
-  def new
-    @users = User.new
-  end
 end

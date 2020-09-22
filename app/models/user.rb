@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :invitable,
          :recoverable, :rememberable, :validatable, :confirmable, :lockable
+
+  ROLES = %w[STAFF ADMIN OWNER].freeze
+
   belongs_to :company
   accepts_nested_attributes_for :company
 

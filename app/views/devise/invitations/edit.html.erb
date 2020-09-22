@@ -14,6 +14,9 @@
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation %>
     </div>
+
+    <%= f.hidden_field :role, value: 'STAFF' %>
+
   <% end %>
 
   <div class="actions">
