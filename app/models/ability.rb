@@ -7,21 +7,58 @@ class Ability
     # :manage includes :create so precaution should be taken editing these abilites
     return if user.blank?
 
-    can :create, Comment, user_id: user.id, company_id: user.company_id
-    can %i[update destroy], Comment, user_id: user.id, company_id: user.company_id, commentable: { company_id: user.company_id }
+    if user.staff?
+      can :read, Team, id: user.teams.pluck(:id)
+      can :read, Project,  id: user.all_projects.pluck(:id)
+      can :project_users, Project
 
-    can :read, Project, company_id: user.company_id
+      can :create, Comment, user_id: user.id, company_id: user.company_id
+      can %i[update destroy], Comment, user_id: user.id, company_id: user.company_id, commentable: { company_id: user.company_id }
 
-    can :read, Issue, company_id: user.company_id
+      # can :read, Project, company_id: user.company_id
 
-    can :update_status, Issue, company_id: user.company_id, assignee_id: user.id
+      can :read, Issue, company_id: user.company_id
 
-    can :create, Issue, company_id: user.company_id, creator_id: user.id
+      can :update_status, Issue, company_id: user.company_id, assignee_id: user.id
 
-    return unless user.role == 'ADMIN' || user.role == 'CREATOR'
+      can :create, Issue, company_id: user.company_id, creator_id: user.id
+    elsif user.admin?
+      can :manage, :all
+      cannot :destroy, User, role: User::ROLES[2]
 
-    can :update_status, Issue, company_id: user.company_id
-    can :destroy, Issue, company_id: user.company_id
-    can :update, Issue, company_id: user.company_id
+      can :update_status, Issue, company_id: user.company_id
+      can :destroy, Issue, company_id: user.company_id
+      can :update, Issue, company_id: user.company_id
+    elsif user.account_owner?
+      can :manage, :all
+    end
+
+    # if user.role.eql? User::ROLES[2]
+    #   can :manage, :all
+    # elsif user.role.eql? User::ROLES[0]
+    #   can :read, Team, id: user.teams.pluck(:id)
+    #   can :read, Project,  id: user.all_projects.pluck(:id)
+    #   can :project_users, Project
+    # elsif user.role.eql? User::ROLES[1]
+    #   can :manage, :all
+    #   cannot :destroy, User, role: User::ROLES[2]
+    # end
+
+    # can :create, Comment, user_id: user.id, company_id: user.company_id
+    # can %i[update destroy], Comment, user_id: user.id, company_id: user.company_id, commentable: { company_id: user.company_id }
+
+    # can :read, Project, company_id: user.company_id
+
+    # can :read, Issue, company_id: user.company_id
+
+    # can :update_status, Issue, company_id: user.company_id, assignee_id: user.id
+
+    # can :create, Issue, company_id: user.company_id, creator_id: user.id
+
+    # return unless user.role == 'ADMIN' || user.role == 'CREATOR'
+
+    # can :update_status, Issue, company_id: user.company_id
+    # can :destroy, Issue, company_id: user.company_id
+    # can :update, Issue, company_id: user.company_id
   end
 end

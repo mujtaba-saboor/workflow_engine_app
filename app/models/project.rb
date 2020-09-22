@@ -3,6 +3,7 @@ class Project < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :project_category, presence: true, inclusion: { in: PROJECT_CATEGORIES }
+  validates :company_id, presence: true
 
   belongs_to :company
 
@@ -28,6 +29,10 @@ class Project < ApplicationRecord
     else
       company.users
     end
+  end
+
+  def self.get_total_team_projects
+    where(project_category: Project::PROJECT_CATEGORIES[0]).count
   end
 
   def team_project?

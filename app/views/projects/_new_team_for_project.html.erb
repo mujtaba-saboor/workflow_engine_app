@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
   <% project_teams  = @project.available_teams %>
-  <% unless project_teams.empty? %>
+  <% if project_teams.present? %>
     <%= form_with model: @project, url: add_team_to_project_project_path do |f| %>
 	<div class="form-row">
 	  <div class="form-group col-md-4">   
@@ -14,7 +14,7 @@
 	    <%= f.collection_select :team, project_teams, :id, :name, {}, class: 'form-control' %>
 	  </div>
 	</div>	
-	  <%= f.submit t('projects.add_team'), class: 'btn btn-primary' %>
+	  <%= f.submit t('projects.add_team'), class: 'btn my-primary-btn' %>
 	<% end %>
   <% else %>
 	<p><%= t('projects.no_available_team') %></p>
