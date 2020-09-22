@@ -22,7 +22,7 @@
 	    <th scope="col">Type</th>
 	    <th scope="col">Category</th>
         <th scope="col">Status</th>
-        <th scope="col"><%= link_to t('projects.add_issue'), '', class: 'btn btn-primary' %></th>
+        <th scope="col"><%= link_to t('projects.add_issue'), new_project_issue_path(@project), class: 'btn btn-primary' %></th>
 	  </tr>
 	</thead>
 	<tbody>
