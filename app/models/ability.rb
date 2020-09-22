@@ -7,29 +7,30 @@ class Ability
     # :manage includes :create so precaution should be taken editing these abilites
     return if user.blank?
 
-    if user.staff?
-      can :read, Team, id: user.teams.pluck(:id)
-      can :read, Project,  id: user.all_projects.pluck(:id)
-      can :project_users, Project
+    can :read, Team, id: user.teams.pluck(:id)
+    can :read, Project,  id: user.all_projects.pluck(:id)
+    can :project_users, Project
 
-      can :create, Comment, user_id: user.id, company_id: user.company_id
-      can %i[update destroy], Comment, user_id: user.id, company_id: user.company_id, commentable: { company_id: user.company_id }
+    can :create, Comment, user_id: user.id, company_id: user.company_id
+    can %i[update destroy], Comment, user_id: user.id, company_id: user.company_id, commentable: { company_id: user.company_id }
 
-      # can :read, Project, company_id: user.company_id
+    # can :read, Project, company_id: user.company_id
 
-      can :read, Issue, company_id: user.company_id
+    can :read, Issue, company_id: user.company_id
 
-      can :update_status, Issue, company_id: user.company_id, assignee_id: user.id
+    can :update_status, Issue, company_id: user.company_id, assignee_id: user.id
 
-      can :create, Issue, company_id: user.company_id, creator_id: user.id
-    elsif user.admin?
-      can :manage, :all
+    can :create, Issue, company_id: user.company_id, creator_id: user.id
+
+    if user.admin? || user.account_owner?
       cannot :destroy, User, role: User::ROLES[2]
 
       can :update_status, Issue, company_id: user.company_id
       can :destroy, Issue, company_id: user.company_id
       can :update, Issue, company_id: user.company_id
-    elsif user.account_owner?
+    end
+
+    if user.account_owner?
       can :manage, :all
     end
 

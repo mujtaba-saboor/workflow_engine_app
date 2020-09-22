@@ -4,5 +4,5 @@
   <%= form.label t('comments.comment_edit_form_label'), for: :body %>
   <%= form.text_area :body, class: 'form-control' %>
 </div>
-<%= form.submit t('shared.update_model', model: Comment.model_name.human), class: 'btn btn-primary' %>
+<%= form.submit t('shared.update_model', model: Comment.model_name.human), class: 'btn btn-info' %>
 <% end %>

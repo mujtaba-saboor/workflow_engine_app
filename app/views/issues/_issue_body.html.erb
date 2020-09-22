@@ -18,7 +18,7 @@
     <%= render 'status_change_form', project: issue.project, issue: issue %>
   <% end %>
   <% if can? :update, issue %>
-    <%= link_to t('shared.edit'), edit_project_issue_path(issue.project, issue), class: 'btn btn-warning' %>
+    <%= link_to t('shared.edit'), edit_project_issue_path(issue.project, issue), class: 'btn btn-info' %>
   <% end %>
   <% if can? :destroy, issue %>
     <%= link_to t('shared.delete'), project_issue_path(issue.project, issue), method: :delete, data: { confirm: t('shared.deletion_confirmation_message', resource: Issue.model_name.human.downcase) }, class: 'btn btn-danger' %>
