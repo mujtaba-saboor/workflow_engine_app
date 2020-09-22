@@ -48,7 +48,6 @@ class ApplicationController < ActionController::Base
 
   def scope_current_company
     company = current_company
-    p company
     Company.current_id = company ? current_company.id : nil
     yield
   ensure
