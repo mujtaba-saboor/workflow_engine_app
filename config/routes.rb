@@ -29,5 +29,5 @@ Rails.application.routes.draw do
     post '/user/companies', to: 'home#user_companies', as: 'user_companies'
     root 'home#index'
   end
-  resources :users, only: [:show]
+  resources :users, only: [:show], constraints: {subdomain: /.+/ }
 end

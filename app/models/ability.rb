@@ -2,7 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    @user = user
+    binding.pry
+    @users = user.company.users
     if user
       can :manage, :all
     end

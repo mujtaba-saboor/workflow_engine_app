@@ -1,6 +1,6 @@
 include Pagy::Backend
 class UsersController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource through: user
   def show
     respond_to do |format|
         format.html
