@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	sequenceid :company , :users
+	sequenceid :company ,:users
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   include Devise::Models::Validatable
