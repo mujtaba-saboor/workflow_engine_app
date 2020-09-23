@@ -58,7 +58,6 @@ en:
     unsuccessful_deletion_message: 'Comment could not be deleted'
   shared:
     email: 'email'
-    update: 'Update'
     deletion_confirmation_message: 'Are you sure you want to delete this %{resource}?'
     new: 'New'
     create: &create_label 'Create'
@@ -70,8 +69,6 @@ en:
     time_ago: '%{time_ago} ago'
     updated_time_ago: 'updated %{time_ago} ago'
     created_time_ago: 'created %{time_ago} ago'
-    edit: 'Edit'
-    delete: 'Delete'
     show: 'Show'
     user: 'User'
     users: 'Users'
@@ -88,10 +85,15 @@ en:
     home: 'Home'
     about: 'About'
     contact_us: 'Contact Us'
+  companies:
+    company_projects: 'Company Projects'
+    company_project_issues: 'Company Project Issues'
+    welcome_message: 'Welcome to Workflow Engine (%{company_name})'
+    domain_validation: 'only allows letters and numbers'
   users:
     email: 'email'
     update: 'Update'
-    sign_in: 'Sign in'
+    sign_in: &sign_in 'Sign in'
     sign_out: 'Sign out'
     sign_up: 'Sign up'
     login: 'Log in'
@@ -126,6 +128,7 @@ en:
     confirmation_waiting: 'Currently waiting confirmation for:'
     leave_blank_line: "leave blank if you don't want to change it"
     need_for_current_password: 'we need your current password to confirm your changes'
+    send_invite: 'Send Invitation'
   issues:
     no_assignee_assigned: 'Assignee is not assigned for this issue'
     edit_form:
@@ -137,6 +140,13 @@ en:
       failure: 'Status could not be updated'
   home:
     welcome: 'Welcome to Workflow Engine'
+    sign_in: 
+      title: *sign_in
+      search: 'Search'
+      email_address_placeholder: 'Enter your email address here'
+    welcome_message: 'Welcome to Workflow Engine'
+    your_companies: 'Your Companies'
+    no_associated_companies_message: 'Sorry no associated company was found for the provided email (%{email}).'
     dashboard: 'Dashboard'
     total_projects: 'Projects (Total)'
     total_teams: 'Teams (Total)'
@@ -153,30 +163,31 @@ en:
     issue_priority_high: 'High'
     issue_priority_low: 'Low'
   projects:
-    form_name_placeholder: 'Enter name here'
-    add_team: 'Add Team'
+    helloworld: '123'
+    form_name_placeholder: &form_name_placeholder 'Enter name here'
+    add_team: &add_team 'Add Team'
     remove_team: 'Remove Team'
     available_teams: 'Available Teams'
     no_available_team: 'No team available to add.'
-    add_user: 'Add User'
-    remove_user: 'Remove User'
-    all_users: 'All Users'
-    available_users: 'Available Users'
-    no_available_user: 'No user available to add.'
-    all_teams: 'All Teams'
+    add_user: &add_user 'Add User'
+    remove_user: &remove_user 'Remove User'
+    all_users: &all_users 'All Users'
+    available_users: &available_users 'Available Users'
+    no_available_user: &no_available_user 'No user available to add.'
+    all_teams: &all_teams 'All Teams'
     issues: 'Issues'
     add_issue: 'Add Issue'
     all_projects: 'All Projects'
     no_destroy: "Project can't be Destroyed"
   teams:
-    form_name_placeholder: 'Enter name here'
-    add_user: 'Add User'
-    remove_user: 'Remove User'
-    all_users: 'All Users'
-    available_users: 'Available Users'
-    no_available_user: 'No user available to add.'
-    add_team: 'Add Team'
-    all_teams: 'All Teams'
+    form_name_placeholder: *form_name_placeholder
+    add_user: *add_user
+    remove_user: *remove_user
+    all_users: *all_users
+    available_users: *available_users
+    no_available_user: *no_available_user
+    add_team: *add_team
+    all_teams: *all_teams
     no_deletion_warning: 'Team can not be deleted because its a part of some Projects'
     no_team_to_show: 'No Team to show...'
   flash_messages:
@@ -187,5 +198,3 @@ en:
     deletion: '%{name} Removed Successfully'
     warning: '%{warning_msg}'
     error: 'Error Occured: %{error_msg}'
-  companies:
-    domain_validation: 'only allows letters and numbers'

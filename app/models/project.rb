@@ -40,10 +40,10 @@ class Project < ApplicationRecord
   end
 
   def available_users
-    User.where.not(id: self.users.pluck(:id))
+    User.where.not(id: users.pluck(:id))
   end
 
   def available_teams
-    Team.where.not(id: self.teams.pluck(:id))
+    Team.where.not(id: teams.pluck(:id))
   end
 end

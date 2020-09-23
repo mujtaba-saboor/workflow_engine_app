@@ -18,7 +18,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 
-#for authorization
+# for authorization
 gem 'cancancan', '= 3.1.0'
 
 # Use Redis adapter to run Action Cable in production
@@ -44,6 +44,8 @@ gem 'pagy', '=3.8.3'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise', '= 4.7.2'
+
+gem 'devise_invitable', '= 2.0.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
