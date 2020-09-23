@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @pagy, @projects = pagy(@projects, items: 5)
+    @pagy, @projects = pagy(@projects, items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
     end
