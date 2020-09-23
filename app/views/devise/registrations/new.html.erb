@@ -18,7 +18,6 @@
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %><%= t('users.character_minimum') %>)</em>
     <% end %><br />
-
     <%= f.password_field :password, autocomplete: t('users.new_password'), class: 'form-control', required: true %>
   </div>
 
