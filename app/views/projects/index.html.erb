@@ -1,22 +1,38 @@
-<div class ='container'>
-	<h1 align= 'center'><%= t('projects.all_projects') %></h1>
-	<% @projects.each do |project|%>
-	<div class="card">
-	  <h5 class="card-header"><%= project.name %></h5>
-	  <div class="card-body">
-	    <h5 class="card-title">Type : <%= project.project_category %></h5>
-	    <%= link_to t('shared.delete'), project_path(project), method: :delete , class: 'btn btn-danger'%> | 
-	     <%= link_to t('shared.edit'), edit_project_path(project), {class: 'btn btn-success',remote: true, data: { toggle: "modal", target: '#my_id_create_project_modal'}} %> |
-	     <%= link_to t('shared.show'), project_path(project), class: 'btn btn-success' %>
-	  </div>
-	</div>
-	<br>
-	<% end %>
-	<%= link_to t('shared.new_resource', resource_name: t('shared.project')), new_project_path, {class: 'btn btn-success', remote: true, data: { toggle: "modal", target: '#my_id_create_project_modal'}} %>
-</div>
-<div id = "my_id_create_project_modal" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-	</div>
+<div class="d-flex flex-column">
+  <div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h2 class="h3 mb-0 text-gray-800"><%= t('projects.all_projects')%></h2>
+      <% if can? :create, Project %>
+      <%= link_to t('projects.new_project'),new_project_path,{class: 'btn my-primary-btn',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_create_project_modal'}%>
+      <% end %>
+    </div>
+    <% if @projects.empty? %>
+      <p> No Project to show...</p>
+    <% else %>
+      <% @projects.each do |project|%>
+        <div class="row">
+          <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card">
+              <h5 class="card-header"><%=project.name%></h5>
+              <div class="card-body">
+                <h5 class="card-title">Type : <%= project.project_category%></h5>
+                <% if can? [:destroy, :edit], project %>
+                  <%= link_to t('shared.delete'), project_path(project),method: :delete ,class: 'btn btn-danger'%> |
+                  <%= link_to t('shared.edit'), edit_project_path(project), {class: 'btn my-primary-btn',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_create_project_modal'}%> |
+                <% end %>
+                <%= link_to t('shared.show'), project_path(project), class: 'btn my-primary-btn'%>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%== pagy_bootstrap_nav(@pagy) %>   
+    <% end %>
+    <div id="my_id_create_project_modal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,4 +1,9 @@
 @import "bootstrap/scss/bootstrap";
+$primary-color: #5bc0de;
+$hover-primary-color: #289cd1;
+$pagination-link-btn-text-color: #5a5a5a;
+$pagination-link-btn-background-color: #eee;
+$pagination-link-btn-border-color: #ddd;
 
 .error-explanation {
   @extend .alert;
@@ -10,5 +15,53 @@
   }
   ul {
     margin-top: 2em;
+  }
+}
+.my-primary-btn{
+  
+  background-color: $primary-color !important;
+  color: white !important;
+
+  &:hover { 
+    background-color: $hover-primary-color !important; 
+  }
+}
+
+.pagination {
+  li {
+    a {      
+      background-color: white;
+      color: $primary-color !important;
+
+      &:focus {
+        color: $pagination-link-btn-text-color;
+        background-color: $pagination-link-btn-background-color;
+        border-color: $pagination-link-btn-border-color;
+      }
+    
+      &:hover {
+        color: $pagination-link-btn-text-color;
+        background-color: $pagination-link-btn-background-color;
+        border-color: $pagination-link-btn-border-color;
+      }
+
+      span {
+        color: $pagination-link-btn-text-color;
+        background-color: $pagination-link-btn-background-color;
+        border-color: $pagination-link-btn-border-color;
+      }
+    }
+  }
+  .active {
+    a {
+      color: white !important;
+      background-color: $primary-color !important;
+      border: solid 1px $primary-color !important;
+
+      &:hover {
+        background-color: $hover-primary-color !important;
+        border: solid 1px $primary-color;
+      }
+    }
   }
 }

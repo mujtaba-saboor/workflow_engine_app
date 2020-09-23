@@ -8,6 +8,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    @pagy, @users = pagy(User.where(params[:company_id]),  items: 5)
+    @pagy, @users = pagy(User.where(params[:company_id]),  items: Company::PAGE_SIZE)
   end
 end

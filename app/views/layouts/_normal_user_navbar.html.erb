@@ -1,0 +1,22 @@
+<nav class='navbar navbar-expand-lg navbar-light bg-light'>
+  <%= link_to t('shared.app_name'), root_path,class: 'navbar-brand' %>
+  <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbar_nav' aria-controls='navbar_nav' aria-expanded='false' aria-label='Toggle navigation'>
+    <span class='navbar-toggler-icon'></span>
+  </button>
+  <div class='collapse navbar-collapse' id='navbar_nav'>
+    <ul class='navbar-nav ml-auto'>
+      <% links = get_top_nav_links %>
+      <% links.each do |key,value| %>
+        <li class='nav-item <%= get_active_nav(key.downcase) %>'>
+          <%= link_to key, value,class: 'nav-link' %>
+        </li>
+      <% end %>       
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <% unless request.subdomain.present? %>
+        <%= link_to t('users.sign_in'), new_user_session_path, class: 'btn btn-outline-secondary my-1 mr-md-2' %>
+        <%= link_to t('users.sign_up'), new_user_registration_path, class: 'btn btn-outline-info my-1' %>
+      <% end %>
+    </ul>
+  </div>
+</nav>

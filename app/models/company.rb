@@ -1,5 +1,7 @@
 class Company < ApplicationRecord
-  default_scope { unscoped }
+  not_multitenant
+  PAGE_SIZE = 5
+
   has_many :users
   has_many :projects
   has_many :teams

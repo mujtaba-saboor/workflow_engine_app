@@ -1,21 +1,36 @@
-<div class ='container'>
-  <h1 align= 'center'><%= t('teams.all_teams') %></h1>
-	<% @teams.each do |team| %>
-	  <div class="card">
-	    <h5 class="card-header"><%= team.name %></h5>
-	    <div class="card-body">  
-	      <%= link_to t('shared.delete'), team_path(team), method: :delete , class: 'btn btn-danger' %> | 
-	      <%= link_to t('shared.edit'), edit_team_path(team), {class: 'btn btn-success', remote: true, data: { toggle: "modal", target: '#my_id_modal_window'}} %> |
-	      <%= link_to t('shared.show'), team_path(team), class: 'btn btn-success' %>
-	    </div>
-	  </div>
-	<br>
-	<% end %>
-	<%= link_to t('teams.add_team'), new_team_path,{class: 'btn btn-success', remote: true, data: { toggle: "modal", target: '#my_id_modal_window'}} %>
-</div>
-<div id = "my_id_model_window" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-	</div>
+<div class="d-flex flex-column">
+  <div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h2 class="h3 mb-0 text-gray-800"><%= t('teams.all_teams')%></h2>
+      <% if can? :create, Team %>
+        <%= link_to t('teams.add_team'), new_team_path,{class: 'btn my-primary-btn',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_model_window'}  %>
+      <% end %>
+    </div>
+    <% if @teams.empty? %>
+      <p> <%= t('teams.no_team_to_show') %></p>
+    <% else %>
+      <% @teams.each do |team|%>
+        <div class="row">
+          <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card">
+              <h5 class="card-header"><%=team.name%></h5>
+              <div class="card-body">
+                <% if can? [:edit, :destroy], team %>
+                  <%= link_to t('shared.delete'), team_path(team),method: :delete ,class: 'btn btn-danger'%> | 
+                  <%= link_to t('shared.edit'), edit_team_path(team),{class: 'btn my-primary-btn',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_model_window'}%> |
+                <% end %>
+                <%= link_to t('shared.show'), team_path(team), class: 'btn my-primary-btn'%>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    <% end %>
+    <div id = "my_id_model_window" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
   </div>
 </div>
