@@ -2,10 +2,10 @@ class CommentsController < ApplicationController
   load_and_authorize_resource :issue
   load_and_authorize_resource :project
   load_and_authorize_resource through: %i[issue project]
+  before_action :set_up_pagy_and_resource, only: %i[create destroy]
 
   # POST /resources/:resource_id/comments
   def create
-    set_up_pagy_and_resource
     if @comment.save
       flash.now[:notice] = t('comments.successful_creation_message')
       @comment = Comment.new
@@ -39,7 +39,6 @@ class CommentsController < ApplicationController
 
   # DELETE resources/:resource_id/comments/:id
   def destroy
-    set_up_pagy_and_resource
     if @comment.destroy
       flash.now[:notice] = t('comments.successful_deletion_message')
       @comment = Comment.new
