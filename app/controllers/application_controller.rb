@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_company
 
   def scope_current_company
-    Company.current_id = current_company.try(:id)
+    @current_company = current_company
+    Company.current_id = @current_company.try(:id)
     yield
   ensure
     Company.current_id = nil
