@@ -5,8 +5,10 @@ class Ability
     # :create abilities here are linked to the controllers. Heed precation editing them.
     # The fields set by abilities (:create) here are used by the respective actions in controllers
     # :manage includes :create so precaution should be taken editing these abilites
+    # *** ALL USERS ***
     return if user.blank?
 
+    # *** SIGNED IN USERS ***
     can :read, Team, id: user.teams.pluck(:id)
     can :read, Project,  id: user.all_projects.pluck(:id)
     can :project_users, Project
@@ -22,17 +24,20 @@ class Ability
 
     can :create, Issue, company_id: user.company_id, creator_id: user.id
 
-    if user.admin? || user.account_owner?
-      cannot :destroy, User, role: User::ROLES[2]
+    return unless user.admin? || user.account_owner?
 
-      can :update_status, Issue, company_id: user.company_id
-      can :destroy, Issue, company_id: user.company_id
-      can :update, Issue, company_id: user.company_id
-    end
+    # *** ADMINS and OWNERS ***
+    can :manage, :all, company_id: user.company_id
+    cannot :destroy, User, role: User::ROLES[2]
 
-    if user.account_owner?
-      can :manage, :all
-    end
+    # can :update_status, Issue, company_id: user.company_id
+    # can :destroy, Issue, company_id: user.company_id
+    # can :update, Issue, company_id: user.company_id
+
+    return unless user.account_owner?
+
+    # *** OWNERS ***
+    can :manage, :all, company_id: user.company_id
 
     # if user.role.eql? User::ROLES[2]
     #   can :manage, :all
