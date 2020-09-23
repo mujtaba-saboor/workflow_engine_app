@@ -1,7 +1,8 @@
 include Pagy::Backend
 class UsersController < ApplicationController
-  load_and_authorize_resource through: user
+  load_and_authorize_resource find_by: :sequence_num
   def show
+    binding.pry
     respond_to do |format|
         format.html
     end
