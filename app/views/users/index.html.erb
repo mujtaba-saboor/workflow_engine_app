@@ -1,13 +1,12 @@
 <h1><%= t('shared.users') %></h1>
-
-  <% @users.each do |user| %>
-    <%= user.name %>
-    <b>(<%= user.role %>)</b>
-    <br>
-  <% end %>
+<% @users.each do |user| %>
+  <%= user.name %>
+  <b>(<%= user.role %>)</b>
+  <br>
+<% end %>
 <br><br>
-  <div>
-    <%= button_to t('shared.new_resource', resource_name: User), new_user_invitation_path, class: 'btn btn-info', method: :get %>
-  </div>
+<div>
+  <%= button_to t('shared.new_resource', resource_name: User), new_user_invitation_path, class: 'btn btn-info', method: :get %>
+</div>
 <br>
-<%= pagy_nav(@pagy).html_safe %>
+<%== pagy_bootstrap_nav(@pagy) %>
