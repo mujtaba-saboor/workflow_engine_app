@@ -11,7 +11,7 @@ class AddInvitableToUsers < ActiveRecord::Migration[6.0]
   end
 
   def up
-  change_column :users, :invitation_token, :string, limit: nil
+    change_column :users, :invitation_token, :string, limit: nil
   end
 
   def down
