@@ -16,6 +16,10 @@ en:
     form_name_placeholder: 'Enter name here'
     update_resource: 'Update %{resource_name}'
     create_resource: 'Create %{resource_name}'
+    app_name: 'Workflow Engine'
+    home: 'Home'
+    about: 'About'
+    contact_us: 'Contact Us'
   companies:
     company_projects: 'Company Projects'
     company_project_issues: 'Company Project Issues'
@@ -68,6 +72,22 @@ en:
     welcome_message: 'Welcome to Workflow Engine'
     your_companies: 'Your Companies'
     no_associated_companies_message: 'Sorry no associated company was found for the provided email (%{email}).'
+    dashboard: 'Dashboard'
+    total_projects: 'Projects (Total)'
+    total_teams: 'Teams (Total)'
+    watching_issues: 'Watching Issues'
+    project_categories: 'Project Categories'
+    project_categories_team: 'Team'
+    project_categories_individual: 'Individual'
+    issues: 'Issues'
+    issues_open: 'Open'
+    issues_inprogress: 'In Progress'
+    issues_resolved: 'Resolved'
+    issues_closed: 'Closed'
+    issue_priority: 'Issues Priorities'
+    issue_priority_high: 'High'
+    issue_priority_low: 'Low'
+
   projects:
     helloworld: '123'
     form_name_placeholder: &form_name_placeholder 'Enter name here'
@@ -95,6 +115,7 @@ en:
     add_team: *add_team
     all_teams: *all_teams
     no_deletion_warning: 'Team can not be deleted because its a part of some Projects'
+    no_team_to_show: 'No Team to show...'
   flash_messages:
     create: '%{name} Created Successfully'
     update: '%{name} Updated Successfully'

@@ -1,8 +1,8 @@
 <% flash.each do |type, msg| %>
-  <div class="alert alert-<%= bootstrap_color_for_alert(type) %> alert-dismissible fade show">
+  <div class="alert alert-<%= bootstrap_color_for_alert(type) %> alert-dismissible fade show" style="display: inline-block;">
     <%= msg %>
-    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-      <span aria-hidden='true'>&times;</span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
     </button>
   </div>
 <% end %>

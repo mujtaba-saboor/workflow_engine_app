@@ -1,50 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <% if current_company %>
-    <%= link_to current_company.name, root_url, class: 'navbar-brand' %>
-  <% else %>
-    <a class="navbar-brand" href="/">WorkflowEngine</a>
-  <% end %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_nav" aria-controls="navbar_nav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbar_nav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <%= link_to 'Home', root_url(subdomain: ''), class: 'nav-link' %>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='#'>Features</a>
-      </li>
-      <li class='nav-item'>
-        <a class='nav-link' href='#'>Pricing</a>
-      </li>
-      <% if user_signed_in? %>
-        <li class="nav-item">
-        <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'nav-link') %>        
-        </li>
-      <% else %>
-        <li class="nav-item">
-        <%= link_to('Login', new_user_session_path, class: 'nav-link') %>  
-        </li>
-      <% end %>      
-    </ul>
-
-    <ul class="navbar-nav ml-auto">
-      <% if user_signed_in? %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="user_profile_dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= current_user.email %>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="user_profile_dropdown">
-            <%= link_to t('users.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-          </div>
-        </li>
-      <% else %>
-        <%= link_to t('users.sign_in'), new_user_session_path, class: 'btn btn-outline-secondary my-1 mx-md-1' %>
-        <% unless current_company %>
-          <%= link_to t('users.sign_up'), new_user_registration_path, class: 'btn btn-outline-info my-1 mx-md-1' %>
-        <% end %>
-      <% end %>
-    </ul>
-  </div>
-</nav>
+<% if user_signed_in? %>
+  <%= render 'layouts/signed_in_user_navbar' %>
+<% else %>
+  <%= render 'layouts/normal_user_navbar' %>
+<% end %>
+<hr>
