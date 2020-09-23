@@ -2,7 +2,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
     if user.owner?
       can :manage, :all
     elsif user.staff?
