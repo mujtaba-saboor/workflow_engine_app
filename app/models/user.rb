@@ -1,20 +1,34 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :invitable,
-         :recoverable, :rememberable, :validatable, :confirmable, :lockable
+  include Devise::Models::Validatable
+  devise :database_authenticatable, :registerable, :invitable, :confirmable, :lockable,
+         :recoverable, :rememberable # , :validatable
+
+  # https://github.com/heartcombo/devise/blob/master/lib/devise/models/validatable.rb
+  validates_uniqueness_of :email, scope: :company_id
+  validates_format_of     :email, with: email_regexp, allow_blank: true, if: :email_changed?
+  validates_presence_of     :password, if: :password_required?
+  validates_confirmation_of :password, if: :password_required?
+  validates_length_of       :password, within: password_length, allow_blank: true
 
   ROLES = %w[STAFF ADMIN OWNER].freeze
 
-  belongs_to :company
+  belongs_to :company, optional: true
   accepts_nested_attributes_for :company
 
   has_many :project_users
   has_many :projects, through: :project_users
   has_many :team_users
   has_many :teams, through: :team_users
-  has_many :comments
-  has_many :watchers
+  has_many :comments, dependent: :destroy
+  has_many :watchers, dependent: :destroy
+  has_many :created_issues, class_name: 'Issue', foreign_key: 'creator_id', inverse_of: 'creator', dependent: :destroy
+  has_many :assigned_issues, class_name: 'Issue', foreign_key: 'assignee_id', inverse_of: 'assignee', dependent: :nullify
+
+  def self.find_for_authentication(warden_conditions)
+    where(email: warden_conditions[:email], company_id: Company.current_id).first
+  end
 
   validates :role, inclusion: { in: %w(OWNER STAFF ADMIN),
   message: "%{value} is not a valid role" }
@@ -48,14 +62,14 @@ class User < ApplicationRecord
   end
 
   def staff?
-    role.eql? ROLES[0]
+    role == ROLES[0]
   end
 
   def admin?
-    role.eql? ROLES[1]
+    role == ROLES[1]
   end
 
-  def owner?
-    role.eql? ROLES[2]
+  def account_owner?
+    role == ROLES[2]
   end
 end

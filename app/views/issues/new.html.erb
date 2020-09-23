@@ -1,36 +1,9 @@
-<div class='row'>
-  <div class='col-sm-6 offset-sm-3  '>
-    <%= form_for @issue do |form| %>
-    <div class='form-group'>
-      <%= form.label :title %>
-      <%= form.text_field :title, class: 'form-control' %>
-    </div>
-    <div class='form-group'>
-      <%= form.label :description %>
-      <%= form.text_area :description, class: 'form-control' %>
-    </div>
-    <div class='form-group'>
-      <%= form.label :assignee %>
-      <%= form.select(:assignee_id, options_for_select([[1], [2], [3]]), { include_blank: true }, {class: 'form-control'}) %>
-    </div>
-    <div class='form-group'>
-      <%= form.label :status %>
-      <%= form.select(:status, options_for_select([['open'], ['in_progress'], ['resolved'], ['closed']]), {}, {class: 'form-control'}) %>
-    </div>
-    <div class='form-group'>
-      <%= form.label :priority %>
-      <%= form.select(:priority, options_for_select([['low'], ['high']]), {}, {class: 'form-control'}) %>
-    </div>
-    <div class='form-group'>
-      <%= form.label :issue_type %>
-      <%= form.select(:issue_type, options_for_select([['bug'], ['issue']]) {}, {class: 'form-control'}) %>
-    </div>
-    <div class='form-group'>
-      <%= form.file_field :documents, multiple: true %>
-    </div>
-    <div>
-      <%= form.submit 'Create', class: 'btn btn-info' %>
-    </div>
-    <% end %>
-  </div>
+<div class="container">
+  <h3 class="mb-4"><%= t 'issues.new_form.title' %></h3>
+  <h5><%= "#{Project.model_name.human}: #{@project.name}"%></h5>
+
+  <%= form_for [@project, @issue], url: { action: "create" } do |f| %>
+    <%= render partial: 'issue_form_internal', locals: { issue: @issue, valid_assignees: @valid_assignees,form: f } %>
+    <%= submit_tag t('shared.create'), class: 'btn btn-info' %>
+  <% end %>
 </div>

@@ -1,0 +1,18 @@
+<div id="comment_inner_<%= comment.id %>" class="card-body">
+  <h6 class="card-subtitle mb-2 text-muted">
+    <%= comment.user.email %>
+  </h6>
+  <p class="card-text"><%= comment.body %></p>
+  <small class="float-left">
+    <%= t('shared.time_ago', time_ago: time_ago_in_words(comment.created_at)) %>
+    <% if comment.created_at != comment.updated_at %>
+      (<%= t('shared.updated_time_ago', time_ago: time_ago_in_words(comment.updated_at)) %>)
+    <% end %>
+  </small>   
+  <% if can? :update, comment %>
+    <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_resource_comment_path(resource, comment), remote: true, class: 'btn btn-outline-info btn-sm card-button float-right mx-2' %>
+  <% end %>
+  <% if can? :destroy, comment %>
+    <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, resource_comment_path(resource, comment), remote: true, method: :delete, data: { confirm: t('shared.deletion_confirmation_message', resource: Comment.model_name.human.downcase) }, class: 'btn btn-sm btn-outline-danger card-button float-right' %>
+  <% end %>
+</div>
