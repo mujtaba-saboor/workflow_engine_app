@@ -1,5 +1,7 @@
 en:
   shared:
+    email: 'email'
+    update: 'Update'
     edit: 'Edit'
     delete: 'Delete'
     show: 'Show'
@@ -18,47 +20,59 @@ en:
     home: 'Home'
     about: 'About'
     contact_us: 'Contact Us'
+  companies:
+    company_projects: 'Company Projects'
+    company_project_issues: 'Company Project Issues'
+    welcome_message: 'Welcome to Workflow Engine (%{company_name})'
+    domain_validation: 'only allows letters and numbers'
   users:
-    email: "email"
-    update: "Update"
-    sign_in: "SignIn"
-    sign_out: "Sign out"
-    sign_up: "SignUp"
-    login: "Log in"
-    resend_confirmation_instructions: "Resend confirmation instructions"
-    send_reset_password_instuctions: "Send me reset password instructions"
-    password: "password"
-    new_password: "New password"
-    current_password: "Current password"
-    change_my_password: "Change password"
-    confirm_new_password: "Confirm new password"
-    forget_password: "Forgot your password?"
-    cancel_account: "Cancel my account"
-    are_you_sure: "Are you sure?"
-    resend_lock_instructions: "Resend unlock instructions"
-    confirm_my_account: "Confirm my account"
-    unlock_account: "Unlock my account"
-    back: "Back"
+    email: 'email'
+    update: 'Update'
+    sign_in: &sign_in 'Sign in'
+    sign_out: 'Sign out'
+    sign_up: 'Sign up'
+    login: 'Log in'
+    resend_confirmation_instructions: 'Resend confirmation instructions'
+    send_reset_password_instuctions: 'Send me reset password instructions'
+    password: 'password'
+    new_password: 'New password'
+    current_password: 'Current password'
+    change_my_password: 'Change password'
+    confirm_new_password: 'Confirm new password'
+    forget_password: 'Forgot your password?'
+    cancel_account: 'Cancel my account'
+    are_you_sure: 'Are you sure?'
+    resend_lock_instructions: 'Resend unlock instructions'
+    confirm_my_account: 'Confirm my account'
+    unlock_account: 'Unlock my account'
+    back: 'Back'
     didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
     didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
-    edit: "edit"
-    confirm_account: "You can confirm your account email through the link below"
-    welcome: "Welcome"
-    hello: "Hello"
+    edit: 'edit'
+    confirm_account: 'You can confirm your account email through the link below'
+    welcome: 'Welcome'
+    hello: 'Hello'
     email_change_message: "We're contacting you to notify you that your email is being changed to"
     password_change_message: "We're contacting you to notify you that your password has been changed."
-    notify_password_change: "Someone has requested a link to change your password. You can do this through the link below."
+    notify_password_change: 'Someone has requested a link to change your password. You can do this through the link below.'
     ignore_email: "If you didn't request this, please ignore this email."
     password_procedure: "Your password won't change until you access the link above and create a new one."
-    account_locked: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
-    unlock_procedure: "Click the link below to unlock your account:"
-    character_minimum: " characters minimum"
-    confirmation_waiting: "Currently waiting confirmation for:"
+    account_locked: 'Your account has been locked due to an excessive number of unsuccessful sign in attempts.'
+    unlock_procedure: 'Click the link below to unlock your account:'
+    character_minimum: ' characters minimum'
+    confirmation_waiting: 'Currently waiting confirmation for:'
     leave_blank_line: "leave blank if you don't want to change it"
-    need_for_current_password: "we need your current password to confirm your changes"
-    send_invite: "Send Invitation"
+    need_for_current_password: 'we need your current password to confirm your changes'
+    send_invite: 'Send Invitation'
   home:
     welcome: 'Welcome to Workflow Engine'
+    sign_in: 
+      title: *sign_in
+      search: 'Search'
+      email_address_placeholder: 'Enter your email address here'
+    welcome_message: 'Welcome to Workflow Engine'
+    your_companies: 'Your Companies'
+    no_associated_companies_message: 'Sorry no associated company was found for the provided email (%{email}).'
     dashboard: 'Dashboard'
     total_projects: 'Projects (Total)'
     total_teams: 'Teams (Total)'
@@ -74,32 +88,34 @@ en:
     issue_priority: 'Issues Priorities'
     issue_priority_high: 'High'
     issue_priority_low: 'Low'
+
   projects:
-    form_name_placeholder: 'Enter name here'
-    add_team: 'Add Team'
+    helloworld: '123'
+    form_name_placeholder: &form_name_placeholder 'Enter name here'
+    add_team: &add_team 'Add Team'
     remove_team: 'Remove Team'
     available_teams: 'Available Teams'
     no_available_team: 'No team available to add.'
-    add_user: 'Add User'
-    remove_user: 'Remove User'
-    all_users: 'All Users'
-    available_users: 'Available Users'
-    no_available_user: 'No user available to add.'
-    all_teams: 'All Teams'
+    add_user: &add_user 'Add User'
+    remove_user: &remove_user 'Remove User'
+    all_users: &all_users 'All Users'
+    available_users: &available_users 'Available Users'
+    no_available_user: &no_available_user 'No user available to add.'
+    all_teams: &all_teams 'All Teams'
     issues: 'Issues'
     add_issue: 'Add Issue'
     all_projects: 'All Projects'
     no_destroy: "Project can't be Destroyed"
   teams:
-    form_name_placeholder: 'Enter name here'
-    add_user: 'Add User'
-    remove_user: 'Remove User'
-    all_users: 'All Users'
-    available_users: 'Available Users'
-    no_available_user: 'No user available to add.'
-    add_team: 'Add Team'
-    all_teams: 'All Teams'
-    no_deletion_warning: "Team can not be deleted because its a part of some Projects"
+    form_name_placeholder: *form_name_placeholder
+    add_user: *add_user
+    remove_user: *remove_user
+    all_users: *all_users
+    available_users: *available_users
+    no_available_user: *no_available_user
+    add_team: *add_team
+    all_teams: *all_teams
+    no_deletion_warning: 'Team can not be deleted because its a part of some Projects'
     no_team_to_show: 'No Team to show...'
   flash_messages:
     create: '%{name} Created Successfully'
@@ -109,5 +125,3 @@ en:
     deletion: '%{name} Removed Successfully'
     warning: '%{warning_msg}'
     error: 'Error Occured: %{error_msg}'
-  companies:
-    domain_validation: "only allows letters and numbers"

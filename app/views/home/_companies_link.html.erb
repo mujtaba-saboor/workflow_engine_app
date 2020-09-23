@@ -1,0 +1,8 @@
+<div class="my-4">
+  <% unless companies.empty? %>
+    <h4><%= t('home.your_companies') %></h4>
+    <% companies.each do |company| %>
+      <%= render 'company_link', company: company %>
+    <% end %>
+  <% end %>
+</div>

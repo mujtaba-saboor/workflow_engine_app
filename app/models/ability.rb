@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
 
-    if user.owner?
+    if user.account_owner?
       can :manage, :all
     elsif user.staff?
       can :read, Team, id: user.teams.pluck(:id)

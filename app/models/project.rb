@@ -1,5 +1,4 @@
 class Project < ApplicationRecord
-  
   PROJECT_CATEGORIES = %w[TEAM INDIVIDUAL].freeze
 
   validates :name, presence: true, uniqueness: true
@@ -27,8 +26,8 @@ class Project < ApplicationRecord
   def available_users
     User.where.not(id: users.pluck(:id))
   end
-  
+
   def available_teams
     Team.where.not(id: teams.pluck(:id))
-  end  
+  end
 end
