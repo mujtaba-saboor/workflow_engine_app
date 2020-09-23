@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   load_and_authorize_resource
   def index
+    @pagy, @teams = pagy(@teams, items: 5)
     respond_to do |format|
       format.html
     end
