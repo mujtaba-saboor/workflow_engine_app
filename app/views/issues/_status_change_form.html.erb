@@ -2,7 +2,7 @@
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <% issue.aasm.events(permitted: true).each do |event| %>
-    <%= form.submit event.name.to_s.humanize, name: 'status', class: 'btn btn-secondary' %>
+      <%= form.submit event.name.to_s.humanize, name: 'status', class: 'btn btn-secondary' %>
     <% end %>
   </div>
 </div>
