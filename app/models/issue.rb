@@ -40,6 +40,8 @@ class Issue < ApplicationRecord
     end
   end
 
+  AASM_EVENTS_HUMANIZED = Issue.aasm.events.map(&:name).map(&:to_s).map(&:humanize)
+
   def transition_callback
     puts "Current event: #{aasm.current_event}"
     puts "Transition Callback: from #{aasm.from_state} to #{aasm.to_state}"

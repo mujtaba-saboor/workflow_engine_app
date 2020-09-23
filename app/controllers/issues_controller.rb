@@ -73,9 +73,9 @@ class IssuesController < ApplicationController
 
   # PATCH /projects/:project_id/issues/:id/update_status
   def update_status
-    status_str = params[:status]
-    update_event = @issue.aasm.events(permitted: true).find { |event| event.name.to_s.humanize == status_str }
-    if update_event.present?
+    event_str = params[:status]
+
+    if Issue::AASM_EVENTS_HUMANIZED.include?(event_str) && (update_event = @issue.aasm.events(permitted: true).find { |event| event.name.to_s.humanize == event_str })
       @issue.public_send("#{update_event.name}!")
       # TODO: Change the internationalization method for aasm states from enum type internationalization mechanism to
       # aasm I18n internationalization
