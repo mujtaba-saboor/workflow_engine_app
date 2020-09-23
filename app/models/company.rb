@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  default_scope { unscoped }
+  not_multitenant
   has_many :users
   has_many :projects
   has_many :teams
