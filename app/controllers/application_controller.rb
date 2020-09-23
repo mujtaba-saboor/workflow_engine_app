@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :role, company_attributes: [:name, :subdomain]])
   end
 
-  # Check if the given path is in the manually blocked lists in subdomains or without subdomains
   # Check if the given path is in the manually blocked lists, in subdomains or without subdomains
   def path_blocked?(path, request_type = :base)
     if request_type == :base
