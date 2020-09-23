@@ -34,6 +34,8 @@
           <%= nested_company.hidden_field :subdomain, id: 'subdomain_id' %>
         <% end %>
       </div>
+      <%= f.hidden_field :role, value: User::ROLES[2] %>
+
 
     <br />
     <p id='domain_place'></p>

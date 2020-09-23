@@ -25,4 +25,5 @@ Rails.application.routes.draw do
       delete 'remove_user_from_team'
     end
   end
+  devise_for :users
 end
