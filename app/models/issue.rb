@@ -30,5 +30,4 @@ class Issue < ApplicationRecord
     puts "Current event: #{aasm.current_event}"
     puts "Transition Callback: from #{aasm.from_state} to #{aasm.to_state}"
   end
-
 end
