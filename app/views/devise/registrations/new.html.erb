@@ -33,9 +33,11 @@
       <%= nested_company.hidden_field :subdomain, id: 'subdomain_id' %>
     <% end %>
   </div>
+  <%= f.hidden_field :role, value: User::ROLES[2] %>
 
-<br />
-<p id='domain_place'></p>
+
+  <br />
+  <p id='domain_place'></p>
 
   <div>
     <%= f.submit t('users.sign_up'), class: 'btn btn-primary' %>
