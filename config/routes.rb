@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   constraints(subdomain: '') do
     get '/users/sign_in', to: 'home#sign_in'
     post '/user/companies', to: 'home#user_companies', as: 'user_companies'
+
+    get '/about', to: 'home#about'
+    get '/contact_us', to: 'home#contact_us'
     root 'home#index'
   end
 end

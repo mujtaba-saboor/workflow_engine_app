@@ -22,14 +22,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_company
 
   def scope_current_company
-    company = current_company
-    Company.current_id = company ? current_company.id : nil
+    Company.current_id = current_company.try(:id)
     yield
   ensure
     Company.current_id = nil
-  end
-
-  def not_found
-    raise ActionController::RoutingError, 'Not Found'
   end
 end
