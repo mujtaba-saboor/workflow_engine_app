@@ -74,6 +74,11 @@ en:
     issue_priority: 'Issues Priorities'
     issue_priority_high: 'High'
     issue_priority_low: 'Low'
+    issue_title: 'Title'
+    issue_type: 'Type'
+    issue_priority: 'Priority'
+    issue_status: 'Status'
+    issue_assignee: 'Assignee'    
   projects:
     form_name_placeholder: 'Enter name here'
     add_team: 'Add Team'
@@ -90,6 +95,7 @@ en:
     add_issue: 'Add Issue'
     all_projects: 'All Projects'
     no_destroy: "Project can't be Destroyed"
+    no_issue: 'This Project has no issue'
   teams:
     form_name_placeholder: 'Enter name here'
     add_user: 'Add User'

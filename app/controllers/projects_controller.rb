@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if @project.update(project_params)  
+    if @project.update(project_params)
       flash[:success] = t('flash_messages.update', name: t('shared.project'))
     else
       flash[:danger] = t('flash_messages.error', error_msg: @project.errors.full_messages.first)
@@ -48,6 +48,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @pagy, @project_issues = pagy(@project.issues, items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
     end
