@@ -24,6 +24,5 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :user
-
+  devise_for :users
 end

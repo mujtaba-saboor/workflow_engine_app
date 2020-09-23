@@ -42,7 +42,7 @@ $pagination-link-btn-border-color: #ddd;
       &:hover {
         color: $pagination-link-btn-text-color;
         background-color: $pagination-link-btn-background-color;
-        border-color: #ddd;
+        border-color: $pagination-link-btn-border-color;
       }
 
       span {

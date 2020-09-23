@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable, :invitable,
+         :recoverable, :rememberable, :validatable, :confirmable, :lockable
 
   ROLES = %w[STAFF ADMIN OWNER].freeze
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :lockable
   belongs_to :company
   accepts_nested_attributes_for :company
 
