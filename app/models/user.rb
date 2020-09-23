@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   ROLES = %w[STAFF ADMIN OWNER].freeze
 
-  belongs_to :company
+  belongs_to :company, optional: true
   accepts_nested_attributes_for :company
 
   has_many :project_users
