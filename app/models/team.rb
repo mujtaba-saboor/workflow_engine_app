@@ -1,5 +1,4 @@
 class Team < ApplicationRecord
-  default_scope { where(company_id: Company.current_id) }
   validates :name, presence: true, uniqueness: true
 
   belongs_to :company
