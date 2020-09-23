@@ -1,0 +1,21 @@
+<%= render 'layouts/errors', resource: issue %>
+<div class='form-group'>
+  <%= form.label :title %>
+  <%= form.text_field :title, class: 'form-control' %>
+</div>
+<div class='form-group'>
+  <%= form.label :description %>
+  <%= form.text_area :description, class: 'form-control' %>
+</div>
+<div class='form-group'>
+  <%= form.label :assignee %>
+  <%= form.select(:assignee_id, options_for_select(valid_assignees.collect { |key, _| [key.email, key.id] }, selected: form.object.assignee_id), { include_blank: true }, {class: 'form-control'}) %>
+</div>
+<div class='form-group'>
+  <%= form.label :priority %>
+  <%= form.select(:priority, options_for_select(create_select_options_for_enum(:priority, Issue.priorities.keys), selected: form.object.priority), {}, {class: 'form-control'}) %>
+</div>
+<div class='form-group'>
+  <%= form.label :issue_type %>
+  <%= form.select(:issue_type, options_for_select(create_select_options_for_enum(:issue_type, Issue.issue_types.keys), selected: form.object.issue_type), {}, {class: 'form-control'}) %>
+</div>

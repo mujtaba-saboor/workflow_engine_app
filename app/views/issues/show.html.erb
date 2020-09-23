@@ -1,0 +1,9 @@
+<div class="container">
+  <div id="issue" class="card">
+    <%= render 'issue_body', issue: @issue %>
+  </div>
+  <hr>
+  <div id="page_comments" class="my-4">
+    <%= render 'comments/comments', resource: @issue, comment: @comment, comments: @comments, pagy: @pagy %>
+  </div>
+</div>

@@ -21,8 +21,10 @@ class User < ApplicationRecord
   has_many :projects, through: :project_users
   has_many :team_users
   has_many :teams, through: :team_users
-  has_many :comments
-  has_many :watchers
+  has_many :comments, dependent: :destroy
+  has_many :watchers, dependent: :destroy
+  has_many :created_issues, class_name: 'Issue', foreign_key: 'creator_id', inverse_of: 'creator', dependent: :destroy
+  has_many :assigned_issues, class_name: 'Issue', foreign_key: 'assignee_id', inverse_of: 'assignee', dependent: :nullify
 
   def self.find_for_authentication(warden_conditions)
     where(email: warden_conditions[:email], company_id: Company.current_id).first
@@ -57,14 +59,14 @@ class User < ApplicationRecord
   end
 
   def staff?
-    role.eql? ROLES[0]
+    role == ROLES[0]
   end
 
   def admin?
-    role.eql? ROLES[1]
+    role == ROLES[1]
   end
 
   def account_owner?
-    role.eql? ROLES[2]
+    role == ROLES[2]
   end
 end

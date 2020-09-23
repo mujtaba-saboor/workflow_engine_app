@@ -1,6 +1,16 @@
 module ApplicationHelper
   include Pagy::Frontend
 
+  # This helper method overrides the helper method with same name for pagy gem
+  # This override gives facility to provide a base path for the pagy links via the 'custom_link' instance variable
+  def pagy_url_for(page, pagy, url = false)
+    path = pagy.instance_variable_get(:@custom_link)
+    path ||= request.path
+
+    p_vars = pagy.vars; params = request.GET.merge(p_vars[:params]); params[p_vars[:page_param].to_s] = page
+    "#{request.base_url if url}#{path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
+  end
+
   def bootstrap_color_for_alert(alert_type)
     case alert_type
     when 'error'
@@ -13,7 +23,7 @@ module ApplicationHelper
   end
 
   def get_top_nav_links
-    { t('shared.home') => root_url, t('shared.about') => about_url, t('shared.contact_us') => contact_us_url }
+    { t('shared.home') => '#', t('shared.about') => '#', t('shared.contact_us') => '#' }
   end
 
   def get_sidebar_links
