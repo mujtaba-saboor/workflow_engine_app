@@ -3,6 +3,12 @@
     <%= render 'issue_body', issue: @issue %>
   </div>
   <hr>
+  <div id="documents">
+    <% @issue.documents.each do |document| %>
+      <%= link_to document.blob.filename, rails_service_blob_path(document.blob, filename: document.blob.filename) %>
+    <% end %>
+    <hr>
+  </div>
   <div id="page_comments" class="my-4">
     <%= render 'comments/comments', resource: @issue, comment: @comment, comments: @comments, pagy: @pagy %>
   </div>

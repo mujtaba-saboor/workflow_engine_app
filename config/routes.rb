@@ -11,7 +11,6 @@ Rails.application.routes.draw do
         patch 'add_user_to_project'
         delete 'remove_user_from_project'
       end
-
       resources :issues do
         member do
           patch :update_status
@@ -42,5 +41,6 @@ Rails.application.routes.draw do
     get '/contact_us', to: 'home#contact_us'
     root 'home#index'
   end
+
   devise_for :users
 end

@@ -30,6 +30,9 @@ class User < ApplicationRecord
     where(email: warden_conditions[:email], company_id: Company.current_id).first
   end
 
+  validates :role, inclusion: { in: %w(OWNER STAFF ADMIN),
+  message: "%{value} is not a valid role" }
+  
   def all_projects
     company = Company.first
     all_individual_projects = projects.ids

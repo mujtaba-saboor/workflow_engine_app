@@ -96,6 +96,6 @@ class IssuesController < ApplicationController
   end
 
   def issue_params
-    params.require(:issue).permit(:title, :description, :issue_type, :priority, :status, :assignee_id)
+    params.require(:issue).permit(:title, :description, :issue_type, :priority, :status, :assignee_id, documents: [])
   end
 end
