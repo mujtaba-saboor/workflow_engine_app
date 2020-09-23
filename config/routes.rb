@@ -11,7 +11,17 @@ Rails.application.routes.draw do
         patch 'add_user_to_project'
         delete 'remove_user_from_project'
       end
+      resources :issues do
+        member do
+          patch :update_status
+        end
+      end
     end
+
+    resources :issues, only: [] do
+      resources :comments, only: %i[create edit update destroy]
+    end
+
     resources :teams do
       member do
         get 'new_user_for_team'
@@ -33,4 +43,5 @@ Rails.application.routes.draw do
     root 'home#index'
   end
   resources :users, only: [:show], constraints: {subdomain: /.+/ }
+  devise_for :users
 end

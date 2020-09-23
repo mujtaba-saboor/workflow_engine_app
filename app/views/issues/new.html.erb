@@ -1,0 +1,9 @@
+<div class="container">
+  <h3 class="mb-4"><%= t 'issues.new_form.title' %></h3>
+  <h5><%= "#{Project.model_name.human}: #{@project.name}"%></h5>
+
+  <%= form_for [@project, @issue], url: { action: "create" } do |f| %>
+    <%= render partial: 'issue_form_internal', locals: { issue: @issue, valid_assignees: @valid_assignees,form: f } %>
+    <%= submit_tag t('shared.create'), class: 'btn btn-info' %>
+  <% end %>
+</div>
