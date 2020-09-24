@@ -1,9 +1,9 @@
 <div class="col-md-9">
   <div class="profile-head">
     <br>
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <ul class="nav nav-tabs">
           <li class="nav-item">
-              <a class="nav-link active">About</a>
+              <a class="nav-link active"><%= t('shared.about') %></a>
           </li>
       </ul>
   </div>
@@ -12,7 +12,7 @@
 <div class="col-md-8">
     <div class="row">
         <div class="col-md-6">
-            <label><%= t('users.name_label') %></label>
+            <label><%= t('users.name').capitalize() %>:</label>
         </div>
         <div class="col-md-6">
             <p><%= @user.name %></p>
@@ -20,7 +20,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <label><%= t('users.email_label') %></label>
+            <label><%= t('users.email').capitalize() %>:</label>
         </div>
         <div class="col-md-6">
             <p><%= @user.email %></p>
@@ -28,7 +28,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <label><%= t('users.role_label') %></label>
+            <label><%= t('users.role').capitalize() %>:</label>
         </div>
         <div class="col-md-6">
             <p><%= @user.role %></p>
@@ -36,7 +36,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <label><%= t('users.company_label') %></label>
+            <label><%= t('users.company').capitalize() %>:</label>
         </div>
         <div class="col-md-6">
             <p><%= @user.company.name %></p>
@@ -44,6 +44,6 @@
     </div>
     <br>
     <div>
-      <%= button_to t('shared.update_resource', resource_name: 'User'), edit_user_registration_path, method: :get, class: 'btn btn-info' %>
+      <%= button_to t('shared.update_resource', resource_name: t('shared.user')), { :action => "show" }, method: :get, class: 'btn btn-info' %>
     </div>
 </div>

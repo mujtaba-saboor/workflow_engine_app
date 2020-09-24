@@ -129,10 +129,9 @@ en:
     leave_blank_line: "leave blank if you don't want to change it"
     need_for_current_password: 'we need your current password to confirm your changes'
     send_invite: 'Send Invitation'
-    name_label: 'Name:'
-    role_label: 'Role:'
-    email_label: 'Email:'
-    company_label: 'Company:'
+    name: 'name'
+    role: 'role'
+    company: 'company'
   issues:
     no_assignee_assigned: 'Assignee is not assigned for this issue'
     edit_form:
