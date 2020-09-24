@@ -1,0 +1,2 @@
+<h3><%= "Stopped Watching Issue '#{@issue.title}'" %></h3>
+<p>You stopped watching the issue '<%= link_to @issue.title, project_issue_url(@issue.project_id, @issue.id, subdomain: @subdomain) %>'</p>

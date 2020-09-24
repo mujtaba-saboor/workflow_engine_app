@@ -48,6 +48,12 @@ en:
         user: *user_label
         body: 'Body'
 
+  watcher_mailer:
+    watching_issue_now:
+      subject: 'Started Watching Issue'
+    stopped_watching_issue:
+      subject: 'Stopped Watching Issue'
+
   comments:
     comment_form_label: 'Add a comment'
     comment_form_placeholder: 'Enter comment here ...'

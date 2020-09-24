@@ -7,11 +7,12 @@ class WatchersController < ApplicationController
   # POST /issues/:issue_id/watchers
   def create
     if @watcher.save
-      flash[:notice] = t('watchers.creation.success')
+      flash.now[:notice] = t('watchers.creation.success')
 
       # send email to the watching user
+      WatcherMailer.watching_issue_now(current_user, @issue, @current_company.subdomain).deliver
     else
-      flash[:error] = t('watchers.creation.failure')
+      flash.now[:error] = t('watchers.creation.failure')
       @watcher = nil
     end
 
@@ -23,10 +24,11 @@ class WatchersController < ApplicationController
   # DELETE /issues/:issue_id/watchers/:id
   def destroy
     if @watcher.destroy
-      flash[:notice] = t('watchers.deletion.success')
+      flash.now[:notice] = t('watchers.deletion.success')
+      WatcherMailer.stopped_watching_issue(current_user, @issue, @current_company.subdomain).deliver
       @watcher = nil
     else
-      flash[:error] = t('watchers.deletion.failure')
+      flash.now[:error] = t('watchers.deletion.failure')
     end
 
     respond_to do |format|
