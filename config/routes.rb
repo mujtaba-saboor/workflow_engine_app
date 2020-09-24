@@ -43,5 +43,4 @@ Rails.application.routes.draw do
     root 'home#index'
   end
   resources :users, only: [:show], constraints: {subdomain: /.+/ }
-  devise_for :users
 end

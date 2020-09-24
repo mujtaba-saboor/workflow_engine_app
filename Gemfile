@@ -45,12 +45,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise', '= 4.7.2'
 
-gem 'pagy', '= 3.5'
-
 gem 'sequenceid', '= 0.0.6'
-
-gem 'pry', '=0.13.1'
-gem 'pry-rails', '=0.3.9'
 
 gem 'devise_invitable', '= 2.0.2'
 
