@@ -134,6 +134,7 @@ en:
     name: 'name'
     role: 'role'
     company: 'company'
+    username: "%{user_name}"
   issues:
     no_assignee_assigned: 'Assignee is not assigned for this issue'
     edit_form:
@@ -171,7 +172,7 @@ en:
     watching_issues: 'Watching Issues'
     project_categories: 'Project Categories'
     project_categories_team: 'Team'
-    project_categories_individual: 'Individual'    
+    project_categories_individual: 'Individual'
   projects:
     helloworld: '123'
     form_name_placeholder: &form_name_placeholder 'Enter name here'
