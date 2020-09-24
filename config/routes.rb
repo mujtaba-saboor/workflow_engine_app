@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
     resources :issues, only: [] do
       resources :comments, only: %i[create edit update destroy]
+      resource :watchers, only: %i[create destroy]
     end
 
     resources :teams do

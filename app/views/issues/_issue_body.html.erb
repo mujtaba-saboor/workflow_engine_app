@@ -23,4 +23,8 @@
   <% if can? :destroy, issue %>
     <%= link_to t('shared.delete'), project_issue_path(issue.project, issue), method: :delete, data: { confirm: t('shared.deletion_confirmation_message', resource: Issue.model_name.human.downcase) }, class: 'btn btn-danger' %>
   <% end %>
+  <span id="watch_issue">
+    <% p current_user %>
+    <%= render 'watchers/watch_links', issue: issue, watching_issue: Watcher.watching_issue?(current_user, issue) %>
+  </span>
 </div>

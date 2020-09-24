@@ -198,3 +198,13 @@ en:
     deletion: '%{name} Removed Successfully'
     warning: '%{warning_msg}'
     error: 'Error Occured: %{error_msg}'
+  watchers:
+    watch: 'Watch'
+    unwatch: 'Unwatch'
+    unwatch_message: 'Are you sure you want to stop watching this issue'
+    creation:
+      success: 'Watching the issue now'
+      failure: 'Could not watch the issue'
+    deletion:
+      success: 'Successfully removed watching issue'
+      failure: 'Could not unwatch issue' 

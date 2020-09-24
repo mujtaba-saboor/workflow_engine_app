@@ -22,6 +22,10 @@ class Ability
 
     can :create, Issue, company_id: user.company_id, creator_id: user.id
 
+    can :watch_issue, Issue, company_id: user.company_id
+
+    can :create, Watcher, company_id: user.company_id, user_id: user.id
+
     return unless user.admin? || user.account_owner?
 
     # *** ADMINS and OWNERS ***
