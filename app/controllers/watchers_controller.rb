@@ -6,13 +6,13 @@ class WatchersController < ApplicationController
 
   # POST /issues/:issue_id/watchers
   def create
-    p @watcher
     if @watcher.save
       flash[:notice] = t('watchers.creation.success')
-      @watching_issue = true
+
+      # send email to the watching user
     else
       flash[:error] = t('watchers.creation.failure')
-      @watching_issue = false
+      @watcher = nil
     end
 
     respond_to do |format|
@@ -20,15 +20,13 @@ class WatchersController < ApplicationController
     end
   end
 
-  # DELETE /issues/:issue_id/watchers/
+  # DELETE /issues/:issue_id/watchers/:id
   def destroy
-    @watcher = Watcher.find_by(user_id: current_user.id, issue_id: @issue.id)
     if @watcher.destroy
       flash[:notice] = t('watchers.deletion.success')
-      @watching_issue = false
+      @watcher = nil
     else
       flash[:error] = t('watchers.deletion.failure')
-      @watching_issue = true
     end
 
     respond_to do |format|

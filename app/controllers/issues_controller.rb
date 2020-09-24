@@ -4,6 +4,7 @@ class IssuesController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource through: :project
   before_action :load_valid_assignees, only: %i[new edit update create]
+  before_action :load_issue_watcher, only: %i[show update_status]
 
   # GET /projects/:project_id/issues/:id
   def show
@@ -93,6 +94,10 @@ class IssuesController < ApplicationController
 
   def load_valid_assignees
     @valid_assignees = @project.valid_assignees
+  end
+
+  def load_issue_watcher
+    @watcher = current_user.watcher_for(@issue)
   end
 
   def issue_params
