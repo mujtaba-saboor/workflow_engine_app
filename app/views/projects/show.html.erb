@@ -21,11 +21,53 @@
     </ul>
   </div>
 </div>
+
 <div class="row">
   <div class="col-lg-10 offset-lg-1">
     <div class = "my-custom-project-data-area">
-      <table class="table table-hover">
-      </table>
+      <% if @project_issues.any?%>
+        <br>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th><%= t('issues.issue_title') %></th>
+              <th><%= t('issues.issue_type') %></th>
+              <th><%= t('issues.issue_priority') %></th>
+              <th><%= t('issues.issue_assignee') %></th>
+              <th><%= t('issues.issue_status') %></th>
+              <th class="table-center-buttons">
+                <% if can? :create, Issue %>
+                  <%= link_to t('projects.add_issue'),new_project_issue_path(@project),class: 'btn my-primary-btn' %></th>
+                <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @project_issues.each do |issue| %>
+              <tr>
+                <td><%= issue.title %></td>
+                <td><%= issue.issue_type %></td>
+                <td><%= issue.priority %></td>
+                <td><%= issue.assignee&.name || t('issues.not_assigned') %></td>
+                <td><%= issue.status %></td>
+                <td class="text-center">
+                  <% if can? [:destroy, :update], issue %>
+                    <%= link_to t('shared.delete'), project_issue_path(issue.project, issue), method: :delete, data: { confirm: t('shared.deletion_confirmation_message', resource: t('shared.issue')) }, class: 'btn btn-sm btn-danger' %>
+                    <%= link_to t('shared.edit'), edit_project_issue_path(@project, issue), class: 'btn btn-sm my-primary-btn ' %>
+                  <% end %>
+                  <%= link_to t('shared.show'), project_issue_path(@project, issue), class: 'btn btn-sm my-primary-btn ' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%== pagy_bootstrap_nav(@pagy) %>
+      <% else %>
+        <br>
+        <h6>
+          <%= t('projects.no_issue') %>
+        </h6>
+        <%= link_to t('projects.add_issue'),new_project_issue_path(@project), class: 'btn my-primary-btn' %>
+      <% end %>
     </div>
   </div>
 </div>

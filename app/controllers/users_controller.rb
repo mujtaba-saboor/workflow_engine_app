@@ -1,7 +1,12 @@
 include Pagy::Backend
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  load_and_authorize_resource find_by: :sequence_num, through: :current_company
+  def show
+    respond_to { |format| format.html }
+  end
+
   def index
-    @pagy, @users = pagy(User.where(params[:company_id]),  items: Company::PAGE_SIZE)
+    @pagy, @users = pagy(@users,  items: Company::PAGE_SIZE)
+    respond_to { |format| format.html }
   end
 end

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  sequenceid :company ,:users
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   include Devise::Models::Validatable
@@ -32,9 +33,8 @@ class User < ApplicationRecord
 
   validates :role, inclusion: { in: %w(OWNER STAFF ADMIN),
   message: "%{value} is not a valid role" }
-  
+
   def all_projects
-    company = Company.first
     all_individual_projects = projects.ids
     all_team_projects = company.projects.joins(:teams).where(teams: { id: teams.pluck(:id) }).pluck(:id)
     company.projects.where(id: all_individual_projects | all_team_projects)
@@ -44,20 +44,20 @@ class User < ApplicationRecord
     if staff?
       all_projects.count
     else
-      Project.all.count
+      company.projects.count
     end
   end
 
   # Specifically made for STAFF user
   def get_team_project_count
-    Project.where(project_category: Project::PROJECT_CATEGORIES[0]).where(id: teams.pluck(:id)).count
+    company.projects.joins(:teams).where(teams: { id: teams.pluck(:id) }).count
   end
 
   def get_team_count
-    if staff?
+    if staff?      
       teams.count
     else
-      Team.all.count
+      company.teams.count
     end
   end
 
