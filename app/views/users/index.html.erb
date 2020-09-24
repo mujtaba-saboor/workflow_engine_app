@@ -1,8 +1,17 @@
 <h1><%= t('shared.users') %></h1>
 <% @users.each do |user| %>
-  <%= user.name %>
-  <b>(<%= user.role %>)</b>
-  <br>
+    <div class="row">
+        <div class="col-md-2">
+            <label><%= user.name %></label>
+        </div>
+        <div class="col-md-3">
+            <label><%= user.email %></label>
+        </div>
+        <div class="col-md-3">
+            <label><%= user.role %></label>
+        </div>
+    </div>
+    <br>
 <% end %>
 <br><br>
 <div>
