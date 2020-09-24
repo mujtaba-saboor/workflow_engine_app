@@ -18,11 +18,9 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 
-#for authorization
+# for authorization
 gem 'cancancan', '= 3.1.0'
 
-gem 'pry', '=0.13.1'
-gem 'pry-rails', '=0.3.9'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -32,6 +30,13 @@ gem 'pry-rails', '=0.3.9'
 gem 'aasm', '= 5.1.1'
 gem 'after_commit_everywhere', '= 0.1.5'
 
+# pry
+gem 'pry', '=0.13.1'
+gem 'pry-rails', '=0.3.9'
+
+# pagy
+gem 'pagy', '=3.8.3'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -39,8 +44,6 @@ gem 'after_commit_everywhere', '= 0.1.5'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise', '= 4.7.2'
-
-gem 'pagy', '= 3.5'
 
 gem 'devise_invitable', '= 2.0.2'
 

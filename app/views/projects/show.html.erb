@@ -35,7 +35,10 @@
               <th><%= t('issues.issue_priority') %></th>
               <th><%= t('issues.issue_assignee') %></th>
               <th><%= t('issues.issue_status') %></th>
-              <th style="text-align: center;"><%= link_to t('projects.add_issue'),'#',class: 'btn my-primary-btn' %></th>
+              <th class="table-center-buttons">
+                <% if can? :create, Issue %>
+                  <%= link_to t('projects.add_issue'),new_project_issue_path(@project),class: 'btn my-primary-btn' %></th>
+                <% end %>
             </tr>
           </thead>
           <tbody>
@@ -44,12 +47,14 @@
                 <td><%= issue.title %></td>
                 <td><%= issue.issue_type %></td>
                 <td><%= issue.priority %></td>
-                <td><%= issue.assignee.name %></td>
+                <td><%= issue.assignee ? issue.assignee.name : t('issues.not_assigned') %></td>
                 <td><%= issue.status %></td>
-                <td style="text-align: center;">
-                  <%= link_to t('shared.delete'),'#',class: 'btn btn-sm btn-danger' %>
-                  <%= link_to t('shared.edit'),'#',class: 'btn btn-sm my-primary-btn ' %>
-                  <%= link_to t('shared.show'),'#',class: 'btn btn-sm my-primary-btn ' %>
+                <td class="table-center-buttons">
+                  <% if can? [:destroy, :update], issue %>
+                    <%= link_to t('shared.delete'), project_issue_path(issue.project, issue), method: :delete, data: { confirm: t('shared.deletion_confirmation_message', resource: Issue.model_name.human.downcase) }, class: 'btn btn-sm btn-danger' %>
+                    <%= link_to t('shared.edit'),edit_project_issue_path(@project, issue),class: 'btn btn-sm my-primary-btn ' %>
+                  <% end %>
+                  <%= link_to t('shared.show'),project_issue_path(@project, issue),class: 'btn btn-sm my-primary-btn ' %>
                 </td>
               </tr>
             <% end %>
@@ -61,7 +66,7 @@
         <h6>
           <%= t('projects.no_issue') %>
         </h6>
-        <%= link_to t('projects.add_issue'),'#', class: 'btn my-primary-btn' %>
+        <%= link_to t('projects.add_issue'),new_project_issue_path(@project), class: 'btn my-primary-btn' %>
       <% end %>
     </div>
   </div>

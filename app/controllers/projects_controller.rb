@@ -16,9 +16,6 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    company = Company.first
-    @project.company = company
-
     if @project.save
       flash[:success] = t('flash_messages.create', name: t('shared.project'))
     else
@@ -78,10 +75,9 @@ class ProjectsController < ApplicationController
   end
 
   def add_team_to_project
-    company = Company.first
     team = Team.find_by_id params[:project][:team]
     if team.present?
-      if ProjectTeam.create(project: @project, team: team, company: company)
+      if ProjectTeam.create(project: @project, team: team)
         flash[:success] = t('flash_messages.addition', name: t('shared.team'))
       else
         flash[:danger] = t('flash_messages.error')
@@ -120,11 +116,10 @@ class ProjectsController < ApplicationController
   end
 
   def add_user_to_project
-    company = Company.first
     user = User.find(params[:project][:user])
     
     if user.present?
-      if ProjectUser.create(project: @project, user: user, company: company)
+      if ProjectUser.create(project: @project, user: user)
         flash[:success] = t('flash_messages.addition', name: t('shared.user'))
       else
         flash[:danger] = t('flash_messages.error')
