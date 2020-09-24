@@ -17,7 +17,11 @@
 <% end %>
 <br><br>
 <div>
-  <%= button_to t('shared.new_resource', resource_name: t('shared.user')), new_user_invitation_path, class: 'btn btn-info', method: :get %>
+  <div class="left-margin-class">
+    <%= button_to t('shared.new_resource', resource_name: t('shared.user')), new_user_invitation_path, class: 'btn btn-info', method: :get %>
+  </div>
 </div>
 <br>
-<%== pagy_bootstrap_nav(@pagy) %>
+<div class="left-margin-class">
+  <%== pagy_bootstrap_nav(@pagy) %>
+</div>

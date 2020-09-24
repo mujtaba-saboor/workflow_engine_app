@@ -9,15 +9,9 @@ class Ability
     return if user.blank?
 
     if user.account_owner?
-      can :manage, :all
+      can :manage, :all, company_id: user.company_id
     elsif user.staff?
-      can :read, Team, id: user.teams.pluck(:id)
-      can :read, Project,  id: user.id
-      can :project_users, Project
       can :read, User, sequence_num: user.sequence_num, company_id: user.company_id
-    elsif user.admin?
-      can :manage, :all
-      cannot :destroy, User, role: User::ROLES[2]
     end
     # *** SIGNED IN USERS ***
     can :read, Team, id: user.teams.pluck(:id)
