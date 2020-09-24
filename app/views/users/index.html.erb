@@ -1,13 +1,27 @@
 <h1><%= t('shared.users') %></h1>
-
-  <% @users.each do |user| %>
-    <%= user.name %>
-    <b>(<%= user.role %>)</b>
+<% @users.each do |user| %>
+    <div class="row">
+        <div class="col-md-3">
+          <div class="left-margin-class">
+            <label><%= user.name %></label>
+          </div>
+        </div>
+        <div class="col-md-3">
+            <label><%= user.email %></label>
+        </div>
+        <div class="col-md-3">
+            <label><%= user.role %></label>
+        </div>
+    </div>
     <br>
-  <% end %>
+<% end %>
 <br><br>
-  <div>
-    <%= button_to t('shared.new_resource', resource_name: User), new_user_invitation_path, class: 'btn btn-info', method: :get %>
+<div>
+  <div class="left-margin-class">
+    <%= button_to t('shared.new_resource', resource_name: t('shared.user')), new_user_invitation_path, class: 'btn btn-info', method: :get %>
   </div>
+</div>
 <br>
-<%= pagy_nav(@pagy).html_safe %>
+<div class="left-margin-class">
+  <%== pagy_bootstrap_nav(@pagy) %>
+</div>

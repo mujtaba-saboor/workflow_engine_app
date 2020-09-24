@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   load_and_authorize_resource
   def index
+    @pagy, @teams = pagy(@teams, items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
     end
@@ -13,9 +14,6 @@ class TeamsController < ApplicationController
   end
 
   def create
-    company = Company.first
-    @team.company = company
-
     if @team.save
       flash[:success] = t('flash_messages.create', name: t('shared.team'))
     else
@@ -72,11 +70,10 @@ class TeamsController < ApplicationController
   end
 
   def add_user_to_team
-    company = Company.first
     user = User.find(params[:team][:user])
 
     if user.present?
-      if TeamUser.create(team: @team, user: user, company: company)
+      if TeamUser.create(team: @team, user: user)
         flash[:success] = t('flash_messages.addition', name: t('shared.user'))
       else
         flash[:danger] = t('flash_messages.error')
@@ -84,7 +81,6 @@ class TeamsController < ApplicationController
     else
       flash[:danger] = t('flash_messages.error')
     end
-
     respond_to do |format|
       format.js { redirect_to team_path(@team) }
     end
