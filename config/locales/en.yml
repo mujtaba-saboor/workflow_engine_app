@@ -5,7 +5,7 @@
 
 # The '&name' serve as hooks (can be called variables) and can be used later as '*name'
 en:
-  # For active record model translations visit: https://guides.rubyonrails.org/i18n.html#translations-for-active-record-models 
+  # For active record model translations visit: https://guides.rubyonrails.org/i18n.html#translations-for-active-record-models
   activerecord:
     models:
       user: &user_label
@@ -129,6 +129,9 @@ en:
     leave_blank_line: "leave blank if you don't want to change it"
     need_for_current_password: 'we need your current password to confirm your changes'
     send_invite: 'Send Invitation'
+    name: 'name'
+    role: 'role'
+    company: 'company'
   issues:
     no_assignee_assigned: 'Assignee is not assigned for this issue'
     edit_form:
@@ -140,7 +143,7 @@ en:
       failure: 'Status could not be updated'
   home:
     welcome: 'Welcome to Workflow Engine'
-    sign_in: 
+    sign_in:
       title: *sign_in
       search: 'Search'
       email_address_placeholder: 'Enter your email address here'

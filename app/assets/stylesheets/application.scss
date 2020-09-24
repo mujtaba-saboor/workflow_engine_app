@@ -18,18 +18,18 @@ $pagination-link-btn-border-color: #ddd;
   }
 }
 .my-primary-btn{
-  
+
   background-color: $primary-color !important;
   color: white !important;
 
-  &:hover { 
-    background-color: $hover-primary-color !important; 
+  &:hover {
+    background-color: $hover-primary-color !important;
   }
 }
 
 .pagination {
   li {
-    a {      
+    a {
       background-color: white;
       color: $primary-color !important;
 
@@ -38,7 +38,7 @@ $pagination-link-btn-border-color: #ddd;
         background-color: $pagination-link-btn-background-color;
         border-color: $pagination-link-btn-border-color;
       }
-    
+
       &:hover {
         color: $pagination-link-btn-text-color;
         background-color: $pagination-link-btn-background-color;
@@ -64,4 +64,8 @@ $pagination-link-btn-border-color: #ddd;
       }
     }
   }
+}
+
+.left-margin-class{
+  margin-left: 3em;
 }
