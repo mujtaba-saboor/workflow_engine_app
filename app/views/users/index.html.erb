@@ -1,8 +1,10 @@
 <h1><%= t('shared.users') %></h1>
 <% @users.each do |user| %>
     <div class="row">
-        <div class="left-margin-class">
+        <div class="col-md-3">
+          <div class="left-margin-class">
             <label><%= user.name %></label>
+          </div>
         </div>
         <div class="col-md-3">
             <label><%= user.email %></label>
