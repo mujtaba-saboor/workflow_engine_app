@@ -8,9 +8,7 @@ class Ability
     # *** ALL USERS ***
     return if user.blank?
 
-    if user.account_owner?
-      can :manage, :all, company_id: user.company_id
-    elsif user.staff?
+    if user.staff?
       can :read, User, sequence_num: user.sequence_num, company_id: user.company_id
     end
     # *** SIGNED IN USERS ***
