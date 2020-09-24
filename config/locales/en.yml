@@ -76,6 +76,8 @@ en:
     teams: 'Teams'
     project: 'Project'
     projects: 'Projects'
+    issue: 'Issue'
+    issues: 'Issues'
     new_resource: 'Add New %{resource_name}'
     edit_resource: 'Edit %{resource_name}'
     form_name_placeholder: 'Enter name here'
@@ -141,6 +143,19 @@ en:
     update_status:
       success: "Status updated to '%{new_status}'"
       failure: 'Status could not be updated'
+    issues_open: 'Open'
+    issues_inprogress: 'In Progress'
+    issues_resolved: 'Resolved'
+    issues_closed: 'Closed'
+    issue_priority: 'Issues Priorities'
+    issue_priority_high: 'High'
+    issue_priority_low: 'Low'
+    issue_title: 'Title'
+    issue_type: 'Type'
+    issue_priority: 'Priority'
+    issue_status: 'Status'
+    issue_assignee: 'Assignee'
+    not_assigned: '----'
   home:
     welcome: 'Welcome to Workflow Engine'
     sign_in:
@@ -156,15 +171,7 @@ en:
     watching_issues: 'Watching Issues'
     project_categories: 'Project Categories'
     project_categories_team: 'Team'
-    project_categories_individual: 'Individual'
-    issues: 'Issues'
-    issues_open: 'Open'
-    issues_inprogress: 'In Progress'
-    issues_resolved: 'Resolved'
-    issues_closed: 'Closed'
-    issue_priority: 'Issues Priorities'
-    issue_priority_high: 'High'
-    issue_priority_low: 'Low'
+    project_categories_individual: 'Individual'    
   projects:
     helloworld: '123'
     form_name_placeholder: &form_name_placeholder 'Enter name here'
@@ -182,6 +189,7 @@ en:
     add_issue: 'Add Issue'
     all_projects: 'All Projects'
     no_destroy: "Project can't be Destroyed"
+    no_issue: 'This Project has no issue'
   teams:
     form_name_placeholder: *form_name_placeholder
     add_user: *add_user

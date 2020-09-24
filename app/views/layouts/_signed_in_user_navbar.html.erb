@@ -15,9 +15,12 @@
   <div class='collapse navbar-collapse' id='navbar_nav'>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="user_profile_dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= current_user.name %> <small>< <%= current_user.role.downcase %>, <%= current_user.email %> ></small>
         </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="user-dropdown">
+          <%= link_to t('users.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item'%>
+        </div>
         <div class="dropdown-menu" aria-labelledby="user_profile_dropdown">
           <%= link_to t('users.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item btn btn-outline-danger my-1 mr-md-2'%>
         </div>
