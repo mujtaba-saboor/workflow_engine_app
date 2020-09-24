@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @pagy, @users = pagy(User.where(params[:company_id]),  items: Company::PAGE_SIZE)
+    @pagy, @users = pagy(@users,  items: Company::PAGE_SIZE)
     respond_to { |format| format.html }
   end
 end

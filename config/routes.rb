@@ -42,5 +42,5 @@ Rails.application.routes.draw do
     get '/contact_us', to: 'home#contact_us'
     root 'home#index'
   end
-  resources :users, only: [:show], constraints: {subdomain: /.+/ }
+  resources :users, only: [:index, :show], constraints: {subdomain: /.+/ }
 end
