@@ -2,7 +2,7 @@ include Pagy::Backend
 class UsersController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
   def show
-    add_breadcrumb t('users.username', user_name: current_user.name), :user_path
+    add_breadcrumb @user.name, :user_path
     respond_to { |format| format.html }
   end
 

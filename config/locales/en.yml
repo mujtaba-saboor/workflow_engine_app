@@ -134,7 +134,6 @@ en:
     name: 'name'
     role: 'role'
     company: 'company'
-    username: "%{user_name}"
   issues:
     no_assignee_assigned: 'Assignee is not assigned for this issue'
     edit_form:
