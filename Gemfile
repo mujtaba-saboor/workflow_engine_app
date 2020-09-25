@@ -37,6 +37,8 @@ gem 'pry-rails', '=0.3.9'
 # pagy
 gem 'pagy', '=3.8.3'
 
+gem "breadcrumbs_on_rails"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -46,8 +48,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise', '= 4.7.2'
 
 gem 'sequenceid', '= 0.0.6'
-
-gem 'breadcrumbs_on_rails', '=4.0.0'
 
 gem 'devise_invitable', '= 2.0.2'
 
