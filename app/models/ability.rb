@@ -9,7 +9,7 @@ class Ability
     return if user.blank?
 
     # *** SIGNED IN USERS ***
-    can :read, Team, id: user.teams.pluck(:id)
+    can :read, Team, sequence_num: user.teams.pluck(:sequence_num), company_id: user.company_id
     can :read, Project, sequence_num: user.all_projects.pluck(:sequence_num), company_id: user.company_id
     can :project_users, Project
 
