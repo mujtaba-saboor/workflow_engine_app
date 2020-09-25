@@ -80,10 +80,8 @@ class IssuesController < ApplicationController
       @issue.public_send("#{update_event.name}!")
 
       # Send mail to watchers
-      watchers = @issue.watchers.includes(:user)
-      watchers.each do |watcher|
-        WatcherMailer.issue_status_change(watcher.user, @issue, @current_company.subdomain).deliver
-      end
+      @issue.inform_status_change
+
       # TODO: Change the internationalization method for aasm states from enum type internationalization mechanism to
       # aasm I18n internationalization
       flash.now[:notice] = t('issues.update_status.success', new_status: Issue.human_enum_name(:status, @issue.status))

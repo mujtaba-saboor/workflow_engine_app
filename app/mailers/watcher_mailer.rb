@@ -14,10 +14,6 @@ class WatcherMailer < ApplicationMailer
     send_mail(user, issue, subdomain)
   end
 
-  def issue_status_change(user, issue, subdomain)
-    send_mail(user, issue, subdomain)
-  end
-
   private
 
   def send_mail(user, issue, subdomain)

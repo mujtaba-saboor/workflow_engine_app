@@ -48,4 +48,10 @@ class Issue < ApplicationRecord
     puts "Current event: #{aasm.current_event}"
     puts "Transition Callback: from #{aasm.from_state} to #{aasm.to_state}"
   end
+
+  def inform_status_change
+    watchers.includes(:user).each do |watcher|
+      IssueMailer.delay.status_change(watcher.user, self, company.subdomain)
+    end
+  end
 end

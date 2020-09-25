@@ -37,6 +37,9 @@ gem 'pry-rails', '=0.3.9'
 # pagy
 gem 'pagy', '=3.8.3'
 
+# delayed_job
+gem 'delayed_job_active_record', '=4.1.4'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

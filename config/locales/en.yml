@@ -53,6 +53,9 @@ en:
       subject: 'Started Watching Issue'
     stopped_watching_issue:
       subject: 'Stopped Watching Issue'
+  issue_mailer:
+    status_change:
+      subject: 'Status of an Issue Changed'
 
   comments:
     comment_form_label: 'Add a comment'

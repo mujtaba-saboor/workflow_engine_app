@@ -10,7 +10,7 @@ class WatchersController < ApplicationController
       flash.now[:notice] = t('watchers.creation.success')
 
       # send email to the watching user
-      WatcherMailer.watching_issue_now(current_user, @issue, @current_company.subdomain).deliver
+      @watcher.inform_started_watching
     else
       flash.now[:error] = t('watchers.creation.failure')
       @watcher = nil
@@ -25,7 +25,7 @@ class WatchersController < ApplicationController
   def destroy
     if @watcher.destroy
       flash.now[:notice] = t('watchers.deletion.success')
-      WatcherMailer.stopped_watching_issue(current_user, @issue, @current_company.subdomain).deliver
+      @watcher.inform_stopped_watching
       @watcher = nil
     else
       flash.now[:error] = t('watchers.deletion.failure')
