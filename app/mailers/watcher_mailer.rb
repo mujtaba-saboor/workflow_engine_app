@@ -5,11 +5,11 @@ class WatcherMailer < ApplicationMailer
   default to: -> { @user.email }
 
   def watching_issue_now
-    mail
+    mail subject: t('watcher_mailer.watching_issue_now.subject', issue_id: @issue.id)
   end
 
   def stopped_watching_issue
-    mail
+    mail subject: t('watcher_mailer.stopped_watching_issue.subject', issue_id: @issue.id)
   end
 
   private

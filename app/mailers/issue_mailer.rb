@@ -5,7 +5,7 @@ class IssueMailer < ApplicationMailer
   default to: -> { @user.email }
 
   def status_changed
-    mail
+    mail subject: t("issue_mailer.status_changed.subject_for.#{@watching_as}", issue_id: @issue.id)
   end
 
   private
@@ -14,5 +14,6 @@ class IssueMailer < ApplicationMailer
     @user = params[:user]
     @issue = params[:issue]
     @subdomain = params[:subdomain]
+    @watching_as = params[:watching_as]
   end
 end

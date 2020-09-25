@@ -50,12 +50,15 @@ en:
 
   watcher_mailer:
     watching_issue_now:
-      subject: 'Started Watching Issue'
+      subject: 'Started Watching Issue (#%{issue_id})'
     stopped_watching_issue:
-      subject: 'Stopped Watching Issue'
+      subject: 'Stopped Watching Issue (#%{issue_id})'
   issue_mailer:
-    status_change:
-      subject: 'Status of an Issue Changed'
+    status_changed:
+      subject_for:
+        watcher: 'Status of Issue (#%{issue_id}) Changed'
+        assignee: 'Your Assigned Issue (#%{issue_id}) Changed'
+        creator: 'Your Created Issue (#%{issue_id}) Changed'
 
   comments:
     comment_form_label: 'Add a comment'
