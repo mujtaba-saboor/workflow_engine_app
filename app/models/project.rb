@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-	sequenceid :company , :projects
+  sequenceid :company, :projects
   PROJECT_CATEGORIES = %w[TEAM INDIVIDUAL].freeze
 
   validates :name, presence: true, uniqueness: true

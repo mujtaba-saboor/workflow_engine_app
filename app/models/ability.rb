@@ -10,7 +10,7 @@ class Ability
 
     # *** SIGNED IN USERS ***
     can :read, Team, id: user.teams.pluck(:id)
-    can :read, Project, sequence_num: user.all_projects.pluck(:sequence_num)
+    can :read, Project, sequence_num: user.all_projects.pluck(:sequence_num), company_id: user.company_id
     can :project_users, Project
 
     can :create, Comment, user_id: user.id, company_id: user.company_id

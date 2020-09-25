@@ -1,5 +1,5 @@
 class Team < ApplicationRecord
-	sequenceid :company , :teams
+  sequenceid :company, :teams
   validates :name, presence: true, uniqueness: true
 
   belongs_to :company
