@@ -1,4 +1,5 @@
 class InvitesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:confirm_request]
   def new
     @invite = Invite.new
     @token = params[:invite_token] #<-- pulls the value from the url query string
@@ -13,7 +14,7 @@ class InvitesController < ApplicationController
     @invite.recipient.company = current_company
 
     if @invite.save
-      InviteMailer.with(invite: @invite, path: confirm_request_path(invite_token: @invite.token)).new_user_invite.deliver #send the invite data to our mailer to deliver the email
+      InviteMailer.with(invite: @invite, path: confirm_request_path).new_user_invite.deliver #send the invite data to our mailer to deliver the email
       flash[:success] = t('invites.send_successful')
       respond_to do |format|
         format.html { redirect_to new_invite_path }
