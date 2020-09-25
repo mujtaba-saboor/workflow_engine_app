@@ -41,11 +41,7 @@ class User < ApplicationRecord
   end
 
   def get_project_count
-    if staff?
-      all_projects.count
-    else
-      company.projects.count
-    end
+    staff? ? all_projects.count : company.projects.count
   end
 
   # Specifically made for STAFF user
@@ -54,11 +50,7 @@ class User < ApplicationRecord
   end
 
   def get_team_count
-    if staff?
-      teams.count
-    else
-      company.teams.count
-    end
+    staff? ? teams.count : company.teams.count
   end
 
   def staff?
