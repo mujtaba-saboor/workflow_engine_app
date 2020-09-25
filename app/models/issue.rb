@@ -51,7 +51,8 @@ class Issue < ApplicationRecord
 
   def inform_status_change
     watchers.includes(:user).each do |watcher|
-      IssueMailer.delay.status_change(watcher.user, self, company.subdomain)
+      # IssueMailer.delay.status_change(watcher.user, self, company.subdomain)
+      IssueMailer.with(user: watcher.user, issue: self, subdomain: company.subdomain).status_changed.deliver_later
     end
   end
 end

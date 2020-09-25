@@ -1,21 +1,22 @@
 # frozen_string_literal: true
 
 class WatcherMailer < ApplicationMailer
-  def watching_issue_now(user, issue, subdomain)
-    send_mail(user, issue, subdomain)
+  before_action :set_resources
+  default to: -> { @user.email }
+
+  def watching_issue_now
+    mail
   end
 
-  def stopped_watching_issue(user, issue, subdomain)
-    send_mail(user, issue, subdomain)
+  def stopped_watching_issue
+    mail
   end
 
   private
 
-  def send_mail(user, issue, subdomain)
-    @user = user
-    @issue = issue
-    @subdomain = subdomain
-
-    mail to: @user.email
+  def set_resources
+    @user = params[:user]
+    @issue = params[:issue]
+    @subdomain = params[:subdomain]
   end
 end

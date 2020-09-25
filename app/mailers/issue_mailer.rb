@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
 class IssueMailer < ApplicationMailer
-  def status_change(user, issue, subdomain)
-    send_mail(user, issue, subdomain)
+  before_action :set_resources
+  default to: -> { @user.email }
+
+  def status_changed
+    mail
   end
 
-  def send_mail(user, issue, subdomain)
-    @user = user
-    @issue = issue
-    @subdomain = subdomain
+  private
 
-    mail to: @user.email
+  def set_resources
+    @user = params[:user]
+    @issue = params[:issue]
+    @subdomain = params[:subdomain]
   end
 end
