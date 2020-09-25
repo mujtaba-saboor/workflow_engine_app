@@ -28,6 +28,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+
     respond_to do |format|
       format.js
     end
@@ -75,7 +76,7 @@ class ProjectsController < ApplicationController
   end
 
   def add_team_to_project
-    team = Team.find_by_id params[:project][:team]
+    team = current_company.teams.find_by_id params[:project][:team]
     if team.present?
       if ProjectTeam.create(project: @project, team: team)
         flash[:success] = t('flash_messages.addition', name: t('shared.team'))
@@ -92,7 +93,7 @@ class ProjectsController < ApplicationController
   end
 
   def remove_team_from_project
-    team = Team.find_by_id params[:team]
+    team = current_company.teams.find_by_id params[:team]
     
     if team.present?
       if @project.teams.delete(team)
@@ -116,7 +117,7 @@ class ProjectsController < ApplicationController
   end
 
   def add_user_to_project
-    user = User.find(params[:project][:user])
+    user = current_company.users.find(params[:project][:user])
     
     if user.present?
       if ProjectUser.create(project: @project, user: user)
@@ -134,7 +135,7 @@ class ProjectsController < ApplicationController
   end
 
   def remove_user_from_project
-    user = User.find(params[:user])
+    user = current_company.users.find(params[:user])
     
     if user.present?
       if @project.users.delete(user)

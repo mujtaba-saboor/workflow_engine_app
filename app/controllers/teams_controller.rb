@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource find_by: :sequence_num, through: :current_company
   def index
     @pagy, @teams = pagy(@teams, items: Company::PAGE_SIZE)
     respond_to do |format|
@@ -70,7 +70,7 @@ class TeamsController < ApplicationController
   end
 
   def add_user_to_team
-    user = User.find(params[:team][:user])
+    user = current_company.users.find(params[:team][:user])
 
     if user.present?
       if TeamUser.create(team: @team, user: user)
@@ -87,7 +87,7 @@ class TeamsController < ApplicationController
   end
 
   def remove_user_from_team
-    user = User.find(params[:user])
+    user = current_company.users.find(params[:user])
 
     if user.present?
       if @team.users.delete(user)
