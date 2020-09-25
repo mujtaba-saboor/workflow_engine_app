@@ -156,6 +156,8 @@ en:
     issue_status: 'Status'
     issue_assignee: 'Assignee'
     not_assigned: '----'
+    issue_documents: 'Documents'
+    issue_document: 'Document'
   home:
     welcome: 'Welcome to Workflow Engine'
     sign_in:
@@ -171,7 +173,7 @@ en:
     watching_issues: 'Watching Issues'
     project_categories: 'Project Categories'
     project_categories_team: 'Team'
-    project_categories_individual: 'Individual'    
+    project_categories_individual: 'Individual'
   projects:
     helloworld: '123'
     form_name_placeholder: &form_name_placeholder 'Enter name here'

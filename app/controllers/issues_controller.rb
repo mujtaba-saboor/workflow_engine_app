@@ -89,6 +89,12 @@ class IssuesController < ApplicationController
     end
   end
 
+  def delete_document_attachment
+    @document = ActiveStorage::Attachment.find(params[:format])
+    @document.purge
+    redirect_back(fallback_location: project_issue_path)
+  end
+
   private
 
   def load_valid_assignees
@@ -98,4 +104,5 @@ class IssuesController < ApplicationController
   def issue_params
     params.require(:issue).permit(:title, :description, :issue_type, :priority, :status, :assignee_id, documents: [])
   end
+
 end
