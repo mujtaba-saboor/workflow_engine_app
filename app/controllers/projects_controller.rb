@@ -28,7 +28,6 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-
     respond_to do |format|
       format.js
     end
