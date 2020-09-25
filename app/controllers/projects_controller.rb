@@ -1,6 +1,6 @@
 include Pagy::Backend
 class ProjectsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource find_by: :sequence_num, through: :current_company
   
   def index
     @pagy, @projects = pagy(@projects, items: Company::PAGE_SIZE)
