@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
     resources :issues, only: [] do
     resources :comments, only: %i[create edit update destroy]
+    resources :invites
     end
 
     resources :teams do
@@ -30,7 +31,6 @@ Rails.application.routes.draw do
       end
     end
     get '', to: 'companies#index'
-    resources :invites
   end
 
   # Routes accessible without subdomain
@@ -42,7 +42,8 @@ Rails.application.routes.draw do
     get '/contact_us', to: 'home#contact_us'
     root 'home#index'
   end
-  resources :users, only: [:index, :show], constraints: {subdomain: /.+/ }
   devise_for :users
+  resources :users, only: [:index, :show], constraints: {subdomain: /.+/ }
+
   get '/invites/confirm_request', to: 'invites#confirm_request', as: 'confirm_request'
 end

@@ -34,5 +34,7 @@ class Ability
 
     # *** OWNERS ***
     can :manage, :all, company_id: user.company_id
+    can :read, Invite
+    can :create, Invite
   end
 end
