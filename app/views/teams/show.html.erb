@@ -7,7 +7,7 @@
       </div>
     </div>
     <% if can? :new_user_for_team, @team %>
-      <%= link_to t('teams.add_user'), new_user_for_team_team_path,{class: 'btn my-primary-btn',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#my_id_model_window'}  %>
+      <%= link_to t('teams.add_user'), new_user_for_team_team_path,{class: 'btn my-primary-btn',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#model_add_member'}  %>
     <% end %>
   </div>
 </div>
@@ -38,7 +38,7 @@
     </ul>
   </div>
 </div>
-<div id = "my_id_model_add_member" class="modal fade" tabindex="-1" role="dialog">
+<div id = "model_add_member" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content"></div>
   </div>

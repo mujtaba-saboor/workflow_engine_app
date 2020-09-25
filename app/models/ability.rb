@@ -26,6 +26,8 @@ class Ability
 
     can :create, Watcher, company_id: user.company_id, user_id: user.id
 
+    can :read, User, sequence_num: user.sequence_num, company_id: user.company_id
+
     return unless user.admin? || user.account_owner?
 
     # *** ADMINS and OWNERS ***

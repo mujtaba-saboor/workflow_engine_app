@@ -1,7 +1,14 @@
 include Pagy::Backend
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  load_and_authorize_resource find_by: :sequence_num, through: :current_company
+  def show
+    add_breadcrumb @user.name, :user_path
+    respond_to { |format| format.html }
+  end
+
   def index
-    @pagy, @users = pagy(User.where(params[:company_id]),  items: Company::PAGE_SIZE)
+    add_breadcrumb t('shared.users'), :users_path
+    @pagy, @users = pagy(@users,  items: Company::PAGE_SIZE)
+    respond_to { |format| format.html }
   end
 end

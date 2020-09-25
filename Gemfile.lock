@@ -66,6 +66,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
+    breadcrumbs_on_rails (4.0.0)
+      rails (>= 5.0)
     builder (3.2.4)
     byebug (11.1.3)
     cancancan (3.1.0)
@@ -186,6 +188,7 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sequenceid (0.0.6)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -234,6 +237,7 @@ DEPENDENCIES
   aasm (= 5.1.1)
   after_commit_everywhere (= 0.1.5)
   bootsnap (>= 1.4.2)
+  breadcrumbs_on_rails (= 4.0.0)
   byebug
   cancancan (= 3.1.0)
   capybara (>= 2.15)
@@ -250,6 +254,7 @@ DEPENDENCIES
   rails (~> 6.0.3, >= 6.0.3.2)
   sass-rails (>= 6)
   selenium-webdriver
+  sequenceid (= 0.0.6)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

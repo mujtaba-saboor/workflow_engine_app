@@ -48,6 +48,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise', '= 4.7.2'
 
+gem 'sequenceid', '= 0.0.6'
+
+gem 'breadcrumbs_on_rails', '=4.0.0'
+
 gem 'devise_invitable', '= 2.0.2'
 
 group :development, :test do
