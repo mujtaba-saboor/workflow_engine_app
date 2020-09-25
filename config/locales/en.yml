@@ -221,10 +221,10 @@ en:
   watchers:
     watch: 'Watch'
     unwatch: 'Unwatch'
-    unwatch_message: 'Are you sure you want to stop watching this issue'
+    unwatch_message: 'Are you sure you want to stop watching this issue?'
     creation:
       success: 'Watching the issue now'
       failure: 'Could not watch the issue'
     deletion:
-      success: 'Successfully removed watching issue'
-      failure: 'Could not unwatch issue' 
+      success: 'You are not watching this issue now'
+      failure: 'Could not stop watching issue'
