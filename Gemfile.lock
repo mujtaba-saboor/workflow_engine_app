@@ -94,9 +94,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise_invitable (2.0.2)
-      actionmailer (>= 5.0)
-      devise (>= 4.6)
     erubi (1.9.0)
     ffi (1.13.1)
     globalid (0.4.2)
@@ -243,7 +240,6 @@ DEPENDENCIES
   capybara (>= 2.15)
   delayed_job_active_record (= 4.1.4)
   devise (= 4.7.2)
-  devise_invitable (= 2.0.2)
   jbuilder (~> 2.7)
   listen (~> 3.2)
   mysql2 (>= 0.4.4)
