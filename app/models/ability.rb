@@ -24,7 +24,6 @@ class Ability
 
     can :read, User, sequence_num: user.sequence_num, company_id: user.company_id
 
-
     return unless user.admin? || user.account_owner?
 
     # *** ADMINS and OWNERS ***
