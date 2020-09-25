@@ -20,7 +20,6 @@ Rails.application.routes.draw do
 
     resources :issues, only: [] do
     resources :comments, only: %i[create edit update destroy]
-    resources :invites
     end
 
     resources :teams do
@@ -31,6 +30,7 @@ Rails.application.routes.draw do
       end
     end
     get '', to: 'companies#index'
+    resources :invites
   end
 
   # Routes accessible without subdomain
