@@ -54,7 +54,7 @@ class User < ApplicationRecord
   end
 
   def get_team_count
-    if staff?      
+    if staff?
       teams.count
     else
       company.teams.count

@@ -3,12 +3,14 @@
     <%= render 'issue_body', issue: @issue %>
   </div>
   <hr>
-  <h3><%= t('issues.issue_documents') %></h3>
+  <h3><%= t('issues.documents') %></h3>
   <div id="documents">
     <% @issue.documents.each do |document| %>
       <%= link_to document.blob.filename, url_for(document) %>
       <% if can? :destroy, @issue %>
-        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, delete_document_attachment_project_issue_url(@project, @issue, document.id),method: :delete, data: { confirm: t('shared.deletion_confirmation_message', resource: t('issues.issue_document')) }, class: 'btn btn-sm btn-outline-danger card-button float-right' %>
+        <%= link_to delete_document_attachment_project_issue_url(@project, @issue, document.id),method: :delete, data: { confirm: t('shared.deletion_confirmation_message', resource: t('issues.document')) }, class: 'btn btn-sm btn-outline-danger card-button float-right' do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
       <% end %>
       <br><br>
     <% end %>
@@ -16,8 +18,8 @@
   <% if can? :update, @issue %>
     <%= form_for [@project, @issue], url: { controller: 'issues', action: 'add_document_attachment' } do |f| %>
       <div class='form-group'>
-        <%= f.file_field :documents, multiple: true , id: 'add_file_field_id'%><br><br>
-        <%= f.submit t('shared.new_resource', resource_name: t('issues.issue_documents')), class: 'btn btn-info', disabled: true, id: 'add_file_field_button_id' %>
+        <%= f.file_field :documents, multiple: true , id: 'add_file_field_id' %><br><br>
+        <%= f.submit t('shared.new_resource', resource_name: t('issues.documents')), class: 'btn btn-info', disabled: true, id: 'add_file_field_button_id' %>
       </div>
     <% end %>
   <% end %>
