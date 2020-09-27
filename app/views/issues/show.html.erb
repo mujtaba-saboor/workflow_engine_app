@@ -16,8 +16,8 @@
   <% if can? :update, @issue %>
     <%= form_for [@project, @issue], url: { controller: 'issues', action: 'add_document_attachment' } do |f| %>
       <div class='form-group'>
-        <%= f.file_field :documents, multiple: true %><br><br>
-        <%= f.submit t('shared.new_resource', resource_name: t('issues.issue_documents')), class: 'btn btn-info' %>
+        <%= f.file_field :documents, multiple: true , id: 'add_file_field_id'%><br><br>
+        <%= f.submit t('shared.new_resource', resource_name: t('issues.issue_documents')), class: 'btn btn-info', disabled: true, id: 'add_file_field_button_id' %>
       </div>
     <% end %>
   <% end %>
