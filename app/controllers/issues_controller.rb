@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class IssuesController < ApplicationController
-  load_and_authorize_resource :project
+  load_and_authorize_resource :project, find_by: :sequence_num, through: :current_company
   load_and_authorize_resource through: :project
   before_action :load_valid_assignees, only: %i[new edit update create]
 

@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def get_top_nav_links
-    { t('shared.home') => '#', t('shared.about') => '#', t('shared.contact_us') => '#' }
+    { t('shared.home') => '#home_section', t('shared.features') => '#features_section', t('shared.about') => '#about_section' }
   end
 
   def get_sidebar_links

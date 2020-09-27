@@ -1,0 +1,101 @@
+<div class="site-wrap" id="home_section">
+  <div class="site-blocks-cover bg-light">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-12">
+          <%= image_tag 'landing_1.svg', class:'img-fluid img-absolute' %>
+          <div class="row mb-4">
+            <div class="col-lg-6 mr-auto">
+              <h1><%= t('home.main_heading')%></h1>
+              <p class="mb-5"><%= t('home.main_heading_content')%></p>
+              <div>
+                <a href="#" class="landing-btn landing-btn-primary mr-2 mb-2"><%= t('home.main_heading_btn')%></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+  <div class="site-section bg-light" id="features_section">
+    <div class="features-wraper">
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="section-title mb-3"><%= t('home.main_features_heading')%></h2>
+        </div>
+      </div>
+      <div class="row align-items-stretch">
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
+          <div class="unit-4 d-block">
+            <div class="unit-4-icon mb-3">
+              <span class="icon-wrap"><span class="text-primary"><i class="fas fa-project-diagram"></i></span></span>
+            </div>
+            <div>
+              <h3><%= t('home.feature_project_heading')%></h3>
+              <p><%= t('home.feature_project_content')%></p>
+              <p><a href="#"><%= t('home.learn_more')%></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
+          <div class="unit-4 d-block">
+            <div class="unit-4-icon mb-3">
+              <span class="icon-wrap"><span class="text-primary"><i class="fas fa-users"></i></span></span>
+            </div>
+            <div>
+              <h3><%= t('home.feature_team_heading')%></h3>
+              <p><%= t('home.feature_team_content')%></p>
+              <p><a href="#"><%= t('home.learn_more')%></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" >
+
+          <div class="unit-4 d-block">
+            <div class="unit-4-icon mb-3">
+              <span class="icon-wrap"><span class="text-primary"><i class="far fa-eye"></i></span></span>
+            </div>
+            <div>
+              <h3><%= t('home.feature_issue_heading')%></h3>
+              <p><%= t('home.feature_issue_content')%></p>
+              <p><a href="#"><%= t('home.learn_more')%></a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-section bg-light" id="about_section">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="section-title mb-3"><%= t('home.main_about_heading') %></h2>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-lg-6 pb-5">
+          <%= image_tag 'about_1.svg', class:'img-fluid' %>
+        </div>
+        <div class="col-lg-5 ml-auto pl-lg-4 pt-lg-5 mt-lg-5">
+          <h2 class="text-black mb-4"><%= t('home.feature_about_heading') %></h2>
+          <p class="mb-4"><%= t('home.feature_about_content') %></p>
+          <p><a href="#" class="landing-btn landing-btn-primary"><%= t('home.learn_more')%></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer py-5 border-top text-center" id="footer_area">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="mb-0">
+              <%= t('home.copyright') %> &copy;<script>document.write(new Date().getFullYear());</script> <%= t( 'home.rights_reserved') %>
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
