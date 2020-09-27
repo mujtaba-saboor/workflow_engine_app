@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :issues do
         member do
           delete :delete_document_attachment
+          patch :add_document_attachment
         end
       end
     end

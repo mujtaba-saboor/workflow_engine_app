@@ -14,10 +14,10 @@
     <% end %>
   </div>
   <% if can? :update, @issue %>
-    <%= form_for [@project, @issue], url: { action: "update" } do |f| %>
+    <%= form_for [@project, @issue], url: { controller: 'issues', action: 'add_document_attachment' } do |f| %>
       <div class='form-group'>
         <%= f.file_field :documents, multiple: true %><br><br>
-        <%= f.submit t('shared.update_resource', resource_name: t('issues.issue_documents')), class: 'btn btn-info' %>
+        <%= f.submit t('shared.new_resource', resource_name: t('issues.issue_documents')), class: 'btn btn-info' %>
       </div>
     <% end %>
   <% end %>
