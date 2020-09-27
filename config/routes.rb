@@ -36,7 +36,6 @@ Rails.application.routes.draw do
       end
     end
     get '', to: 'companies#index'
-    devise_for :users
   end
 
   # Routes accessible without subdomain
@@ -48,5 +47,6 @@ Rails.application.routes.draw do
     get '/contact_us', to: 'home#contact_us'
     root 'home#index'
   end
+  devise_for :users
   resources :users, only: [:index, :show], constraints: {subdomain: /.+/ }
 end
