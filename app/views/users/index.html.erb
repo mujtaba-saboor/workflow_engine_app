@@ -1,21 +1,23 @@
-<h1><%= t('shared.users') %></h1>
-<% @users.each do |user| %>
-    <div class="row">
-        <div class="col-md-3">
-          <div class="left-margin-class">
-            <label><%= user.name %></label>
+<div class="container">
+  <h1><%= t('shared.users') %></h1>
+  <% @users.each do |user| %>
+      <div class="row">
+          <div class="col-md-4">
+            <div class="left-margin-class">
+              <label><%= user.name %></label>
+            </div>
           </div>
-        </div>
-        <div class="col-md-3">
-            <label><%= user.email %></label>
-        </div>
-        <div class="col-md-3">
-            <label><%= user.role %></label>
-        </div>
-    </div>
-    <br>
-<% end %>
-<br>
-<div class="left-margin-class">
-  <%== pagy_bootstrap_nav(@pagy) %>
+          <div class="col-md-4">
+              <label><%= user.email %></label>
+          </div>
+          <div class="col-md-4">
+              <label><%= user.role %></label>
+          </div>
+      </div>
+      <br>
+  <% end %>
+  <br>
+  <div class="left-margin-class">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
 </div>
