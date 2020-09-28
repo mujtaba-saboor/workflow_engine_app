@@ -48,5 +48,5 @@ Rails.application.routes.draw do
     root 'home#index'
   end
   devise_for :users
-  resources :users, only: [:index, :show], constraints: {subdomain: /.+/ }
+  resources :users, only: [:index, :show, :update, :edit], constraints: {subdomain: /.+/ }
 end
