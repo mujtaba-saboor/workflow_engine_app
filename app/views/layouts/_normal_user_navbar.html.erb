@@ -8,7 +8,7 @@
       <% links = get_top_nav_links %>
       <% links.each do |key,value| %>
         <li class='nav-item <%= get_active_nav(key.downcase) %>'>
-          <%= link_to key, value, class: 'nav-link' %>
+          <%= link_to key, value, class: 'nav-link', data: { turbolinks: false } %>
         </li>
       <% end %>       
     </ul>

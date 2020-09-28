@@ -2,7 +2,6 @@ class HomeController < ApplicationController
   skip_before_action :authenticate_user!
   # GET '', subdomain: ''
   def index
-    # flash.now[:notice] = t('home.welcome_message')
     respond_to do |format|
       format.html
     end
