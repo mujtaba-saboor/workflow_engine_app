@@ -86,7 +86,7 @@ en:
     app_name: 'Workflow Engine'
     home: 'Home'
     about: 'About'
-    contact_us: 'Contact Us'
+    features: 'Features'
   companies:
     company_projects: 'Company Projects'
     company_project_issues: 'Company Project Issues'
@@ -156,7 +156,25 @@ en:
     issue_status: 'Status'
     issue_assignee: 'Assignee'
     not_assigned: '----'
+    documents: 'Documents'
+    document: 'Document'
   home:
+    learn_more: 'Learn More'
+    main_heading: 'Grow Your Business Faster'
+    main_heading_content: 'If you are looking for something that is not difficult to use, check out Workflow Engine. This is a great task management app that can be used for managing projects as well.'
+    main_heading_btn: 'Get Started'
+    main_features_heading: 'Features'
+    feature_project_heading: 'Project Management'
+    feature_project_content: 'Project Management is not a big deal anymore. Workflow Engine provides to a convenient way to manage your projects. You can add as many projects as you want in your dashboard.'
+    feature_team_heading: 'Team Management'
+    feature_team_content: 'Team Management is an ammazing feature of Workflow Engine provides that provides a convenient way to manage your teams. You can add as many teams as you want in your Projects.'
+    feature_issue_heading: 'Issue Watching'
+    feature_issue_content: 'With Issue Watching feature of Workflow Engine you can watch any issue of any projectc. You will also get email on changing states of issues.'
+    main_about_heading: 'About Us'
+    feature_about_heading: 'Create interactive projects'
+    feature_about_content: 'We here at Workflow Engine always keep an eye on the running trends of project management in the world and provides our users the best experience of project management.'
+    copyright: 'Copyright'
+    rights_reserved: 'All rights reserved'
     welcome: 'Welcome to Workflow Engine'
     sign_in:
       title: *sign_in
@@ -171,7 +189,7 @@ en:
     watching_issues: 'Watching Issues'
     project_categories: 'Project Categories'
     project_categories_team: 'Team'
-    project_categories_individual: 'Individual'
+    project_categories_independent: 'Independent'
   projects:
     helloworld: '123'
     form_name_placeholder: &form_name_placeholder 'Enter name here'

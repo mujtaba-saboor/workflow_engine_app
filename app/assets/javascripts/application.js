@@ -6,3 +6,13 @@ $(document).ready(function(){
     $("#subdomain_id").val(subdomain);
   });
 });
+
+$(document).ready(function(){
+        $("#add_file_field_id").change(
+            function(){
+                if ($(this).val()) {
+                    $("#add_file_field_button_id").attr('disabled',false);
+                }
+            }
+            );
+    });

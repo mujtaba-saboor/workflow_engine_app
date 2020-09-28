@@ -16,6 +16,12 @@ Rails.application.routes.draw do
           patch :update_status
         end
       end
+      resources :issues do
+        member do
+          delete :delete_document_attachment
+          patch :add_document_attachment
+        end
+      end
     end
 
     resources :issues, only: [] do
