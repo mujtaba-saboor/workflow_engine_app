@@ -1,21 +1,22 @@
 <div class="container">
   <h1><%= t('shared.users') %></h1>
-  <% @users.each do |user| %>
-      <div class="row">
-          <div class="col-md-4">
-            <div class="left-margin-class">
-              <label><%= user.name %></label>
+    <div class="list-group">
+      <% @users.each do |user| %>
+            <div class="row">
+              <a href="<%= 'users/' + user.sequence_num.to_s %>" class="list-group-item list-group-item-action">
+                <span class="col-md-3">
+                    <%= user.name %>
+                </span>
+                <span class="col-md-3">
+                  <span class="badge badge-primary badge-pill float-right">
+                    <%= user.email %>
+                  </span>
+                </span>
+              </a>
             </div>
-          </div>
-          <div class="col-md-4">
-              <label><%= user.email %></label>
-          </div>
-          <div class="col-md-4">
-              <label><%= user.role %></label>
-          </div>
-      </div>
-      <br>
-  <% end %>
+            <br>
+      <% end %>
+    </div>
   <br>
   <div class="left-margin-class">
     <%== pagy_bootstrap_nav(@pagy) %>
