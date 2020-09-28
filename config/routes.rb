@@ -46,6 +46,6 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show], constraints: {subdomain: /.+/ }
 
   get '/invites/confirm_request', to: 'invites#confirm_request', as: 'confirm_request'
-  get '/invites/create_staff_user', to: 'invites#create_staff_user', as: 'create_staff_user'
+  post '/invites/create_staff_user', to: 'invites#create_staff_user', as: 'create_staff_user'
 
 end

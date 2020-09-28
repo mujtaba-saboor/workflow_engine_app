@@ -45,7 +45,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise', '= 4.7.2'
 
-gem 'sequenceid', '= 0.0.6'
+gem 'sequenceid', '=0.0.7', git: "https://github.com/alisyed/sequenceid.git", branch: 'feature/change_activerecord_base_to_applicationrecord_in_sti_parent_class_method'
 
 gem 'breadcrumbs_on_rails', '=4.0.0'
 
