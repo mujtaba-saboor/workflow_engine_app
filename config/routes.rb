@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/search'
   # Routes accessible with subdomain
   constraints(subdomain: /.+/) do
     resources :projects do
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
         delete 'remove_user_from_team'
       end
     end
+    get '/search', to: 'search#search', as: 'search'
     get '', to: 'companies#index'
   end
 

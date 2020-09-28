@@ -92,6 +92,8 @@ en:
     company_project_issues: 'Company Project Issues'
     welcome_message: 'Welcome to Workflow Engine (%{company_name})'
     domain_validation: 'only allows letters and numbers'
+    search:
+      unrecognized_search_category: 'The search category given could not be recognized'
   users:
     email: 'email'
     update: 'Update'

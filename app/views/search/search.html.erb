@@ -1,0 +1,28 @@
+<div class="container">
+  <h3>Search</h3>
+  <div class="row">
+    <div class="col-lg-6">
+      <%= render 'search_form', query: @query %>
+    </div>
+  </div>
+
+  <% if @projects %>
+    <div class="row my-4">
+      <div class="col-lg-12">
+
+        <div id="projects_list">
+          <%= render 'projects/minified_list', projects: @projects %>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+  <% if @projects %>
+    <div class="container-fluid">
+      
+        <div id="projects_list">
+          <%= render 'projects/minified_list', projects: @projects %>
+        </div>
+    </div>
+  <% end %>
+</div>

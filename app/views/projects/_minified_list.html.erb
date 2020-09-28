@@ -1,0 +1,4 @@
+<h5>Projects <small class="float-right"><%= "#{projects.length} #{Project.model_name.human(count: projects.count)}" %></small></h5>
+<% projects.each do |project| %>
+  <%= render 'projects/minified', project: project %> 
+<% end %>
