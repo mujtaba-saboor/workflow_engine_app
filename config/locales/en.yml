@@ -131,6 +131,7 @@ en:
     leave_blank_line: "leave blank if you don't want to change it"
     need_for_current_password: 'we need your current password to confirm your changes'
     send_invite: 'Send Invitation'
+    invite_user: 'Invite User'
     name: 'name'
     role: 'role'
     company: 'company'
