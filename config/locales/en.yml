@@ -191,7 +191,6 @@ en:
     project_categories_team: 'Team'
     project_categories_independent: 'Independent'
   projects:
-    helloworld: '123'
     form_name_placeholder: &form_name_placeholder 'Enter name here'
     add_team: &add_team 'Add Team'
     remove_team: 'Remove Team'
@@ -208,6 +207,12 @@ en:
     all_projects: 'All Projects'
     no_destroy: "Project can't be Destroyed"
     no_issue: 'This Project has no issue'
+    name_field: 'Name'
+    type_field: 'Type'
+    created_field: 'Created'
+    actions_field: 'Actions'
+    ago: 'ago'
+    add_filter: 'Add Filters'
   teams:
     form_name_placeholder: *form_name_placeholder
     add_user: *add_user
@@ -219,6 +224,11 @@ en:
     all_teams: *all_teams
     no_deletion_warning: 'Team can not be deleted because its a part of some Projects'
     no_team_to_show: 'No Team to show...'
+    name_field: 'Name'
+    users_field: 'Users'
+    created_field: 'Created'
+    actions_field: 'Actions'
+    ago: 'ago'
   flash_messages:
     create: '%{name} Created Successfully'
     update: '%{name} Updated Successfully'

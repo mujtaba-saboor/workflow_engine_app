@@ -1,33 +1,21 @@
 <div class="d-flex flex-column">
   <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h2 class="h3 mb-0 text-gray-800"><%= t('projects.all_projects')%></h2>
+      <h2 class="h3"><%= t('projects.all_projects')%></h2>
       <% if can? :create, Project %>
       <%= link_to t('projects.new_project'),new_project_path,{class: 'btn my-primary-btn',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#create_project_modal'}%>
       <% end %>
     </div>
-    <% if @projects.empty? %>
-      <p> No Project to show...</p>
-    <% else %>
-      <% @projects.each do |project|%>
-        <div class="row">
-          <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card">
-              <h5 class="card-header"><%=project.name%></h5>
-              <div class="card-body">
-                <h5 class="card-title">Type : <%= project.project_category%></h5>
-                <% if can? [:destroy, :edit], project %>
-                  <%= link_to t('shared.delete'), project_path(project),method: :delete ,class: 'btn btn-danger'%> |
-                  <%= link_to t('shared.edit'), edit_project_path(project), {class: 'btn my-primary-btn',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#create_project_modal'}%> |
-                <% end %>
-                <%= link_to t('shared.show'), project_path(project), class: 'btn my-primary-btn'%>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="search-box">
+      <%= form_tag(project_filters_path, method: :get,remote: true) do %>
+        <%= select_tag :search, options_for_select(["ALL"]+Project::PROJECT_CATEGORIES) %>
+        <%= submit_tag('SEARCH', class: 'btn btn-sm my-primary-btn') %>
       <% end %>
-      <%== pagy_bootstrap_nav(@pagy) %>   
-    <% end %>
+    </div>
+    <br>
+    <div id="project_index_table">
+      <%= render 'index_table' %>
+    </div>
     <div id="create_project_modal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
