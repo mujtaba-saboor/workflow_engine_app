@@ -11,19 +11,8 @@ module ApplicationHelper
     "#{request.base_url if url}#{path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
   end
 
-  def bootstrap_color_for_alert(alert_type)
-    case alert_type
-    when 'error'
-      'danger'
-    when 'notice'
-      'success'
-    else
-      'info'
-    end
-  end
-
   def get_top_nav_links
-    { t('shared.home') => '#', t('shared.about') => '#', t('shared.contact_us') => '#' }
+    { t('shared.home') => "#{root_url}#home_section", t('shared.features') => "#{root_url}#features_section", t('shared.about') => "#{root_url}#about_section" }
   end
 
   def get_sidebar_links

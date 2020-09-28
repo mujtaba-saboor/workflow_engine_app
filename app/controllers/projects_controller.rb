@@ -1,6 +1,6 @@
 include Pagy::Backend
 class ProjectsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource find_by: :sequence_num, through: :current_company
   
   def index
     @pagy, @projects = pagy(@projects, items: Company::PAGE_SIZE)
@@ -18,12 +18,14 @@ class ProjectsController < ApplicationController
   def create
     if @project.save
       flash[:success] = t('flash_messages.create', name: t('shared.project'))
+      respond_to do |format|
+        format.js { redirect_to project_path(@project) }
+      end
     else
       flash[:danger] = t('flash_messages.error', error_msg: @project.errors.full_messages.first)
-    end
-
-    respond_to do |format|
-      format.js { redirect_to projects_path }
+      respond_to do |format|
+       format.js { redirect_to projects_path }
+      end
     end
   end
 
@@ -75,7 +77,7 @@ class ProjectsController < ApplicationController
   end
 
   def add_team_to_project
-    team = Team.find_by_id params[:project][:team]
+    team = @current_company.teams.find_by_id params[:project][:team]
     if team.present?
       if ProjectTeam.create(project: @project, team: team)
         flash[:success] = t('flash_messages.addition', name: t('shared.team'))
@@ -92,7 +94,7 @@ class ProjectsController < ApplicationController
   end
 
   def remove_team_from_project
-    team = Team.find_by_id params[:team]
+    team = @current_company.teams.find_by_id params[:team]
     
     if team.present?
       if @project.teams.delete(team)
@@ -116,7 +118,7 @@ class ProjectsController < ApplicationController
   end
 
   def add_user_to_project
-    user = User.find(params[:project][:user])
+    user = @current_company.users.find_by_id params[:project][:user]
     
     if user.present?
       if ProjectUser.create(project: @project, user: user)
@@ -134,7 +136,7 @@ class ProjectsController < ApplicationController
   end
 
   def remove_user_from_project
-    user = User.find(params[:user])
+    user = @current_company.users.find_by_id params[:user]
     
     if user.present?
       if @project.users.delete(user)

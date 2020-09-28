@@ -1,5 +1,5 @@
 <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-  <%= link_to t('shared.app_name'), root_path,class: 'navbar-brand' %>
+  <%= link_to t('shared.app_name'), root_path,class: 'navbar-brand' , data: { turbolinks: false }%>
   <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbar_nav' aria-controls='navbar_nav' aria-expanded='false' aria-label='Toggle navigation'>
     <span class='navbar-toggler-icon'></span>
   </button>
@@ -7,8 +7,8 @@
     <ul class='navbar-nav ml-auto'>
       <% links = get_top_nav_links %>
       <% links.each do |key,value| %>
-        <li class='nav-item <%= get_active_nav(key.downcase) %>'>
-          <%= link_to key, value,class: 'nav-link' %>
+        <li class='nav-item'>
+          <%= link_to key, value, class: 'nav-link', data: { turbolinks: false } %>
         </li>
       <% end %>       
     </ul>
