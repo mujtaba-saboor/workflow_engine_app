@@ -156,6 +156,8 @@ en:
     issue_status: 'Status'
     issue_assignee: 'Assignee'
     not_assigned: '----'
+    documents: 'Documents'
+    document: 'Document'
   home:
     welcome: 'Welcome to Workflow Engine'
     sign_in:
