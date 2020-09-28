@@ -14,8 +14,3 @@ $(document).on('turbolinks:load', function(){
     }
     );
 });
-
-$('#my-link').click(function (event) {
-  window.location.reload(true);
-});
-
