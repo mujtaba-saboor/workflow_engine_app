@@ -1,4 +1,5 @@
 class Team < ApplicationRecord
+  sequenceid :company, :teams
   validates :name, presence: true, uniqueness: true
 
   belongs_to :company
@@ -10,6 +11,6 @@ class Team < ApplicationRecord
   has_many :users, through: :team_users
 
   def available_users
-    User.where.not(id: users.pluck(:id))
+    company.users.where.not(id: users.pluck(:id))
   end
 end

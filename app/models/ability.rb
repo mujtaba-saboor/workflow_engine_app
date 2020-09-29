@@ -9,8 +9,8 @@ class Ability
     return if user.blank?
 
     # *** SIGNED IN USERS ***
-    can :read, Team, id: user.teams.pluck(:id)
-    can :read, Project,  id: user.all_projects.pluck(:id)
+    can :read, Team, sequence_num: user.teams.pluck(:sequence_num), company_id: user.company_id
+    can :read, Project, sequence_num: user.all_projects.pluck(:sequence_num), company_id: user.company_id
     can :project_users, Project
 
     can :create, Comment, user_id: user.id, company_id: user.company_id
@@ -23,6 +23,7 @@ class Ability
     can :create, Issue, company_id: user.company_id, creator_id: user.id
 
     can :read, User, sequence_num: user.sequence_num, company_id: user.company_id
+    can :edit, User, sequence_num: user.sequence_num, company_id: user.company_id
 
     return unless user.admin? || user.account_owner?
 
@@ -34,7 +35,8 @@ class Ability
 
     # *** OWNERS ***
     can :manage, :all, company_id: user.company_id
-    can :read, Invite
-    can :create, Invite
+    can :read, Invite, company_id: user.company_id
+    can :create, Invite, company_id: user.company_id
+    can :edit, User, company_id: user.company_id
   end
 end
