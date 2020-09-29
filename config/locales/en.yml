@@ -57,7 +57,7 @@ en:
     successful_deletion_message: 'Comment deleted successfully !'
     unsuccessful_deletion_message: 'Comment could not be deleted'
   shared:
-    sq_num_field: 'No#'
+    sq_num_field: '%{model} #'
     users_field: 'Users'
     name_field: 'Name'
     type_field: 'Type'

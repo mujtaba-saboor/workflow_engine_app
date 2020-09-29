@@ -17,8 +17,8 @@ class Project < ApplicationRecord
 
   has_many :issues
 
-   scope :independent_projects, -> { where(project_category: PROJECT_CATEGORIES[1]) }
-   scope :team_projects, -> { where(project_category: PROJECT_CATEGORIES[0]) }
+  scope :independent_projects, -> { where(project_category: PROJECT_CATEGORIES[1]) }
+  scope :team_projects, -> { where(project_category: PROJECT_CATEGORIES[0]) }
 
   def valid_assignees
     if team_project?

@@ -76,20 +76,10 @@ $pagination-link-btn-border-color: #ddd;
     padding: 5px;
     border: 2px solid $primary-color;
     font-size: 14px;
-  }
-}
 
-.search-box {
-  select {
     option {
       padding: 30px;
-    }
-  }
-}
 
-.search-box {
-  select {
-    option {
       &:hover {
         padding: 30px;
         background-color: $primary-color;

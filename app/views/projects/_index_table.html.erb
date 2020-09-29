@@ -5,7 +5,7 @@
   <table class="table text-center">
     <thead class="thead-light">
       <tr>
-        <th><%= t('shared.sq_num_field') %></th>
+        <th><%= t(('shared.sq_num_field'), model: t('shared.project')) %></th>
         <th><%= t('shared.name_field') %></th>
         <th><%= t('shared.type_field') %></th>
         <th><%= t('shared.created_field') %></th>
@@ -13,9 +13,9 @@
       </tr>
     </thead>
     <tbody>
-      <% projects.each.with_index(1) do |project,index|%>
+      <% projects.each do |project|%>
         <tr>
-          <td><%= index%></td>
+          <td><%= project.sequence_num %></td>
           <td><%=project.name%></td>
           <td><%= project.project_category%></td>
           <td><%= time_ago_in_words(project.created_at) %> <%= t('shared.ago') %></td>
