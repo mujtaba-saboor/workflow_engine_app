@@ -32,7 +32,7 @@ class Project < ApplicationRecord
       # tables so rails join them via the intermediate table
       teams.joins(:users).select('users.*').distinct
     else
-      project_users.joins(:user).select('users.*')
+      users
     end
   end
 
