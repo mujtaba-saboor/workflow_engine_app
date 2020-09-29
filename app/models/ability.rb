@@ -36,5 +36,6 @@ class Ability
     # *** OWNERS ***
     can :manage, :all, company_id: user.company_id
     can :edit, User, company_id: user.company_id
+    can :destroy, User, company_id: user.company_id
   end
 end

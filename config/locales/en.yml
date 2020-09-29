@@ -149,6 +149,8 @@ en:
     name: 'name'
     role: 'role'
     company: 'company'
+    successful_deletion_message: 'User deleted successfully !'
+    unsuccessful_deletion_message: 'User could not be deleted'
   issues:
     no_assignee_assigned: 'Assignee is not assigned for this issue'
     edit_form:
