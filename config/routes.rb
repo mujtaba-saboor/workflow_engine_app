@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       end
     end
     get '', to: 'companies#index'
+    get 'project/filters', to: 'projects#filters'
   end
 
   # Routes accessible without subdomain
@@ -48,5 +49,6 @@ Rails.application.routes.draw do
     root 'home#index'
   end
   devise_for :users
-  resources :users, only: [:index, :show], constraints: {subdomain: /.+/ }
+  resources :users, only: [:index, :show, :update, :edit], constraints: {subdomain: /.+/ }
+  match '*unmatched', to: 'application#route_not_found', via: :all
 end

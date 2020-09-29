@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title><%= t('shared.app_name') %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', 'sb-admin-2.min','landing-page-style', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <div class="d-flex flex-column">
+      <div class="container-fluid">
+        <div class="text-center">
+          <div class="error mx-auto" data-text="<%= t('shared.error_404') %>"><%= t('shared.error_404') %></div>
+          <p class="lead text-gray-800 mb-5"><%= t('shared.record_not_found_msg') %></p>
+          <p class="text-gray-500 mb-0"><%= t('shared.record_not_found_content') %></p>
+          &larr;<%= link_to t('shared.back_dashbord'), root_path%>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def get_sidebar_links
-    { t('shared.home') => root_path, t('shared.projects') => projects_path, t('shared.teams') => teams_path }
+    { t('shared.home') => root_path, t('shared.projects') => projects_path, t('shared.teams') => teams_path, t('shared.users') => users_path}
   end
 
   def get_active_nav(controller)
