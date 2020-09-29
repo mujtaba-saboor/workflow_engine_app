@@ -1,30 +1,20 @@
-<div class="container">
-  <h1><%= t('shared.users') %></h1>
+<div class="d-flex flex-column">
+  <div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h2 class="h3"><%= t('users.all_users')%></h2>
+      <% if can? :create, User %>
+      <%= link_to t('users.send_invite'), root_path,class: 'btn my-primary-btn' %>
+      <% end %>
+    </div>
   <div class="search-box">
     <%= form_tag(user_filters_path, method: :get,remote: true) do %>
       <%= select_tag :search, options_for_select([t('shared.all')]+User::ROLES) %>
       <%= submit_tag(t('shared.filter'), class: 'btn btn-sm my-primary-btn') %>
     <% end %>
   </div>
-    <div class="list-group">
-      <% @users.each do |user| %>
-            <div class="row">
-              <%= link_to 'users/' + user.sequence_num.to_s, class: 'list-group-item list-group-item-action' do %>
-                <span class="col-md-3">
-                    <%= user.name %>
-                </span>
-                <span class="col-md-3">
-                  <span class="badge badge-primary badge-pill float-right">
-                    <%= user.email %>
-                  </span>
-                </span>
-              <% end %>
-            </div>
-            <br>
-      <% end %>
+    <br>
+    <div id="user_index_table">
+      <%= render 'index_table', users: @users %>
     </div>
-  <br>
-  <div class="left-margin-class">
-    <%== pagy_bootstrap_nav(@pagy) %>
   </div>
 </div>

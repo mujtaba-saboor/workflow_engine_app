@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     end
     @pagy, @users = pagy(@users.order(created_at: :desc), items: 5)
     respond_to do |format|
-      format.html { redirect_to users_path(@users) }
+      format.js
     end
   end
 

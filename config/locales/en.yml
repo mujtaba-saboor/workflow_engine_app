@@ -69,6 +69,7 @@ en:
     type_field: 'Type'
     created_field: 'Created'
     actions_field: 'Actions'
+    role_field: 'Role'
     ago: 'ago'
     filter: 'FILTER'
     all: 'ALL'
@@ -149,6 +150,8 @@ en:
     name: 'name'
     role: 'role'
     company: 'company'
+    all_users: 'All Users'
+    no_user_to_show: 'No User to show...'
   issues:
     no_assignee_assigned: 'Assignee is not assigned for this issue'
     edit_form:
