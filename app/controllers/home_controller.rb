@@ -18,9 +18,14 @@ class HomeController < ApplicationController
   def user_companies
     email = params[:email]
     @companies = User.unscoped.joins(:company).where('users.email = ?', email).select('companies.*')
-    flash.now[:error] = t('home.no_associated_companies_message', email: email) if @companies.empty?
+
     respond_to do |format|
-      format.js
+      if @companies.size == 1
+        format.js { redirect_to new_user_session_url(subdomain: @companies.first.subdomain) }
+      else
+        flash.now[:error] = t('home.no_associated_companies_message', email: email) if @companies.empty?
+        format.js
+      end
     end
   end
 end

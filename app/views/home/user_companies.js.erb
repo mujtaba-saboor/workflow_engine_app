@@ -1,6 +1,2 @@
-<% if @companies.length == 1 %>
-  window.location = "<%= new_user_session_url(subdomain: @companies.first.subdomain) %>";
-<% else %>
-  $("#user_companies").html("<%= j render 'companies_link', companies: @companies %>")
-  $("#page_alerts").html("<%= j render 'layouts/alerts' %>")
-<% end %>
+$("#user_companies").html("<%= j render 'companies_link', companies: @companies %>")
+$("#page_alerts").html("<%= j render 'layouts/alerts' %>")
