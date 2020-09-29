@@ -12,12 +12,11 @@ Rails.application.routes.draw do
         delete 'remove_user_from_project'
       end
       resources :issues do
+        collection do
+          get :filter
+        end
         member do
           patch :update_status
-        end
-      end
-      resources :issues do
-        member do
           delete :delete_document_attachment
           patch :add_document_attachment
         end

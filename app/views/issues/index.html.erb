@@ -1,0 +1,10 @@
+<div class="d-flex-flex-column">
+  <div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h2 class="h3"><%= t('issues.all_issues') %></h2>
+      <a class="btn my-primary-btn" data-toggle="modal" data-target="#create_project_modal" data-remote="true" href="/projects/new"><span class="translation_missing" title="translation missing: en.projects.new_project">New Project</span></a>
+    </div>
+  </div>
+</div>
+
+<%= render 'issues_list_view', issues: @issues %>

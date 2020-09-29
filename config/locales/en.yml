@@ -96,6 +96,7 @@ en:
     home: 'Home'
     about: 'About'
     features: 'Features'
+    dashes: &dashes '----'
   companies:
     company_projects: 'Company Projects'
     company_project_issues: 'Company Project Issues'
@@ -164,9 +165,13 @@ en:
     issue_priority: 'Priority'
     issue_status: 'Status'
     issue_assignee: 'Assignee'
-    not_assigned: '----'
+    not_assigned: *dashes
     documents: 'Documents'
     document: 'Document'
+    all_issues: 'All Issues'
+    filter:
+      categories:
+        all: 'All'
   home:
     learn_more: 'Learn More'
     main_heading: 'Grow Your Business Faster'

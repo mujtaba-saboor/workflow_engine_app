@@ -1,0 +1,25 @@
+<div class="table-responsive">
+  <table class="table text-center">
+    <thead class="thread-light">
+      <tr>
+        <th><%= Issue.human_attribute_name('title') %></th>
+        <th><%= Issue.human_attribute_name('description') %></th>
+        <th><%= Issue.human_attribute_name('status') %></th>
+        <th><%= Issue.human_attribute_name('priority') %></th>
+        <th><%= Issue.human_attribute_name('issue_type') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% issues.each do |issue| %>
+        <tr>
+          <th><%= issue.title %></th>
+          <th><%= issue.description.present? ? issue.description : t('shared.dashes') %></th>
+          <th><%= issue.status %></th>
+          <th><%= issue.priority %></th>
+          <th><%= issue.issue_type %></th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>  
+</div>
+<%== pagy_bootstrap_nav(pagy) %>

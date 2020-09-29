@@ -5,6 +5,16 @@ class IssuesController < ApplicationController
   load_and_authorize_resource through: :project
   before_action :load_valid_assignees, only: %i[new edit update create]
 
+  # GET /projects/:project_id/issues
+  def index
+    @pagy, @issues = pagy(@issues, link_extra: 'data-remote="true"', items: Issue::PAGE_SIZE)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   # GET /projects/:project_id/issues/:id
   def show
     @comment = Comment.new
@@ -86,6 +96,19 @@ class IssuesController < ApplicationController
 
     respond_to do |format|
       format.js
+    end
+  end
+
+  # GET /projects/:project_id/issues/filter
+  def filter
+    @issues = @issues.where(status: params[:status]) if params[:status].present?
+    @issues = @issues.where(issue_type: params[:issue_type]) if params[:issue_type].present?
+    @issues = @issues.where(priority: params[:priority]) if params[:priority].present?
+
+    @pagy, @issues = pagy(@issues, link_extra: "data-remote='true'", items: Issue::PAGE_SIZE)
+
+    respond_to do |format|
+      format.js { render 'index' }
     end
   end
 
