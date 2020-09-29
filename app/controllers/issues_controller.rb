@@ -9,6 +9,7 @@ class IssuesController < ApplicationController
   # GET /projects/:project_id/issues/:id
   def show
     @comment = Comment.new
+    @user_watchers = @issue.user_watchers
     @pagy, @comments = pagy(Comment.where(commentable: @issue))
     respond_to do |format|
       format.html

@@ -49,6 +49,13 @@ class Issue < ApplicationRecord
     puts "Transition Callback: from #{aasm.from_state} to #{aasm.to_state}"
   end
 
+  def user_watchers
+    project
+      .members
+      .joins("LEFT OUTER JOIN watchers ON watchers.user_id = users.id and watchers.issue_id = #{id}")
+      .select('users.id as user_id, users.name as user_name, users.email as user_email, watchers.id as watcher_id')
+  end
+
   def inform_status_change
     watchers.includes(:user).each do |watcher|
       # IssueMailer.delay.status_change(watcher.user, self, company.subdomain)

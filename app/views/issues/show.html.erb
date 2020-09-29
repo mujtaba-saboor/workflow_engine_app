@@ -12,4 +12,9 @@
   <div id="page_comments" class="my-4">
     <%= render 'comments/comments', resource: @issue, comment: @comment, comments: @comments, pagy: @pagy %>
   </div>
+  <% if can? :view_all, Watcher %>
+    <div id="watchers_list">
+      <%= render 'watchers/watchers_list', user_watchers: @user_watchers %>
+    </div>
+  <% end %>
 </div>

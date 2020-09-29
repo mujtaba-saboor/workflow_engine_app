@@ -1,0 +1,26 @@
+<div class="modal fade" id="watchers_list_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+         <% user_watchers.each do |user_watcher| %>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to(user_watcher.user_name, user_path(user_watcher.user_id)) %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= user_watcher.email %></h6>
+              <% if user_watcher.watcher_id %>
+                <div class="badge badge-warning"><%= t('watchers.watching') %></div>
+              <% else %>
+                <div class="badge badge-danger"><%= t('watchers.not_watching') %></div>
+              <% end %>
+           </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,2 @@
-$("#watch_issue").html("<%= j render 'watch_links', issue: @issue, watcher: @watcher %>")
+$("#watch_issue_<%= current_user.id %>").html("<%= j render 'watch_links', issue: @issue, watcher: @watcher %>")
 $("#page_alerts").html("<%= j render 'layouts/alerts' %>")

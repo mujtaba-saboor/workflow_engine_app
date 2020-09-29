@@ -4,6 +4,15 @@ class WatchersController < ApplicationController
   load_and_authorize_resource :issue
   load_and_authorize_resource through: :issue
 
+  # GET /issues/:issue_id/watchers/administrate
+  def administrate
+    @pagy, @user_watchers = pagy(@issue.user_watchers)
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   # POST /issues/:issue_id/watchers
   def create
     if @watcher.save

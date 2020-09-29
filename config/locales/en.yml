@@ -231,3 +231,7 @@ en:
     deletion:
       success: 'You are not watching this issue now'
       failure: 'Could not stop watching issue'
+    view_watcher: 'View Watchers'
+    watching: 'Watching'
+    not_watching: 'Not Watching'
+
