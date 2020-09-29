@@ -34,6 +34,19 @@ class UsersController < ApplicationController
       end
   end
 
+  def destroy
+    if @user.destroy
+      flash.now[:notice] = t('comments.successful_deletion_message')
+      @comment = Comment.new
+    else
+      flash.now[:error] = t('comments.unsuccessful_deletion_message')
+    end
+
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_url }
+      format.js
+    end
+  end
   private
 
   def edit_params
