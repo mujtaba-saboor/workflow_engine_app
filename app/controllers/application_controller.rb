@@ -13,12 +13,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
+
   UNWANTED_BASE_PATHS = [
   ].freeze
 
   UNWANTED_SUBDOMAIN_PATHS = [
     '/users/sign_up'
   ].freeze
+
+  def route_not_found
+    render file: Rails.public_path.join('404.html'), status: :not_found, layout: false
+  end
+
+  def handle_record_not_found
+    render 'layouts/record_not_found.html.erb', layout: false
+  end
 
   protected
 

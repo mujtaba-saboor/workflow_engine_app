@@ -50,4 +50,5 @@ Rails.application.routes.draw do
   end
   devise_for :users
   resources :users, only: [:index, :show, :update, :edit], constraints: {subdomain: /.+/ }
+  match '*unmatched', to: 'application#route_not_found', via: :all
 end
