@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
   sequenceid :company, :teams
-  validates :name, presence: true, uniqueness: true
-
+  validates :name, presence: true
+  validates_uniqueness_of :name, scope: :company_id
   belongs_to :company
 
   has_many :project_teams

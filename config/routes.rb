@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       end
     end
     get '', to: 'companies#index'
+    get 'project/filters', to: 'projects#filters'
   end
 
   # Routes accessible without subdomain
