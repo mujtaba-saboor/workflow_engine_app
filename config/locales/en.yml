@@ -57,6 +57,15 @@ en:
     successful_deletion_message: 'Comment deleted successfully !'
     unsuccessful_deletion_message: 'Comment could not be deleted'
   shared:
+    sq_num_field: '%{model} #'
+    users_field: 'Users'
+    name_field: 'Name'
+    type_field: 'Type'
+    created_field: 'Created'
+    actions_field: 'Actions'
+    ago: 'ago'
+    filter: 'FILTER'
+    all: 'ALL'
     email: 'email'
     deletion_confirmation_message: 'Are you sure you want to delete this %{resource}?'
     new: 'New'
@@ -191,7 +200,6 @@ en:
     project_categories_team: 'Team'
     project_categories_independent: 'Independent'
   projects:
-    helloworld: '123'
     form_name_placeholder: &form_name_placeholder 'Enter name here'
     add_team: &add_team 'Add Team'
     remove_team: 'Remove Team'
@@ -208,6 +216,7 @@ en:
     all_projects: 'All Projects'
     no_destroy: "Project can't be Destroyed"
     no_issue: 'This Project has no issue'
+    no_project_to_show: 'No Project to show...'
   teams:
     form_name_placeholder: *form_name_placeholder
     add_user: *add_user

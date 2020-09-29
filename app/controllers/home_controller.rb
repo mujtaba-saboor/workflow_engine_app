@@ -16,7 +16,6 @@ class HomeController < ApplicationController
 
   # get '/user/companies', subdomain: ''
   def user_companies
-    add_breadcrumb t('shared.home'), :root_path
     email = params[:email]
     @companies = User.unscoped.joins(:company).where('users.email = ?', email).select('companies.*')
 

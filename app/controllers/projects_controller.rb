@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   def index
     add_breadcrumb t('shared.home'), :root_path
     add_breadcrumb t('shared.projects'), :projects_path
-    @pagy, @projects = pagy(@projects, items: Company::PAGE_SIZE)
+    @pagy, @projects = pagy(@projects.order(created_at: :desc), items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
     end
@@ -66,6 +66,20 @@ class ProjectsController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to projects_path }
+    end
+  end
+
+  def filters
+    if(params[:search].present?)
+      if params[:search].eql? Project::PROJECT_CATEGORIES[0]
+        @projects = @projects.team_projects
+      elsif params[:search].eql? Project::PROJECT_CATEGORIES[1]
+        @projects = @projects.independent_projects
+      end
+    end
+    @pagy, @projects = pagy(@projects.order(created_at: :desc), items: Company::PAGE_SIZE)
+    respond_to do |format|
+      format.js
     end
   end
 

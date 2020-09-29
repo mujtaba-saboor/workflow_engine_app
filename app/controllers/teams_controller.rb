@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   def index
     add_breadcrumb t('shared.home'), :root_path
     add_breadcrumb t('shared.teams'), :teams_path
-    @pagy, @teams = pagy(@teams, items: Company::PAGE_SIZE)
+    @pagy, @teams = pagy(@teams.order(created_at: :desc), items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
     end

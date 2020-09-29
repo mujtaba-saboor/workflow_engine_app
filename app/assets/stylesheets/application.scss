@@ -78,3 +78,22 @@ $breadcrumbs-color: #A1A1A1;
   margin-top: -9px;
   padding-bottom: 10px;
 }
+
+.search-box {
+  select {
+    background-color: white;
+    color: $primary-color;
+    padding: 5px;
+    border: 2px solid $primary-color;
+    font-size: 14px;
+
+    option {
+      padding: 30px;
+
+      &:hover {
+        padding: 30px;
+        background-color: $primary-color;
+      }
+    }
+  }
+}
