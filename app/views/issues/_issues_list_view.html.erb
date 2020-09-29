@@ -1,5 +1,5 @@
 <div class="search-box container-fluid">
-  <%= form_with url: filter_project_issues_path(@project), method: :get, class: 'form-inline' do |form| %>
+  <%= form_with url: filter_issues_path, method: :get, class: 'form-inline' do |form| %>
     <div class='form-group my-1'>
       <%= form.label :status %>
       <%= form.select(:status, options_for_select([[t('issues.filter.categories.all'), '']] + create_select_options_for_enum(:status, Issue.statuses.keys)), {}, { class: 'mx-2' }) %>
@@ -20,5 +20,3 @@
 <div id="issues_list" class="container-fluid my-4">
   <%= render 'issues_table', issues: issues, pagy: @pagy %>
 </div>
-
-<%= link_to 'Change table', filter_project_issues_path(@project), remote: true, method: :get, class: 'btn btn-info' %>

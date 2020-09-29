@@ -172,6 +172,7 @@ en:
     filter:
       categories:
         all: 'All'
+      project_no: 'Project #'
   home:
     learn_more: 'Learn More'
     main_heading: 'Grow Your Business Faster'

@@ -1,14 +1,24 @@
 # frozen_string_literal: true
 
 class IssuesController < ApplicationController
-  load_and_authorize_resource :project, find_by: :sequence_num, through: :current_company
-  load_and_authorize_resource through: :project
+  WITHOUT_THROUGH = %i[all filter].freeze
+
+  load_and_authorize_resource :project, find_by: :sequence_num, through: :current_company, except: WITHOUT_THROUGH
+  load_and_authorize_resource through: :project, except: WITHOUT_THROUGH
+  load_and_authorize_resource only: WITHOUT_THROUGH
+
   before_action :load_valid_assignees, only: %i[new edit update create]
+  before_action :load_pagy, only: %i[index all]
+
+  def all
+    respond_to do |format|
+      format.html { render 'index' }
+      format.js { render 'index' }
+    end
+  end
 
   # GET /projects/:project_id/issues
   def index
-    @pagy, @issues = pagy(@issues, link_extra: 'data-remote="true"', items: Issue::PAGE_SIZE)
-
     respond_to do |format|
       format.html
       format.js
@@ -105,7 +115,7 @@ class IssuesController < ApplicationController
     @issues = @issues.where(issue_type: params[:issue_type]) if params[:issue_type].present?
     @issues = @issues.where(priority: params[:priority]) if params[:priority].present?
 
-    @pagy, @issues = pagy(@issues, link_extra: "data-remote='true'", items: Issue::PAGE_SIZE)
+    load_pagy
 
     respond_to do |format|
       format.js { render 'index' }
@@ -127,6 +137,10 @@ class IssuesController < ApplicationController
 
   def load_valid_assignees
     @valid_assignees = @project.valid_assignees
+  end
+
+  def load_pagy
+    @pagy, @issues = pagy(@issues, link_extra: "data-remote='true'", items: Issue::PAGE_SIZE)
   end
 
   def issue_params

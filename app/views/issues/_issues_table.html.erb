@@ -1,22 +1,37 @@
 <div class="table-responsive">
-  <table class="table text-center">
-    <thead class="thread-light">
+  <table class="table">
+    <thead class="thead-light">
       <tr>
         <th><%= Issue.human_attribute_name('title') %></th>
+        <th><%= t('issues.filter.project_no') %></th>
         <th><%= Issue.human_attribute_name('description') %></th>
         <th><%= Issue.human_attribute_name('status') %></th>
         <th><%= Issue.human_attribute_name('priority') %></th>
         <th><%= Issue.human_attribute_name('issue_type') %></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <% issues.each do |issue| %>
         <tr>
-          <th><%= issue.title %></th>
-          <th><%= issue.description.present? ? issue.description : t('shared.dashes') %></th>
+          <th>
+            <%= "#{truncate(issue.title)} (" %>
+            <%= link_to "##{issue.id}", project_issue_path(issue.project_id, issue.id) %>
+            <%= ')' %>
+          </th>
+          <th><%= link_to issue.project_id, project_path(issue.project_id) %></th>
+          <th><%= issue.description.present? ? truncate(issue.description) : t('shared.dashes') %></th>
           <th><%= issue.status %></th>
           <th><%= issue.priority %></th>
           <th><%= issue.issue_type %></th>
+          <th>
+            <% if can? :update, issue %>
+              <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_project_issue_path(issue.project_id, issue.id), class: 'btn btn-outline-info btn-sm card-button mx-2' %>
+            <% end %>
+            <% if can? :destroy, issue %>
+              <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, project_issue_path(issue.project_id, issue.id), remote: true, method: :delete, data: { confirm: t('shared.deletion_confirmation_message', resource: Issue.model_name.human.downcase) }, class: 'btn btn-sm btn-outline-danger card-button' %>
+            <% end %>
+          </th>
         </tr>
       <% end %>
     </tbody>

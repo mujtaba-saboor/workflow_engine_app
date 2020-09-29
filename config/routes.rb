@@ -12,9 +12,9 @@ Rails.application.routes.draw do
         delete 'remove_user_from_project'
       end
       resources :issues do
-        collection do
-          get :filter
-        end
+        # collection do
+        #   get :filter
+        # end
         member do
           patch :update_status
           delete :delete_document_attachment
@@ -25,6 +25,10 @@ Rails.application.routes.draw do
 
     resources :issues, only: [] do
       resources :comments, only: %i[create edit update destroy]
+      collection do
+        get :all
+        get :filter
+      end
     end
 
     resources :teams do
