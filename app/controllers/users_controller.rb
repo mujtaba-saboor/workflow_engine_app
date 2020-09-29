@@ -1,23 +1,20 @@
 include Pagy::Backend
 class UsersController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
+  add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show, :edit]
+  add_breadcrumb I18n.t('shared.users'), :users_path, only: [:index, :show, :edit]
+
   def show
-    add_breadcrumb t('shared.home'), :root_path
-    add_breadcrumb t('shared.users'), :users_path
     add_breadcrumb @user.name, :user_path
     respond_to { |format| format.html }
   end
 
   def index
-    add_breadcrumb t('shared.home'), :root_path
-    add_breadcrumb t('shared.users'), :users_path
     @pagy, @users = pagy(@users,  items: Company::PAGE_SIZE)
     respond_to { |format| format.html }
   end
 
   def edit
-    add_breadcrumb t('shared.home'), :root_path
-    add_breadcrumb t('shared.users'), :users_path
     add_breadcrumb @user.name, :user_path
     add_breadcrumb t('shared.edit'), :edit_user_path
     respond_to { |format| format.html }
