@@ -71,12 +71,14 @@ $breadcrumbs-color: #A1A1A1;
   margin-left: 3em;
 }
 
-.breadcrumbs-container p{
-  font-size: 0.7rem;
-  border-bottom: 1px solid $breadcrumbs-color;
-  padding-left: 10px;
-  margin-top: -9px;
-  padding-bottom: 10px;
+.breadcrumbs-container{
+    p{
+      font-size: 0.7rem;
+      border-bottom: 1px solid $breadcrumbs-color;
+      padding-left: 10px;
+      margin-top: -9px;
+      padding-bottom: 10px;
+    }
 }
 
 .search-box {
