@@ -17,6 +17,10 @@ class Project < ApplicationRecord
   has_many :issues
 
   def valid_assignees
+    members
+  end
+
+  def members
     if team_project?
       # User.joins(%(INNER JOIN `team_users`
       # ON `team_users`.`user_id` = `users`.`id` and `team_users`.`company_id` = #{company_id}
@@ -28,7 +32,7 @@ class Project < ApplicationRecord
       # tables so rails join them via the intermediate table
       teams.joins(:users).select('users.*').distinct
     else
-      company.users
+      project_users.joins(:user).select('users.*')
     end
   end
 
