@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WorkflowEngineApp</title>
+    <title><%= t('shared.app_name') %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -19,7 +19,7 @@
           <div class="sidebar-brand-icon ">
             <i class="fab fa-stack-overflow"></i>
           </div>
-          <div class="sidebar-brand-text mx-3"><%= current_company.name %></div>
+          <div class="sidebar-brand-text mx-3"><%= @current_company.name %></div>
         <% end %>
           
           <hr class="sidebar-divider my-0">

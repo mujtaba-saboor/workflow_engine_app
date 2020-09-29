@@ -57,6 +57,15 @@ en:
     successful_deletion_message: 'Comment deleted successfully !'
     unsuccessful_deletion_message: 'Comment could not be deleted'
   shared:
+    sq_num_field: 'No#'
+    users_field: 'Users'
+    name_field: 'Name'
+    type_field: 'Type'
+    created_field: 'Created'
+    actions_field: 'Actions'
+    ago: 'ago'
+    filter: 'FILTER'
+    all: 'ALL'
     email: 'email'
     deletion_confirmation_message: 'Are you sure you want to delete this %{resource}?'
     new: 'New'
@@ -207,12 +216,7 @@ en:
     all_projects: 'All Projects'
     no_destroy: "Project can't be Destroyed"
     no_issue: 'This Project has no issue'
-    name_field: 'Name'
-    type_field: 'Type'
-    created_field: 'Created'
-    actions_field: 'Actions'
-    ago: 'ago'
-    add_filter: 'Add Filters'
+    no_project_to_show: 'No Project to show...'
   teams:
     form_name_placeholder: *form_name_placeholder
     add_user: *add_user
@@ -224,11 +228,6 @@ en:
     all_teams: *all_teams
     no_deletion_warning: 'Team can not be deleted because its a part of some Projects'
     no_team_to_show: 'No Team to show...'
-    name_field: 'Name'
-    users_field: 'Users'
-    created_field: 'Created'
-    actions_field: 'Actions'
-    ago: 'ago'
   flash_messages:
     create: '%{name} Created Successfully'
     update: '%{name} Updated Successfully'

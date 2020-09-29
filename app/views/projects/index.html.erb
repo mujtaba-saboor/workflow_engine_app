@@ -8,13 +8,13 @@
     </div>
     <div class="search-box">
       <%= form_tag(project_filters_path, method: :get,remote: true) do %>
-        <%= select_tag :search, options_for_select(["ALL"]+Project::PROJECT_CATEGORIES) %>
-        <%= submit_tag('SEARCH', class: 'btn btn-sm my-primary-btn') %>
+        <%= select_tag :search, options_for_select([t('shared.all')]+Project::PROJECT_CATEGORIES) %>
+        <%= submit_tag(t('shared.filter'), class: 'btn btn-sm my-primary-btn') %>
       <% end %>
     </div>
     <br>
     <div id="project_index_table">
-      <%= render 'index_table' %>
+      <%= render 'index_table', projects: @projects %>
     </div>
     <div id="create_project_modal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">

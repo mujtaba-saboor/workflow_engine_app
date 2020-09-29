@@ -69,20 +69,31 @@ $pagination-link-btn-border-color: #ddd;
   margin-left: 3em;
 }
 
-.search-box select {
-  background-color: white;
-  color: $primary-color;
-  padding: 5px;
-  border: 2px solid $primary-color;
-  font-size: 14px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+.search-box {
+  select {
+    background-color: white;
+    color: $primary-color;
+    padding: 5px;
+    border: 2px solid $primary-color;
+    font-size: 14px;
+  }
 }
 
-.search-box select option {
-  padding: 30px;
+.search-box {
+  select {
+    option {
+      padding: 30px;
+    }
+  }
 }
 
-.search-box select option:hover {
-  padding: 30px;
-  background-color: $primary-color;
+.search-box {
+  select {
+    option {
+      &:hover {
+        padding: 30px;
+        background-color: $primary-color;
+      }
+    }
+  }
 }

@@ -2,7 +2,8 @@ class Project < ApplicationRecord
   sequenceid :company, :projects
   PROJECT_CATEGORIES = %w[TEAM INDEPENDENT].freeze
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates_uniqueness_of :name, scope: :company_id
   validates :project_category, presence: true, inclusion: { in: PROJECT_CATEGORIES }
   validates :company_id, presence: true
 
@@ -15,6 +16,9 @@ class Project < ApplicationRecord
   has_many :users, through: :project_users
 
   has_many :issues
+
+   scope :independent_projects, -> { where(project_category: PROJECT_CATEGORIES[1]) }
+   scope :team_projects, -> { where(project_category: PROJECT_CATEGORIES[0]) }
 
   def valid_assignees
     if team_project?

@@ -3,13 +3,6 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
   
   def index
-    if(params[:search].present?)
-      if params[:search].eql? Project::PROJECT_CATEGORIES[0]
-        @projects = @projects.where(project_category: Project::PROJECT_CATEGORIES[0])
-      elsif params[:search].eql? Project::PROJECT_CATEGORIES[1]
-        @projects = @projects.where(project_category: Project::PROJECT_CATEGORIES[1])
-      end  
-    end
     @pagy, @projects = pagy(@projects.order(created_at: :desc), items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
@@ -74,9 +67,9 @@ class ProjectsController < ApplicationController
   def filters
     if(params[:search].present?)
       if params[:search].eql? Project::PROJECT_CATEGORIES[0]
-        @projects = @projects.where(project_category: Project::PROJECT_CATEGORIES[0])
+        @projects = @projects.team_projects
       elsif params[:search].eql? Project::PROJECT_CATEGORIES[1]
-        @projects = @projects.where(project_category: Project::PROJECT_CATEGORIES[1])
+        @projects = @projects.independent_projects
       end  
     end
     @pagy, @projects = pagy(@projects.order(created_at: :desc), items: Company::PAGE_SIZE)
