@@ -34,6 +34,22 @@ class UsersController < ApplicationController
       end
   end
 
+  def filters
+    if(params[:search].present?)
+      if params[:search].eql? User::ROLES[0]
+        @users = @users.where(role: 'STAFF')
+      elsif params[:search].eql? User::ROLES[1]
+        @users = @users.where(role: 'ADMIN')
+      elsif params[:search].eql? User::ROLES[2]
+        @users = @users.where(role: 'OWNER')
+      end
+    end
+    @pagy, @users = pagy(@users.order(created_at: :desc), items: 5)
+    respond_to do |format|
+      format.html { redirect_to users_path(@users) }
+    end
+  end
+
   private
 
   def edit_params
