@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       if @user.update(edit_params)
         flash[:success] = t('flash_messages.update', name: t('shared.user'))
         respond_to do |format|
-        format.html { redirect_to user_path(@user) }
+        format.html { redirect_to user_path }
         end
       else
         flash[:danger] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
