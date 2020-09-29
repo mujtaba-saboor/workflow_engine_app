@@ -37,7 +37,6 @@ class InvitesController < ApplicationController
     @user.email = confirm_params[:email]
     @user.password = confirm_params[:password]
     @user.password_confirmation = confirm_params[:password_confirmation]
-    binding.pry
     if @user.save
       flash[:success] = t('users.user_created_successfully')
       respond_to do |format|

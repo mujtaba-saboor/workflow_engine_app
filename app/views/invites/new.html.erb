@@ -3,7 +3,7 @@
     <%= form_for @invite , url: invites_path do |f| %>
         <%= f.hidden_field :company_id, value: @invite.company_id %>
         <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control', required: true%><br>
+        <%= f.email_field :email, class: 'form-control', required: true %><br>
         <%= f.submit t('users.send_invite'), class: 'btn btn-info' %>
     <% end %>
   </div>
