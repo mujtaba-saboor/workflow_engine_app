@@ -1,7 +1,10 @@
 class TeamsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
+  add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show]
+  add_breadcrumb I18n.t('shared.teams'), :teams_path, only: [:index, :show]
+
   def index
-    @pagy, @teams = pagy(@teams, items: Company::PAGE_SIZE)
+    @pagy, @teams = pagy(@teams.order(created_at: :desc), items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
     end
@@ -45,6 +48,7 @@ class TeamsController < ApplicationController
   end
 
   def show
+    add_breadcrumb @team.name, :team_path
     respond_to do |format|
       format.html
     end
