@@ -57,6 +57,11 @@ en:
     successful_deletion_message: 'Comment deleted successfully !'
     unsuccessful_deletion_message: 'Comment could not be deleted'
   shared:
+    error_404: '404'
+    page_not_found_msg: 'Page Not Found'
+    page_not_found_content: "It looks like we don't have a page you are looking for..."
+    record_not_found_msg: 'Record Not Found'
+    record_not_found_content: "It looks like we don't have a record you are looking for..."
     sq_num_field: '%{model} #'
     users_field: 'Users'
     name_field: 'Name'
