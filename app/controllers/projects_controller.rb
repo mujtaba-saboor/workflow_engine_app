@@ -1,7 +1,8 @@
-include Pagy::Backend
+# frozen_string_literal: true
+
 class ProjectsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
-  
+
   def index
     @pagy, @projects = pagy(@projects.order(created_at: :desc), items: Company::PAGE_SIZE)
     respond_to do |format|
@@ -70,7 +71,7 @@ class ProjectsController < ApplicationController
         @projects = @projects.team_projects
       elsif params[:search].eql? Project::PROJECT_CATEGORIES[1]
         @projects = @projects.independent_projects
-      end  
+      end
     end
     @pagy, @projects = pagy(@projects.order(created_at: :desc), items: Company::PAGE_SIZE)
     respond_to do |format|
@@ -101,7 +102,7 @@ class ProjectsController < ApplicationController
     else
       flash[:danger] = t('flash_messages.error')
     end
-    
+
     respond_to do |format|
       format.js { redirect_to project_path(@project) }
     end
@@ -109,7 +110,7 @@ class ProjectsController < ApplicationController
 
   def remove_team_from_project
     team = @current_company.teams.find_by_id params[:team]
-    
+
     if team.present?
       if @project.teams.delete(team)
         flash[:success] = t('flash_messages.deletion', name: t('shared.team'))
@@ -119,7 +120,7 @@ class ProjectsController < ApplicationController
     else
       flash[:danger] = t('flash_messages.error')
     end
-    
+
     respond_to do |format|
       format.html { redirect_to project_path(@project) }
     end
@@ -133,7 +134,7 @@ class ProjectsController < ApplicationController
 
   def add_user_to_project
     user = @current_company.users.find_by_id params[:project][:user]
-    
+
     if user.present?
       if ProjectUser.create(project: @project, user: user)
         flash[:success] = t('flash_messages.addition', name: t('shared.user'))
@@ -143,7 +144,7 @@ class ProjectsController < ApplicationController
     else
       flash[:danger] = t('flash_messages.error')
     end
-    
+
     respond_to do |format|
       format.js { redirect_to project_path(@project) }
     end
@@ -151,7 +152,7 @@ class ProjectsController < ApplicationController
 
   def remove_user_from_project
     user = @current_company.users.find_by_id params[:user]
-    
+
     if user.present?
       if @project.users.delete(user)
         flash[:success] = t('flash_messages.deletion', name: t('shared.user'))

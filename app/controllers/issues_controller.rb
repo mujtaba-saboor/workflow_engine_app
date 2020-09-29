@@ -10,18 +10,11 @@ class IssuesController < ApplicationController
   before_action :load_valid_assignees, only: %i[new edit update create]
   before_action :load_pagy, only: %i[index all]
 
+  # GET /issues/all
   def all
     respond_to do |format|
       format.html { render 'index' }
       format.js { render 'index' }
-    end
-  end
-
-  # GET /projects/:project_id/issues
-  def index
-    respond_to do |format|
-      format.html
-      format.js
     end
   end
 
@@ -109,11 +102,12 @@ class IssuesController < ApplicationController
     end
   end
 
-  # GET /projects/:project_id/issues/filter
+  # GET /issues/filter
   def filter
     @issues = @issues.where(status: params[:status]) if params[:status].present?
     @issues = @issues.where(issue_type: params[:issue_type]) if params[:issue_type].present?
     @issues = @issues.where(priority: params[:priority]) if params[:priority].present?
+    @issues = @issues.where('issues.title LIKE ?', "%#{params[:issue_title]}%") if params[:issue_title].present?
 
     load_pagy
 
@@ -141,6 +135,7 @@ class IssuesController < ApplicationController
 
   def load_pagy
     @pagy, @issues = pagy(@issues, link_extra: "data-remote='true'", items: Issue::PAGE_SIZE)
+    @issues.includes(:project)
   end
 
   def issue_params
