@@ -1,8 +1,10 @@
 include Pagy::Backend
 class ProjectsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
-  
+
   def index
+    add_breadcrumb t('shared.home'), :root_path
+    add_breadcrumb t('shared.projects'), :projects_path
     @pagy, @projects = pagy(@projects, items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
@@ -47,6 +49,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    add_breadcrumb t('shared.home'), :root_path
+    add_breadcrumb t('shared.projects'), :projects_path
+    add_breadcrumb @project.name, :project_path
     @pagy, @project_issues = pagy(@project.issues, items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
@@ -87,7 +92,7 @@ class ProjectsController < ApplicationController
     else
       flash[:danger] = t('flash_messages.error')
     end
-    
+
     respond_to do |format|
       format.js { redirect_to project_path(@project) }
     end
@@ -95,7 +100,7 @@ class ProjectsController < ApplicationController
 
   def remove_team_from_project
     team = @current_company.teams.find_by_id params[:team]
-    
+
     if team.present?
       if @project.teams.delete(team)
         flash[:success] = t('flash_messages.deletion', name: t('shared.team'))
@@ -105,7 +110,7 @@ class ProjectsController < ApplicationController
     else
       flash[:danger] = t('flash_messages.error')
     end
-    
+
     respond_to do |format|
       format.html { redirect_to project_path(@project) }
     end
@@ -119,7 +124,7 @@ class ProjectsController < ApplicationController
 
   def add_user_to_project
     user = @current_company.users.find_by_id params[:project][:user]
-    
+
     if user.present?
       if ProjectUser.create(project: @project, user: user)
         flash[:success] = t('flash_messages.addition', name: t('shared.user'))
@@ -129,7 +134,7 @@ class ProjectsController < ApplicationController
     else
       flash[:danger] = t('flash_messages.error')
     end
-    
+
     respond_to do |format|
       format.js { redirect_to project_path(@project) }
     end
@@ -137,7 +142,7 @@ class ProjectsController < ApplicationController
 
   def remove_user_from_project
     user = @current_company.users.find_by_id params[:user]
-    
+
     if user.present?
       if @project.users.delete(user)
         flash[:success] = t('flash_messages.deletion', name: t('shared.user'))
