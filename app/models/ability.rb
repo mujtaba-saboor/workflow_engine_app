@@ -29,7 +29,9 @@ class Ability
 
     # *** ADMINS and OWNERS ***
     can :manage, :all, company_id: user.company_id
-    cannot :destroy, User, role: User::ROLES[2]
+    can :destroy, User, company_id: user.company_id, role: User::ROLES[0]
+    cannot :destroy, User, company_id: user.company_id, role: User::ROLES[2]
+    cannot :destroy, User, company_id: user.company_id, role: User::ROLES[1]
 
     return unless user.account_owner?
 
@@ -41,5 +43,7 @@ class Ability
     can :update, User, company_id: user.company_id
     can :read, User, company_id: user.company_id
     can :destroy, User, company_id: user.company_id
+    can :destroy, User, company_id: user.company_id, role: User::ROLES[1]
+    cannot :destroy, User, company_id: user.company_id, role: User::ROLES[2]
   end
 end

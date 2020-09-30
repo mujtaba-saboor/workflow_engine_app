@@ -79,6 +79,7 @@ en:
     edit: 'Edit'
     update: 'Update'
     delete: 'Delete'
+    edit_delete: 'Edit / Delete'
     create_model: 'Create %{model}'
     update_model: 'Update %{model}'
     time_ago: '%{time_ago} ago'
@@ -103,6 +104,9 @@ en:
     home: 'Home'
     about: 'About'
     features: 'Features'
+    index_views:
+      actions: 'Actions'
+      dashes: &dashes '--'
   companies:
     company_projects: 'Company Projects'
     company_project_issues: 'Company Project Issues'
@@ -151,6 +155,8 @@ en:
     name: 'name'
     role: 'role'
     company: 'company'
+    successful_deletion_message: 'User deleted successfully !'
+    unsuccessful_deletion_message: 'User could not be deleted'
     all_users: 'All Users'
     no_user_to_show: 'No User to show...'
     user_created_successfully: 'User created successfully'
@@ -181,9 +187,15 @@ en:
     issue_priority: 'Priority'
     issue_status: 'Status'
     issue_assignee: 'Assignee'
-    not_assigned: '----'
+    not_assigned: *dashes
     documents: 'Documents'
     document: 'Document'
+    all_issues: 'All Issues'
+    filter:
+      categories:
+        all: 'All'
+      form:
+        issue_title: 'Search Issues'
   home:
     learn_more: 'Learn More'
     main_heading: 'Grow Your Business Faster'

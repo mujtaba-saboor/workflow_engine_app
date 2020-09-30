@@ -1,6 +1,8 @@
-include Pagy::Backend
+# frozen_string_literal: true
+
 class ProjectsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
+
   add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show]
   add_breadcrumb I18n.t('shared.projects'), :projects_path, only: [:index, :show]
 

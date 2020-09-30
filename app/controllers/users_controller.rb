@@ -34,6 +34,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    if @user.destroy
+      flash.now[:notice] = t('users.successful_deletion_message')
+    else
+      flash.now[:error] = t('users.unsuccessful_deletion_message')
+    end
+
+    respond_to do |format|
+      format.html { redirect_to users_path }
+    end
+  end
+
   def filters
     if(params[:search].present?)
       if params[:search].eql? User::ROLES[0]
