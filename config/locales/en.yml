@@ -297,7 +297,7 @@ en:
       success: 'You are not watching this issue now'
       failure: 'Could not stop watching issue'
     view_watcher: 'View Watchers'
-    no_project_member: "This issue's project has no members."
+    no_project_member: 'There are no associated members to this project.' 
     watching: 'Watching'
     not_watching: 'Not Watching'
 
