@@ -4,6 +4,9 @@ class InvitesController < ApplicationController
 
   # GET /invites/new
   def new
+    add_breadcrumb t('shared.home'), :root_path
+    add_breadcrumb t('shared.users'), :users_path
+    add_breadcrumb t('shared.create_model', model: t('shared.user'))
     @token = params[:invite_token] #<-- pulls the value from the url query string
   end
 

@@ -11,13 +11,9 @@ Rails.application.routes.draw do
         patch 'add_user_to_project'
         delete 'remove_user_from_project'
       end
-      resources :issues do
+      resources :issues, except: %i[index] do
         member do
           patch :update_status
-        end
-      end
-      resources :issues do
-        member do
           delete :delete_document_attachment
           patch :add_document_attachment
         end
@@ -25,8 +21,12 @@ Rails.application.routes.draw do
     end
 
     resources :issues, only: [] do
-    resources :comments, only: %i[create edit update destroy]
+      resources :comments, only: %i[create edit update destroy]
+      collection do
+        get :filter
+      end
     end
+    get '/issues', to: 'issues#all'
 
     resources :teams do
       member do

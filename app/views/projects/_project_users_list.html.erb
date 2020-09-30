@@ -17,7 +17,9 @@
         <li class="list-group-item d-flex justify-content-between align-items-center">
     	  <%= user.name %>
         <% if can? :remove_user_from_project, @project %>
-    	     <%= link_to t('projects.remove_user'), remove_user_from_project_project_path(@project, user: user),method: :delete,class: 'badge badge-danger' %>
+          <%= link_to remove_user_from_project_project_path(@project, user: user),method: :delete,class: 'btn btn-sm btn-outline-danger card-button float-right' do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
     	</li>
       <% end %>

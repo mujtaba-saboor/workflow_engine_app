@@ -1,11 +1,25 @@
 # frozen_string_literal: true
 
 class IssuesController < ApplicationController
-  load_and_authorize_resource :project, find_by: :sequence_num, through: :current_company
-  load_and_authorize_resource through: :project
+  WITHOUT_THROUGH = %i[all filter].freeze
+
+  load_and_authorize_resource :project, find_by: :sequence_num, through: :current_company, except: WITHOUT_THROUGH
+  load_and_authorize_resource through: :project, except: WITHOUT_THROUGH
+  load_and_authorize_resource only: WITHOUT_THROUGH
+
+  add_breadcrumb I18n.t('shared.home'), :root_path, only: %i[show new edit]
+  add_breadcrumb I18n.t('shared.projects'), :projects_path, only: %i[show new edit]
+
   before_action :load_valid_assignees, only: %i[new edit update create]
-  add_breadcrumb I18n.t('shared.home'), :root_path, only: [:show, :new, :edit]
-  add_breadcrumb I18n.t('shared.projects'), :projects_path, only: [:show, :new, :edit]
+
+  # GET /issues
+  def all
+    load_pagy
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   # GET /projects/:project_id/issues/:id
   def show
@@ -98,6 +112,18 @@ class IssuesController < ApplicationController
     end
   end
 
+  # GET /issues/filter
+  def filter
+    @issues = @issues.where(search_params)
+    @issues = @issues.where('issues.title LIKE :title', title: "%#{params[:issue_title]}%") if params[:issue_title].present?
+
+    load_pagy
+
+    respond_to do |format|
+      format.js { render 'all' }
+    end
+  end
+
   def add_document_attachment
     @issue.documents.attach(add_documents_params[:documents])
     redirect_back(fallback_location: project_issue_path)
@@ -113,6 +139,16 @@ class IssuesController < ApplicationController
 
   def load_valid_assignees
     @valid_assignees = @project.valid_assignees
+  end
+
+  def load_pagy
+    @pagy, @issues = pagy(@issues, link_extra: "data-remote='true'", items: Issue::PAGE_SIZE)
+    @issues.includes(:project)
+  end
+
+  def search_params
+    permitted_params = %i[status issue_type priority]
+    params.permit(*permitted_params).delete_if { |_key, value| value.blank? }
   end
 
   def issue_params

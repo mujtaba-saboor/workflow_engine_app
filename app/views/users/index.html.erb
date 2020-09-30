@@ -3,7 +3,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h2 class="h3"><%= t('users.all_users')%></h2>
       <% if can? :create, User %>
-      <%= link_to t('shared.new_resource', resource_name: t('shared.user')), root_path,class: 'btn my-primary-btn' %>
+      <%= link_to t('shared.new_resource', resource_name: t('shared.user')), new_invite_path,class: 'btn my-primary-btn' %>
       <% end %>
     </div>
   <div class="search-box">

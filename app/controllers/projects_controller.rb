@@ -1,13 +1,16 @@
-include Pagy::Backend
+# frozen_string_literal: true
+
 class ProjectsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
+
+  before_action :load_pagy, only: %i[index]
   add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show]
   add_breadcrumb I18n.t('shared.projects'), :projects_path, only: [:index, :show]
 
   def index
-    @pagy, @projects = pagy(@projects.order(created_at: :desc), items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
+      format.js { render 'filters' }
     end
   end
 
@@ -24,9 +27,8 @@ class ProjectsController < ApplicationController
         format.js { redirect_to project_path(@project) }
       end
     else
-      flash[:danger] = t('flash_messages.error', error_msg: @project.errors.full_messages.first)
       respond_to do |format|
-       format.js { redirect_to projects_path }
+       format.js
       end
     end
   end
@@ -40,19 +42,22 @@ class ProjectsController < ApplicationController
   def update
     if @project.update(project_params)
       flash[:success] = t('flash_messages.update', name: t('shared.project'))
+      respond_to do |format|
+        format.js { redirect_to project_path(@project) }
+      end
     else
-      flash[:danger] = t('flash_messages.error', error_msg: @project.errors.full_messages.first)
-    end
-    respond_to do |format|
-      format.js { redirect_to projects_path }
+      respond_to do |format|
+        format.js
+      end
     end
   end
 
   def show
     add_breadcrumb @project.name, :project_path
-    @pagy, @project_issues = pagy(@project.issues, items: Company::PAGE_SIZE)
+    @pagy, @project_issues = pagy(@project.issues, link_extra: "data-remote='true'", items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
+      format.js
     end
   end
 
@@ -75,7 +80,7 @@ class ProjectsController < ApplicationController
         @projects = @projects.independent_projects
       end
     end
-    @pagy, @projects = pagy(@projects.order(created_at: :desc), items: Company::PAGE_SIZE)
+    load_pagy
     respond_to do |format|
       format.js
     end
@@ -111,8 +116,7 @@ class ProjectsController < ApplicationController
   end
 
   def remove_team_from_project
-    team = @current_company.teams.find_by_id params[:team]
-
+    team = @current_company.teams.find_by_sequence_num! params[:team]
     if team.present?
       if @project.teams.delete(team)
         flash[:success] = t('flash_messages.deletion', name: t('shared.team'))
@@ -153,8 +157,7 @@ class ProjectsController < ApplicationController
   end
 
   def remove_user_from_project
-    user = @current_company.users.find_by_id params[:user]
-
+    user = @current_company.users.find_by_sequence_num! params[:user]
     if user.present?
       if @project.users.delete(user)
         flash[:success] = t('flash_messages.deletion', name: t('shared.user'))
@@ -171,6 +174,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def load_pagy
+    @pagy, @projects = pagy(@projects.order(created_at: :desc), link_extra: "data-remote='true'", items: Company::PAGE_SIZE)
+  end
 
   def project_params
     params.require(:project).permit(:name, :project_category)

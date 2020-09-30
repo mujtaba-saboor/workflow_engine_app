@@ -24,14 +24,15 @@ class UsersController < ApplicationController
       if @user.update(edit_params)
         flash[:notice] = t('flash_messages.update', name: t('shared.user'))
         respond_to do |format|
-        format.html { redirect_to user_path }
+        format.html { redirect_to user_path(@user) }
         end
       else
         flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
         respond_to do |format|
-        format.html { render 'edit' }
-        end
+
+        format.html { redirect_to user_path(@user) }
       end
+    end
   end
 
   def destroy
@@ -123,6 +124,6 @@ class UsersController < ApplicationController
   private
 
   def edit_params
-    params.require(:user).permit(:name, :password, :password_confirmation)
+    params.require(:user).permit(:name)
   end
 end

@@ -16,7 +16,7 @@ class Ability
     can :create, Comment, user_id: user.id, company_id: user.company_id
     can %i[update destroy], Comment, user_id: user.id, company_id: user.company_id, commentable: { company_id: user.company_id }
 
-    can :read, Issue, company_id: user.company_id
+    can %i[read all filter], Issue, company_id: user.company_id, project: { sequence_num: user.all_projects.pluck(:sequence_num) }
 
     can :update_status, Issue, company_id: user.company_id, assignee_id: user.id
 
@@ -46,8 +46,12 @@ class Ability
     can :read, Invite, company_id: user.company_id
     can :create, Invite, company_id: user.company_id
     can :edit, User, company_id: user.company_id
+    can :update, User, company_id: user.company_id
+    can :read, User, company_id: user.company_id
+    can :destroy, User, company_id: user.company_id
     can :destroy, User, company_id: user.company_id, role: User::ROLES[1]
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[2]
+<<<<<<< HEAD
 
     can :change_role, User, company_id: user.company_id, role: User::ROLES[0]
     can :change_role, User, company_id: user.company_id, role: User::ROLES[1]
@@ -57,5 +61,7 @@ class Ability
     can :change_admin_to_staff, User, company_id: user.company_id, role: User::ROLES[1]
     cannot :change_role, User, company_id: user.company_id, role: User::ROLES[2]
 
+=======
+>>>>>>> fc76fd292c8f552d245e5192e9c6031bbdbc906d
   end
 end
