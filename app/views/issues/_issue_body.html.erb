@@ -5,10 +5,10 @@
   <% if issue.assignee_id %>
     <h6 class="card-subtitle mb-2 text-muted"><%= "#{Issue.human_attribute_name("assignee")}: #{issue.assignee.email}" %></h6>
   <% else %>
-    <h6 class="card-subtitle mb-2 text-muted"><%= t('issue.no_assignee_assigned') %></h6>
+    <h6 class="card-subtitle mb-2 text-muted"><%= t('issues.no_assignee_assigned') %></h6>
   <% end %>
   <hr>
-  <% if issue.description %>
+  <% if issue.description.present? %>
     <p class="card-text"><%= issue.description %></p>
     <hr>
   <% end %>
