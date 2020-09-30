@@ -13,7 +13,7 @@ class IssuesController < ApplicationController
   before_action :load_valid_assignees, only: %i[new edit update create]
   before_action :load_pagy, only: %i[index all]
 
-  # GET /issues/all
+  # GET /issues
   def all
     respond_to do |format|
       format.html
