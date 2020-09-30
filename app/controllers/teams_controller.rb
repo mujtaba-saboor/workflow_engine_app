@@ -1,12 +1,15 @@
 class TeamsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
+
+  before_action :load_pagy, only: %i[index]
+
   add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show]
   add_breadcrumb I18n.t('shared.teams'), :teams_path, only: [:index, :show]
 
   def index
-    @pagy, @teams = pagy(@teams.order(created_at: :desc), items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
+      format.js
     end
   end
 
@@ -23,9 +26,8 @@ class TeamsController < ApplicationController
         format.js { redirect_to team_path(@team) }
       end
     else
-      flash[:danger] = t('flash_messages.error', error_msg: @team.errors.full_messages.first)
       respond_to do |format|
-        format.js { redirect_to teams_path }
+        format.js
       end
     end
   end
@@ -39,12 +41,15 @@ class TeamsController < ApplicationController
   def update
     if @team.update(team_params)
       flash[:success] = t('flash_messages.update', name: t('shared.team'))
+      respond_to do |format|
+        format.js { redirect_to team_path(@team) }
+      end
     else
-      flash[:danger] = t('flash_messages.error', error_msg: @team.errors.full_messages.first)
+      respond_to do |format|
+        format.js
+      end
     end
-    respond_to do |format|
-      format.js { redirect_to teams_path }
-    end
+    
   end
 
   def show
@@ -60,12 +65,14 @@ class TeamsController < ApplicationController
     if team_project.empty?
       @team.destroy
       flash[:success] = t('flash_messages.destroy', name: t('shared.team'))
+      respond_to do |format|
+        format.html { redirect_to teams_path }
+      end
     else
       flash[:warning] = t('flash_messages.warning', warning_msg: t('teams.no_deletion_warning'))
-    end
-
-    respond_to do |format|
-      format.html { redirect_to teams_path }
+      respond_to do |format|
+        format.html { redirect_to team_path(@team) }
+      end
     end
   end
 
@@ -93,7 +100,7 @@ class TeamsController < ApplicationController
   end
 
   def remove_user_from_team
-    user = @current_company.users.find_by_id params[:user]
+    user = @current_company.users.find_by_sequence_num! params[:user]
 
     if user.present?
       if @team.users.delete(user)
@@ -111,6 +118,10 @@ class TeamsController < ApplicationController
   end
 
   private
+
+  def load_pagy
+    @pagy, @teams = pagy(@teams.order(created_at: :desc),link_extra: "data-remote='true'", items: Company::PAGE_SIZE)
+  end
 
   def team_params
     params.require(:team).permit(:name)

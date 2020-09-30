@@ -14,7 +14,7 @@
     </div>
     <br>
     <div id="project_index_table">
-      <%= render 'index_table', projects: @projects %>
+      <%= render 'index_table', projects: @projects, pagy: @pagy %>
     </div>
     <div id="create_project_modal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">

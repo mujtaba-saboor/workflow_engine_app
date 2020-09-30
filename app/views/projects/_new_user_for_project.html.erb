@@ -8,15 +8,27 @@
   <% project_users = @project.available_users %>
   <% if project_users.present? %>
     <%= form_with model: @project, url: add_user_to_project_project_path do |f| %>
-    <div class="form-row">
-      <div class="form-group col-md-4">   
-        <%= f.label t('projects.available_users') %>      
-        <%= f.collection_select :user, project_users, :id, :name, {}, class: 'form-control' %>
+      <div class="worflow-form">
+        <div class="p-t-15 m-r-10">
+          <div class="col-12">
+            <div class="row no-gutters d-flex justify-content-between">
+              <div class="d-flex align-items-end col-sm-4">
+                <%= f.label t('projects.available_users') %>
+              </div>
+              <div class="col-sm-8 d-flex justify-content-end">
+                <%= f.collection_select :user, project_users, :id, :name, {}, class: 'form-input-area' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-t-15 m-r-10">
+          <div class="col-sm-12 d-flex justify-content-center">
+            <%= f.submit t('projects.add_user'), class: 'my-primary-btn form-submit-btn' %>
+          </div>
+        </div>
       </div>
-    </div>  
-    <%= f.submit t('projects.add_user'), class: 'btn my-primary-btn' %>
     <% end %>
- <%else%>
-  <p><%= t('projects.no_available_user') %></p>
- <%end%>
+  <% else %>
+    <p><%= t('projects.no_available_user') %></p>
+  <% end %>
 </div>
