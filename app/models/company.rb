@@ -6,6 +6,7 @@ class Company < ApplicationRecord
   has_many :teams, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :issues, dependent: :destroy
+  has_many :invites, dependent: :destroy
 
   PAGE_SIZE = 5
 
