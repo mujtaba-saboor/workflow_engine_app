@@ -1,18 +1,22 @@
 include Pagy::Backend
 class UsersController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
+  add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show, :edit]
+  add_breadcrumb I18n.t('shared.users'), :users_path, only: [:index, :show, :edit]
+
   def show
     add_breadcrumb @user.name, :user_path
     respond_to { |format| format.html }
   end
 
   def index
-    add_breadcrumb t('shared.users'), :users_path
     @pagy, @users = pagy(@users,  items: Company::PAGE_SIZE)
     respond_to { |format| format.html }
   end
 
   def edit
+    add_breadcrumb @user.name, :user_path
+    add_breadcrumb t('shared.edit'), :edit_user_path
     respond_to { |format| format.html }
   end
 
@@ -20,7 +24,7 @@ class UsersController < ApplicationController
       if @user.update(edit_params)
         flash[:success] = t('flash_messages.update', name: t('shared.user'))
         respond_to do |format|
-        format.html { redirect_to user_path(@user) }
+        format.html { redirect_to user_path }
         end
       else
         flash[:danger] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)

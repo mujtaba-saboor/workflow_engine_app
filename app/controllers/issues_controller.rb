@@ -3,6 +3,9 @@
 class IssuesController < ApplicationController
   WITHOUT_THROUGH = %i[all filter].freeze
 
+  add_breadcrumb I18n.t('shared.home'), :root_path, only: [:show, :new, :edit]
+  add_breadcrumb I18n.t('shared.projects'), :projects_path, only: [:show, :new, :edit]
+
   load_and_authorize_resource :project, find_by: :sequence_num, through: :current_company, except: WITHOUT_THROUGH
   load_and_authorize_resource through: :project, except: WITHOUT_THROUGH
   load_and_authorize_resource only: WITHOUT_THROUGH
@@ -22,6 +25,8 @@ class IssuesController < ApplicationController
   def show
     @comment = Comment.new
     @pagy, @comments = pagy(Comment.where(commentable: @issue))
+    add_breadcrumb @issue.project.name, project_path(@issue.project.id)
+    add_breadcrumb @issue.title, :project_issue_path
     respond_to do |format|
       format.html
     end
@@ -29,6 +34,8 @@ class IssuesController < ApplicationController
 
   # GET /projects/:project_id/issues/new
   def new
+    add_breadcrumb @issue.project.name, project_path(@issue.project.id)
+    add_breadcrumb t('shared.new_resource', resource_name: t('shared.issue')), :new_project_issue_path
     respond_to do |format|
       format.html
     end
@@ -56,6 +63,9 @@ class IssuesController < ApplicationController
 
   # GET /projects/:project_id/issues/:id/edit
   def edit
+    add_breadcrumb @issue.project.name, project_path(@issue.project.id)
+    add_breadcrumb @issue.title, :project_issue_path
+    add_breadcrumb t('shared.edit'), :edit_project_issue_path
     respond_to do |format|
       format.html
     end

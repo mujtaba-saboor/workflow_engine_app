@@ -4,6 +4,7 @@ $hover-primary-color: #289cd1;
 $pagination-link-btn-text-color: #5a5a5a;
 $pagination-link-btn-background-color: #eee;
 $pagination-link-btn-border-color: #ddd;
+$breadcrumbs-color: #A1A1A1;
 
 .error-explanation {
   @extend .alert;
@@ -65,8 +66,19 @@ $pagination-link-btn-border-color: #ddd;
     }
   }
 }
+
 .left-margin-class {
   margin-left: 3em;
+}
+
+.breadcrumbs-container{
+  p{
+    font-size: 0.7rem;
+    border-bottom: 1px solid $breadcrumbs-color;
+    padding-left: 10px;
+    margin-top: -9px;
+    padding-bottom: 10px;
+  }
 }
 
 .search-box {

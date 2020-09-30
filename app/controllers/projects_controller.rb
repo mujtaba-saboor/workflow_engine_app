@@ -2,6 +2,9 @@
 
 class ProjectsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
+  
+  add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show]
+  add_breadcrumb I18n.t('shared.projects'), :projects_path, only: [:index, :show]
 
   def index
     @pagy, @projects = pagy(@projects.order(created_at: :desc), items: Company::PAGE_SIZE)
@@ -48,6 +51,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    add_breadcrumb @project.name, :project_path
     @pagy, @project_issues = pagy(@project.issues, items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
