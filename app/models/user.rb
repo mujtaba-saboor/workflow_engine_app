@@ -40,6 +40,10 @@ class User < ApplicationRecord
     company.projects.where(id: all_individual_projects | all_team_projects)
   end
 
+  def will_save_change_to_email?
+    false
+  end
+
   def get_project_count
     staff? ? all_projects.count : company.projects.count
   end
