@@ -3,12 +3,12 @@
 class IssuesController < ApplicationController
   WITHOUT_THROUGH = %i[all filter].freeze
 
-  add_breadcrumb I18n.t('shared.home'), :root_path, only: [:show, :new, :edit]
-  add_breadcrumb I18n.t('shared.projects'), :projects_path, only: [:show, :new, :edit]
-
   load_and_authorize_resource :project, find_by: :sequence_num, through: :current_company, except: WITHOUT_THROUGH
   load_and_authorize_resource through: :project, except: WITHOUT_THROUGH
   load_and_authorize_resource only: WITHOUT_THROUGH
+
+  add_breadcrumb I18n.t('shared.home'), :root_path, only: %i[show new edit]
+  add_breadcrumb I18n.t('shared.projects'), :projects_path, only: %i[show new edit]
 
   before_action :load_valid_assignees, only: %i[new edit update create]
   before_action :load_pagy, only: %i[index all]
@@ -119,6 +119,10 @@ class IssuesController < ApplicationController
     @issues = @issues.where(priority: params[:priority]) if params[:priority].present?
     @issues = @issues.where('issues.title LIKE ?', "%#{params[:issue_title]}%") if params[:issue_title].present?
 
+    # In this action load_pagy is not used as a before filter as in the load_pagy method the projects for the @issues
+    # instance are being loaded with 'includes' and if load_pagy was called before the filtering (above), extra projects
+    # that would not be needed would be loaded. However if it must be used as a before filter, the above filtering
+    # code should also be moved in a before filter that is before the load_pagy filter.
     load_pagy
 
     respond_to do |format|

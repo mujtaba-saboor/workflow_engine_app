@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   ].freeze
 
   UNWANTED_SUBDOMAIN_PATHS = [
-    # '/users/sign_up'
+    '/users/sign_up'
   ].freeze
 
   def route_not_found

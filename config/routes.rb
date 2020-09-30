@@ -12,9 +12,6 @@ Rails.application.routes.draw do
         delete 'remove_user_from_project'
       end
       resources :issues, except: %i[index] do
-        # collection do
-        #   get :filter
-        # end
         member do
           patch :update_status
           delete :delete_document_attachment
