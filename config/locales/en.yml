@@ -146,11 +146,21 @@ en:
     leave_blank_line: "leave blank if you don't want to change it"
     need_for_current_password: 'we need your current password to confirm your changes'
     send_invite: 'Send Invitation'
+    invite_user: 'Invite User'
     name: 'name'
     role: 'role'
     company: 'company'
     successful_deletion_message: 'User deleted successfully !'
     unsuccessful_deletion_message: 'User could not be deleted'
+    all_users: 'All Users'
+    no_user_to_show: 'No User to show...'
+    user_created_successfully: 'User created successfully'
+  invites:
+    send_successful: 'Invitation has been sent successfully'
+    successfully_invited: 'You have been invited to accept invitation'
+    accept: 'Accept'
+    before_link: 'To accept invitation, just click this link:'
+    set_password: 'Set Password'
   issues:
     no_assignee_assigned: 'Assignee is not assigned for this issue'
     edit_form:

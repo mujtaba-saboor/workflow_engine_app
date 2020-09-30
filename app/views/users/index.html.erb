@@ -1,21 +1,20 @@
-<h1><%= t('shared.users') %></h1>
-<% @users.each do |user| %>
-    <div class="row">
-        <div class="col-md-3">
-          <div class="left-margin-class">
-            <label><%= user.name %></label>
-          </div>
-        </div>
-        <div class="col-md-3">
-            <label><%= user.email %></label>
-        </div>
-        <div class="col-md-3">
-            <label><%= user.role %></label>
-        </div>
+<div class="d-flex flex-column">
+  <div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h2 class="h3"><%= t('users.all_users')%></h2>
+      <% if can? :create, User %>
+      <%= link_to t('shared.new_resource', resource_name: t('shared.user')), root_path,class: 'btn my-primary-btn' %>
+      <% end %>
     </div>
+  <div class="search-box">
+    <%= form_tag(filters_users_path, method: :get,remote: true) do %>
+      <%= select_tag :search, options_for_select([t('shared.all')]+User::ROLES) %>
+      <%= submit_tag(t('shared.filter'), class: 'btn btn-sm my-primary-btn') %>
+    <% end %>
+  </div>
     <br>
-<% end %>
-<br>
-<div class="left-margin-class">
-  <%== pagy_bootstrap_nav(@pagy) %>
+    <div id="user_index_table">
+      <%= render 'index_table', users: @users %>
+    </div>
+  </div>
 </div>

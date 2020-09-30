@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    binding.pry
     if @user.destroy
       flash.now[:notice] = t('users.successful_deletion_message')
     else
@@ -42,9 +43,26 @@ class UsersController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_back fallback_location: root_url }
+      format.html { redirect_to users_path }
     end
   end
+
+  def filters
+    if(params[:search].present?)
+      if params[:search].eql? User::ROLES[0]
+        @users = @users.where(role: User::ROLES[0])
+      elsif params[:search].eql? User::ROLES[1]
+        @users = @users.where(role: User::ROLES[1])
+      elsif params[:search].eql? User::ROLES[2]
+        @users = @users.where(role: User::ROLES[2])
+      end
+    end
+    @pagy, @users = pagy(@users.order(created_at: :desc), items: Company::PAGE_SIZE)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def edit_params
