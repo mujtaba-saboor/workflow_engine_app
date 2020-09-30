@@ -21,7 +21,7 @@ class HomeController < ApplicationController
 
     respond_to do |format|
       if @companies.size == 1
-        format.js { redirect_to new_user_session_url(subdomain: @companies.first.subdomain) }
+        format.js { redirect_to new_user_session_url(subdomain: @companies.first.subdomain, email: email) }
       else
         flash.now[:error] = t('home.no_associated_companies_message', email: email) if @companies.empty?
         format.js
