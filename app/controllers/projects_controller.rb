@@ -1,4 +1,5 @@
-include Pagy::Backend
+# frozen_string_literal: true
+
 class ProjectsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
 

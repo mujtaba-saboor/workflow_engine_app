@@ -21,17 +21,29 @@ class UsersController < ApplicationController
   end
 
   def update
-      if @user.update(edit_params)
-        flash[:success] = t('flash_messages.update', name: t('shared.user'))
-        respond_to do |format|
-        format.html { redirect_to user_path }
-        end
-      else
-        flash[:danger] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
-        respond_to do |format|
-        format.html { render 'edit' }
-        end
+    if @user.update(edit_params)
+      flash[:success] = t('flash_messages.update', name: t('shared.user'))
+      respond_to do |format|
+        format.html { redirect_to user_path(@user) }
       end
+    else
+      flash[:danger] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
+      respond_to do |format|
+        format.html { render 'edit' }
+      end
+    end
+  end
+
+  def destroy
+    if @user.destroy
+      flash.now[:notice] = t('users.successful_deletion_message')
+    else
+      flash.now[:error] = t('users.unsuccessful_deletion_message')
+    end
+
+    respond_to do |format|
+      format.html { redirect_to users_path }
+    end
   end
 
   def filters
@@ -53,6 +65,6 @@ class UsersController < ApplicationController
   private
 
   def edit_params
-    params.require(:user).permit(:name, :password, :password_confirmation)
+    params.require(:user).permit(:name)
   end
 end

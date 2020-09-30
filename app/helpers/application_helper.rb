@@ -12,11 +12,21 @@ module ApplicationHelper
   end
 
   def get_top_nav_links
-    { t('shared.home') => "#{root_url}#home_section", t('shared.features') => "#{root_url}#features_section", t('shared.about') => "#{root_url}#about_section" }
+    {
+      t('shared.home') => "#{root_url}#home_section",
+      t('shared.features') => "#{root_url}#features_section",
+      t('shared.about') => "#{root_url}#about_section"
+    }
   end
 
   def get_sidebar_links
-    { t('shared.home') => root_path, t('shared.projects') => projects_path, t('shared.teams') => teams_path, t('shared.users') => users_path}
+    {
+      t('shared.home') => root_path,
+      t('shared.projects') => projects_path,
+      t('shared.issues') => issues_path,
+      t('shared.teams') => teams_path,
+      t('shared.users') => users_path
+    }
   end
 
   def get_active_nav(controller)
