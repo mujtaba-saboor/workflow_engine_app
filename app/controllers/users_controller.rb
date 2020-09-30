@@ -21,15 +21,14 @@ class UsersController < ApplicationController
   end
 
   def update
-      if @user.update(edit_params)
-        flash[:notice] = t('flash_messages.update', name: t('shared.user'))
-        respond_to do |format|
+    if @user.update(edit_params)
+      flash[:notice] = t('flash_messages.update', name: t('shared.user'))
+      respond_to do |format|
         format.html { redirect_to user_path(@user) }
-        end
-      else
-        flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
-        respond_to do |format|
-
+      end
+    else
+      flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
+      respond_to do |format|
         format.html { redirect_to user_path(@user) }
       end
     end
@@ -75,10 +74,10 @@ class UsersController < ApplicationController
         format.html { redirect_to user_path(@user) }
       end
     else
-        flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
-        respond_to do |format|
-          format.html { redirect_to user_path(@user) }
-        end
+      flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
+      respond_to do |format|
+        format.html { redirect_to user_path(@user) }
+      end
     end
   end
 
@@ -88,10 +87,10 @@ class UsersController < ApplicationController
         format.html { redirect_to user_path(@user) }
       end
     else
-        flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
-        respond_to do |format|
-          format.html { redirect_to user_path(@user) }
-        end
+      flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
+      respond_to do |format|
+        format.html { redirect_to user_path(@user) }
+      end
     end
   end
 
@@ -101,10 +100,10 @@ class UsersController < ApplicationController
         format.html { redirect_to user_path(@user) }
       end
     else
-        flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
-        respond_to do |format|
-          format.html { redirect_to user_path(@user) }
-        end
+      flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
+      respond_to do |format|
+        format.html { redirect_to user_path(@user) }
+      end
     end
   end
 
@@ -114,10 +113,10 @@ class UsersController < ApplicationController
         format.html { redirect_to user_path(@user) }
       end
     else
-        flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
-        respond_to do |format|
-          format.html { redirect_to user_path(@user) }
-        end
+      flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
+      respond_to do |format|
+        format.html { redirect_to user_path(@user) }
+      end
     end
   end
 
