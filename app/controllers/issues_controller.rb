@@ -13,8 +13,8 @@ class IssuesController < ApplicationController
   # GET /issues/all
   def all
     respond_to do |format|
-      format.html { render 'index' }
-      format.js { render 'index' }
+      format.html
+      format.js
     end
   end
 
@@ -112,7 +112,7 @@ class IssuesController < ApplicationController
     load_pagy
 
     respond_to do |format|
-      format.js { render 'index' }
+      format.js { render 'all' }
     end
   end
 

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         patch 'add_user_to_project'
         delete 'remove_user_from_project'
       end
-      resources :issues do
+      resources :issues, except: %i[index] do
         # collection do
         #   get :filter
         # end
@@ -26,10 +26,10 @@ Rails.application.routes.draw do
     resources :issues, only: [] do
       resources :comments, only: %i[create edit update destroy]
       collection do
-        get :all
         get :filter
       end
     end
+    get '/issues', to: 'issues#all'
 
     resources :teams do
       member do

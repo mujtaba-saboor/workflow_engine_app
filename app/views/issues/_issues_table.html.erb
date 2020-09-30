@@ -2,18 +2,20 @@
   <table class="table">
     <thead class="thead-light">
       <tr>
+        <th>#</th>
         <th><%= Issue.human_attribute_name('title') %></th>
         <th><%= Project.model_name.human %></th>
         <th><%= Issue.human_attribute_name('description') %></th>
         <th><%= Issue.human_attribute_name('status') %></th>
         <th><%= Issue.human_attribute_name('priority') %></th>
         <th><%= Issue.human_attribute_name('issue_type') %></th>
-        <th></th>
+        <th><%= t('shared.edit_delete') %></th>
       </tr>
     </thead>
     <tbody>
       <% issues.each do |issue| %>
         <tr>
+          <th><%= issue.id %></th>
           <th>
             <%= "#{truncate(issue.title)} (" %>
             <%= link_to "##{issue.id}", project_issue_path(issue.project.sequence_num, issue.id) %>

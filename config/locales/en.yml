@@ -73,6 +73,7 @@ en:
     edit: 'Edit'
     update: 'Update'
     delete: 'Delete'
+    edit_delete: 'Edit / Delete'
     create_model: 'Create %{model}'
     update_model: 'Update %{model}'
     time_ago: '%{time_ago} ago'
@@ -173,7 +174,7 @@ en:
       categories:
         all: 'All'
       form:
-        issue_title: 'Issue Title'
+        issue_title: 'Search Issues'
   home:
     learn_more: 'Learn More'
     main_heading: 'Grow Your Business Faster'
