@@ -4,6 +4,9 @@ class ProjectsController < ApplicationController
 
   before_action :load_pagy, only: %i[index]
   
+  add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show]
+  add_breadcrumb I18n.t('shared.projects'), :projects_path, only: [:index, :show]
+
   def index
     respond_to do |format|
       format.html
@@ -50,6 +53,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    add_breadcrumb @project.name, :project_path
     @pagy, @project_issues = pagy(@project.issues, link_extra: "data-remote='true'", items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
@@ -81,7 +85,7 @@ class ProjectsController < ApplicationController
         @projects = @projects.team_projects
       elsif params[:search].eql? Project::PROJECT_CATEGORIES[1]
         @projects = @projects.independent_projects
-      end  
+      end
     end
     load_pagy
     respond_to do |format|
@@ -112,7 +116,7 @@ class ProjectsController < ApplicationController
     else
       flash[:danger] = t('flash_messages.error')
     end
-    
+
     respond_to do |format|
       format.js { redirect_to project_path(@project) }
     end
@@ -120,7 +124,6 @@ class ProjectsController < ApplicationController
 
   def remove_team_from_project
     team = @current_company.teams.find_by_sequence_num! params[:team]
-    
     if team.present?
       if @project.teams.delete(team)
         flash[:success] = t('flash_messages.deletion', name: t('shared.team'))
@@ -130,7 +133,7 @@ class ProjectsController < ApplicationController
     else
       flash[:danger] = t('flash_messages.error')
     end
-    
+
     respond_to do |format|
       format.html { redirect_to project_path(@project) }
     end
@@ -144,7 +147,7 @@ class ProjectsController < ApplicationController
 
   def add_user_to_project
     user = @current_company.users.find_by_id params[:project][:user]
-    
+
     if user.present?
       if ProjectUser.create(project: @project, user: user)
         flash[:success] = t('flash_messages.addition', name: t('shared.user'))
@@ -154,7 +157,7 @@ class ProjectsController < ApplicationController
     else
       flash[:danger] = t('flash_messages.error')
     end
-    
+
     respond_to do |format|
       format.js { redirect_to project_path(@project) }
     end

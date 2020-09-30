@@ -22,8 +22,8 @@ class Ability
 
     can :create, Issue, company_id: user.company_id, creator_id: user.id
 
-    can :read, User, sequence_num: user.sequence_num, company_id: user.company_id
     can :edit, User, sequence_num: user.sequence_num, company_id: user.company_id
+    can [:read, :filter], User, company_id: user.company_id
 
     return unless user.admin? || user.account_owner?
 
@@ -35,6 +35,8 @@ class Ability
 
     # *** OWNERS ***
     can :manage, :all, company_id: user.company_id
+    can :read, Invite, company_id: user.company_id
+    can :create, Invite, company_id: user.company_id
     can :edit, User, company_id: user.company_id
   end
 end

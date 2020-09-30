@@ -26,7 +26,8 @@ class User < ApplicationRecord
   has_many :watchers, dependent: :destroy
   has_many :created_issues, class_name: 'Issue', foreign_key: 'creator_id', inverse_of: 'creator', dependent: :destroy
   has_many :assigned_issues, class_name: 'Issue', foreign_key: 'assignee_id', inverse_of: 'assignee', dependent: :nullify
-
+  has_many :invitations, class_name: 'Invite', foreign_key: 'recipient_id'
+  has_many :sent_invites, class_name: 'Invite', foreign_key: 'sender_id'
   def self.find_for_authentication(warden_conditions)
     where(email: warden_conditions[:email], company_id: Company.current_id).first
   end

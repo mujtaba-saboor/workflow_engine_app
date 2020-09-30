@@ -1,0 +1,35 @@
+<div class='row'>
+  <div class='col-sm-6 offset-sm-3  '>
+    <h1 class='h4 text-gray-900 mb-4'><%= t('invites.set_password') %></h1>
+    <%= form_for @user, url: create_staff_user_path(@user), method: :post do |f| %>
+
+      <div class='form-group'>
+        <%= f.label :name %><br />
+        <%= f.text_field :name, class: 'form-control', required: true %>
+      </div>
+
+      <%= f.hidden_field :email, value: @email %>
+
+      <div class='form-group'>
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %><%= t('users.character_minimum') %>)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: t('users.new_password'), class: 'form-control', required: true %>
+      </div>
+
+      <div class='form-group'>
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: t('users.password'), class: 'form-control', required: true %>
+      </div>
+
+      <%= f.hidden_field :company_id, value: @company %>
+      <%= f.hidden_field :role, value: User::ROLES[0] %>
+
+      <div>
+        <%= f.submit t('invites.set_password'), class: 'btn btn-info' %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
