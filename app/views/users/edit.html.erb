@@ -1,0 +1,17 @@
+<div class ='container'>
+  <h1 class='h4 text-gray-900 mb-4'><%= t('users.edit') %></h1>
+
+  <%= form_for(@user, url: { action: "update" }) do |f| %>
+    <%= render 'devise/shared/error_messages', resource: @user %>
+
+    <div class='form-group'>
+      <%= f.label :name %><br />
+      <%= f.text_field :name, class: 'form-control', required: true %>
+    </div>
+
+    <div class='actions'>
+      <%= f.submit t('users.update'), class: 'btn btn-info' %>
+    </div>
+  <% end %>
+  <%= link_to t('users.change_my_password'), new_password_path(@user) %><br />
+</div>

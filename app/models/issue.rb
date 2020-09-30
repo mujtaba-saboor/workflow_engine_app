@@ -3,6 +3,8 @@
 class Issue < ApplicationRecord
   include AASM
 
+  PAGE_SIZE = 5
+
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :watchers, dependent: :destroy
 

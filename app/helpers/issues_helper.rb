@@ -1,7 +1,8 @@
 module IssuesHelper
   # Creates the options for select type inputs for enums
-  def create_select_options_for_enum(enum_name, enum_hash_keys)
-    enum_hash_keys.collect { |key| [Issue.human_enum_name(enum_name, key), key] }
+  def create_select_options_for_enum(name, hash_keys, **opt)
+    options = hash_keys.collect { |key| [Issue.human_enum_name(name, key), key] }
+    opt[:blank_string].present? ? [[opt[:blank_string], '']] + options : options
   end
 
   def bootstrap_color_string_for_status(status)

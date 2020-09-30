@@ -1,19 +1,55 @@
 <%= form_with model: @project do |project| %>
-  <div class="form-row">
-    <div class="form-group col-sm-6">
-      <%= project.label :name %>
-      <%= project.text_field :name, class: 'form-control', placeholder: t('projects.form_name_placeholder') %>
-	  </div> 
-  </div> 
-  <% if params[:action] == 'edit' %>
-    <%= project.submit t('shared.update_resource', resource_name: t('shared.project')), class: 'btn my-primary-btn' %>	
-  <% else %>
-    <div class="form-row">
-      <div class="form-group col-md-4">   
-        <%= project.label :project_category %>
-        <%= project.select(:project_category, Project::PROJECT_CATEGORIES, {}, class: 'form-control') %>
+  <div class="worflow-form">
+    <div class="p-t-15 m-r-10">
+      <div class="col-12">
+        <div class="row no-gutters d-flex justify-content-between">
+          <div class="d-flex align-items-end col-sm-4">
+            <%= project.label t('projects.input_name') %>
+          </div>
+          <div class="col-sm-8 d-flex justify-content-end">
+            <%= project.text_field :name, class: 'form-input-area', placeholder: t('projects.form_name_placeholder'), required: true %>
+          </div>
+        </div>
+
+        <div class="row no-gutters d-flex justify-content-end">
+          <div class="col-sm-8">
+            <div id="user_name_errors">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <%= project.submit t('shared.create_resource', resource_name: t('shared.project')), class: 'btn my-primary-btn' %>	
-  <% end %>
+    <% if params[:action] == 'edit' %>
+      <div class="p-t-15 m-r-10">
+        <div class="col-sm-12 d-flex justify-content-center">
+          <%= project.submit t('shared.update_resource', resource_name: t('shared.project')), class: 'my-primary-btn form-submit-btn' %>
+        </div>
+      </div>
+    <% else %>
+      <div class="p-t-15 m-r-10">
+        <div class="col-12">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-4">
+              <%= project.label t('projects.input_category') %>
+            </div>
+            <div class="col-sm-8 d-flex justify-content-end">
+              <%= project.select(:project_category, Project::PROJECT_CATEGORIES, {}, class: 'form-input-area') %>
+            </div>
+          </div>
+
+          <div class="row no-gutters d-flex justify-content-end">
+            <div class="col-sm-8">
+              <div id="user_name_errors">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-t-15 m-r-10">
+        <div class="col-sm-12 d-flex justify-content-center">
+          <%= project.submit t('shared.create_resource', resource_name: t('shared.project')), class: 'my-primary-btn form-submit-btn' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end %>

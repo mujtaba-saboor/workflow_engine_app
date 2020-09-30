@@ -1,13 +1,36 @@
 <%= form_with model: @team do |team| %>
-  <div class="form-row">
-   <div class="form-group col-sm-6">
-   	 <%= team.label :name %>
-	 <%= team.text_field :name , class: 'form-control', placeholder: t('teams.form_name_placeholder') %>
-   </div> 
+  <div class="worflow-form">
+    <div class="p-t-15 m-r-10">
+      <div class="col-12">
+        <div class="row no-gutters d-flex justify-content-between">
+          <div class="d-flex align-items-end col-sm-4">
+            <%= team.label t('projects.input_name') %>
+          </div>
+          <div class="col-sm-8 d-flex justify-content-end">
+            <%= team.text_field :name , class: 'form-input-area', placeholder: t('teams.form_name_placeholder'), required: true %>
+          </div>
+        </div>
+
+        <div class="row no-gutters d-flex justify-content-end">
+          <div class="col-sm-8">
+            <div id="team_user_name_errors">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if params[:action] == 'edit' %>
+      <div class="p-t-15 m-r-10">
+        <div class="col-sm-12 d-flex justify-content-center">
+          <%= team.submit t('shared.update_resource', resource_name: t('shared.team')), class: 'my-primary-btn form-submit-btn' %>
+        </div>
+      </div>
+    <% else %>
+      <div class="p-t-15 m-r-10">
+        <div class="col-sm-12 d-flex justify-content-center">
+          <%= team.submit t('shared.create_resource', resource_name: t('shared.team')), class: 'my-primary-btn form-submit-btn' %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <% if params[:action] == 'edit' %>
-    <%= team.submit t('shared.update_resource', resource_name: t('shared.team')), class: 'btn my-primary-btn' %>	
-  <% else %>
- 	<%= team.submit t('shared.create_resource', resource_name: t('shared.team')), class: 'btn my-primary-btn' %>
-  <% end %>
 <% end %>

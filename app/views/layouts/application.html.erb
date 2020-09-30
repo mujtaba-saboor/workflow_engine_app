@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WorkflowEngineApp</title>
+    <title><%= t('shared.app_name') %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', 'sb-admin-2.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', 'sb-admin-2.min','landing-page-style', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <%= javascript_include_tag 'application' %>
@@ -19,7 +19,7 @@
           <div class="sidebar-brand-icon ">
             <i class="fab fa-stack-overflow"></i>
           </div>
-          <div class="sidebar-brand-text mx-3"><%= t('shared.app_name') %></div>
+          <div class="sidebar-brand-text mx-3"><%= @current_company.name %></div>
         <% end %>
           
           <hr class="sidebar-divider my-0">
