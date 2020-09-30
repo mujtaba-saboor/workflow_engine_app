@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
 
-  before_action :load_pagy, only: %i[teams_table index]
+  before_action :load_pagy, only: %i[index]
 
   add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show]
   add_breadcrumb I18n.t('shared.teams'), :teams_path, only: [:index, :show]
@@ -9,7 +9,7 @@ class TeamsController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.js { render 'teams_table'}
+      format.js
     end
   end
 
@@ -42,7 +42,7 @@ class TeamsController < ApplicationController
     if @team.update(team_params)
       flash[:success] = t('flash_messages.update', name: t('shared.team'))
       respond_to do |format|
-        format.js { redirect_to teams_path }
+        format.js { redirect_to team_path(@team) }
       end
     else
       respond_to do |format|
@@ -65,18 +65,14 @@ class TeamsController < ApplicationController
     if team_project.empty?
       @team.destroy
       flash[:success] = t('flash_messages.destroy', name: t('shared.team'))
+      respond_to do |format|
+        format.html { redirect_to teams_path }
+      end
     else
       flash[:warning] = t('flash_messages.warning', warning_msg: t('teams.no_deletion_warning'))
-    end
-
-    respond_to do |format|
-      format.html { redirect_to teams_path }
-    end
-  end
-
-  def teams_table
-    respond_to do |format|
-      format.js
+      respond_to do |format|
+        format.html { redirect_to team_path(@team) }
+      end
     end
   end
 
@@ -104,7 +100,7 @@ class TeamsController < ApplicationController
   end
 
   def remove_user_from_team
-    user = @current_company.users.find_by_id params[:user]
+    user = @current_company.users.find_by_sequence_num! params[:user]
 
     if user.present?
       if @team.users.delete(user)

@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
     if @project.update(project_params)
       flash[:success] = t('flash_messages.update', name: t('shared.project'))
       respond_to do |format|
-        format.js { redirect_to projects_path }
+        format.js { redirect_to project_path(@project) }
       end
     else
       respond_to do |format|
@@ -57,7 +57,7 @@ class ProjectsController < ApplicationController
     @pagy, @project_issues = pagy(@project.issues, link_extra: "data-remote='true'", items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
-      format.js { render 'issues_list' }
+      format.js
     end
   end
 
@@ -69,13 +69,6 @@ class ProjectsController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to projects_path }
-    end
-  end
-
-  def issues_list
-    @pagy, @project_issues = pagy(@project.issues, link_extra: "data-remote='true'", items: Company::PAGE_SIZE)
-    respond_to do |format|
-      format.js
     end
   end
 

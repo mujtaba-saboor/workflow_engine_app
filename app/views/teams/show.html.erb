@@ -3,7 +3,12 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4"><%= @team.name%></h1>
-        <h6>Created : <%= time_ago_in_words(@team.created_at) %> ago</h6>
+        <h6>Created : <%= time_ago_in_words(@team.created_at) %> ago
+          <% if can? [:update, :destroy], @team %>
+            <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, team_path(@team),method: :delete ,class: 'btn btn-sm btn-outline-danger card-button float-right'%>
+            <%= link_to '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_team_path(@team),{class: 'btn btn-outline-info btn-sm card-button mx-2 float-right',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#model_window'}%>
+          <% end %>
+        </h6>
       </div>
     </div>
     <% if can? :new_user_for_team, @team %>
@@ -31,7 +36,7 @@
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <%= user.name %>
           <% if can? :remove_user_from_team, @team %>
-            <%= link_to t('teams.remove_user'), remove_user_from_team_team_path(@team,user: user),method: :delete,class: 'badge badge-danger'%>
+            <%= link_to  '<i class="fas fa-trash-alt"></i>'.html_safe, remove_user_from_team_team_path(@team,user: user),method: :delete,class: 'btn btn-sm btn-outline-danger card-button float-right'%>
           <% end %>
         </li>
       <% end %>
@@ -39,6 +44,12 @@
   </div>
 </div>
 <div id = "model_add_member" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
+
+<div id = "model_window" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content"></div>
   </div>
