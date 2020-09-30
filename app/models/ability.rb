@@ -16,7 +16,7 @@ class Ability
     can :create, Comment, user_id: user.id, company_id: user.company_id
     can %i[update destroy], Comment, user_id: user.id, company_id: user.company_id, commentable: { company_id: user.company_id }
 
-    can :read, Issue, company_id: user.company_id
+    can %i[read all filter], Issue, company_id: user.company_id, project: { sequence_num: user.all_projects.pluck(:sequence_num) }
 
     can :update_status, Issue, company_id: user.company_id, assignee_id: user.id
 
