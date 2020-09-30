@@ -55,6 +55,13 @@ Rails.application.routes.draw do
       collection do
         get 'filters'
       end
+      member do
+        get 'change_role'
+        get 'change_staff_to_admin'
+        get 'change_staff_to_owner'
+        get 'change_admin_to_owner'
+        get 'change_admin_to_staff'
+      end
     end
   end
   get '/invites/confirm_request', to: 'invites#confirm_request', as: 'confirm_request'

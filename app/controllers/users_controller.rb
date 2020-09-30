@@ -1,8 +1,8 @@
 include Pagy::Backend
 class UsersController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
-  add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show, :edit]
-  add_breadcrumb I18n.t('shared.users'), :users_path, only: [:index, :show, :edit]
+  add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show, :edit, :change_role]
+  add_breadcrumb I18n.t('shared.users'), :users_path, only: [:index, :show, :edit, :change_role]
 
   def show
     add_breadcrumb @user.name, :user_path
@@ -22,12 +22,12 @@ class UsersController < ApplicationController
 
   def update
       if @user.update(edit_params)
-        flash[:success] = t('flash_messages.update', name: t('shared.user'))
+        flash[:notice] = t('flash_messages.update', name: t('shared.user'))
         respond_to do |format|
         format.html { redirect_to user_path }
         end
       else
-        flash[:danger] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
+        flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
         respond_to do |format|
         format.html { render 'edit' }
         end
@@ -59,6 +59,64 @@ class UsersController < ApplicationController
     @pagy, @users = pagy(@users.order(created_at: :desc), items: Company::PAGE_SIZE)
     respond_to do |format|
       format.js
+    end
+  end
+
+  def change_role
+    add_breadcrumb @user.name, :user_path
+    add_breadcrumb t('users.change_role'), :change_role_user_path
+    respond_to { |format| format.html }
+  end
+
+  def change_staff_to_admin
+    if @user.update(role: User::ROLES[1])
+      respond_to do |format|
+        format.html { redirect_to user_path(@user) }
+      end
+    else
+        flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
+        respond_to do |format|
+          format.html { redirect_to user_path(@user) }
+        end
+    end
+  end
+
+  def change_staff_to_owner
+    if @user.update(role: User::ROLES[2])
+      respond_to do |format|
+        format.html { redirect_to user_path(@user) }
+      end
+    else
+        flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
+        respond_to do |format|
+          format.html { redirect_to user_path(@user) }
+        end
+    end
+  end
+
+  def change_admin_to_owner
+    if @user.update(role: User::ROLES[2])
+      respond_to do |format|
+        format.html { redirect_to user_path(@user) }
+      end
+    else
+        flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
+        respond_to do |format|
+          format.html { redirect_to user_path(@user) }
+        end
+    end
+  end
+
+  def change_admin_to_staff
+    if @user.update(role: User::ROLES[0])
+      respond_to do |format|
+        format.html { redirect_to user_path(@user) }
+      end
+    else
+        flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
+        respond_to do |format|
+          format.html { redirect_to user_path(@user) }
+        end
     end
   end
 

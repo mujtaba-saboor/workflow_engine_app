@@ -33,6 +33,12 @@ class Ability
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[2]
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[1]
 
+    can :change_role, User, company_id: user.company_id, role: User::ROLES[0]
+    can :change_staff_to_admin, User, company_id: user.company_id, role: User::ROLES[0]
+    cannot :change_role, User, company_id: user.company_id, role: User::ROLES[1]
+    cannot :change_role, User, company_id: user.company_id, role: User::ROLES[2]
+
+
     return unless user.account_owner?
 
     # *** OWNERS ***
@@ -42,6 +48,14 @@ class Ability
     can :edit, User, company_id: user.company_id
     can :destroy, User, company_id: user.company_id, role: User::ROLES[1]
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[2]
+
+    can :change_role, User, company_id: user.company_id, role: User::ROLES[0]
+    can :change_role, User, company_id: user.company_id, role: User::ROLES[1]
+    can :change_staff_to_admin, User, company_id: user.company_id, role: User::ROLES[0]
+    can :change_staff_to_owner, User, company_id: user.company_id, role: User::ROLES[0]
+    can :change_admin_to_owner, User, company_id: user.company_id, role: User::ROLES[1]
+    can :change_admin_to_staff, User, company_id: user.company_id, role: User::ROLES[1]
+    cannot :change_role, User, company_id: user.company_id, role: User::ROLES[2]
 
   end
 end

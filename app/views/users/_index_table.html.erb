@@ -21,12 +21,15 @@
           <td><%= time_ago_in_words(user.created_at) %> <%= t('shared.ago') %></td>
           <td>
             <% if can? :destroy, user %>
-              <%= link_to t('shared.delete'), user_path(user), method: :delete, class: 'btn btn-danger' %>
+              <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, user_path(user), method: :delete, class: 'btn btn-danger' %>
             <% end %>
             <% if can? :update, user %>
-              <%= link_to t('shared.edit'), edit_user_path(user), class: 'btn my-primary-btn' %>
+              <%= link_to  '<i class="fas fa-pencil-alt"></i>'.html_safe, edit_user_path(user), class: 'btn my-primary-btn' %>
             <% end %>
-            <%= link_to t('shared.show'),user_path(user), class: 'btn my-primary-btn' %>
+            <%= link_to '<i class="fas fa-eye"></i>'.html_safe ,user_path(user), class: 'btn my-primary-btn' %>
+            <% if can? :change_role, user %>
+              <%= link_to  t('users.change_role').html_safe, change_role_user_path(user), class: 'btn my-primary-btn' %>
+            <% end %>
           </td>
         </tr>
       <% end %>
