@@ -11,7 +11,7 @@ class IssuesController < ApplicationController
   add_breadcrumb I18n.t('shared.projects'), :projects_path, only: %i[show new edit]
 
   before_action :load_valid_assignees, only: %i[new edit update create]
-  before_action :load_pagy, only: %i[index all]
+  before_action :load_pagy, only: %i[all]
 
   # GET /issues
   def all
