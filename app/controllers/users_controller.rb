@@ -35,7 +35,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    binding.pry
     if @user.destroy
       flash.now[:notice] = t('users.successful_deletion_message')
     else

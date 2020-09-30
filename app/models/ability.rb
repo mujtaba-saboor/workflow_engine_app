@@ -29,6 +29,7 @@ class Ability
 
     # *** ADMINS and OWNERS ***
     can :manage, :all, company_id: user.company_id
+    can :destroy, User, company_id: user.company_id, role: User::ROLES[0]
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[2]
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[1]
 
@@ -39,7 +40,6 @@ class Ability
     can :read, Invite, company_id: user.company_id
     can :create, Invite, company_id: user.company_id
     can :edit, User, company_id: user.company_id
-    can :destroy, User, company_id: user.company_id, role: User::ROLES[0]
     can :destroy, User, company_id: user.company_id, role: User::ROLES[1]
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[2]
 
