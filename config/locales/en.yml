@@ -105,7 +105,7 @@ en:
     features: 'Features'
     index_views:
       actions: 'Actions'
-      dashes: &dashes '----'
+      dashes: &dashes '--'
   companies:
     company_projects: 'Company Projects'
     company_project_issues: 'Company Project Issues'
