@@ -33,7 +33,7 @@ class InvitesController < ApplicationController
   def create_staff_user
     @user = User.new(company_id: confirm_params[:company_id], name: confirm_params[:name], role: confirm_params[:role], email: confirm_params[:email], password: confirm_params[:password], password_confirmation: confirm_params[:password_confirmation])
     if @user.save
-      flash[:success] = t('users.user_created_successfully')
+      flash[:success] = t('flash_messages.create', name: t('shared.user'))
       respond_to do |format|
         format.html { redirect_to '/users/sign_in' }
       end

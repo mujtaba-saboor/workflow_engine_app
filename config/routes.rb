@@ -50,8 +50,13 @@ Rails.application.routes.draw do
     root 'home#index'
   end
   devise_for :users
-  resources :users, only: [:index, :show, :update, :edit], constraints: {subdomain: /.+/ }
-
+  constraints(subdomain: /.+/) do
+    resources :users, only: [:index, :show, :update, :edit] do
+      collection do
+        get 'filters'
+      end
+    end
+  end
   get '/invites/confirm_request', to: 'invites#confirm_request', as: 'confirm_request'
   post '/invites/create_staff_user', to: 'invites#create_staff_user', as: 'create_staff_user'
   match '*unmatched', to: 'application#route_not_found', via: :all
