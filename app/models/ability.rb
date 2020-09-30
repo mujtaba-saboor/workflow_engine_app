@@ -51,7 +51,6 @@ class Ability
     can :destroy, User, company_id: user.company_id
     can :destroy, User, company_id: user.company_id, role: User::ROLES[1]
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[2]
-<<<<<<< HEAD
 
     can :change_role, User, company_id: user.company_id, role: User::ROLES[0]
     can :change_role, User, company_id: user.company_id, role: User::ROLES[1]
@@ -61,7 +60,5 @@ class Ability
     can :change_admin_to_staff, User, company_id: user.company_id, role: User::ROLES[1]
     cannot :change_role, User, company_id: user.company_id, role: User::ROLES[2]
 
-=======
->>>>>>> fc76fd292c8f552d245e5192e9c6031bbdbc906d
   end
 end
