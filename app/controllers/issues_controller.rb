@@ -11,10 +11,10 @@ class IssuesController < ApplicationController
   add_breadcrumb I18n.t('shared.projects'), :projects_path, only: %i[show new edit]
 
   before_action :load_valid_assignees, only: %i[new edit update create]
-  before_action :load_pagy, only: %i[all]
 
   # GET /issues
   def all
+    load_pagy
     respond_to do |format|
       format.html
       format.js
@@ -115,12 +115,8 @@ class IssuesController < ApplicationController
   # GET /issues/filter
   def filter
     @issues = @issues.where(search_params)
-    @issues = @issues.where('issues.title LIKE ?', "%#{params[:issue_title]}%") if params[:issue_title].present?
+    @issues = @issues.where('issues.title LIKE :title', title: "%#{params[:issue_title]}%") if params[:issue_title].present?
 
-    # In this action load_pagy is not used as a before filter as in the load_pagy method the projects for the @issues
-    # instance are being loaded with 'includes' and if load_pagy was called before the filtering (above), extra projects
-    # that would not be needed would be loaded. However if it must be used as a before filter, the above filtering
-    # code should also be moved in a before filter that is before the load_pagy filter.
     load_pagy
 
     respond_to do |format|
