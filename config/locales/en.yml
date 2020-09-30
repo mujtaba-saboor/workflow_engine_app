@@ -286,6 +286,7 @@ en:
     warning: '%{warning_msg}'
     error: 'Error Occured: %{error_msg}'
   watchers:
+    watchers: 'Watchers'
     watch: 'Watch'
     unwatch: 'Unwatch'
     unwatch_message: 'Are you sure you want to stop watching this issue?'
