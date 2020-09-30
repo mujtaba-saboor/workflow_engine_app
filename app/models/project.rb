@@ -2,7 +2,7 @@ class Project < ApplicationRecord
   sequenceid :company, :projects
   PROJECT_CATEGORIES = %w[TEAM INDEPENDENT].freeze
 
-  validates :name, presence: true 
+  validates :name, presence: true
   validates_uniqueness_of :name, scope: :company_id
   validates :project_category, presence: true, inclusion: { in: PROJECT_CATEGORIES }
   validates :company_id, presence: true
