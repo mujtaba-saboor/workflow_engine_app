@@ -69,7 +69,6 @@ en:
     type_field: 'Type'
     created_field: 'Created'
     actions_field: 'Actions'
-    role_field: 'Role'
     ago: 'ago'
     filter: 'FILTER'
     all: 'ALL'
