@@ -1,5 +1,5 @@
 class InviteMailer < ApplicationMailer
-  def new_user_invite
+  def new_user_invite(params)
     @invite = params[:invite]
     remaining_path = 'lvh.me:3000'
     @path  = remaining_path + params[:path]
