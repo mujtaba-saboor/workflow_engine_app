@@ -6,6 +6,7 @@ $(document).on('turbolinks:load', function(){
     $("#domain_place").html("Your portal will be live at: " + subdomain + ".lvh.me:3000");
     $("#subdomain_id").val(subdomain);
   });
+<<<<<<< Updated upstream
 
   $("#add_file_field_id").change(function(){
         if ($(this).val()) {
@@ -14,3 +15,18 @@ $(document).on('turbolinks:load', function(){
     }
     );
 });
+=======
+
+  $("#add_file_field_id").change(function(){
+        if ($(this).val()) {
+            $("#add_file_field_button_id").attr('disabled',false);
+        }
+    }
+    );
+});
+
+$('#my-link').click(function (event) {
+  window.location.reload(true);
+});
+
+>>>>>>> Stashed changes
