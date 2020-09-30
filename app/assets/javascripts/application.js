@@ -12,5 +12,6 @@ $(document).on('turbolinks:load', function(){
             $("#add_file_field_button_id").attr('disabled',false);
         }
     }
-    );
+  );
 });
+

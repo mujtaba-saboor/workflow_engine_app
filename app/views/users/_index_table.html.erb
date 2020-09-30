@@ -20,8 +20,10 @@
           <td><%= user.role%></td>
           <td><%= time_ago_in_words(user.created_at) %> <%= t('shared.ago') %></td>
           <td>
-            <% if can? [:destroy, :update], user %>
+            <% if can? :destroy, user %>
               <%= link_to t('shared.delete'), user_path(user), method: :delete, class: 'btn btn-danger' %>
+            <% end %>
+            <% if can? :update, user %>
               <%= link_to t('shared.edit'), edit_user_path(user), class: 'btn my-primary-btn' %>
             <% end %>
             <%= link_to t('shared.show'),user_path(user), class: 'btn my-primary-btn' %>

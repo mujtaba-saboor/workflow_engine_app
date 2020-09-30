@@ -154,6 +154,8 @@ en:
     name: 'name'
     role: 'role'
     company: 'company'
+    successful_deletion_message: 'User deleted successfully !'
+    unsuccessful_deletion_message: 'User could not be deleted'
     all_users: 'All Users'
     no_user_to_show: 'No User to show...'
     user_created_successfully: 'User created successfully'

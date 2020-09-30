@@ -51,7 +51,7 @@ Rails.application.routes.draw do
   end
   devise_for :users
   constraints(subdomain: /.+/) do
-    resources :users, only: [:index, :show, :update, :edit] do
+    resources :users, only: [:index, :show, :update, :edit, :destroy] do
       collection do
         get 'filters'
       end
