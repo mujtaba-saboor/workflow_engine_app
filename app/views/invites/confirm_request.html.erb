@@ -8,7 +8,7 @@
         <%= f.text_field :name, class: 'form-control', required: true %>
       </div>
 
-      <%= f.hidden_field :email, value: @email %>
+      <%= f.hidden_field :token, value: @invite.token %>
 
       <div class='form-group'>
         <%= f.label :password %>
@@ -23,7 +23,6 @@
         <%= f.password_field :password_confirmation, autocomplete: t('users.password'), class: 'form-control', required: true %>
       </div>
 
-      <%= f.hidden_field :company_id, value: @company %>
       <%= f.hidden_field :role, value: User::ROLES[0] %>
 
       <div>
