@@ -94,6 +94,7 @@ en:
     projects: 'Projects'
     issue: 'Issue'
     issues: 'Issues'
+    invite: 'Invite'
     new_resource: 'Add New %{resource_name}'
     edit_resource: 'Edit %{resource_name}'
     form_name_placeholder: 'Enter name here'

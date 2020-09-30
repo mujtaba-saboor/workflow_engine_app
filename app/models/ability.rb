@@ -40,8 +40,10 @@ class Ability
     can :read, Invite, company_id: user.company_id
     can :create, Invite, company_id: user.company_id
     can :edit, User, company_id: user.company_id
+    can :update, User, company_id: user.company_id
+    can :read, User, company_id: user.company_id
+    can :destroy, User, company_id: user.company_id
     can :destroy, User, company_id: user.company_id, role: User::ROLES[1]
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[2]
-
   end
 end
