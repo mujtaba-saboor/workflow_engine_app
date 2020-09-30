@@ -1,9 +1,10 @@
 class TeamsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
+  before_action :load_pagy, only: %i[teams_table index]
   def index
-    @pagy, @teams = pagy(@teams.order(created_at: :desc), items: Company::PAGE_SIZE)
     respond_to do |format|
       format.html
+      format.js { render 'teams_table'}
     end
   end
 
@@ -20,9 +21,8 @@ class TeamsController < ApplicationController
         format.js { redirect_to team_path(@team) }
       end
     else
-      flash[:danger] = t('flash_messages.error', error_msg: @team.errors.full_messages.first)
       respond_to do |format|
-        format.js { redirect_to teams_path }
+        format.js
       end
     end
   end
@@ -36,12 +36,15 @@ class TeamsController < ApplicationController
   def update
     if @team.update(team_params)
       flash[:success] = t('flash_messages.update', name: t('shared.team'))
+      respond_to do |format|
+        format.js { redirect_to teams_path }
+      end
     else
-      flash[:danger] = t('flash_messages.error', error_msg: @team.errors.full_messages.first)
+      respond_to do |format|
+        format.js
+      end
     end
-    respond_to do |format|
-      format.js { redirect_to teams_path }
-    end
+    
   end
 
   def show
@@ -62,6 +65,12 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to teams_path }
+    end
+  end
+
+  def teams_table
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -107,6 +116,10 @@ class TeamsController < ApplicationController
   end
 
   private
+
+  def load_pagy
+    @pagy, @teams = pagy(@teams.order(created_at: :desc),link_extra: "data-remote='true'", items: Company::PAGE_SIZE)
+  end
 
   def team_params
     params.require(:team).permit(:name)

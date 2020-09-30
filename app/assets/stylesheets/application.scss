@@ -4,6 +4,7 @@ $hover-primary-color: #289cd1;
 $pagination-link-btn-text-color: #5a5a5a;
 $pagination-link-btn-background-color: #eee;
 $pagination-link-btn-border-color: #ddd;
+$form-border-color: #c7c9c8;
 
 .error-explanation {
   @extend .alert;
@@ -85,5 +86,34 @@ $pagination-link-btn-border-color: #ddd;
         background-color: $primary-color;
       }
     }
+  }
+}
+.worflow-form {
+  .form-submit-btn {
+    width: 100%;
+    padding: 5px;
+    border: 2px solid $primary-color;
+
+    &:hover {
+      border: 2px solid $hover-primary-color !important;
+    }
+  }
+  .form-input-area {
+    background-color: white;
+    border: 1px solid $form-border-color;
+    width: 100%;
+    padding: 6px;
+  }
+  .p-t-15 {
+    padding-top: 15px;
+  }
+  .m-r-10 {
+    margin-right: 10px;
+  }
+}
+.project-errors {
+  small {
+    margin-top:5px;
+    color: red;
   }
 }

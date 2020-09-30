@@ -1,0 +1,3 @@
+<% if @team.errors.messages[:name].present? %>
+  $("#team_user_name_errors").html("<%= j (render 'layouts/form_errors', error_msg: @team.errors.messages[:name].first) %>");
+<% end %>

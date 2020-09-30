@@ -200,6 +200,8 @@ en:
     project_categories_team: 'Team'
     project_categories_independent: 'Independent'
   projects:
+    input_name: 'Name*'
+    input_category: 'Category*'
     form_name_placeholder: &form_name_placeholder 'Enter name here'
     add_team: &add_team 'Add Team'
     remove_team: 'Remove Team'
