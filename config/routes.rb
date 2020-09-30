@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     end
 
     resources :issues, only: [] do
-      resources :comments, only: %i[create edit update destroy]
+    resources :comments, only: %i[create edit update destroy]
     end
 
     resources :teams do
@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       end
     end
     get '', to: 'companies#index'
+    resources :invites
     get 'project/filters', to: 'projects#filters'
     get 'user/filters', to: 'users#filters'
   end
@@ -51,5 +52,8 @@ Rails.application.routes.draw do
   end
   devise_for :users
   resources :users, only: [:index, :show, :update, :edit], constraints: {subdomain: /.+/ }
+
+  get '/invites/confirm_request', to: 'invites#confirm_request', as: 'confirm_request'
+  post '/invites/create_staff_user', to: 'invites#create_staff_user', as: 'create_staff_user'
   match '*unmatched', to: 'application#route_not_found', via: :all
 end
