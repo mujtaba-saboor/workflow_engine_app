@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @pagy, @users = pagy(@users,  items: User::PAGE_SIZE)
+    @pagy, @users = pagy(@users,  items: Company::PAGE_SIZE)
     respond_to { |format| format.html }
   end
 
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       if @user.update(edit_params)
         flash[:success] = t('flash_messages.update', name: t('shared.user'))
         respond_to do |format|
-        format.html { redirect_to user_path }
+        format.html { redirect_to user_path(@user) }
         end
       else
         flash[:danger] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         @users = @users.where(role: User::ROLES[2])
       end
     end
-    @pagy, @users = pagy(@users.order(created_at: :desc), items: User::PAGE_SIZE)
+    @pagy, @users = pagy(@users.order(created_at: :desc), items: Company::PAGE_SIZE)
     respond_to do |format|
       format.js
     end

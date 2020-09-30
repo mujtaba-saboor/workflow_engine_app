@@ -14,7 +14,6 @@ class User < ApplicationRecord
   validates_length_of       :password, within: password_length, allow_blank: true
 
   ROLES = %w[STAFF ADMIN OWNER].freeze
-  PAGE_SIZE = 5
 
   belongs_to :company, optional: true
   accepts_nested_attributes_for :company
