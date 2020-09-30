@@ -54,8 +54,10 @@ class IssuesController < ApplicationController
 
     respond_to do |format|
       if @issue.save
+        flash[:notice] = t('shared.creation_successful', resource: Issue.model_name.human)
         format.html { redirect_to project_issue_path(@project, @issue) }
       else
+        flash[:error] = t('shared.creation_unsuccessful', resource: Issue.model_name.human.downcase)
         format.html { render 'new' }
       end
     end
@@ -76,8 +78,10 @@ class IssuesController < ApplicationController
   def update
     respond_to do |format|
       if @issue.update(issue_params)
+        flash[:notice] = t('shared.updation_successful', resource: Issue.model_name.human)
         format.html { redirect_to project_issue_path(@project, @issue) }
       else
+        flash[:error] = t('shared.updation_unsuccessful', resource: Issue.model_name.human.downcase)
         format.html { render 'edit' }
       end
     end
@@ -85,12 +89,13 @@ class IssuesController < ApplicationController
 
   # DELETE /projects/:project_id/issues/:id
   def destroy
+    if @issue.destroy
+      flash[:notice] = t('shared.deletion_successful', resource: Issue.model_name.human)
+    else
+      flash[:error] = t('shared.deletion_unsuccessful', resource: Issue.model_name.human.downcase)
+    end
     respond_to do |format|
-      if @issue.destroy
-        format.html { redirect_to project_path(params[:project_id]) }
-      else
-        format.html { redirect_back fallback_location: root_path }
-      end
+      format.html { redirect_back fallback_location: root_path }
     end
   end
 
