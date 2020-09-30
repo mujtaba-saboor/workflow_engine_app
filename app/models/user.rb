@@ -18,9 +18,9 @@ class User < ApplicationRecord
   belongs_to :company, optional: true
   accepts_nested_attributes_for :company
 
-  has_many :project_users
+  has_many :project_users, dependent: :destroy
   has_many :projects, through: :project_users
-  has_many :team_users
+  has_many :team_users, dependent: :destroy
   has_many :teams, through: :team_users
   has_many :comments, dependent: :destroy
   has_many :watchers, dependent: :destroy
