@@ -7,7 +7,7 @@
       <% end %>
     </div>
   <div class="search-box">
-    <%= form_tag(user_filters_path(current_user.id), method: :get,remote: true) do %>
+    <%= form_tag(filters_users_path, method: :get,remote: true) do %>
       <%= select_tag :search, options_for_select([t('shared.all')]+User::ROLES) %>
       <%= submit_tag(t('shared.filter'), class: 'btn btn-sm my-primary-btn') %>
     <% end %>

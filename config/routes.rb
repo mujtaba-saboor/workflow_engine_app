@@ -53,8 +53,11 @@ Rails.application.routes.draw do
   constraints(subdomain: /.+/) do
     resources :users, only: [:index, :show, :update, :edit]
     resources :users do
+      collection do
+
         get 'filters'
       end
+    end
   end
   get '/invites/confirm_request', to: 'invites#confirm_request', as: 'confirm_request'
   post '/invites/create_staff_user', to: 'invites#create_staff_user', as: 'create_staff_user'
