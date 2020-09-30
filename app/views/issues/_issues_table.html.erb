@@ -2,7 +2,7 @@
   <table class="table">
     <thead class="thead-light">
       <tr>
-        <th>#</th>
+        <th><%= t('shared.sq_num_field', model: Issue.model_name.human) %></th>
         <th><%= Issue.human_attribute_name('title') %></th>
         <th><%= Project.model_name.human %></th>
         <th><%= Issue.human_attribute_name('description') %></th>
