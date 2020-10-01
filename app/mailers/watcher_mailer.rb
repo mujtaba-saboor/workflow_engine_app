@@ -3,7 +3,6 @@
 class WatcherMailer < ApplicationMailer
   before_action :set_resources
   around_action :validate_action
-
   default to: -> { @user.email }
 
   def watching_issue_now
