@@ -1,25 +1,113 @@
-<div class='row'>
-  <div class='col-sm-6 offset-sm-3  '>
-    <h1 class='h4 text-gray-900 mb-4'><%= t('users.login') %></h1>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class='form-group'>
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: t('users.email'), class: 'form-control', required: true, value: params[:email] %>
-      </div>
-      <div class='form-group'>
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: t('users.current_password'), class: 'form-control', required: true %>
-      </div>
-      <% if devise_mapping.rememberable? %>
-        <div class='form-group'>
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<!-- my data -->
+<div class="row">
+  <div class="col-md-6 offset-md-3 custom-card">
+      <%= render 'devise/shared/error_messages', resource: resource %>
+    <div class="registration-form">
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-5">
+              <div class="label-area">
+                <i class="fab fa-stack-overflow fa-2x text-info"></i>
+                <span class='form-app-name'><%= t('shared.app_name').upcase %></span>
+              </div>
+            </div>
+            <div class="col-sm-6 d-flex justify-content-center">
+              <span class="text-dark-heading"><%= t('users.login') %></span>
+            </div>
+          </div>
+
+          <div class="row no-gutters d-flex justify-content-end">
+            <div class="col-sm-7">
+              <div id="user_name_errors">
+              </div>
+            </div>
+          </div>
         </div>
-      <% end %>
-      <div class='actions'>
-        <%= f.submit t('users.login'), class: 'btn btn-primary' %>
       </div>
-    <% end %>
-    <%= render 'devise/shared/links' %>
+
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-4">
+              <div class="label-area">
+                <%= f.label :email %>
+              </div>
+            </div>
+            <div class="col-sm-7 d-flex justify-content-end">
+              <%= f.email_field :email, autofocus: true, autocomplete: t('users.email'), class: 'form-input-area', required: true, value: params[:email] %>
+            </div>
+          </div>
+
+          <div class="row no-gutters d-flex justify-content-end">
+            <div class="col-sm-7">
+              <div id="email_errors">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-4">
+              <div class="label-area">
+                <%= f.label :password %>
+              </div>
+            </div>
+            <div class="col-sm-7 d-flex justify-content-end">
+              <%= f.password_field :password, autocomplete: t('users.current_password'), class: 'form-input-area', required: true %>      
+            </div>
+          </div>
+
+          <div class="row no-gutters d-flex justify-content-end">
+            <div class="col-sm-7">
+              <div id="password_errors">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-4">
+              <div class="label-area">
+              </div>
+            </div>
+            <div class="col-sm-7 d-flex justify-content-end">
+                <% if devise_mapping.rememberable? %>
+                  <div class='form-group'>
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                  </div>
+                <% end %>     
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-t-15 m-r-10">
+        <div class="col-sm-11 offset-sm-1 d-flex justify-content-center">
+          <%= f.submit t('users.login'), class: 'my-primary-btn form-submit-btn' %>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="p-t-15 m-r-10">
+      <div class="col-11 offset-sm-1">
+        <div class="row no-gutters d-flex justify-content-between">
+          <div class="d-flex align-items-end col-sm-12">
+            <div class="label-area">
+              <%= render 'devise/shared/links' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>   
   </div>
 </div>
+<% end %>

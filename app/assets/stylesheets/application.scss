@@ -74,10 +74,10 @@ $breadcrumbs-color: #A1A1A1;
 
 .breadcrumbs-container{
   p{
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     border-bottom: 1px solid $breadcrumbs-color;
     padding-left: 10px;
-    margin-top: -9px;
+    margin-top: 10px;
     padding-bottom: 10px;
   }
 }
@@ -192,5 +192,84 @@ $breadcrumbs-color: #A1A1A1;
     margin-top: 2em;
     text-align: left;
     font-size: 1em;
+  }
+}
+
+.registration-form {
+  font-family: 'Lato';
+
+  .p-t-15 {
+    padding-top: 15px;
+  }
+  .m-r-10 {
+    margin-right: 10px;
+  }
+  .form-input-area {
+    background-color: transparent;
+    border: 1px solid $form-border-color;
+    width: 100%;
+    padding: 4px;
+    padding-left: 15px;
+  }
+  .label-area {
+    padding: 4px;
+  }
+  .form-submit-btn {
+    width: 100%;
+    padding: 5px;
+    border: 2px solid $primary-color;
+
+    &:hover {
+      border: 2px solid $hover-primary-color !important;
+    }
+  }
+  .form-app-name {
+    font-size: 20px;
+    color: $primary-color;
+    margin-left: 5px;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+}
+
+.custom-card {
+  background-color: white;
+  padding: 50px;
+  border-radius: 0px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:50px;
+
+  .text-dark-heading {
+    color: black;
+    font-family: 'Lato';
+    font-size: 35px;
+  }
+}
+
+.main-nav {
+  box-shadow: 1px 1px 5px $breadcrumbs-color;
+}
+
+.menu-icon {
+  font-size: 21px !important;
+}
+
+.company-link-container {
+  margin-bottom: 5px;
+  width: 100%;
+  border: 1px solid $primary-color;
+  padding: 10px 20px;
+  border-radius: 4px;
+  .icon {
+    border-right: 1px solid $primary-color;
+    i {
+      font-size: 25px;
+    }
+  }
+  .company-name {
+    color: grey !important;
+  }
+  &:hover {
+    transform: scale(1.02);
   }
 }
