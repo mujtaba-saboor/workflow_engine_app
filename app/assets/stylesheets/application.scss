@@ -196,3 +196,23 @@ $breadcrumbs-color: #A1A1A1;
 .menu-icon {
   font-size: 21px !important;
 }
+
+.company-link-container {
+  margin-bottom: 5px;
+  width: 100%;
+  border: 1px solid $primary-color;
+  padding: 10px 20px;
+  border-radius: 4px;
+  .icon {
+    border-right: 1px solid $primary-color;
+    i {
+      font-size: 25px;
+    }
+  }
+  .company-name {
+    color: grey !important;
+  }
+  &:hover {
+    transform: scale(1.02);
+  }
+}
