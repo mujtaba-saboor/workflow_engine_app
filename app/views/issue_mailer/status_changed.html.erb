@@ -1,2 +1,2 @@
 <h3>Status for Issue, '<%= @issue.title %>' Updated</h3>
-<p>Status for the issue '<%= link_to @issue.title, project_issue_url(@issue.project_id, @issue.id, subdomain: @subdomain) %>' updated to '<%= Issue.human_enum_name(:status, @issue.status) %>'</p>
+<p>Status for the issue '<%= link_to @issue.title, project_issue_url(@issue.project_id, @issue.id, subdomain: @company.subdomain) %>' updated to '<%= Issue.human_enum_name(:status, @issue.status) %>'</p>

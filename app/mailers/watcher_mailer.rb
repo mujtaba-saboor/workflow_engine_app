@@ -2,6 +2,8 @@
 
 class WatcherMailer < ApplicationMailer
   before_action :set_resources
+  around_action :validate_action
+
   default to: -> { @user.email }
 
   def watching_issue_now
@@ -15,8 +17,7 @@ class WatcherMailer < ApplicationMailer
   private
 
   def set_resources
-    @user = params[:user]
-    @issue = params[:issue]
-    @subdomain = params[:subdomain]
+    @user = load_resource { @company.users.find_by(id: params[:user], company_id: params[:company]) }
+    @issue = load_resource { @company.issues.find_by(id: params[:issue], company_id: params[:company]) }
   end
 end

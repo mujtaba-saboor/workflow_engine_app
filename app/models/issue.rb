@@ -62,26 +62,26 @@ class Issue < ApplicationRecord
     watchers.includes(:user).each do |watcher|
       # IssueMailer.delay.status_change(watcher.user, self, company.subdomain)
       IssueMailer.with(
-        user: watcher.user,
-        issue: self,
-        subdomain: company.subdomain,
+        user: watcher.user_id,
+        issue: id,
+        company: company_id,
         watching_as: :watcher
       ).status_changed.deliver_later
     end
 
     if assignee.present?
       IssueMailer.with(
-        user: assignee,
-        issue: self,
-        subdomain: company.subdomain,
+        user: assignee_id,
+        issue: id,
+        company: company_id,
         watching_as: :assignee
       ).status_changed.deliver_later
     end
 
     IssueMailer.with(
-      user: creator,
-      issue: self,
-      subdomain: company.subdomain,
+      user: creator_id,
+      issue: id,
+      company: company_id,
       watching_as: :creator
     ).status_changed.deliver_later
   end
