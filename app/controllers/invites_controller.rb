@@ -34,7 +34,6 @@ class InvitesController < ApplicationController
 
   # GET /invites/create_staff_user
   def create_staff_user
-
     @user = User.new(company_id: @invite.company_id, name: confirm_params[:name], role: @invite.role, email: @invite.email, password: confirm_params[:password], password_confirmation: confirm_params[:password_confirmation])
     if @user.save
       flash[:success] = t('flash_messages.create', name: t('shared.user'))
