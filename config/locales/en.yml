@@ -302,4 +302,12 @@ en:
     no_project_member: 'There are no associated members to this project.' 
     watching: 'Watching'
     not_watching: 'Not Watching'
+  search:
+    search: 'Search'
+    search_results_for: 'Search Results for "%{query}"'
+    no_result_found: 'No results found'
+    sorry_no_result: 'Sorry your search for "%{query}" returned no results'
+    suggestions: 'Suggestions:'
+    check_spellings: 'Check your spellings'
+    use_fewer_words: 'Use fewer words (results have to match the exact phrase you type)'
 

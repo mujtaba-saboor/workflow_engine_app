@@ -145,7 +145,7 @@ $breadcrumbs-color: #A1A1A1;
   font-size: 2em;
   letter-spacing: 0.2em;
 
-  padding: 2em 3em;
+  padding: 1.5em 3em;
 }
 
 .search-result-tag {
@@ -170,6 +170,27 @@ $breadcrumbs-color: #A1A1A1;
   background: scale-color($primary-color, $lightness: -30%);
 }
 
-mark {
-  background: yellow;
+.no-results-found {
+  text-align: center;
+
+  padding: 3em 5em;
+  margin: 1em;
+
+  border: 1px solid #eae1f0;;
+  border-radius: 2%;
+
+  .icons .ban {
+    color: #001417;
+    opacity: 0.5;
+  }
+
+  .heading {
+    font-size: 2em;
+  }
+
+  .description {
+    margin-top: 2em;
+    text-align: left;
+    font-size: 1em;
+  }
 }
