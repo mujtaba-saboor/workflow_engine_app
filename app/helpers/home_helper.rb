@@ -9,6 +9,7 @@ module HomeHelper
     end
     team_projects != 0 ? (team_projects * 100) / total_projects : 0
   end
+  
   def high_issues_percentage(user)
     if user.staff?
       issues = user.all_projects.joins(:issues)
@@ -20,7 +21,7 @@ module HomeHelper
     high_priority_issues != 0 ? (high_priority_issues * 100) / total_issues : 0
   end
 
-  def open_issues_percentage(user)
+  def issues_percentage(user)
     if user.staff?
       issues = user.all_projects.joins(:issues)
     else
