@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'search/search'
   # Routes accessible with subdomain
   constraints(subdomain: /.+/) do
     resources :projects do
