@@ -1,3 +1,12 @@
-<div class="alert alert-secondary my-4">
-  <%= link_to company.name, new_user_session_url(subdomain: company.subdomain), class: 'alert-secondary' %>
+<div class="col-12 company-link-container">
+<%= link_to new_user_session_url(subdomain: company.subdomain) do%>
+  <div class="row">
+    <div class="col-1 icon">
+      <i class="fab fa-stack-overflow text-info"></i>
+    </div>
+    <div class="col-11 company-name">
+      <%= company.name %>
+    </div>    
+  </div>
+<% end %>
 </div>
