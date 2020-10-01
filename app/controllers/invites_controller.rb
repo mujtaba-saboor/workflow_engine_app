@@ -13,7 +13,7 @@ class InvitesController < ApplicationController
   # POST /invites
   def create
     if @invite.save
-      InviteMailer.new_user_invite(invite: @invite, path: confirm_request_path(token: @invite.token, role: @invite.role)).deliver
+      InviteMailer.new_user_invite(invite: @invite, path: confirm_request_path(token: @invite.token)).deliver
       flash[:success] = t('invites.send_successful')
       respond_to do |format|
         format.html { redirect_to new_invite_path }
