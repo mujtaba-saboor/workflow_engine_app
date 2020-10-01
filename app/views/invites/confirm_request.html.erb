@@ -23,7 +23,7 @@
         <%= f.password_field :password_confirmation, autocomplete: t('users.password'), class: 'form-control', required: true %>
       </div>
 
-      <%= f.hidden_field :role, value: User::ROLES[0] %>
+      <%= f.hidden_field :role, value: @invite.email %>
 
       <div>
         <%= f.submit t('invites.set_password'), class: 'btn btn-info' %>

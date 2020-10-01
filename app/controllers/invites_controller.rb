@@ -13,7 +13,7 @@ class InvitesController < ApplicationController
   # POST /invites
   def create
     if @invite.save
-      InviteMailer.new_user_invite(invite: @invite, path: confirm_request_path(token: @invite.token)).deliver
+      InviteMailer.new_user_invite(invite: @invite, path: confirm_request_path(token: @invite.token, role: @invite.role)).deliver
       flash[:success] = t('invites.send_successful')
       respond_to do |format|
         format.html { redirect_to new_invite_path }
@@ -34,6 +34,7 @@ class InvitesController < ApplicationController
 
   # GET /invites/create_staff_user
   def create_staff_user
+
     @user = User.new(company_id: @invite.company_id, name: confirm_params[:name], role: @invite.role, email: @invite.email, password: confirm_params[:password], password_confirmation: confirm_params[:password_confirmation])
     if @user.save
       flash[:success] = t('flash_messages.create', name: t('shared.user'))
