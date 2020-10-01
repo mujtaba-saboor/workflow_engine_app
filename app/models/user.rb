@@ -13,6 +13,8 @@ class User < ApplicationRecord
   validates_confirmation_of :password, if: :password_required?
   validates_length_of       :password, within: password_length, allow_blank: true
 
+  validates :role, inclusion: { in: %w(OWNER STAFF ADMIN), message: "%{value} is not a valid role" }
+
   ROLES = %w[STAFF ADMIN OWNER].freeze
 
   belongs_to :company, optional: true
@@ -31,7 +33,9 @@ class User < ApplicationRecord
     where(email: warden_conditions[:email], company_id: Company.current_id).first
   end
 
-  validates :role, inclusion: { in: %w(OWNER STAFF ADMIN), message: "%{value} is not a valid role" }
+  def watcher_for(issue)
+    watchers.find_by(issue_id: issue.id)
+  end
 
   def all_projects
     all_individual_projects = projects.ids

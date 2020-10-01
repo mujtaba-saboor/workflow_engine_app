@@ -48,6 +48,18 @@ en:
         user: *user_label
         body: 'Body'
 
+  watcher_mailer:
+    watching_issue_now:
+      subject: 'Started Watching Issue (#%{issue_id})'
+    stopped_watching_issue:
+      subject: 'Stopped Watching Issue (#%{issue_id})'
+  issue_mailer:
+    status_changed:
+      subject_for:
+        watcher: 'Status of Issue (#%{issue_id}) Changed'
+        assignee: 'Your Assigned Issue (#%{issue_id}) Changed'
+        creator: 'Your Created Issue (#%{issue_id}) Changed'
+
   comments:
     comment_form_label: 'Add a comment'
     comment_form_placeholder: 'Enter comment here ...'
@@ -273,3 +285,19 @@ en:
     deletion: '%{name} Removed Successfully'
     warning: '%{warning_msg}'
     error: 'Error Occured: %{error_msg}'
+  watchers:
+    watchers: 'Watchers'
+    watch: 'Watch'
+    unwatch: 'Unwatch'
+    unwatch_message: 'Are you sure you want to stop watching this issue?'
+    creation:
+      success: 'Watching the issue now'
+      failure: 'Could not watch the issue'
+    deletion:
+      success: 'You are not watching this issue now'
+      failure: 'Could not stop watching issue'
+    view_watcher: 'View Watchers'
+    no_project_member: 'There are no associated members to this project.' 
+    watching: 'Watching'
+    not_watching: 'Not Watching'
+
