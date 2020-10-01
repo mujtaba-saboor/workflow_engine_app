@@ -15,7 +15,7 @@ class Project < ApplicationRecord
   has_many :project_users, dependent: :destroy
   has_many :users, through: :project_users
 
-  has_many :issues
+  has_many :issues, dependent: :destroy
 
   scope :independent_projects, -> { where(project_category: PROJECT_CATEGORIES[1]) }
   scope :team_projects, -> { where(project_category: PROJECT_CATEGORIES[0]) }

@@ -107,6 +107,12 @@ en:
     index_views:
       actions: 'Actions'
       dashes: &dashes '--'
+    creation_successful: '%{resource} created successfully'
+    creation_unsuccessful: 'Could not create %{resource}' 
+    updation_successful: '%{resource} updated successfully'
+    updation_unsuccessful: 'Could not update %{resource}' 
+    deletion_successful: '%{resource} deleted successfully'
+    deletion_unsuccessful: 'Could not delete %{resource}' 
   companies:
     company_projects: 'Company Projects'
     company_project_issues: 'Company Project Issues'
@@ -262,7 +268,7 @@ en:
   flash_messages:
     create: '%{name} Created Successfully'
     update: '%{name} Updated Successfully'
-    destroy: '%{name} Destroyed Successfully'
+    destroy: '%{name} Deleted Successfully'
     addition: '%{name} Added Successfully'
     deletion: '%{name} Removed Successfully'
     warning: '%{warning_msg}'
