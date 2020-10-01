@@ -31,7 +31,7 @@
 
 # Frontend Extras
 
-Pagy::VARS[:items] = 10
+Pagy::VARS[:items] = 5
 
 # Bootstrap extra: Add nav, nav_js and combo_nav_js helpers and templates for Bootstrap pagination
 # See https://ddnexus.github.io/pagy/extras/bootstrap

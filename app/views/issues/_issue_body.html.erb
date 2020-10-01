@@ -5,22 +5,37 @@
   <% if issue.assignee_id %>
     <h6 class="card-subtitle mb-2 text-muted"><%= "#{Issue.human_attribute_name("assignee")}: #{issue.assignee.email}" %></h6>
   <% else %>
-    <h6 class="card-subtitle mb-2 text-muted"><%= t('issue.no_assignee_assigned') %></h6>
+    <h6 class="card-subtitle mb-2 text-muted"><%= t('issues.no_assignee_assigned') %></h6>
   <% end %>
   <hr>
-  <% if issue.description %>
+  <% if issue.description.present? %>
     <p class="card-text"><%= issue.description %></p>
     <hr>
   <% end %>
   <p class="card-text"><%= "#{Project.model_name.human}: " %><%= link_to issue.project.name, project_path(issue.project) %></p>
 
-  <% if can? :update_status, issue %>
-    <%= render 'status_change_form', project: issue.project, issue: issue %>
-  <% end %>
-  <% if can? :update, issue %>
-    <%= link_to t('shared.edit'), edit_project_issue_path(issue.project, issue), class: 'btn btn-info' %>
-  <% end %>
-  <% if can? :destroy, issue %>
-    <%= link_to t('shared.delete'), project_issue_path(issue.project, issue), method: :delete, data: { confirm: t('shared.deletion_confirmation_message', resource: Issue.model_name.human.downcase) }, class: 'btn btn-danger' %>
-  <% end %>
+  <div class="row align-content-center">
+    <div class="col-xl-6">
+      <% if can? :update_status, issue %>
+        <%= render 'status_change_form', project: issue.project, issue: issue %>
+      <% end %>
+    </div>
+    <div class="col-xl-6">
+      <% if can? :destroy, issue %>
+          <%= link_to t('shared.delete'), project_issue_path(issue.project, issue), method: :delete, data: { confirm: t('shared.deletion_confirmation_message', resource: Issue.model_name.human.downcase) }, class: 'btn btn-outline-danger float-right ml-2 my-1' %>
+      <% end %>
+      <% if can? :update, issue %>
+          <%= link_to t('shared.edit'), edit_project_issue_path(issue.project, issue), class: 'btn btn-outline-info card-button float-right ml-2 my-1' %>
+      <% end %>
+      <span id="watch_issue_<%= current_user.id %>" class="float-right ml-2 my-1">
+        <%= render 'watchers/watch_links', issue: issue, watcher: watcher %>
+      </span>
+      <% if can? :view_all, Watcher %>
+          <button type="button" class="btn btn-outline-warning float-right ml-2 my-1" data-toggle="modal" data-target="#watchers_list_modal">
+            <%= t('watchers.view_watchers') %>
+          </button>
+      <% end %>
+    </div>
+  </div>
+
 </div>

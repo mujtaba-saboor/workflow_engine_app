@@ -47,7 +47,40 @@ class Issue < ApplicationRecord
   AASM_EVENTS_HUMANIZED = Issue.aasm.events.map(&:name).map(&:to_s).map(&:humanize)
 
   def transition_callback
-    puts "Current event: #{aasm.current_event}"
-    puts "Transition Callback: from #{aasm.from_state} to #{aasm.to_state}"
+    inform_status_change
+  end
+
+  def user_watchers
+    project
+      .members
+      .joins("LEFT OUTER JOIN watchers ON watchers.user_id = users.id and watchers.issue_id = #{id}")
+      .select('users.id as user_id, users.name as user_name, users.email as user_email, watchers.id as watcher_id')
+  end
+
+  def inform_status_change
+    watchers.includes(:user).each do |watcher|
+      IssueMailer.with(
+        user: watcher.user_id,
+        issue: id,
+        company: company_id,
+        watching_as: :watcher
+      ).status_changed.deliver_later
+    end
+
+    if assignee.present?
+      IssueMailer.with(
+        user: assignee_id,
+        issue: id,
+        company: company_id,
+        watching_as: :assignee
+      ).status_changed.deliver_later
+    end
+
+    IssueMailer.with(
+      user: creator_id,
+      issue: id,
+      company: company_id,
+      watching_as: :creator
+    ).status_changed.deliver_later
   end
 end

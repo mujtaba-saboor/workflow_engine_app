@@ -20,7 +20,10 @@ class Ability
 
     can :update_status, Issue, company_id: user.company_id, assignee_id: user.id
 
-    can :create, Issue, company_id: user.company_id, creator_id: user.id
+    can :watch_issue, Issue, company_id: user.company_id, project: { id: user.all_projects.pluck(:id) }
+
+    can :create, Watcher, company_id: user.company_id, user_id: user.id, issue: { project: {  id: user.all_projects.pluck(:id) } }
+    can :destroy, Watcher, company_id: user.company_id, user_id: user.id
 
     can :edit, User, sequence_num: user.sequence_num, company_id: user.company_id
     can [:read, :filter], User, company_id: user.company_id
@@ -28,6 +31,8 @@ class Ability
     return unless user.admin? || user.account_owner?
 
     # *** ADMINS and OWNERS ***
+    can :create, Issue, company_id: user.company_id, creator_id: user.id
+
     can :manage, :all, company_id: user.company_id
     can :destroy, User, company_id: user.company_id, role: User::ROLES[0]
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[2]
