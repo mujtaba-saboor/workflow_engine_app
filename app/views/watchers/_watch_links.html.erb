@@ -1,0 +1,7 @@
+<% if can? :watch_issue, issue %>
+  <% if watcher.present? && watcher.persisted? %>
+    <%= link_to t('watchers.unwatch'), issue_watcher_path(issue, watcher), remote: true, method: :delete, data: { confirm: t('watchers.unwatch_message', resource: Issue.model_name.human.downcase) }, class: 'btn btn-outline-danger' %>
+  <% else %>
+    <%= link_to t('watchers.watch'), issue_watchers_path(issue), remote: true, method: :post, class: 'btn btn-outline-warning' %>
+  <% end %>
+<% end %>

@@ -11,6 +11,7 @@ class IssuesController < ApplicationController
   add_breadcrumb I18n.t('shared.projects'), :projects_path, only: %i[show new edit]
 
   before_action :load_valid_assignees, only: %i[new edit update create]
+  before_action :load_issue_watcher, only: %i[show update_status]
 
   # GET /issues
   def all
@@ -24,8 +25,9 @@ class IssuesController < ApplicationController
   # GET /projects/:project_id/issues/:id
   def show
     @comment = Comment.new
+    @user_watchers = @issue.user_watchers
     @pagy, @comments = pagy(Comment.where(commentable: @issue))
-    add_breadcrumb @issue.project.name, project_path(@issue.project.id)
+    add_breadcrumb @issue.project.name, project_path(@issue.project.sequence_num)
     add_breadcrumb @issue.title, :project_issue_path
     respond_to do |format|
       format.html
@@ -54,8 +56,10 @@ class IssuesController < ApplicationController
 
     respond_to do |format|
       if @issue.save
+        flash[:notice] = t('shared.creation_successful', resource: Issue.model_name.human)
         format.html { redirect_to project_issue_path(@project, @issue) }
       else
+        flash[:error] = t('shared.creation_unsuccessful', resource: Issue.model_name.human.downcase)
         format.html { render 'new' }
       end
     end
@@ -76,8 +80,10 @@ class IssuesController < ApplicationController
   def update
     respond_to do |format|
       if @issue.update(issue_params)
+        flash[:notice] = t('shared.updation_successful', resource: Issue.model_name.human)
         format.html { redirect_to project_issue_path(@project, @issue) }
       else
+        flash[:error] = t('shared.updation_unsuccessful', resource: Issue.model_name.human.downcase)
         format.html { render 'edit' }
       end
     end
@@ -85,12 +91,13 @@ class IssuesController < ApplicationController
 
   # DELETE /projects/:project_id/issues/:id
   def destroy
+    if @issue.destroy
+      flash[:notice] = t('shared.deletion_successful', resource: Issue.model_name.human)
+    else
+      flash[:error] = t('shared.deletion_unsuccessful', resource: Issue.model_name.human.downcase)
+    end
     respond_to do |format|
-      if @issue.destroy
-        format.html { redirect_to project_path(params[:project_id]) }
-      else
-        format.html { redirect_back fallback_location: root_path }
-      end
+      format.html { redirect_back fallback_location: root_path }
     end
   end
 
@@ -100,8 +107,7 @@ class IssuesController < ApplicationController
 
     if Issue::AASM_EVENTS_HUMANIZED.include?(event_str) && (update_event = @issue.aasm.events(permitted: true).find { |event| event.name.to_s.humanize == event_str })
       @issue.public_send("#{update_event.name}!")
-      # TODO: Change the internationalization method for aasm states from enum type internationalization mechanism to
-      # aasm I18n internationalization
+
       flash.now[:notice] = t('issues.update_status.success', new_status: Issue.human_enum_name(:status, @issue.status))
     else
       flash.now[:error] = t('issues.update_status.failure')
@@ -139,6 +145,10 @@ class IssuesController < ApplicationController
 
   def load_valid_assignees
     @valid_assignees = @project.valid_assignees
+  end
+
+  def load_issue_watcher
+    @watcher = current_user.watcher_for(@issue)
   end
 
   def load_pagy

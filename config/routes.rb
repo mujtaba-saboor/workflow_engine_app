@@ -21,9 +21,15 @@ Rails.application.routes.draw do
     end
 
     resources :issues, only: [] do
-      resources :comments, only: %i[create edit update destroy]
       collection do
         get :filter
+      end
+
+      resources :comments, only: %i[create edit update destroy]
+      resources :watchers, only: %i[create destroy] do
+        collection do
+          get :administrate
+        end
       end
     end
     get '/issues', to: 'issues#all'
@@ -51,7 +57,7 @@ Rails.application.routes.draw do
   end
   devise_for :users
   constraints(subdomain: /.+/) do
-    resources :users, only: [:index, :show, :update, :edit, :destroy] do
+    resources :users, only: %i[index show update edit destroy] do
       collection do
         get 'filters'
         get 'make_owner_page'

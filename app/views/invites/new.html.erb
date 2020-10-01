@@ -1,7 +1,8 @@
 <div class="container">
   <div class='form-group'>
     <%= form_for @invite , url: invites_path do |f| %>
-        <%= f.hidden_field :company_id, value: @invite.company_id %>
+        <%= f.hidden_field :sender_id, value: current_user.id %>
+        <%= f.hidden_field :role, value: User::ROLES[0] %>
         <%= f.label :email %>
         <%= f.email_field :email, class: 'form-control', required: true %><br>
         <%= f.submit t('users.send_invite'), class: 'btn btn-info' %>

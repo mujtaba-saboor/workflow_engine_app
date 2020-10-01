@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
 
   def create
     if @team.save
-      flash[:success] = t('flash_messages.create', name: t('shared.team'))
+      flash[:notice] = t('flash_messages.create', name: t('shared.team'))
       respond_to do |format|
         format.js { redirect_to team_path(@team) }
       end
@@ -40,7 +40,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-      flash[:success] = t('flash_messages.update', name: t('shared.team'))
+      flash[:notice] = t('flash_messages.update', name: t('shared.team'))
       respond_to do |format|
         format.js { redirect_to team_path(@team) }
       end
@@ -64,7 +64,7 @@ class TeamsController < ApplicationController
 
     if team_project.empty?
       @team.destroy
-      flash[:success] = t('flash_messages.destroy', name: t('shared.team'))
+      flash[:notice] = t('flash_messages.destroy', name: t('shared.team'))
       respond_to do |format|
         format.html { redirect_to teams_path }
       end
@@ -87,12 +87,12 @@ class TeamsController < ApplicationController
 
     if user.present?
       if TeamUser.create(team: @team, user: user)
-        flash[:success] = t('flash_messages.addition', name: t('shared.user'))
+        flash[:notice] = t('flash_messages.addition', name: t('shared.user'))
       else
-        flash[:danger] = t('flash_messages.error')
+        flash[:error] = t('flash_messages.error')
       end
     else
-      flash[:danger] = t('flash_messages.error')
+      flash[:error] = t('flash_messages.error')
     end
     respond_to do |format|
       format.js { redirect_to team_path(@team) }
@@ -104,12 +104,12 @@ class TeamsController < ApplicationController
 
     if user.present?
       if @team.users.delete(user)
-        flash[:success] = t('flash_messages.deletion', name: t('shared.user'))
+        flash[:notice] = t('flash_messages.deletion', name: t('shared.user'))
       else
-        flash[:danger] = t('flash_messages.error')
+        flash[:error] = t('flash_messages.error')
       end
     else
-      flash[:danger] = t('flash_messages.error')
+      flash[:error] = t('flash_messages.error')
     end
 
     respond_to do |format|

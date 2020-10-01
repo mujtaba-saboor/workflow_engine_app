@@ -48,6 +48,18 @@ en:
         user: *user_label
         body: 'Body'
 
+  watcher_mailer:
+    watching_issue_now:
+      subject: 'Started Watching Issue (#%{issue_id})'
+    stopped_watching_issue:
+      subject: 'Stopped Watching Issue (#%{issue_id})'
+  issue_mailer:
+    status_changed:
+      subject_for:
+        watcher: 'Status of Issue (#%{issue_id}) Changed'
+        assignee: 'Your Assigned Issue (#%{issue_id}) Changed'
+        creator: 'Your Created Issue (#%{issue_id}) Changed'
+
   comments:
     comment_form_label: 'Add a comment'
     comment_form_placeholder: 'Enter comment here ...'
@@ -107,6 +119,12 @@ en:
     index_views:
       actions: 'Actions'
       dashes: &dashes '--'
+    creation_successful: '%{resource} created successfully'
+    creation_unsuccessful: 'Could not create %{resource}' 
+    updation_successful: '%{resource} updated successfully'
+    updation_unsuccessful: 'Could not update %{resource}' 
+    deletion_successful: '%{resource} deleted successfully'
+    deletion_unsuccessful: 'Could not delete %{resource}' 
   companies:
     company_projects: 'Company Projects'
     company_project_issues: 'Company Project Issues'
@@ -117,8 +135,8 @@ en:
     update: 'Update'
     sign_in: &sign_in 'Sign in'
     sign_out: 'Sign out'
-    sign_up: 'Sign up'
-    login: 'Log in'
+    sign_up: 'Sign Up'
+    login: 'Login'
     resend_confirmation_instructions: 'Resend confirmation instructions'
     send_reset_password_instuctions: 'Send me reset password instructions'
     password: 'password'
@@ -266,8 +284,24 @@ en:
   flash_messages:
     create: '%{name} Created Successfully'
     update: '%{name} Updated Successfully'
-    destroy: '%{name} Destroyed Successfully'
+    destroy: '%{name} Deleted Successfully'
     addition: '%{name} Added Successfully'
     deletion: '%{name} Removed Successfully'
     warning: '%{warning_msg}'
     error: 'Error Occured: %{error_msg}'
+  watchers:
+    watchers: 'Watchers'
+    watch: 'Watch'
+    unwatch: 'Unwatch'
+    unwatch_message: 'Are you sure you want to stop watching this issue?'
+    creation:
+      success: 'Watching the issue now'
+      failure: 'Could not watch the issue'
+    deletion:
+      success: 'You are not watching this issue now'
+      failure: 'Could not stop watching issue'
+    view_watcher: 'View Watchers'
+    no_project_member: 'There are no associated members to this project.' 
+    watching: 'Watching'
+    not_watching: 'Not Watching'
+

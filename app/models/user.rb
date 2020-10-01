@@ -13,31 +13,38 @@ class User < ApplicationRecord
   validates_confirmation_of :password, if: :password_required?
   validates_length_of       :password, within: password_length, allow_blank: true
 
+  validates :role, inclusion: { in: %w(OWNER STAFF ADMIN), message: "%{value} is not a valid role" }
+
   ROLES = %w[STAFF ADMIN OWNER].freeze
 
   belongs_to :company, optional: true
   accepts_nested_attributes_for :company
 
-  has_many :project_users
+  has_many :project_users, dependent: :destroy
   has_many :projects, through: :project_users
-  has_many :team_users
+  has_many :team_users, dependent: :destroy
   has_many :teams, through: :team_users
   has_many :comments, dependent: :destroy
   has_many :watchers, dependent: :destroy
   has_many :created_issues, class_name: 'Issue', foreign_key: 'creator_id', inverse_of: 'creator', dependent: :destroy
   has_many :assigned_issues, class_name: 'Issue', foreign_key: 'assignee_id', inverse_of: 'assignee', dependent: :nullify
-  has_many :invitations, class_name: 'Invite', foreign_key: 'recipient_id'
   has_many :sent_invites, class_name: 'Invite', foreign_key: 'sender_id'
   def self.find_for_authentication(warden_conditions)
     where(email: warden_conditions[:email], company_id: Company.current_id).first
   end
 
-  validates :role, inclusion: { in: %w(OWNER STAFF ADMIN), message: "%{value} is not a valid role" }
+  def watcher_for(issue)
+    watchers.find_by(issue_id: issue.id)
+  end
 
   def all_projects
     all_individual_projects = projects.ids
     all_team_projects = company.projects.joins(:teams).where(teams: { id: teams.pluck(:id) }).pluck(:id)
     company.projects.where(id: all_individual_projects | all_team_projects)
+  end
+
+  def will_save_change_to_email?
+    false
   end
 
   def get_project_count
