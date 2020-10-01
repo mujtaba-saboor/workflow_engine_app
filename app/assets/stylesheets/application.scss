@@ -77,7 +77,7 @@ $breadcrumbs-color: #A1A1A1;
     font-size: 0.7rem;
     border-bottom: 1px solid $breadcrumbs-color;
     padding-left: 10px;
-    margin-top: -9px;
+    margin-top: 10px;
     padding-bottom: 10px;
   }
 }
@@ -187,4 +187,12 @@ $breadcrumbs-color: #A1A1A1;
     font-family: 'Lato';
     font-size: 35px;
   }
+}
+
+.main-nav {
+  box-shadow: 1px 1px 5px $breadcrumbs-color;
+}
+
+.menu-icon {
+  font-size: 21px !important;
 }
