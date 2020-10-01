@@ -9,5 +9,31 @@ module HomeHelper
     end
     team_projects != 0 ? (team_projects * 100) / total_projects : 0
   end
-  
+  def high_issues_percentage(user)
+    if user.staff?
+      issues = user.all_projects.joins(:issues)
+    else
+      issues = user.company.projects.joins(:issues)      
+    end
+    total_issues = issues.count
+    high_priority_issues = issues.where(issues: { priority: 'high' }).count
+    high_priority_issues != 0 ? (high_priority_issues * 100) / total_issues : 0
+  end
+
+  def open_issues_percentage(user)
+    if user.staff?
+      issues = user.all_projects.joins(:issues)
+    else
+      issues = user.company.projects.joins(:issues)      
+    end
+    total_issues = issues.count
+
+    status_percentages = {}
+    statuses = Issue.statuses.keys
+    statuses.each do |status|
+      issues_by_status = issues.where(issues: { status: "#{status}" }).count
+      status_percentages[:"#{status}"] = total_issues != 0 ? (issues_by_status * 100) / total_issues : 0
+    end
+    status_percentages
+  end  
 end

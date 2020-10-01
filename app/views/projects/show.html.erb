@@ -1,25 +1,32 @@
 <div class="row">
-  <div class="col-sm-10 offset-sm-1">
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4"><%= @project.name%></h1>
-        <p class="lead"><%= @project.project_category%></p>
-        <h6>Created : <%= time_ago_in_words(@project.created_at) %> ago
-          <% if can? [:destroy, :update], @project %>            
-            <%= link_to project_path(@project), method: :delete, class: 'btn btn-sm btn-outline-danger card-button float-right' do %>
-              <i class="fas fa-trash-alt"></i>
+  <div class="col-sm-8 offset-sm-1">
+    <div id="issue" class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= @project.name%></h5>
+        <hr>
+        <h6 class="card-subtitle mb-2 text-muted">Created : <%= time_ago_in_words(@project.created_at) %> ago</h6>  
+        <hr>
+        <p class="card-text"><%= "#{Project.model_name.human}: " %><%= @project.project_category%></p>
+
+        <div class="row align-content-center">
+          <div class="col-xl-6">
+          </div>
+          <div class="col-xl-6">
+            <% if can? :destroy, @project %>
+                <%= link_to t('shared.delete'), project_path(@project), method: :delete, data: { confirm: t('shared.deletion_confirmation_message', resource: Project.model_name.human.downcase) }, class: 'btn btn-outline-danger float-right ml-2 my-1' %>
             <% end %>
-            <%= link_to edit_project_path(@project), {class: 'btn btn-outline-info btn-sm card-button mx-2 float-right',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#create_project_modal'}  do %>
-              <i class="fas fa-pencil-alt"></i>
+            <% if can? :update, @project %>
+                <%= link_to t('shared.edit'), edit_project_path(@project), {class: 'btn btn-outline-info card-button float-right ml-2 my-1',remote: true, 'data-toggle' =>  "modal", 'data-target' => '#create_project_modal'} %>
             <% end %>
-          <% end %>
-        </h6>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<br>
 <div class="row">
-  <div class="col-sm-10 offset-sm-1">
+  <div class="col-sm-8 offset-sm-1">
     <ul class="nav nav-tabs">
       <li class="nav-item">
       <%= link_to t('projects.issues'),'#',class: 'nav-link active',id: 'my-id-issue-link'%>    
@@ -32,7 +39,7 @@
 </div>
 
 <div class="row">
-  <div class="col-lg-10 offset-lg-1">
+  <div class="col-lg-8 offset-lg-1">
     <div class = "my-custom-project-data-area">
       <div id="issues_list_table">
         <%= render 'issues_list',project_issues: @project_issues, pagy: @pagy, project: @project %>        
