@@ -71,11 +71,17 @@ class UsersController < ApplicationController
   end
 
   def make_owner
-    if User.where(email: make_owner_params[:email]).update(role: User::ROLES[2])
-      current_user.update(role: User::ROLES[1])
-      flash[:notice] = t('users.successful_owner_change_message')
-      respond_to do |format|
-        format.html { redirect_to users_path }
+    if current_company.users.where(email: make_owner_params[:email]).update(role: User::ROLES[2])
+      if current_user.update(role: User::ROLES[1])
+        flash[:notice] = t('users.successful_owner_change_message')
+        respond_to do |format|
+          format.html { redirect_to users_path }
+        end
+      else
+        flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
+        respond_to do |format|
+          format.html { redirect_to users_path }
+        end
       end
     else
       flash[:error] = t('flash_messages.error', error_msg: @user.errors.full_messages.first)
