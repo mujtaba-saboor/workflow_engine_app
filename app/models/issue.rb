@@ -47,8 +47,7 @@ class Issue < ApplicationRecord
   AASM_EVENTS_HUMANIZED = Issue.aasm.events.map(&:name).map(&:to_s).map(&:humanize)
 
   def transition_callback
-    puts "Current event: #{aasm.current_event}"
-    puts "Transition Callback: from #{aasm.from_state} to #{aasm.to_state}"
+    inform_status_change
   end
 
   def user_watchers
@@ -60,7 +59,6 @@ class Issue < ApplicationRecord
 
   def inform_status_change
     watchers.includes(:user).each do |watcher|
-      # IssueMailer.delay.status_change(watcher.user, self, company.subdomain)
       IssueMailer.with(
         user: watcher.user_id,
         issue: id,
