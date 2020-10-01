@@ -27,7 +27,7 @@ class IssuesController < ApplicationController
     @comment = Comment.new
     @user_watchers = @issue.user_watchers
     @pagy, @comments = pagy(Comment.where(commentable: @issue))
-    add_breadcrumb @issue.project.name, project_path(@issue.project.id)
+    add_breadcrumb @issue.project.name, project_path(@issue.project.sequence_num)
     add_breadcrumb @issue.title, :project_issue_path
     respond_to do |format|
       format.html
