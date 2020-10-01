@@ -54,13 +54,8 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :update, :edit, :destroy] do
       collection do
         get 'filters'
-      end
-      member do
-        get 'change_role'
-        get 'change_staff_to_admin'
-        get 'change_staff_to_owner'
-        get 'change_admin_to_owner'
-        get 'change_admin_to_staff'
+        get 'make_owner_page'
+        patch 'make_owner'
       end
     end
   end

@@ -23,6 +23,8 @@ class Ability
     can :create, Issue, company_id: user.company_id, creator_id: user.id
 
     can :edit, User, sequence_num: user.sequence_num, company_id: user.company_id
+    can :update, User, sequence_num: user.sequence_num, company_id: user.company_id
+
     can [:read, :filter], User, company_id: user.company_id
 
     return unless user.admin? || user.account_owner?
@@ -33,12 +35,8 @@ class Ability
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[2]
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[1]
 
-    can :change_role, User, company_id: user.company_id, role: User::ROLES[0]
-    can :change_staff_to_admin, User, company_id: user.company_id, role: User::ROLES[0]
-    cannot :change_role, User, company_id: user.company_id, role: User::ROLES[1]
-    cannot :change_role, User, company_id: user.company_id, role: User::ROLES[2]
-
-
+    cannot :update, User, role: User::ROLES[2]
+    cannot :make_owner_page, User
     return unless user.account_owner?
 
     # *** OWNERS ***
@@ -51,14 +49,6 @@ class Ability
     can :destroy, User, company_id: user.company_id
     can :destroy, User, company_id: user.company_id, role: User::ROLES[1]
     cannot :destroy, User, company_id: user.company_id, role: User::ROLES[2]
-
-    can :change_role, User, company_id: user.company_id, role: User::ROLES[0]
-    can :change_role, User, company_id: user.company_id, role: User::ROLES[1]
-    can :change_staff_to_admin, User, company_id: user.company_id, role: User::ROLES[0]
-    can :change_staff_to_owner, User, company_id: user.company_id, role: User::ROLES[0]
-    can :change_admin_to_owner, User, company_id: user.company_id, role: User::ROLES[1]
-    can :change_admin_to_staff, User, company_id: user.company_id, role: User::ROLES[1]
-    cannot :change_role, User, company_id: user.company_id, role: User::ROLES[2]
-
+    can :make_owner_page, User, company_id: user.company_id
   end
 end

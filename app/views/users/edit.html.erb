@@ -1,14 +1,21 @@
 <div class ='container'>
-  <h1 class='h4 text-gray-900 mb-4'><%= t('users.edit') %></h1>
+  <h1 class='h4 text-gray-900 mb-4'><%= t('shared.edit')%>&nbsp<%= t('shared.user')%></h1>
 
   <%= form_for(@user, url: { action: "update" }) do |f| %>
     <%= render 'devise/shared/error_messages', resource: @user %>
 
     <div class='form-group'>
       <%= f.label :name %><br />
-      <%= f.text_field :name, class: 'form-control', required: true %>
+      <%= f.text_field :name, class: 'form-control', required: true, placeholder: @user.name %>
+      <% if current_user.role != @user.role %><br />
+        <%= f.label :role %><br />
+        <div class="search-box">
+          <%= f.select :role, options_for_select([User::ROLES[0], User::ROLES[1]]) %><br />
+        </div>
+      <% else %>
+          <%= f.hidden_field :role, value: current_user.role %>
+      <% end %>
     </div>
-
     <div class='actions'>
       <%= f.submit t('users.update'), class: 'btn btn-info' %>
     </div>

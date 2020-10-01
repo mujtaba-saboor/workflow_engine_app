@@ -1,0 +1,15 @@
+<div class ='container'>
+  <div class="alert alert-danger" role="alert">
+    <h3>Note!</h3>
+    <p>You will be no longer remain Owner. You will become admin.</p>
+  </div>
+  <h1 class='h4 text-gray-900 mb-4'><%= t('users.make_owner')%></h1>
+  <% emails = [] %>
+  <% @users.each { |user| emails<<user.email} %>
+  <div class="search-box">
+    <%= form_for(current_user, url: {action: 'make_owner'}) do |f| %>
+      <%= f.select :email, options_for_select(emails) %><br /><br />
+      <%= f.submit  t('users.make_owner'), class: 'btn my-primary-btn' %>
+    <% end %>
+  </div>
+</div>
