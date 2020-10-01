@@ -1,7 +1,9 @@
 class Project < ApplicationRecord
-  PROJECT_CATEGORIES = %w[TEAM INDIVIDUAL].freeze
+  sequenceid :company, :projects
+  PROJECT_CATEGORIES = %w[TEAM INDEPENDENT].freeze
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates_uniqueness_of :name, scope: :company_id
   validates :project_category, presence: true, inclusion: { in: PROJECT_CATEGORIES }
   validates :company_id, presence: true
 
@@ -13,9 +15,16 @@ class Project < ApplicationRecord
   has_many :project_users, dependent: :destroy
   has_many :users, through: :project_users
 
-  has_many :issues
+  has_many :issues, dependent: :destroy
+
+  scope :independent_projects, -> { where(project_category: PROJECT_CATEGORIES[1]) }
+  scope :team_projects, -> { where(project_category: PROJECT_CATEGORIES[0]) }
 
   def valid_assignees
+    members
+  end
+
+  def members
     if team_project?
       # User.joins(%(INNER JOIN `team_users`
       # ON `team_users`.`user_id` = `users`.`id` and `team_users`.`company_id` = #{company_id}
@@ -27,7 +36,7 @@ class Project < ApplicationRecord
       # tables so rails join them via the intermediate table
       teams.joins(:users).select('users.*').distinct
     else
-      company.users
+      users
     end
   end
 

@@ -13,11 +13,10 @@ gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
-
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
 # for authorization
 gem 'cancancan', '= 3.1.0'
 
@@ -37,6 +36,9 @@ gem 'pry-rails', '=0.3.9'
 # pagy
 gem 'pagy', '=3.8.3'
 
+# delayed_job
+gem 'delayed_job_active_record', '=4.1.4'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -45,7 +47,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise', '= 4.7.2'
 
-gem 'sequenceid', '= 0.0.6'
+gem 'sequenceid', '=0.0.7', git: "https://github.com/alisyed/sequenceid.git", branch: 'feature/change_activerecord_base_to_applicationrecord_in_sti_parent_class_method'
 
 gem 'breadcrumbs_on_rails', '=4.0.0'
 

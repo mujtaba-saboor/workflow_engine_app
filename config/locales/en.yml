@@ -48,6 +48,18 @@ en:
         user: *user_label
         body: 'Body'
 
+  watcher_mailer:
+    watching_issue_now:
+      subject: 'Started Watching Issue (#%{issue_id})'
+    stopped_watching_issue:
+      subject: 'Stopped Watching Issue (#%{issue_id})'
+  issue_mailer:
+    status_changed:
+      subject_for:
+        watcher: 'Status of Issue (#%{issue_id}) Changed'
+        assignee: 'Your Assigned Issue (#%{issue_id}) Changed'
+        creator: 'Your Created Issue (#%{issue_id}) Changed'
+
   comments:
     comment_form_label: 'Add a comment'
     comment_form_placeholder: 'Enter comment here ...'
@@ -57,6 +69,21 @@ en:
     successful_deletion_message: 'Comment deleted successfully !'
     unsuccessful_deletion_message: 'Comment could not be deleted'
   shared:
+    error_404: '404'
+    page_not_found_msg: 'Page Not Found'
+    page_not_found_content: "It looks like we don't have a page you are looking for..."
+    record_not_found_msg: 'Record Not Found'
+    record_not_found_content: "It looks like we don't have a record you are looking for..."
+    back_dashbord: 'Back to Dashboard'
+    sq_num_field: '%{model} #'
+    users_field: 'Users'
+    name_field: 'Name'
+    type_field: 'Type'
+    created_field: 'Created'
+    actions_field: 'Actions'
+    ago: 'ago'
+    filter: 'FILTER'
+    all: 'ALL'
     email: 'email'
     deletion_confirmation_message: 'Are you sure you want to delete this %{resource}?'
     new: 'New'
@@ -64,6 +91,7 @@ en:
     edit: 'Edit'
     update: 'Update'
     delete: 'Delete'
+    edit_delete: 'Edit / Delete'
     create_model: 'Create %{model}'
     update_model: 'Update %{model}'
     time_ago: '%{time_ago} ago'
@@ -78,6 +106,7 @@ en:
     projects: 'Projects'
     issue: 'Issue'
     issues: 'Issues'
+    invite: 'Invite'
     new_resource: 'Add New %{resource_name}'
     edit_resource: 'Edit %{resource_name}'
     form_name_placeholder: 'Enter name here'
@@ -86,7 +115,16 @@ en:
     app_name: 'Workflow Engine'
     home: 'Home'
     about: 'About'
-    contact_us: 'Contact Us'
+    features: 'Features'
+    index_views:
+      actions: 'Actions'
+      dashes: &dashes '--'
+    creation_successful: '%{resource} created successfully'
+    creation_unsuccessful: 'Could not create %{resource}' 
+    updation_successful: '%{resource} updated successfully'
+    updation_unsuccessful: 'Could not update %{resource}' 
+    deletion_successful: '%{resource} deleted successfully'
+    deletion_unsuccessful: 'Could not delete %{resource}' 
   companies:
     company_projects: 'Company Projects'
     company_project_issues: 'Company Project Issues'
@@ -133,9 +171,21 @@ en:
     leave_blank_line: "leave blank if you don't want to change it"
     need_for_current_password: 'we need your current password to confirm your changes'
     send_invite: 'Send Invitation'
+    invite_user: 'Invite User'
     name: 'name'
     role: 'role'
     company: 'company'
+    successful_deletion_message: 'User deleted successfully !'
+    unsuccessful_deletion_message: 'User could not be deleted'
+    all_users: 'All Users'
+    no_user_to_show: 'No User to show...'
+    user_created_successfully: 'User created successfully'
+  invites:
+    send_successful: 'Invitation has been sent successfully'
+    successfully_invited: 'You have been invited to accept invitation'
+    accept: 'Accept'
+    before_link: 'To accept invitation, just click this link:'
+    set_password: 'Set Password'
   issues:
     no_assignee_assigned: 'Assignee is not assigned for this issue'
     edit_form:
@@ -157,8 +207,32 @@ en:
     issue_priority: 'Priority'
     issue_status: 'Status'
     issue_assignee: 'Assignee'
-    not_assigned: '----'
+    not_assigned: *dashes
+    documents: 'Documents'
+    document: 'Document'
+    all_issues: 'All Issues'
+    filter:
+      categories:
+        all: 'All'
+      form:
+        issue_title: 'Search Issues'
   home:
+    learn_more: 'Learn More'
+    main_heading: 'Grow Your Business Faster'
+    main_heading_content: 'If you are looking for something that is not difficult to use, check out Workflow Engine. This is a great task management app that can be used for managing projects as well.'
+    main_heading_btn: 'Get Started'
+    main_features_heading: 'Features'
+    feature_project_heading: 'Project Management'
+    feature_project_content: 'Project Management is not a big deal anymore. Workflow Engine provides to a convenient way to manage your projects. You can add as many projects as you want in your dashboard.'
+    feature_team_heading: 'Team Management'
+    feature_team_content: 'Team Management is an ammazing feature of Workflow Engine provides that provides a convenient way to manage your teams. You can add as many teams as you want in your Projects.'
+    feature_issue_heading: 'Issue Watching'
+    feature_issue_content: 'With Issue Watching feature of Workflow Engine you can watch any issue of any projectc. You will also get email on changing states of issues.'
+    main_about_heading: 'About Us'
+    feature_about_heading: 'Create interactive projects'
+    feature_about_content: 'We here at Workflow Engine always keep an eye on the running trends of project management in the world and provides our users the best experience of project management.'
+    copyright: 'Copyright'
+    rights_reserved: 'All rights reserved'
     welcome: 'Welcome to Workflow Engine'
     sign_in:
       title: *sign_in
@@ -173,9 +247,10 @@ en:
     watching_issues: 'Watching Issues'
     project_categories: 'Project Categories'
     project_categories_team: 'Team'
-    project_categories_individual: 'Individual'
+    project_categories_independent: 'Independent'
   projects:
-    helloworld: '123'
+    input_name: 'Name*'
+    input_category: 'Category*'
     form_name_placeholder: &form_name_placeholder 'Enter name here'
     add_team: &add_team 'Add Team'
     remove_team: 'Remove Team'
@@ -192,6 +267,7 @@ en:
     all_projects: 'All Projects'
     no_destroy: "Project can't be Destroyed"
     no_issue: 'This Project has no issue'
+    no_project_to_show: 'No Project to show...'
   teams:
     form_name_placeholder: *form_name_placeholder
     add_user: *add_user
@@ -206,8 +282,24 @@ en:
   flash_messages:
     create: '%{name} Created Successfully'
     update: '%{name} Updated Successfully'
-    destroy: '%{name} Destroyed Successfully'
+    destroy: '%{name} Deleted Successfully'
     addition: '%{name} Added Successfully'
     deletion: '%{name} Removed Successfully'
     warning: '%{warning_msg}'
     error: 'Error Occured: %{error_msg}'
+  watchers:
+    watchers: 'Watchers'
+    watch: 'Watch'
+    unwatch: 'Unwatch'
+    unwatch_message: 'Are you sure you want to stop watching this issue?'
+    creation:
+      success: 'Watching the issue now'
+      failure: 'Could not watch the issue'
+    deletion:
+      success: 'You are not watching this issue now'
+      failure: 'Could not stop watching issue'
+    view_watcher: 'View Watchers'
+    no_project_member: 'There are no associated members to this project.' 
+    watching: 'Watching'
+    not_watching: 'Not Watching'
+

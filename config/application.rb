@@ -24,6 +24,7 @@ module WorkflowEngineApp
       :password             => 'maulanatariqjameel',
       :authentication       => "login",
       :enable_starttls_auto => true
-}
+    }
+    config.active_job.queue_adapter = :delayed_job
   end
 end

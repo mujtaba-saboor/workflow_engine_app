@@ -12,16 +12,28 @@ Rails.application.routes.draw do
         patch 'add_user_to_project'
         delete 'remove_user_from_project'
       end
-      resources :issues do
+      resources :issues, except: %i[index] do
         member do
           patch :update_status
+          delete :delete_document_attachment
+          patch :add_document_attachment
         end
       end
     end
 
     resources :issues, only: [] do
+      collection do
+        get :filter
+      end
+
       resources :comments, only: %i[create edit update destroy]
+      resources :watchers, only: %i[create destroy] do
+        collection do
+          get :administrate
+        end
+      end
     end
+    get '/issues', to: 'issues#all'
 
     resources :teams do
       member do
@@ -32,6 +44,8 @@ Rails.application.routes.draw do
     end
     get '/search', to: 'search#search', as: 'search'
     get '', to: 'companies#index'
+    resources :invites
+    get 'project/filters', to: 'projects#filters'
   end
 
   # Routes accessible without subdomain
@@ -44,5 +58,14 @@ Rails.application.routes.draw do
     root 'home#index'
   end
   devise_for :users
-  resources :users, only: [:index, :show], constraints: {subdomain: /.+/ }
+  constraints(subdomain: /.+/) do
+    resources :users, only: %i[index show update edit destroy] do
+      collection do
+        get 'filters'
+      end
+    end
+  end
+  get '/invites/confirm_request', to: 'invites#confirm_request', as: 'confirm_request'
+  post '/invites/create_staff_user', to: 'invites#create_staff_user', as: 'create_staff_user'
+  match '*unmatched', to: 'application#route_not_found', via: :all
 end

@@ -3,5 +3,7 @@
 <% else %>
   <%= render 'layouts/normal_user_navbar' %>
 <% end %>
-<%= render_breadcrumbs separator: ' / ' %>
-<hr>
+<div class="breadcrumbs-container">
+  <p><%= render_breadcrumbs separator: ' / ' %></p>
+</div>
+<br>
