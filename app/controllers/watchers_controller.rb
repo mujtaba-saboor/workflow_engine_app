@@ -22,7 +22,6 @@ class WatchersController < ApplicationController
       @watcher.inform_started_watching
     else
       flash.now[:error] = t('watchers.creation.failure')
-      @watcher = nil
     end
 
     respond_to do |format|
@@ -35,7 +34,6 @@ class WatchersController < ApplicationController
     if @watcher.destroy
       flash.now[:notice] = t('watchers.deletion.success')
       @watcher.inform_stopped_watching
-      @watcher = nil
     else
       flash.now[:error] = t('watchers.deletion.failure')
     end
