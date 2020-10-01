@@ -71,7 +71,7 @@ class UsersController < ApplicationController
   end
 
   def make_owner
-    if current_company.users.where(email: make_owner_params[:email]).update(role: User::ROLES[2])
+    if current_company.users.find_by(email: make_owner_params[:email]).update(role: User::ROLES[2])
       if current_user.update(role: User::ROLES[1])
         flash[:notice] = t('users.successful_owner_change_message')
         respond_to do |format|
