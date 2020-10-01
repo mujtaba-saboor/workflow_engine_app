@@ -21,15 +21,26 @@ module ApplicationHelper
 
   def get_sidebar_links
     {
-      t('shared.home') => root_path,
-      t('shared.projects') => projects_path,
-      t('shared.issues') => issues_path,
-      t('shared.teams') => teams_path,
-      t('shared.users') => users_path
+      t('shared.home') => { path: root_path, icon: 'fas fa-home' },
+      t('shared.projects') => {path: projects_path, icon: 'fas fa-project-diagram' },
+      t('shared.issues') => {path: issues_path, icon: 'fas fa-clipboard-list' },
+      t('shared.teams') => { path: teams_path, icon: 'fas fa-users-cog' },
+      t('shared.users') => {path: users_path, icon: 'fas fa-users'} 
     }
   end
 
   def get_active_nav(controller)
-    params[:controller] == controller ? 'active' : nil
+    params[:controller] == controller || (params[:controller].eql? 'companies' and controller.eql? 'home') ? 'active' : nil
+  end
+
+  def bootstrap_color_class_for_alert_type(alert_type)
+    case alert_type
+      when 'notice'
+        'success'
+      when 'error'
+        'danger'
+      else
+        alert_type
+    end
   end
 end
