@@ -1,49 +1,175 @@
-<div class='row'>
-  <div class='col-sm-6 offset-sm-3  '>
-    <h1 class='h4 text-gray-900 mb-4'><%= t('users.sign_up') %></h1>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<!-- my data -->
+<div class="row">
+  <div class="col-md-6 offset-md-3 custom-card">
       <%= render 'devise/shared/error_messages', resource: resource %>
+    <div class="registration-form">
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-5">
+              <div class="label-area">
+                <i class="fab fa-stack-overflow fa-2x text-info"></i>
+                <span class='form-app-name'><%= t('shared.app_name').upcase %></span>
+              </div>
+            </div>
+            <div class="col-sm-6 d-flex justify-content-center">
+              <span class="text-dark-heading"><%= t('users.sign_up') %></span>
+            </div>
+          </div>
 
-      <div class='form-group'>
-        <%= f.label :name %><br />
-        <%= f.text_field :name, class: 'form-control', required: true %>
+          <div class="row no-gutters d-flex justify-content-end">
+            <div class="col-sm-7">
+              <div id="user_name_errors">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class='form-group'>
-        <%= f.label :email %><br />
-        <%= f.email_field :email, class: 'form-control', placeholder: 'name@example.com', required: true %>
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-4">
+              <div class="label-area">
+                <%= f.label :name %>
+              </div>
+            </div>
+            <div class="col-sm-7 d-flex justify-content-end">
+              <%= f.text_field :name, class: 'form-input-area', placeholder: 'Enter name here..', required: true %>
+            </div>
+          </div>
+
+          <div class="row no-gutters d-flex justify-content-end">
+            <div class="col-sm-7">
+              <div id="user_name_errors">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class='form-group'>
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %><%= t('users.character_minimum') %>)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: t('users.new_password'), class: 'form-control', required: true %>
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-4">
+              <div class="label-area">
+                <%= f.label :email %>
+              </div>
+            </div>
+            <div class="col-sm-7 d-flex justify-content-end">
+              <%= f.email_field :email, class: 'form-input-area', placeholder: 'name@example.com', required: true %>       
+            </div>
+          </div>
+
+          <div class="row no-gutters d-flex justify-content-end">
+            <div class="col-sm-7">
+              <div id="email_errors">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class='form-group'>
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: t('users.password'), class: 'form-control', required: true %>
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-4">
+              <div class="label-area">
+                <%= f.label :password %>
+              </div>
+            </div>
+            <div class="col-sm-7 d-flex justify-content-end">
+              <%= f.password_field :password, autocomplete: t('users.new_password'), class: 'form-input-area', required: true %>      
+            </div>
+          </div>
+
+          <div class="row no-gutters d-flex justify-content-end">
+            <div class="col-sm-7">
+              <div id="password_errors">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class='form-group' >
-        <%= f.fields_for :company, Company.new do |nested_company| %>
-          <%= nested_company.label :company_name %><br />
-          <%= nested_company.text_field :name, id: 'company_name_id', class: 'form-control', required: true %>
-          <%= nested_company.hidden_field :subdomain, id: 'subdomain_id' %>
-        <% end %>
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-4">
+              <div class="label-area">
+                <%= f.label :password_confirmation %>
+              </div>
+            </div>
+            <div class="col-sm-7 d-flex justify-content-end">
+              <%= f.password_field :password_confirmation, autocomplete: t('users.password'), class: 'form-input-area', required: true %>      
+            </div>
+          </div>
+
+          <div class="row no-gutters d-flex justify-content-end">
+            <div class="col-sm-7">
+              <div id="password_confirmation_errors">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <%= f.hidden_field :role, value: User::ROLES[2] %>
+    <%= f.fields_for :company, Company.new do |nested_company| %>
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-4">
+              <div class="label-area">
+                <%= nested_company.label :company_name %>
+              </div>
+            </div>
+            <div class="col-sm-7 d-flex justify-content-end">
+              <%= nested_company.text_field :name, id: 'company_name_id', class: 'form-input-area', required: true %> 
+              <%= nested_company.hidden_field :subdomain, id: 'subdomain_id' %>     
+            </div>
+          </div>
 
-    <br />
-    <p id='domain_place'></p>
-
-      <div>
-        <%= f.submit t('users.sign_up'), class: 'btn btn-info' %>
+          <div class="row no-gutters d-flex justify-content-end">
+            <div class="col-sm-7">
+              <div id="company_name_errors">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     <% end %>
-
-    <%= render 'devise/shared/links' %>
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-4">
+              <div class="label-area">
+              </div>
+            </div>
+            <div class="col-sm-7 d-flex justify-content-center">
+              <p id='domain_place'></p>     
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= f.hidden_field :role, value: User::ROLES[2] %>
+      <div class="p-t-15 m-r-10">
+        <div class="col-sm-11 offset-sm-1 d-flex justify-content-center">
+          <%= f.submit t('users.sign_up'), class: 'my-primary-btn form-submit-btn' %>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="p-t-15 m-r-10">
+      <div class="col-11 offset-sm-1">
+        <div class="row no-gutters d-flex justify-content-between">
+          <div class="d-flex align-items-end col-sm-12">
+            <div class="label-area">
+              <%= render 'devise/shared/links' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
   </div>
 </div>
+<% end %>

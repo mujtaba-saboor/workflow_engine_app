@@ -1,12 +1,64 @@
-<div class="row mx-1">
-  <div class="col-sm-6 offset-sm-3">
-   <h1 class="my-4"><%= t('home.sign_in.title') %></h1>
-   <%= form_with url: user_companies_path do |form| %>
-     <div class="form-group">
-       <%= form.email_field :email, placeholder: t('home.sign_in.email_address_placeholder'), required: true, class: 'form-control' %>
-     </div>
-     <%= form.submit t('home.sign_in.search'), class: 'btn btn-info' %>
-   <% end %>
-   <div id="user_companies"></div> 
+<%= form_with url: user_companies_path do |form| %>
+<!-- my data -->
+<div class="row">
+  <div class="col-md-6 offset-md-3 custom-card">
+    <div class="registration-form">
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-5">
+              <div class="label-area">
+                <i class="fab fa-stack-overflow fa-2x text-info"></i>
+                <span class='form-app-name'><%= t('shared.app_name').upcase %></span>
+              </div>
+            </div>
+            <div class="col-sm-6 d-flex justify-content-center">
+              <span class="text-dark-heading"><%= t('home.sign_in.title') %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-t-15 m-r-10">
+        <div class="col-11 offset-sm-1">
+          <div class="row no-gutters d-flex justify-content-between">
+            <div class="d-flex align-items-end col-sm-4">
+              <div class="label-area">
+                <%= form.label :email %>
+              </div>
+            </div>
+            <div class="col-sm-7 d-flex justify-content-end">
+              <%= form.email_field :email, placeholder: t('home.sign_in.email_address_placeholder'), required: true, class: 'form-input-area' %>
+            </div>
+          </div>
+
+          <div class="row no-gutters d-flex justify-content-end">
+            <div class="col-sm-7">
+              <div id="email_errors">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-t-15 m-r-10">
+        <div class="col-sm-11 offset-sm-1 d-flex justify-content-center">
+          <%= form.submit t('home.sign_in.search'), class: 'my-primary-btn form-submit-btn' %>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="p-t-15 m-r-10">
+      <div class="col-11 offset-sm-1">
+        <div class="row no-gutters d-flex justify-content-between">
+          <div class="d-flex align-items-end col-sm-12">
+            <div class="label-area">
+              <div id="user_companies"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>   
   </div>
 </div>
+<% end %>
