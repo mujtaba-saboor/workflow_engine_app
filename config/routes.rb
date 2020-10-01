@@ -60,6 +60,8 @@ Rails.application.routes.draw do
     resources :users, only: %i[index show update edit destroy] do
       collection do
         get 'filters'
+        get 'make_owner_page'
+        patch 'make_owner'
       end
     end
   end
