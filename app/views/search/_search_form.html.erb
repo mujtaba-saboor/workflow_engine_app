@@ -1,0 +1,19 @@
+<form action="<%= search_path %>" class="form-inline">
+  <div class="input-group">
+
+    <div class="form-group">
+     <label for="search_query_input" class="sr-only">Search Query</label>
+      <input type="text" class="form-control mr-2" placeholder="Search query" name="query"<%= " value=\"#{query}\"".html_safe if query %>>
+    </div>
+
+    <div class="form-group">
+     <label for="categories_list" class="mr-2">Categories</label>
+      <select name="blah" id="categories_list" class="form-control mr-2">
+        <option value="hello">hello</option>
+        <option value="world">hello world</option>
+      </select>
+    </div>
+
+  </div>
+  <input class="btn btn-info" type="submit" value="Search">
+</form>

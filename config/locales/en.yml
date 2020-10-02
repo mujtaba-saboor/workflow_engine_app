@@ -130,6 +130,8 @@ en:
     company_project_issues: 'Company Project Issues'
     welcome_message: 'Welcome to Workflow Engine (%{company_name})'
     domain_validation: 'only allows letters and numbers'
+    search:
+      unrecognized_search_category: 'The search category given could not be recognized'
   users:
     email: 'email'
     update: 'Update'
@@ -305,4 +307,12 @@ en:
     no_project_member: 'There are no associated members to this project.' 
     watching: 'Watching'
     not_watching: 'Not Watching'
+  search:
+    search: 'Search'
+    search_results_for: 'Search Results for "%{query}"'
+    no_result_found: 'No results found'
+    sorry_no_result: 'Sorry your search for "%{query}" returned no results'
+    suggestions: 'Suggestions:'
+    check_spellings: 'Check your spellings'
+    use_fewer_words: 'Use fewer words (results have to match the exact phrase you type)'
 

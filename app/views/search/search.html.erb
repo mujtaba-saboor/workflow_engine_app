@@ -1,0 +1,90 @@
+<div class="search-page-heading"><%= t('search.search_results_for', query: @query) %></div>
+ 
+<div class="container mt-5">
+  <% if @users.present? %>
+    <div class="row my-4">
+      <h4><%= User.model_name.human(count: 0) %></h4>
+      <div class="col-lg-12">
+        <% @users.each do |user| %>
+          <div class="card my-2">
+            <div class="card-body p-0">
+              <div class="row">
+                <div class="col-sm-2 search-result-tag user-tag">
+                  <%= User.model_name.human %>
+                </div>
+                <div class="col-sm-10 search-result-body">
+                  <p class="card-title"><%= link_to "#{user.sequence_num} - #{highlight(user.name, @query)}".html_safe, user_path(user) %></p>
+                  <small class="card-subtitle text-muted"><%= highlight(user.email, @query) %></small>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <% if @projects.present? %>
+    <div class="row my-4">
+      <h4><%= Project.model_name.human(count: 0) %></h4>
+      <div class="col-lg-12">
+        <% @projects.each do |project| %>
+          <div class="card my-2">
+            <div class="card-body p-0">
+              <div class="row">
+                <div class="col-sm-2 search-result-tag project-tag">
+                  <%= Project.model_name.human %>
+                </div>
+                <div class="col-sm-10 search-result-body">
+                  <p class="card-title"><%= link_to "#{project.sequence_num} - #{highlight(project.name, @query)}".html_safe, project_path(project.sequence_num) %></p>
+                  <small class="card-subtitle text-muted"><%= project.project_category %></small>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <% if @issues.present? %>
+    <div class="row my-4">
+      <h4><%= Issue.model_name.human(count: 0) %></h4>
+      <div class="col-lg-12">
+        <% @issues.each do |issue| %>
+          <div class="card my-2">
+            <div class="card-body p-0">
+              <div class="row">
+                <div class="col-sm-2 search-result-tag issue-tag">
+                  <%= Issue.model_name.human %>
+                </div>
+                <div class="col-sm-10 search-result-body">
+                  <p class="card-title"><%= link_to "#{issue.id} - #{highlight(issue.title, @query)}".html_safe, project_issue_path(issue.project.sequence_num, issue.id) %></p>
+                  <%= render 'issues/show_badges', status: issue.status, priority: issue.priority, issue_type: issue.issue_type %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @users.blank? && @issues.blank? && @projects.blank? %>
+    <div class="no-results-found">
+      <div class="fa-3x icon">
+        <i class="fas fa-ban fa-rotate-90 ban"></i>
+      </div>
+      <div class="heading">
+        <%= t('search.no_result_found') %>
+      </div>
+      <div class="description">
+        <%= t('search.sorry_no_result', query: @query) %>
+        <br>
+        <%= t('search.suggestions') %>
+        <ul>
+          <li><%= t('search.check_spellings') %></li>
+          <li><%= t('search.use_fewer_words') %></li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>
