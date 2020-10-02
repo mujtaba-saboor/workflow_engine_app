@@ -36,7 +36,7 @@
               </div>
             </div>
             <div class="col-sm-7 d-flex justify-content-end">
-              <%= f.email_field :email, autofocus: true, autocomplete: t('users.email'), class: 'form-input-area', required: true %>
+              <%= f.email_field :email, autofocus: true, autocomplete: t('users.email'), class: 'form-input-area', required: true, value: params[:email] %>
             </div>
           </div>
 

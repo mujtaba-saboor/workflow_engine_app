@@ -1,4 +1,3 @@
-include Pagy::Backend
 class UsersController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
   add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show, :edit, :make_owner_page]

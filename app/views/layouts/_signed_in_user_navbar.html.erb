@@ -2,16 +2,16 @@
   <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbar_nav' aria-controls='navbar_nav' aria-expanded='false' aria-label='Toggle navigation'>
     <span class='navbar-toggler-icon'></span>
   </button>
-  <!-- <form class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+  <form action="<%= search_path %>" class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
-      <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+      <input type="text" name="query" value="<%= params[:query] %>" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
       <div class="input-group-append">
-        <button class="btn my-primary-btn" type="button">
+        <button class="btn my-primary-btn" type="submit">
           <i class="fas fa-search fa-fw"></i>
         </button>
       </div>
     </div>
-  </form> -->
+  </form>
   <div class='collapse navbar-collapse' id='navbar_nav'>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
