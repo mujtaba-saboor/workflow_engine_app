@@ -24,7 +24,12 @@
     </div>
   <% end %>
 </div>
-
-<div id="issues_list" class="container-fluid my-4">
-  <%= render 'issues_table', issues: issues, pagy: @pagy %>
-</div>
+<% if issues.empty? %>
+  <div class="container-fluid">
+    <%= render 'layouts/no_record_message' %>
+  </div>
+<% else %>
+  <div id="issues_list" class="container-fluid my-4">
+    <%= render 'issues_table', issues: issues, pagy: @pagy %> 
+  </div>
+<% end %>

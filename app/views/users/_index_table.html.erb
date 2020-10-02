@@ -1,5 +1,6 @@
 <% if users.empty? %>
-  <p> <%= t('users.no_user_to_show') %></p>
+  <!-- <p> <%# t('users.no_user_to_show') %></p> -->
+  <%= render 'layouts/no_record_message' %>
 <% else %>
   <br><br>
   <table class="table text-center">

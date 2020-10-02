@@ -275,3 +275,19 @@ $breadcrumbs-color: #A1A1A1;
     transform: scale(1.02);
   }
 }
+
+.no-record-message {
+  border: 2px solid $form-border-color;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.5em;
+
+  letter-spacing: 0.1em;
+
+  padding: 4em;
+
+  i {
+    font-size: 3em;
+    color: $form-border-color;
+  }
+}

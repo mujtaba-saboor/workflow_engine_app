@@ -1,5 +1,6 @@
 <% if projects.empty? %>
-  <p> <%= t('projects.no_project_to_show') %></p>
+  <!-- <p> <%# t('projects.no_project_to_show') %></p> -->
+  <%= render 'layouts/no_record_message' %>
 <% else %>
   <br><br>
   <table class="table text-center">
