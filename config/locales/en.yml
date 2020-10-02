@@ -270,6 +270,7 @@ en:
     no_destroy: "Project can't be Destroyed"
     no_issue: 'This Project has no issue'
     no_project_to_show: 'No Project to show...'
+    form_search: 'Search Projects'
   teams:
     form_name_placeholder: *form_name_placeholder
     add_user: *add_user
