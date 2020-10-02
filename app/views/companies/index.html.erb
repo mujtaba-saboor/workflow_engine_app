@@ -66,7 +66,7 @@
           </div>
           <div class="card-body">
             <% team_strength = get_team_percentage(current_user) %>
-            <% individual_strength = 100 - team_strength %>
+            <% individual_strength = individual_percentage(current_user) %>
             <h4 class="small font-weight-bold"><%= t('home.project_categories_team') %> <span class="float-right"><%= team_strength %>%</span></h4>
             <div class="progress mb-4">
               <div class="progress-bar bg-info" role="progressbar" style="width: <%= team_strength %>%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
@@ -114,7 +114,7 @@
           </div>
           <div class="card-body">
             <% high_strength = high_issues_percentage(current_user) %>
-            <% low_strength = 100 - high_strength %>
+            <% low_strength = low_issues_percentage(current_user) %>
             <h4 class="small font-weight-bold"><%= t('home.issue_priority_high') %> <span class="float-right"><%= high_strength %>%</span></h4>
             <div class="progress mb-4">
               <div class="progress-bar bg-danger" role="progressbar" style="width: <%= high_strength %>%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
