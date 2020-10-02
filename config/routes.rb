@@ -41,7 +41,8 @@ Rails.application.routes.draw do
         delete 'remove_user_from_team'
       end
     end
-    get '/search', to: 'search#search', as: 'search'
+    get '/search', to: 'search#search'
+
     get '', to: 'companies#index'
     resources :invites
     get 'project/filters', to: 'projects#filters'
