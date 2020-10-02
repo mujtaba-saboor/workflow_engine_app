@@ -34,7 +34,6 @@ module ApplicationHelper
   end
 
   def bootstrap_color_class_for_alert_type(alert_type)
-    binding.pry
     case alert_type
       when 'notice'
         'success'
