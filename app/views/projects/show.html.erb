@@ -42,7 +42,8 @@
   <div class="col-lg-8 offset-lg-2">
     <div class = "my-custom-project-data-area">
       <div id="issues_list_table">
-        <%= render 'issues_list',project_issues: @project_issues, pagy: @pagy, project: @project %>        
+        <%# render 'issues_list',project_issues: @project.issues, pagy: @pagy, project: @project %>
+        <%= render 'issues/issues_table', issues: @project.issues, pagy: @pagy %>
       </div>
     </div>
   </div>
