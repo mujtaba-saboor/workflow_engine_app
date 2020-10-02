@@ -30,8 +30,9 @@ RSpec.describe Issue, type: :model do
         expect(issue).to eq(true)
       end
       invalid_priorities.each do |priority|
-        issue = Issue.new(title: 'A title', description: 'This is description', status: 'open', priority: priority, issue_type: 'bug', company: @company, creator: @creator, assignee: @assignee, project: @project).save
-        expect(issue).to eq(false)
+        issue = Issue.new(title: 'A title', description: 'This is description', status: 'open', priority: priority, issue_type: 'bug', company: @company, creator: @creator, assignee: @assignee, project: @project)
+        binding.pry
+        expect{ issue.save }.to raise_exception
       end
     end
 
