@@ -80,6 +80,9 @@ class ProjectsController < ApplicationController
         @projects = @projects.independent_projects
       end
     end
+
+    @projects = @projects.where('projects.name LIKE :name', name: "%#{params[:project_title]}%") if params[:project_title].present?
+
     load_pagy
     respond_to do |format|
       format.js

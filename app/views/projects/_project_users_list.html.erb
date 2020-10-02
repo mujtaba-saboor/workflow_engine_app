@@ -1,29 +1,17 @@
 <br>
 <div class="row">
-  <div class="col-md-5 offset-md-1">
+  <div class="col-md-4">
     <h3> <%= t('project.all_users') %></h3>
   </div>
 <% if can? :new_user_for_project, @project %>
-  <div class="col-md-2">
+  <div class="col-md-8 d-flex justify-content-end">
     <%= link_to t('project.add_user') ,new_user_for_project_project_path(@project), {class: 'btn my-primary-btn',remote: true, data: { toggle: "modal", target: '#add_user_to_project_modal'}} %>
   </div>
 <% end %>
 </div>
-<br><br>
 <div class="row">
-  <div class="col-md-6 offset-md-1">
-    <ul class="list-group">
-      <% @project.users.each do |user| %>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-    	  <%= user.name %>
-        <% if can? :remove_user_from_project, @project %>
-          <%= link_to remove_user_from_project_project_path(@project, user: user),method: :delete,class: 'btn btn-sm btn-outline-danger card-button float-right' do %>
-            <i class="fas fa-trash-alt"></i>
-          <% end %>
-        <% end %>
-    	</li>
-      <% end %>
-    </ul>
+  <div class="col-md-12">
+    <%= render 'users/index_table', users: @project.users, project: @project %>
   </div>
 </div>
 <div id = "add_user_to_project_modal" class="modal fade" tabindex="-1" role="dialog">
