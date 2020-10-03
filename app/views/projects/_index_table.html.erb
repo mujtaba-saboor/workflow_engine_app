@@ -2,8 +2,8 @@
   <p> <%= t('projects.no_project_to_show') %></p>
 <% else %>
   <br><br>
-  <table class="table text-center">
-    <thead class="thead-light">
+  <table class="table text-center table-primary">
+    <thead>
       <tr>
         <th><%= t(('shared.sq_num_field'), model: t('shared.project')) %></th>
         <th><%= t('shared.name_field') %></th>
@@ -36,5 +36,5 @@
       <% end %>
     </tbody>
   </table>
-  <%== pagy_bootstrap_nav(pagy) %>
 <% end %>
+<%== pagy_bootstrap_nav(pagy) %>

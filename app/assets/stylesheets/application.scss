@@ -1,11 +1,16 @@
 @import "bootstrap/scss/bootstrap";
-$primary-color: #5bc0de;
+/* $primary-color: #5bc0de; */
+$primary-color: #2fa4b5;
+$secondary-color: white;
 $hover-primary-color: #289cd1;
 $pagination-link-btn-text-color: #5a5a5a;
 $pagination-link-btn-background-color: #eee;
 $pagination-link-btn-border-color: #ddd;
 $form-border-color: #c7c9c8;
 $breadcrumbs-color: #A1A1A1;
+
+
+
 
 .error-explanation {
   @extend .alert;
@@ -19,6 +24,7 @@ $breadcrumbs-color: #A1A1A1;
     margin-top: 2em;
   }
 }
+
 .my-primary-btn{
 
   background-color: $primary-color !important;
@@ -108,6 +114,39 @@ $breadcrumbs-color: #A1A1A1;
     letter-spacing: 0.1em;
   }
 }
+
+/*** Tables ***/
+
+.table-primary {
+  background: white !important;
+  font-size: 0.9em;
+
+  border-radius: 5px;
+  overflow: hidden;
+
+  td, th {
+    padding: 10px 0 10px 20px !important;
+  }
+
+  thead tr {
+    background: $primary-color;
+    color: white;
+    font-size: 1em;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid scale-color($primary-color, $lightness: 30%);
+
+    &:last-of-type {
+      border-bottom: 2px solid scale-color($primary-color, $lightness: 30%);
+    }
+  }
+
+  .link {
+    color: $primary-color;
+  }
+}
+
 .worflow-form {
   .form-submit-btn {
     width: 100%;

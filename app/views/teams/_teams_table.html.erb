@@ -1,8 +1,8 @@
 <% if teams.empty? %>
   <p> <%= t('teams.no_team_to_show') %></p>
 <% else %>
-  <table class="table text-center">
-    <thead class="thead-light">
+  <table class="table text-center table-primary">
+    <thead>
       <tr>
         <th><%= t(('shared.sq_num_field'), model: t('shared.team')) %></th>
         <th><%= t('shared.name_field') %></th>
