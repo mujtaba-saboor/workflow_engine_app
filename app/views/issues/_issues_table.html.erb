@@ -28,20 +28,20 @@
     <tbody>
       <% issues.each do |issue| %>
         <tr class="my-4">
-          <th><%= issue.id %></th>
-          <th>
+          <td><%= issue.id %></td>
+          <td>
             <%== "#{truncate(issue.title)} ( #{link_to "##{issue.id}", project_issue_path(issue.project.sequence_num, issue.id), class: 'link'} )" %>
-          </th>
+          </td>
           <% if params[:controller].eql? 'issues' %>
-            <th>
+            <td>
               <%== "#{truncate(issue.project.name)} ( #{link_to "##{issue.project.sequence_num}", project_path(issue.project.sequence_num), class: 'link'} )" %>
-            </th>
+            </td>
           <% end %>
-          <th><%= issue.description.present? ? truncate(issue.description) : t('shared.index_views.dashes') %></th>
-          <th><%= Issue.human_enum_name(:status, issue.status) %></th>
-          <th><%= Issue.human_enum_name(:priority, issue.priority) %></th>
-          <th><%= Issue.human_enum_name(:issue_type, issue.issue_type) %></th>
-          <th>
+          <td><%= issue.description.present? ? truncate(issue.description) : t('shared.index_views.dashes') %></td>
+          <td><%= Issue.human_enum_name(:status, issue.status) %></td>
+          <td><%= Issue.human_enum_name(:priority, issue.priority) %></td>
+          <td><%= Issue.human_enum_name(:issue_type, issue.issue_type) %></td>
+          <td>
             <div class="d-flex">
               <%= link_to '<i class="fas fa-eye"></i>'.html_safe, project_issue_path(issue.project.sequence_num, issue.id), class: 'btn btn-sm btn-outline-info card-button mr-2'  %>
               <% if params[:controller].eql? 'issues' %>
@@ -63,7 +63,7 @@
                 <% end %>
               <% end %>
             </div>
-          </th>
+          </td>
         </tr>
       <% end %>
     </tbody>
