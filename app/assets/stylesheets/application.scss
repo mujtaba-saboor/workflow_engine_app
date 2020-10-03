@@ -2,15 +2,16 @@
 /* $primary-color: #5bc0de; */
 $primary-color: #2fa4b5;
 $secondary-color: white;
-$hover-primary-color: #289cd1;
+$hover-primary-color: scale-color($primary-color, $lightness: -30%);
 $pagination-link-btn-text-color: #5a5a5a;
 $pagination-link-btn-background-color: #eee;
 $pagination-link-btn-border-color: #ddd;
 $form-border-color: #c7c9c8;
 $breadcrumbs-color: #A1A1A1;
 
-
-
+.box-shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 .error-explanation {
   @extend .alert;
@@ -88,9 +89,12 @@ $breadcrumbs-color: #A1A1A1;
   }
 }
 
+
+/*** Filters ***/
+
 .search-box {
   @mixin border {
-    border: 2px solid $primary-color;
+    border: 1px solid $primary-color;
     border-radius: 4px;
   }
 
@@ -275,7 +279,9 @@ $breadcrumbs-color: #A1A1A1;
   background-color: white;
   padding: 50px;
   border-radius: 0px;
+  
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
   margin:50px;
 
   .text-dark-heading {
