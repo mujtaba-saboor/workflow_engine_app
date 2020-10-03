@@ -30,11 +30,11 @@
         <tr class="my-4">
           <th><%= issue.id %></th>
           <th>
-            <%== "#{truncate(issue.title)} ( #{link_to "##{issue.id}", project_issue_path(issue.project.sequence_num, issue.id)} )" %>
+            <%== "#{truncate(issue.title)} ( #{link_to "##{issue.id}", project_issue_path(issue.project.sequence_num, issue.id), class: 'link'} )" %>
           </th>
           <% if params[:controller].eql? 'issues' %>
             <th>
-              <%== "#{truncate(issue.project.name)} ( #{link_to "##{issue.project.sequence_num}", project_path(issue.project.sequence_num)} )" %>
+              <%== "#{truncate(issue.project.name)} ( #{link_to "##{issue.project.sequence_num}", project_path(issue.project.sequence_num), class: 'link'} )" %>
             </th>
           <% end %>
           <th><%= issue.description.present? ? truncate(issue.description) : t('shared.index_views.dashes') %></th>
