@@ -7,8 +7,8 @@
     <%= stylesheet_link_tag 'application', 'sb-admin-2.min','landing-page-style', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div class="d-flex flex-column">
-      <div class="container-fluid">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="text-center">
           <div class="error mx-auto" data-text="<%= t('shared.error_404') %>"><%= t('shared.error_404') %></div>
           <p class="lead text-gray-800 mb-5"><%= t('shared.page_not_found_msg') %></p>

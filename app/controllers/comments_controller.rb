@@ -56,7 +56,7 @@ class CommentsController < ApplicationController
 
   def set_up_pagy_and_resource
     @resource = @comment.commentable
-    @pagy, @comments = pagy(@resource.comments)
+    @pagy, @comments = pagy(@resource.comments, link_extra: "data-remote='true'")
     # TODO: Add a proper decorator class for this type of thing
     @pagy.instance_variable_set(:@custom_link, helpers.resource_comments_display_path(@resource))
   end

@@ -1,9 +1,17 @@
 <div class="container">
-  <h3 class="mb-4"><%= t 'issues.new_form.title' %></h3>
-  <h5><%= "#{Project.model_name.human}: #{@project.name}"%></h5>
+  <div class="card box-shadow p-5-rem mb-4">
+    <div class="card-body">
+      <div class="card-title">
+        <div class="row d-xl-flex justify-content-between align-items-end">
+          <h3 class="text-dark-heading"><%= t 'issues.new_form.title' %></h3>
+          <h6><%= "#{Project.model_name.human}: #{@project.name}"%></h6>
+        </div>
+      </div>
 
-  <%= form_for [@project, @issue], url: { action: "create" } do |f| %>
-    <%= render partial: 'issue_form_internal', locals: { issue: @issue, valid_assignees: @valid_assignees,form: f } %>
-    <%= submit_tag t('shared.create'), class: 'btn btn-info' %>
-  <% end %>
+      <%= form_for [@project, @issue], class: 'form-primary', url: { action: "create" } do |f| %>
+        <%= render partial: 'issue_form_internal', locals: { issue: @issue, valid_assignees: @valid_assignees,form: f } %>
+        <%= submit_tag t('shared.create'), class: 'btn btn-info form-control' %>
+      <% end %>
+      </div>
+  </div>
 </div>

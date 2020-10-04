@@ -27,11 +27,13 @@ class IssuesController < ApplicationController
   def show
     @comment = Comment.new
     @user_watchers = @issue.user_watchers
-    @pagy, @comments = pagy(Comment.where(commentable: @issue))
+    @pagy, @comments = pagy(Comment.where(commentable: @issue), link_extra: "data-remote='true'")
+    @resource = @issue
     add_breadcrumb @issue.project.name, project_path(@issue.project.sequence_num)
     add_breadcrumb @issue.title, :project_issue_path
     respond_to do |format|
       format.html
+      format.js { render 'comments/list' }
     end
   end
 

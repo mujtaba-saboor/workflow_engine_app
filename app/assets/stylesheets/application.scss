@@ -13,6 +13,10 @@ $breadcrumbs-color: #A1A1A1;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.p-5-rem {
+  padding: 5rem !important;
+}
+
 .error-explanation {
   @extend .alert;
   @extend .alert-danger;
@@ -91,10 +95,21 @@ $breadcrumbs-color: #A1A1A1;
 
 textarea {
   resize: none !important;
+  height: 8em !important;
 }
 
 hr {
   margin: 1.5em 0 !important;
+}
+
+/*** Form ***/
+.form-primary {
+  input, textarea {
+    border: 1px solid $primary-color;
+  }
+  label {
+    letter-spacing: 0.1em;
+  }
 }
 
 /*** Filters ***/
@@ -294,12 +309,12 @@ hr {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   margin:50px;
+}
 
-  .text-dark-heading {
-    color: black;
-    font-family: 'Lato';
-    font-size: 35px;
-  }
+.text-dark-heading {
+  color: black;
+  font-family: 'Lato';
+  font-size: 35px;
 }
 
 .main-nav {
