@@ -13,6 +13,10 @@ $breadcrumbs-color: #A1A1A1;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.stretch {
+  width: 100%;
+}
+
 .p-5-rem {
   padding: 5rem !important;
 }
@@ -121,6 +125,7 @@ hr {
   }
 
   @mixin common_theme {
+    font-size: 0.9em;
     background-color: white;
     color: $primary-color;
   }
@@ -131,7 +136,7 @@ hr {
   }
 
   select {
-    padding: 6px 10px;
+    padding: 4px 8px;
     font-size: 0.9em;
   }
 

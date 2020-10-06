@@ -1,30 +1,24 @@
 <div class="search-box container-fluid">
   <%= form_with url: filter_issues_path, method: :get do |form| %>
-    <div class="row align-items-center">
-      <div class="col-xl-9 container-fluid row align-items-center">
-        <div class='form-group my-1 float-left'>
-          <%= form.label :status %>
-          <%= form.select(:status, options_for_select(create_select_options_for_enum(:status, Issue.statuses.keys, blank_string: t('issues.filter.categories.all'))), {}, { class: 'mx-2' }) %>
-        </div>
-        <div class='form-group my-1 float-left'>
-          <%= form.label :priority %>
-          <%= form.select(:priority, options_for_select(create_select_options_for_enum(:priority, Issue.priorities.keys, blank_string: t('issues.filter.categories.all'))), {}, { class: 'mx-2' }) %>
-        </div>
-        <div class='form-group my-1 float-left'>
-          <%= form.label :issue_type %>
-          <%= form.select(:issue_type, options_for_select(create_select_options_for_enum(:issue_type, Issue.issue_types.keys, blank_string: t('issues.filter.categories.all'))), {}, { class: 'mx-2' }) %>
-        </div>
+    <div class="row">
+      <div class="col-xl-8 d-md-flex align-items-center">
+        <%= form.label :status, class: 'm-0' %>
+        <%= form.select(:status, options_for_select(create_select_options_for_enum(:status, Issue.statuses.keys, blank_string: t('issues.filter.categories.all'))), {}, { class: 'mx-2' }) %>
+        <%= form.label :priority, class: 'm-0 ml-1' %>
+        <%= form.select(:priority, options_for_select(create_select_options_for_enum(:priority, Issue.priorities.keys, blank_string: t('issues.filter.categories.all'))), {}, { class: 'mx-2' }) %>
+        <%= form.label :issue_type, class: 'm-0 ml-1' %>
+        <%= form.select(:issue_type, options_for_select(create_select_options_for_enum(:issue_type, Issue.issue_types.keys, blank_string: t('issues.filter.categories.all'))), {}, { class: 'mx-2' }) %>
         <%= form.submit t('shared.filter'), class: 'btn btn-sm btn-info' %>
       </div>
-      <div class="col-xl-3">
-        <div class='form-group my-1'>
-          <%= form.text_field :issue_title, placeholder: t('issues.filter.form.issue_title'), class: 'form-control' %>
+      <div class="col-xl-4">
+        <div class='form-group my-2'>
+          <%= form.text_field :issue_title, placeholder: t('issues.filter.form.issue_title'), class: 'stretch' %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
 
-<div id="issues_list" class="container-fluid my-4">
+<div id="issues_list" class="container-fluid">
   <%= render 'issues_table', issues: issues, pagy: @pagy %>
 </div>
