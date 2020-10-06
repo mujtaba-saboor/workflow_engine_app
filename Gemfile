@@ -39,7 +39,9 @@ gem 'pagy', '=3.8.3'
 # delayed_job
 gem 'delayed_job_active_record', '=4.1.4'
 
-gem 'rspec-rails', '=4.0.1'
+# searchkick for searching with elasticsearch
+gem 'searchkick', '=4.4.1'
+
 # faker
 gem 'faker', '=2.14.0'
 # Use Active Storage variant

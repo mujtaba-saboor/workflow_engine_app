@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  searchkick
   sequenceid :company ,:users
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -29,8 +30,13 @@ class User < ApplicationRecord
   has_many :created_issues, class_name: 'Issue', foreign_key: 'creator_id', inverse_of: 'creator', dependent: :destroy
   has_many :assigned_issues, class_name: 'Issue', foreign_key: 'assignee_id', inverse_of: 'assignee', dependent: :nullify
   has_many :sent_invites, class_name: 'Invite', foreign_key: 'sender_id'
+
   def self.find_for_authentication(warden_conditions)
     where(email: warden_conditions[:email], company_id: Company.current_id).first
+  end
+
+  def self.search(query)
+
   end
 
   def watcher_for(issue)
@@ -60,7 +66,7 @@ class User < ApplicationRecord
     if staff?
       all_projects.joins(:issues)
     else
-      company.projects.joins(:issues)      
+      company.projects.joins(:issues)
     end
   end
 
