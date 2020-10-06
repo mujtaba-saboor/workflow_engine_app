@@ -36,6 +36,10 @@ Pagy::VARS[:items] = 5
 # Bootstrap extra: Add nav, nav_js and combo_nav_js helpers and templates for Bootstrap pagination
 # See https://ddnexus.github.io/pagy/extras/bootstrap
 require 'pagy/extras/bootstrap'
+require 'pagy/extras/overflow'
+
+# default :empty_page (other options :last_page and :exception )
+Pagy::VARS[:overflow] = :last_page
 
 # Bulma extra: Add nav, nav_js and combo_nav_js helpers and templates for Bulma pagination
 # See https://ddnexus.github.io/pagy/extras/bulma
