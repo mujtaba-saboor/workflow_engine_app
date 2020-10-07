@@ -2,7 +2,7 @@
   <%= render 'layouts/signed_in_user_navbar' %>
   <% unless params[:controller].eql? 'companies' %>
     <div class="breadcrumbs-container">
-      <p><%= render_breadcrumbs separator: ' / ' %></p>
+     <%= render_breadcrumbs tag: :brd, separator: '<span class="separator"><i class="fas fa-angle-right"></i></span>' %>
     </div>
     <br>
   <% end %>

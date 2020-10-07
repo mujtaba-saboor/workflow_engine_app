@@ -52,6 +52,7 @@ class UsersController < ApplicationController
     @users =
       User.search(
         '*',
+        fields: %i[name email],
         where: where_options,
         page: params[:page],
         per_page: Pagy::VARS[:items]

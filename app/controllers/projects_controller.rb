@@ -80,6 +80,7 @@ class ProjectsController < ApplicationController
     @projects =
       Project.search(
         params[:project_title].present? ? params[:project_title] : '*',
+        fields: %i[name],
         where: where_options,
         page: params[:page],
         per_page: Pagy::VARS[:items]

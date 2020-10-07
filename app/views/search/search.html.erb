@@ -22,6 +22,9 @@
         <% end %>
       </div>
     </div>
+    <% if @users_pagy.present? %>
+      <%== pagy_bootstrap_nav(@users_pagy) %>
+    <% end %>
   <% end %>
   <% if @projects.present? %>
     <div class="row my-4">
@@ -44,6 +47,9 @@
         <% end %>
       </div>
     </div>
+    <% if @projects_pagy.present? %>
+      <%== pagy_bootstrap_nav(@projects_pagy) %>
+    <% end %>
   <% end %>
   <% if @issues.present? %>
     <div class="row my-4">
@@ -66,6 +72,9 @@
         <% end %>
       </div>
     </div>
+    <% if @issues_pagy.present? %>
+      <%== pagy_bootstrap_nav(@issues_pagy) %>
+    <% end %>
   <% end %>
 
   <% if @users.blank? && @issues.blank? && @projects.blank? %>

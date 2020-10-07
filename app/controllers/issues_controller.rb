@@ -129,6 +129,7 @@ class IssuesController < ApplicationController
     @issues =
       Issue.search(
         params[:issue_title].present? ? params[:issue_title] : '*',
+        fields: %w[title^5 description],
         where: where_options,
         page: params[:page],
         per_page: Issue::PAGE_SIZE

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  searchkick
+  searchkick stem: false, word_middle: %i[name email]
   sequenceid :company ,:users
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
