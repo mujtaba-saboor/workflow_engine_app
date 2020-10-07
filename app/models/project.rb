@@ -1,6 +1,5 @@
 class Project < ApplicationRecord
   searchkick
-
   sequenceid :company, :projects
   PROJECT_CATEGORIES = %w[TEAM INDEPENDENT].freeze
 

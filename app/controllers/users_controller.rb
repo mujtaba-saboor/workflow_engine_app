@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @pagy, @users = pagy(@users,  items: Company::PAGE_SIZE)
+    @pagy, @users = pagy(@users)
     respond_to { |format| format.html }
   end
 
@@ -46,16 +46,14 @@ class UsersController < ApplicationController
   end
 
   def filters
-    if(params[:search].present?)
-      if params[:search].eql? User::ROLES[0]
-        @users = @users.where(role: User::ROLES[0])
-      elsif params[:search].eql? User::ROLES[1]
-        @users = @users.where(role: User::ROLES[1])
-      elsif params[:search].eql? User::ROLES[2]
-        @users = @users.where(role: User::ROLES[2])
-      end
-    end
-    @pagy, @users = pagy(@users.order(created_at: :desc), items: Company::PAGE_SIZE)
+    search_options = {
+      id: @users.pluck(:id),
+      page: params[:page]
+    }
+    search_options[:role] = params[:search] if User::ROLES.include? params[:search]
+
+    @pagy, @users = User.filter_search(nil, search_options)
+
     respond_to do |format|
       format.js
     end

@@ -18,6 +18,9 @@ class User < ApplicationRecord
 
   ROLES = %w[STAFF ADMIN OWNER].freeze
 
+  SEARCH_FIELDS = %i[name email].freeze
+  FILTER_FIELDS = %i[role id].freeze
+
   belongs_to :company, optional: true
   accepts_nested_attributes_for :company
 
@@ -33,10 +36,6 @@ class User < ApplicationRecord
 
   def self.find_for_authentication(warden_conditions)
     where(email: warden_conditions[:email], company_id: Company.current_id).first
-  end
-
-  def self.search(query)
-
   end
 
   def watcher_for(issue)

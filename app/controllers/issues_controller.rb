@@ -127,9 +127,9 @@ class IssuesController < ApplicationController
       per_page: Issue::PAGE_SIZE
     }
 
-    search_options[:issue_type] = params[:issue_type] if params[:issue_type].present?
-    search_options[:status] = params[:status] if params[:status].present?
-    search_options[:priority] = params[:priority] if params[:priority].present?
+    %i[status priority issue_type].each do |field|
+      search_options[field] = params[field] if params[field].present?
+    end
 
     @pagy, @issues = Issue.filter_search(params[:issue_title], search_options)
 

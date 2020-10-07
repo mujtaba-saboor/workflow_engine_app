@@ -2,6 +2,7 @@
 
 class Issue < ApplicationRecord
   include AASM
+
   searchkick
   scope :search_import, -> { includes(:product) }
 

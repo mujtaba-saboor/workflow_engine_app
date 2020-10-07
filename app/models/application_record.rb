@@ -12,6 +12,7 @@ class ApplicationRecord < ActiveRecord::Base
     query = '*' if query.blank?
 
     page_settings = options.slice(:page, :per_page)
+    page_settings[:per_page] ||= Pagy::VARS[:items]
 
     results = search(query, fields: self::SEARCH_FIELDS, where: where_options, **page_settings)
     pagy = Pagy.new_from_searchkick(results, link_extra: "data-remote='true'")
