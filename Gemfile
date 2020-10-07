@@ -19,6 +19,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'turbolinks', '~> 5'
 # for authorization
 gem 'cancancan', '= 3.1.0'
+# for charts and graphs
+gem 'chartkick', '3.4.0'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
