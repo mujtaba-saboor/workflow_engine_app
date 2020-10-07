@@ -46,13 +46,17 @@ class UsersController < ApplicationController
   end
 
   def filters
-    search_options = {
-      id: @users.pluck(:id),
-      page: params[:page]
-    }
-    search_options[:role] = params[:search] if User::ROLES.include? params[:search]
+    where_options = { id: @users.pluck(:id) }
+    where_options[:role] = params[:search] if User::ROLES.include? params[:search]
 
-    @pagy, @users = User.filter_search(nil, search_options)
+    @users =
+      User.search(
+        '*',
+        where: where_options,
+        page: params[:page],
+        per_page: Pagy::VARS[:items]
+      )
+    @pagy = Pagy.new_from_searchkick(@users)
 
     respond_to do |format|
       format.js

@@ -7,19 +7,6 @@ class ApplicationRecord < ActiveRecord::Base
     I18n.t("activerecord.attributes.#{model_name.i18n_key}.#{enum_name.to_s.pluralize}.#{enum_value}")
   end
 
-  def self.filter_search(query, **options)
-    where_options = options.slice(*self::FILTER_FIELDS)
-    query = '*' if query.blank?
-
-    page_settings = options.slice(:page, :per_page)
-    page_settings[:per_page] ||= Pagy::VARS[:items]
-
-    results = search(query, fields: self::SEARCH_FIELDS, where: where_options, **page_settings)
-    pagy = Pagy.new_from_searchkick(results, link_extra: "data-remote='true'")
-
-    [pagy, results]
-  end
-
   def self.inherited(subclass)
     super
     return if subclass.abstract_class? || subclass.base_class == ActiveRecord::InternalMetadata

@@ -121,17 +121,19 @@ class IssuesController < ApplicationController
 
   # GET /issues/filter
   def filter
-    search_options = {
-      id: @issues.pluck(:id),
-      page: params[:page],
-      per_page: Issue::PAGE_SIZE
-    }
-
+    where_options = { id: @issues.pluck(:id) }
     %i[status priority issue_type].each do |field|
-      search_options[field] = params[field] if params[field].present?
+      where_options[field] = params[field] if params[field].present?
     end
 
-    @pagy, @issues = Issue.filter_search(params[:issue_title], search_options)
+    @issues =
+      Issue.search(
+        params[:issue_title].present? ? params[:issue_title] : '*',
+        where: where_options,
+        page: params[:page],
+        per_page: Issue::PAGE_SIZE
+      )
+    @pagy = Pagy.new_from_searchkick(@issues)
 
     respond_to do |format|
       format.js { render 'all' }

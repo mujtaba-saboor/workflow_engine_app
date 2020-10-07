@@ -8,9 +8,6 @@ class Issue < ApplicationRecord
 
   PAGE_SIZE = 5
 
-  SEARCH_FIELDS = %i[title].freeze
-  FILTER_FIELDS = %i[status priority issue_type id].freeze
-
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :watchers, dependent: :destroy
 

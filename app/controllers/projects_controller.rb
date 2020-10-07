@@ -74,14 +74,17 @@ class ProjectsController < ApplicationController
   end
 
   def filters
-    search_options = {
-      id: @projects.pluck(:id),
-      page: params[:page],
-      per_page: Company::PAGE_SIZE
-    }
-    search_options[:project_category] = params[:search] if Project::PROJECT_CATEGORIES.include? params[:search]
+    where_options = { id: @projects.pluck(:id) }
+    where_options[:project_category] = params[:search] if Project::PROJECT_CATEGORIES.include? params[:search]
 
-    @pagy, @projects = Project.filter_search(params[:project_title], search_options)
+    @projects =
+      Project.search(
+        params[:project_title].present? ? params[:project_title] : '*',
+        where: where_options,
+        page: params[:page],
+        per_page: Pagy::VARS[:items]
+      )
+    @pagy = Pagy.new_from_searchkick(@projects)
 
     respond_to do |format|
       format.js
