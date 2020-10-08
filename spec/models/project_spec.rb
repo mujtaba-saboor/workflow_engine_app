@@ -42,5 +42,10 @@ RSpec.describe Project, type: :model do
       @project.project_category = 'INDEPENDENT'
       expect(@project.team_project?).to be false
     end
+
+    it 'should destroy the project' do
+      @project.destroy
+      expect(@project.destroyed?).to be true
+    end
   end
 end
