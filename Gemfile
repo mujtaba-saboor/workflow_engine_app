@@ -44,6 +44,8 @@ gem 'delayed_job_active_record', '=4.1.4'
 gem 'rspec-rails', '=4.0.1'
 # faker
 gem 'faker', '=2.14.0'
+# factory girl for building factories for seed data
+gem 'factory_girl_rails', '=4.9.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
