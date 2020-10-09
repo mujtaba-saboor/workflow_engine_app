@@ -5,8 +5,8 @@ class ProjectsController < ApplicationController
 
   before_action :load_pagy, only: %i[index]
 
-  add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show]
-  add_breadcrumb I18n.t('shared.projects'), :projects_path, only: [:index, :show]
+  add_breadcrumb I18n.t('shared.home'), :root_path, only: %i[index show]
+  add_breadcrumb I18n.t('shared.projects'), :projects_path, only: %i[index show]
 
   def index
     respond_to do |format|

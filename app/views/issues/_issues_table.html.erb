@@ -19,7 +19,7 @@
           <% end %>
           <% if params[:controller].eql? 'projects' %>
             <% if can? :create, Issue %>
-              <%= link_to t('projects.add_issue'),new_project_issue_path(@project),class: 'btn my-primary-btn' %></th>
+              <%= link_to t('projects.add_issue'), new_project_issue_path(@project), class: 'btn my-primary-btn' %></th>
             <% end %>
           <% end %>
           </th>

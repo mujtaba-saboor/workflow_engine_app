@@ -132,9 +132,10 @@ class IssuesController < ApplicationController
         fields: %w[title^5 description],
         where: where_options,
         page: params[:page],
-        per_page: Issue::PAGE_SIZE
+        per_page: Issue::PAGE_SIZE,
+        includes: [:project]
       )
-    @pagy = Pagy.new_from_searchkick(@issues)
+    @pagy = Pagy.new_from_searchkick(@issues, link_extra: "data-remote='true'")
 
     respond_to do |format|
       format.js { render 'all' }
@@ -163,8 +164,8 @@ class IssuesController < ApplicationController
   end
 
   def load_pagy
-    @pagy, @issues = pagy(@issues, link_extra: "data-remote='true'", items: Issue::PAGE_SIZE)
     @issues.includes(:project)
+    @pagy, @issues = pagy(@issues, link_extra: "data-remote='true'", items: Issue::PAGE_SIZE)
   end
 
   def issue_params
