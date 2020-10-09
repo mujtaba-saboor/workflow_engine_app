@@ -39,8 +39,12 @@ module ApplicationHelper
         'success'
       when 'error'
         'danger'
+      when 'warning'
+        'warning'
+      when 'alert'
+        'danger'
       else
-        alert_type
+        'info'
     end
   end
 end

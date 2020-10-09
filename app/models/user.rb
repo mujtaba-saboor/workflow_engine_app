@@ -56,6 +56,14 @@ class User < ApplicationRecord
     company.projects.joins(:teams).where(teams: { id: teams.pluck(:id) }).count
   end
 
+  def all_issues
+    if staff?
+      all_projects.joins(:issues)
+    else
+      company.projects.joins(:issues)      
+    end
+  end
+
   def get_team_count
     staff? ? teams.count : company.teams.count
   end

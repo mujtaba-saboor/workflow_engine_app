@@ -47,7 +47,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><%= t('home.watching_issues') %></div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">00</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= current_user.watchers.size %></div>
               </div>
               <div class="col-auto">
                 <i class="far fa-eye fa-2x text-gray-300"></i>
@@ -85,21 +85,22 @@
             <h6 class="m-0 font-weight-bold text-info"><%= t('home.issues') %> </h6>
           </div>
           <div class="card-body">
-            <h4 class="small font-weight-bold"><%= t('home.issues_open') %>  <span class="float-right">40%</span></h4>
+            <% active_issues = issues_percentage(current_user) %>
+            <h4 class="small font-weight-bold"><%= t('home.issues_open') %>  <span class="float-right"><%= active_issues[:open] %>%</span></h4>
             <div class="progress mb-4">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-primary" role="progressbar" style="width: <%= active_issues[:open] %>%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <h4 class="small font-weight-bold"><%= t('home.issues_inprogress') %>  <span class="float-right">60%</span></h4>
+            <h4 class="small font-weight-bold"><%= t('home.issues_inprogress') %>  <span class="float-right"><%= active_issues[:in_progress] %>%</span></h4>
             <div class="progress mb-4">
-              <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-info" role="progressbar" style="width: <%= active_issues[:in_progress] %>%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <h4 class="small font-weight-bold"><%= t('home.issues_resolved') %>  <span class="float-right">80%</span></h4>
+            <h4 class="small font-weight-bold"><%= t('home.issues_resolved') %>  <span class="float-right"><%= active_issues[:resolved] %>%</span></h4>
             <div class="progress mb-4">
-              <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= active_issues[:resolved] %>%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <h4 class="small font-weight-bold"><%= t('home.issues_closed') %>  <span class="float-right">Complete!</span></h4>
+            <h4 class="small font-weight-bold"><%= t('home.issues_closed') %>  <span class="float-right"><%= active_issues[:closed] %>%</span></h4>
             <div class="progress">
-              <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-success" role="progressbar" style="width: <%= active_issues[:closed] %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
         </div>        
@@ -112,13 +113,15 @@
             <h6 class="m-0 font-weight-bold text-info"><%= t('home.issue_priority') %></h6>
           </div>
           <div class="card-body">
-            <h4 class="small font-weight-bold"><%= t('home.issue_priority_high') %> <span class="float-right">40%</span></h4>
+            <% high_strength = high_issues_percentage(current_user) %>
+            <% low_strength = 100 - high_strength %>
+            <h4 class="small font-weight-bold"><%= t('home.issue_priority_high') %> <span class="float-right"><%= high_strength %>%</span></h4>
             <div class="progress mb-4">
-              <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-danger" role="progressbar" style="width: <%= high_strength %>%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <h4 class="small font-weight-bold"><%= t('home.issue_priority_low') %> <span class="float-right">80%</span></h4>
+            <h4 class="small font-weight-bold"><%= t('home.issue_priority_low') %> <span class="float-right"><%= low_strength %>%</span></h4>
             <div class="progress mb-4">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= low_strength %>%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
         </div>

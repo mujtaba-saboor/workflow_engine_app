@@ -52,7 +52,9 @@ gem 'sequenceid', '=0.0.7', git: "https://github.com/alisyed/sequenceid.git", br
 gem 'breadcrumbs_on_rails', '=4.0.0'
 
 group :development, :test do
+  gem 'database_cleaner-active_record', '=1.8.0'
   gem 'rspec-rails', '=4.0.1'
+
   # faker
   gem 'faker', '=2.14.0'
 

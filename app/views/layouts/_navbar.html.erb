@@ -1,9 +1,11 @@
 <% if user_signed_in? %>
   <%= render 'layouts/signed_in_user_navbar' %>
+  <% unless params[:controller].eql? 'companies' %>
+    <div class="breadcrumbs-container">
+      <p><%= render_breadcrumbs separator: ' / ' %></p>
+    </div>
+    <br>
+  <% end %>
 <% else %>
   <%= render 'layouts/normal_user_navbar' %>
 <% end %>
-<div class="breadcrumbs-container">
-  <p><%= render_breadcrumbs separator: ' / ' %></p>
-</div>
-<br>

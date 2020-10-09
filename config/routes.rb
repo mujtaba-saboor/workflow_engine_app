@@ -41,6 +41,8 @@ Rails.application.routes.draw do
         delete 'remove_user_from_team'
       end
     end
+    get '/search', to: 'search#search'
+
     get '', to: 'companies#index'
     resources :invites
     get 'project/filters', to: 'projects#filters'
@@ -60,6 +62,8 @@ Rails.application.routes.draw do
     resources :users, only: %i[index show update edit destroy] do
       collection do
         get 'filters'
+        get 'make_owner_page'
+        patch 'make_owner'
       end
     end
   end

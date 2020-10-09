@@ -142,6 +142,63 @@ $breadcrumbs-color: #A1A1A1;
   }
 }
 
+.search-page-heading {
+  background: $primary-color;
+  color: white;
+
+  font-size: 2em;
+  letter-spacing: 0.2em;
+
+  padding: 1.5em 3em;
+}
+
+.search-result-tag {
+  padding: 3em;
+  text-align: center;
+  color: white;
+}
+
+.search-result-body {
+  padding: 2em 1em !important;
+}
+
+.user-tag {
+  background: scale-color($primary-color, $lightness: 30%);
+}
+
+.project-tag {
+  background: $primary-color;
+}
+
+.issue-tag {
+  background: scale-color($primary-color, $lightness: -30%);
+}
+
+.no-results-found {
+  text-align: center;
+
+  padding: 3em 5em;
+  margin: 1em;
+
+  border: 1px solid #eae1f0;;
+  border-radius: 2%;
+
+  .icons .ban {
+    color: #001417;
+    opacity: 0.5;
+  }
+
+  .heading {
+    font-size: 2em;
+  }
+
+  .description {
+    margin-top: 2em;
+    text-align: left;
+    font-size: 1em;
+  }
+}
+
 .registration-form {
   font-family: 'Lato';
 
@@ -195,10 +252,12 @@ $breadcrumbs-color: #A1A1A1;
 
 .main-nav {
   box-shadow: 1px 1px 5px $breadcrumbs-color;
+  margin-bottom: 10px;
 }
 
 .menu-icon {
-  font-size: 21px !important;
+  width: 25px;
+  font-size: 17px !important;
 }
 
 .company-link-container {
