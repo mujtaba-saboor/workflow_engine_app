@@ -37,3 +37,4 @@ yarn-debug.log*
 #ignor database file
 /config/database.yml
 /db/schema.rb
+.rubocop.yml
