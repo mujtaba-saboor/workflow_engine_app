@@ -121,10 +121,21 @@ class IssuesController < ApplicationController
 
   # GET /issues/filter
   def filter
-    @issues = @issues.where(search_params)
-    @issues = @issues.where('issues.title LIKE :title', title: "%#{params[:issue_title]}%") if params[:issue_title].present?
+    where_options = { id: @issues.pluck(:id) }
+    %i[status priority issue_type].each do |field|
+      where_options[field] = params[field] if params[field].present?
+    end
 
-    load_pagy
+    @issues =
+      Issue.search(
+        params[:issue_title].present? ? params[:issue_title] : '*',
+        fields: %w[title^5 description],
+        where: where_options,
+        page: params[:page],
+        per_page: Issue::PAGE_SIZE,
+        includes: [:project]
+      )
+    @pagy = Pagy.new_from_searchkick(@issues, link_extra: "data-remote='true'")
 
     respond_to do |format|
       format.js { render 'all' }
@@ -153,13 +164,8 @@ class IssuesController < ApplicationController
   end
 
   def load_pagy
-    @pagy, @issues = pagy(@issues, link_extra: "data-remote='true'", items: Issue::PAGE_SIZE)
     @issues.includes(:project)
-  end
-
-  def search_params
-    permitted_params = %i[status issue_type priority]
-    params.permit(*permitted_params).delete_if { |_key, value| value.blank? }
+    @pagy, @issues = pagy(@issues, link_extra: "data-remote='true'", items: Issue::PAGE_SIZE)
   end
 
   def issue_params

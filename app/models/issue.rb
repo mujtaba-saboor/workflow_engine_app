@@ -3,6 +3,8 @@
 class Issue < ApplicationRecord
   include AASM
 
+  searchkick
+
   PAGE_SIZE = 5
 
   has_many :comments, as: :commentable, dependent: :destroy

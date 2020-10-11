@@ -4,8 +4,9 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_company
 
   before_action :load_pagy, only: %i[index]
-  add_breadcrumb I18n.t('shared.home'), :root_path, only: [:index, :show]
-  add_breadcrumb I18n.t('shared.projects'), :projects_path, only: [:index, :show]
+
+  add_breadcrumb I18n.t('shared.home'), :root_path, only: %i[index show]
+  add_breadcrumb I18n.t('shared.projects'), :projects_path, only: %i[index show]
 
   def index
     respond_to do |format|
@@ -28,7 +29,7 @@ class ProjectsController < ApplicationController
       end
     else
       respond_to do |format|
-       format.js
+        format.js
       end
     end
   end
@@ -73,17 +74,19 @@ class ProjectsController < ApplicationController
   end
 
   def filters
-    if(params[:search].present?)
-      if params[:search].eql? Project::PROJECT_CATEGORIES[0]
-        @projects = @projects.team_projects
-      elsif params[:search].eql? Project::PROJECT_CATEGORIES[1]
-        @projects = @projects.independent_projects
-      end
-    end
+    where_options = { id: @projects.pluck(:id) }
+    where_options[:project_category] = params[:search] if Project::PROJECT_CATEGORIES.include? params[:search]
 
-    @projects = @projects.where('projects.name LIKE :name', name: "%#{params[:project_title]}%") if params[:project_title].present?
+    @projects =
+      Project.search(
+        params[:project_title].present? ? params[:project_title] : '*',
+        fields: %i[name],
+        where: where_options,
+        page: params[:page],
+        per_page: Pagy::VARS[:items]
+      )
+    @pagy = Pagy.new_from_searchkick(@projects)
 
-    load_pagy
     respond_to do |format|
       format.js
     end
@@ -179,7 +182,7 @@ class ProjectsController < ApplicationController
   private
 
   def load_pagy
-    @pagy, @projects = pagy(@projects.order(created_at: :desc), link_extra: "data-remote='true'", items: Company::PAGE_SIZE)
+    @pagy, @projects = pagy(@projects, link_extra: "data-remote='true'", items: Company::PAGE_SIZE)
   end
 
   def project_params

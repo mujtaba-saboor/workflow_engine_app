@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+  searchkick
   sequenceid :company, :projects
   PROJECT_CATEGORIES = %w[TEAM INDEPENDENT].freeze
 
@@ -20,6 +21,10 @@ class Project < ApplicationRecord
   scope :independent_projects, -> { where(project_category: PROJECT_CATEGORIES[1]) }
   scope :team_projects, -> { where(project_category: PROJECT_CATEGORIES[0]) }
 
+  def self.get_total_team_projects
+    where(project_category: Project::PROJECT_CATEGORIES[0]).count
+  end
+
   def valid_assignees
     members
   end
@@ -38,10 +43,6 @@ class Project < ApplicationRecord
     else
       users
     end
-  end
-
-  def self.get_total_team_projects
-    where(project_category: Project::PROJECT_CATEGORIES[0]).count
   end
 
   def team_project?
