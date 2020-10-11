@@ -39,9 +39,6 @@ gem 'pagy', '=3.8.3'
 # delayed_job
 gem 'delayed_job_active_record', '=4.1.4'
 
-gem 'rspec-rails', '=4.0.1'
-# faker
-gem 'faker', '=2.14.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -57,6 +54,13 @@ gem 'breadcrumbs_on_rails', '=4.0.0'
 group :development, :test do
   gem 'database_cleaner-active_record', '=1.8.0'
   gem 'rspec-rails', '=4.0.1'
+
+  # faker
+  gem 'faker', '=2.14.0'
+
+  # factory bot
+  gem 'factory_bot_rails', '=6.1.0'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
