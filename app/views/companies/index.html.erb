@@ -132,7 +132,7 @@
             <h6 class="m-0 font-weight-bold text-info"><%= t('home.issues') %> </h6>
           </div>
           <div class="card-body">
-            <%= pie_chart Issue.group(:status).size, donut: true %>
+            <%= pie_chart @current_company.issues.accessible_by(current_ability, :read).group(:status).size, donut: true, code: true, width: '250px', height: '250px', library: {'cutoutPercentage' => 90 } %>
           </div>
         </div>
       </div>
