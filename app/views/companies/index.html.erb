@@ -66,7 +66,7 @@
           </div>
           <div class="card-body">
             <% team_strength = get_team_percentage(current_user) %>
-            <% individual_strength = 100 - team_strength %>
+            <% individual_strength = individual_percentage(current_user) %>
             <h4 class="small font-weight-bold"><%= t('home.project_categories_team') %> <span class="float-right"><%= team_strength %>%</span></h4>
             <div class="progress mb-4">
               <div class="progress-bar bg-info" role="progressbar" style="width: <%= team_strength %>%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
@@ -79,8 +79,8 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-8 mb-4">          
-       <div class="card shadow mb-4">
+      <div class="col-lg-8 mb-4">
+        <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-info"><%= t('home.issues') %> </h6>
           </div>
@@ -103,9 +103,9 @@
               <div class="progress-bar bg-success" role="progressbar" style="width: <%= active_issues[:closed] %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
-        </div>        
+        </div>
+      </div>
     </div>
-  </div>
     <div class="row">
       <div class="col-lg-4 mb-4">
         <div class="card shadow mb-4">
@@ -114,7 +114,7 @@
           </div>
           <div class="card-body">
             <% high_strength = high_issues_percentage(current_user) %>
-            <% low_strength = 100 - high_strength %>
+            <% low_strength = low_issues_percentage(current_user) %>
             <h4 class="small font-weight-bold"><%= t('home.issue_priority_high') %> <span class="float-right"><%= high_strength %>%</span></h4>
             <div class="progress mb-4">
               <div class="progress-bar bg-danger" role="progressbar" style="width: <%= high_strength %>%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
@@ -123,6 +123,16 @@
             <div class="progress mb-4">
               <div class="progress-bar bg-warning" role="progressbar" style="width: <%= low_strength %>%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 mb-4">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-info"><%= t('home.issues') %> </h6>
+          </div>
+          <div class="card-body">
+            <%= pie_chart @current_company.issues.accessible_by(current_ability, :read).group(:status).size, donut: true, code: true, width: '250px', height: '250px', library: {'cutoutPercentage' => 90 } %>
           </div>
         </div>
       </div>

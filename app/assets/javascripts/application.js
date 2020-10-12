@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function(){
-  $("body").on("change", "#company_name_id", function(){
+  $("body").on("keyup", "#company_name_id", function(){
     var subdomain = $(this).val();
     subdomain = subdomain.replace(/\W/g, '');
     subdomain = subdomain.toLowerCase();
